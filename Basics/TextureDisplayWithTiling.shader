@@ -17,6 +17,7 @@ Shader "ShaderCastle/Basics/TextureDisplayWithTiling"
             sampler2D _MainTex;
             float4 _MainTex_ST; // Required to get the sampler state (-> _ST)
 
+            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;

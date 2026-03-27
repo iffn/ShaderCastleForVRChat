@@ -7,7 +7,8 @@ Shader "ShaderCastle/Basics/UVCoordinate"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
+            
+            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;

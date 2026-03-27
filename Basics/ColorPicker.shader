@@ -18,6 +18,7 @@ Shader "ShaderCastle/Basics/ColorPicker"
             float _green;
             float _blue;
 
+            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };

@@ -8,6 +8,7 @@ Shader "ShaderCastle/Basics/JustRed"
             #pragma vertex vert
             #pragma fragment frag
 
+            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };

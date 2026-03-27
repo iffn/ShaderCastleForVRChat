@@ -14,6 +14,7 @@ Shader "ShaderCastle/Basics/TextureDisplay"
 
             sampler2D _MainTex;
 
+            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
