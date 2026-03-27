@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ScreenCoordinate"
+Shader "ShaderCastle/Basics/UVCoordinate"
 {
     SubShader
     {
