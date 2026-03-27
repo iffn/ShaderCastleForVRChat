@@ -31,7 +31,8 @@ Shader "ShaderCastle/Basics/ScreenCoordinate"
                 // i.pos.xy returns the current pixel coordinate of the fragment
                 // _ScreenParams.xy is the screen resolution in pixels
                 float2 screenUV = i.pos.xy / _ScreenParams.xy;
-                return fixed4(screenUV, 0.0, 1.0);  
+                fixed4 col = fixed4(screenUV, 0.0, 1.0);
+                return col; // Red
             }
             ENDCG
         }

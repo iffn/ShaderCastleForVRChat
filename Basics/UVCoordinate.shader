@@ -7,7 +7,7 @@ Shader "ShaderCastle/Basics/UVCoordinate"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            
+
             // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
@@ -31,7 +31,8 @@ Shader "ShaderCastle/Basics/UVCoordinate"
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
-                return fixed4(i.uv, 0.0, 1.0);  
+                fixed4 col = fixed4(i.uv, 0.0, 1.0);
+                return col; // Red
             }
             ENDCG
         }
