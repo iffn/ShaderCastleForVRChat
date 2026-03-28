@@ -35,7 +35,6 @@ Shader "ShaderCastle/Light/Albedo"
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
                 o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
@@ -45,11 +44,14 @@ Shader "ShaderCastle/Light/Albedo"
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
+                float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
-                fixed3 diffuse = dot(normalized_world_light_direction, i.worldNormal);
+
+                fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
                 diffuse *= _albedo;
                 diffuse *= _light_color.rgb;
                 diffuse = saturate(diffuse);
+                
                 fixed4 color = fixed4(diffuse, 1);
                 return color;
             }
