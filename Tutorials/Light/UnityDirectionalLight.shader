@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/DirectionalLight"
+Shader "ShaderCastle/Light/UnityDirectionalLight"
 {
     SubShader
     {
