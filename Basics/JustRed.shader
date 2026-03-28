@@ -28,8 +28,8 @@ Shader "ShaderCastle/Basics/JustRed"
 
             // Fragment function
             fixed4 frag () : SV_Target {
-                fixed4 col = fixed4(1, 0, 0, 1);
-                return col; // Red
+                fixed4 col = fixed4(1, 0, 0, 1); // Red
+                return col;
             }
             ENDCG
         }

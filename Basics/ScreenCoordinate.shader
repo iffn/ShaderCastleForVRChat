@@ -32,7 +32,7 @@ Shader "ShaderCastle/Basics/ScreenCoordinate"
                 // _ScreenParams.xy is the screen resolution in pixels
                 float2 screenUV = i.pos.xy / _ScreenParams.xy;
                 fixed4 col = fixed4(screenUV, 0.0, 1.0);
-                return col; // Red
+                return col;
             }
             ENDCG
         }

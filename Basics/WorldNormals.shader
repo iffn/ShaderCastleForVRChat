@@ -27,14 +27,16 @@ Shader "ShaderCastle/Basics/WorldNormals"
                 // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
+                o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
+
                 return o;
             }
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 fixed4 col = fixed4(i.worldNormal, 1.0);
-                // fixed4 col = fixed4(i.worldNormal + 0.5 * 0.5, 1.0); // Alternative
-                return col; // Red
+                //fixed4 col = fixed4(i.worldNormal + 0.5 * 0.5, 1.0); // Alternative
+                return col;
             }
             ENDCG
         }

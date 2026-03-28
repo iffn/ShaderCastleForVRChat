@@ -39,7 +39,7 @@ Shader "ShaderCastle/Basics/ColorPicker"
             // Fragment function
             fixed4 frag () : SV_Target {
                 fixed4 col = fixed4(_red, _green, _blue, 1);
-                return col; // Red
+                return col;
             }
             ENDCG
         }

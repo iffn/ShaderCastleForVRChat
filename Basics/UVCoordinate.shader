@@ -32,7 +32,7 @@ Shader "ShaderCastle/Basics/UVCoordinate"
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 fixed4 col = fixed4(i.uv, 0.0, 1.0);
-                return col; // Red
+                return col;
             }
             ENDCG
         }
