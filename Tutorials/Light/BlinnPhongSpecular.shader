@@ -1,8 +1,10 @@
-Shader "ShaderCastle/Light/PhongSpecular"
+Shader "ShaderCastle/Light/BlinnPhongSpecular"
 {
     Properties
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
+        _albedo ("Albedo", color) = (1,1,1,1)
+        _light_color ("Light color", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
     }
     SubShader
@@ -16,6 +18,8 @@ Shader "ShaderCastle/Light/PhongSpecular"
             #include "UnityCG.cginc"
 
             float3 _world_light_direction;
+            half4 _albedo;
+            half4 _light_color;
             float _smoothness;
 
             // Mesh to vertex transfer data
@@ -49,15 +53,20 @@ Shader "ShaderCastle/Light/PhongSpecular"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
 
+                fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
+                diffuse *= _albedo;
+                diffuse *= _light_color.rgb;
+                diffuse = saturate(diffuse);
+
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(normalized_world_light_direction + viewDir);
-                
                 float4 specular = dot(halfVector, worldNormal);
                 specular = saturate(specular);
-                
                 specular = pow(specular, _smoothness * 100);
-                
-                return specular;
+                specular *= _light_color;
+
+                fixed4 color = fixed4(diffuse + specular, 1);
+                return color;
             }
             ENDCG
         }
