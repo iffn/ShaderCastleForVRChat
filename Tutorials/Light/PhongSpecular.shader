@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/Specular"
+Shader "ShaderCastle/Light/PhongSpecular"
 {
     Properties
     {
