@@ -58,12 +58,12 @@ Shader "ShaderCastle/Light/PhongSpecular"
 
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 reflectionDir = reflect(-normalized_world_light_direction, worldNormal);
-                float4 specular = dot(viewDir, reflectionDir);
+                float specular = dot(viewDir, reflectionDir);
                 specular = saturate(specular);
                 specular = pow(specular, _smoothness * 100);
-                specular *= _light_color;
+                float specularColor = _light_color * specular;
                 
-                fixed4 color = fixed4(diffuse + specular, 1);
+                fixed4 color = fixed4(diffuse + specularColor, 1);
                 return color;
             }
             ENDCG

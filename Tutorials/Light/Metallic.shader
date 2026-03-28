@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/BlinnPhongSpecular"
+Shader "ShaderCastle/Light/Metallic"
 {
     Properties
     {
@@ -17,6 +17,7 @@ Shader "ShaderCastle/Light/BlinnPhongSpecular"
             #pragma vertex vert
             #pragma fragment frag
             #include "UnityCG.cginc"
+            #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
             half4 _albedo;
@@ -56,22 +57,24 @@ Shader "ShaderCastle/Light/BlinnPhongSpecular"
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
 
                 float3 specularTint = _albedo * _metallic;
-				float oneMinusReflectivity = 1 - _metallic;
+				float oneMinusReflectivity;
+
+                float3 albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb, specularTint, oneMinusReflectivity);
 
                 fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
-                diffuse *= _albedo;
+                diffuse *= albedo;
                 diffuse *= oneMinusReflectivity;
                 diffuse *= _light_color.rgb;
                 diffuse = saturate(diffuse);
 
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(normalized_world_light_direction + viewDir);
-                float3 specular = dot(halfVector, worldNormal);
+                float specular = dot(halfVector, worldNormal);
                 specular = saturate(specular);
                 specular = pow(specular, _smoothness * 100);
-                specular *= specularTint * _light_color;
+                float3 specularColor = specularTint * _light_color * specular;
 
-                fixed4 color = fixed4(diffuse + specular, 1);
+                fixed4 color = fixed4(diffuse + specularColor, 1);
                 return color;
             }
             ENDCG

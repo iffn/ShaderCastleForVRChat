@@ -60,12 +60,12 @@ Shader "ShaderCastle/Light/BlinnPhongSpecular"
 
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(normalized_world_light_direction + viewDir);
-                float4 specular = dot(halfVector, worldNormal);
+                float specular = dot(halfVector, worldNormal);
                 specular = saturate(specular);
                 specular = pow(specular, _smoothness * 100);
-                specular *= _light_color;
+                float4 specularColor = _light_color * specular;
 
-                fixed4 color = fixed4(diffuse + specular, 1);
+                fixed4 color = fixed4(diffuse + specularColor, 1);
                 return color;
             }
             ENDCG
