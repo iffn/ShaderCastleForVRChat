@@ -3,6 +3,8 @@ Shader "ShaderCastle/Light/LambertLightDirection"
     Properties
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
+        _albedo ("Albedo", color) = (1,1,1,1)
+        _light_color ("Light color", color) = (1,1,1,1)
     }
     SubShader
     {
@@ -15,6 +17,8 @@ Shader "ShaderCastle/Light/LambertLightDirection"
             #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal   
 
             float3 _world_light_direction;
+            half4 _albedo;
+            half4 _light_color;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -43,6 +47,8 @@ Shader "ShaderCastle/Light/LambertLightDirection"
             fixed4 frag (v2f i) : SV_Target {
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 fixed3 diffuse = dot(normalized_world_light_direction, i.worldNormal);
+                diffuse *= _albedo;
+                diffuse *= _light_color.rgb;
                 diffuse = saturate(diffuse);
                 fixed4 color = fixed4(diffuse, 1);
                 return color;

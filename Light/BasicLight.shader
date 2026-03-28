@@ -34,6 +34,7 @@ Shader "ShaderCastle/Light/BasicLight"
             fixed4 frag (v2f i) : SV_Target {
                 // 3. Normalize the directions
                 float3 normal = normalize(i.worldNormal);
+                float3 lightColor = _LightColor0.rgb;
                 float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
 
                 // 4. The Dot Product (Lambertian Shading)
@@ -41,7 +42,7 @@ Shader "ShaderCastle/Light/BasicLight"
                 float dotProduct = max(0.0, dot(normal, lightDir));
                 
                 // 5. Multiply light color by the dot product
-                fixed3 diffuse = dotProduct * _LightColor0.rgb;
+                fixed3 diffuse = dotProduct * lightColor;
 
                 return fixed4(diffuse, 1.0);
             }
