@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BasicLight
-  m_Shader: {fileID: 4800000, guid: 9a70f1fb168fc8f46b485c4c057266d4, type: 3}
+  m_Name: BrokenShader
+  m_Shader: {fileID: 4800000, guid: 113f1fbea4dfd854ea4d63bf6806f911, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,6 +77,9 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _blue: 0
+    - _green: 1
+    - _red: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
