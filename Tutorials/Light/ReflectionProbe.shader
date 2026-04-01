@@ -1,5 +1,10 @@
 Shader "ShaderCastle/Basics/ReflectionProbe"
 {
+    Properties
+    {
+        _blurMipMap ("BlurMipMap", float) = 0
+        _reflection_probe_light_multiplier ("Reflection probe light multiplier", color) = (1,1,1,1)
+    }
     SubShader
     {
         Pass
@@ -10,6 +15,9 @@ Shader "ShaderCastle/Basics/ReflectionProbe"
             #include "UnityCG.cginc"//
             #include "UnityStandardBRDF.cginc"
             #include "UnityPBSLighting.cginc"
+
+            float _blurMipMap;
+            half4 _reflection_probe_light_multiplier;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -38,9 +46,10 @@ Shader "ShaderCastle/Basics/ReflectionProbe"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 reflectDir = reflect(-viewDir, worldNormal);
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, 0);
+                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, _blurMipMap);
 
                 half3 reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                reflection *= _reflection_probe_light_multiplier.rgb;
 
                 return fixed4(reflection, 1);
             }

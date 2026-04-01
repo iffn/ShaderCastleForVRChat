@@ -3,8 +3,8 @@ Shader "ShaderCastle/Light/PhongSpecular"
     Properties
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
-        _albedo ("Albedo", color) = (1,1,1,1)
         _light_color ("Light color", color) = (1,1,1,1)
+        _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
     }
     SubShader

@@ -3,8 +3,8 @@ Shader "ShaderCastle/Light/Albedo"
     Properties
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
-        _albedo ("Albedo", color) = (1,1,1,1)
         _light_color ("Light color", color) = (1,1,1,1)
+        _albedo ("Albedo", color) = (1,1,1,1)
     }
     SubShader
     {

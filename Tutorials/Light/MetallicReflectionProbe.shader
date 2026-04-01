@@ -1,9 +1,10 @@
-Shader "ShaderCastle/Light/BRDF"
+Shader "ShaderCastle/Light/MetallicReflectionProbe"
 {
     Properties
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
         _light_color ("Light color", color) = (1,1,1,1)
+        _reflection_probe_light_multiplier ("Reflection probe light multiplier", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
@@ -16,7 +17,6 @@ Shader "ShaderCastle/Light/BRDF"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma target 3.0
             #include "UnityCG.cginc"
             #include "UnityPBSLighting.cginc"
 
@@ -25,6 +25,7 @@ Shader "ShaderCastle/Light/BRDF"
             half4 _light_color;
             float _smoothness;
             float _metallic;
+            half4 _reflection_probe_light_multiplier;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -54,30 +55,38 @@ Shader "ShaderCastle/Light/BRDF"
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
-                float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
+
+                float3 specularTint = _albedo.rgb * _metallic;
+                float oneMinusReflectivity;
+
+                float3 albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb, specularTint, oneMinusReflectivity);
+
+                fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
+                diffuse *= albedo;
+                diffuse *= oneMinusReflectivity;
+                diffuse *= _light_color.rgb;
+                diffuse = saturate(diffuse);
+
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 reflectDir = reflect(-viewDir, worldNormal);
 
-                float3 specularTint = _albedo * _metallic;
-				float oneMinusReflectivity;
-                float3 albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb, _metallic, specularTint, oneMinusReflectivity);
+                float roughness = 1.0 - _smoothness;
+                float mipmapSmoothness = roughness * (1.7 - 0.7 * roughness) * 6.0; // Range from 0 to 7
+                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mipmapSmoothness);
+                half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                indirectSpecular *= specularTint;
+                indirectSpecular *= _reflection_probe_light_multiplier;
 
-                UnityLight light;
-                light.color = _light_color;
-                light.dir = _world_light_direction;
-                light.ndotl = saturate(dot(worldNormal, normalized_world_light_direction));
+                float3 halfVector = normalize(normalized_world_light_direction + viewDir);
+                float specular = dot(halfVector, worldNormal);
+                specular = saturate(specular);
+                specular = pow(specular, _smoothness * 100);
+                float3 specularColor = specularTint * _light_color.rgb * specular;
 
-                UnityIndirect indirectLight;
-				indirectLight.diffuse = 0;
-				indirectLight.specular = 0;
-
-                return UNITY_BRDF_PBS(
-					albedo, specularTint,
-					oneMinusReflectivity, _smoothness,
-					worldNormal, viewDir,
-					light, indirectLight
-				);
+                fixed4 color = fixed4(diffuse + specularColor + indirectSpecular, 1);
+                return color;
             }
             ENDCG
         }
