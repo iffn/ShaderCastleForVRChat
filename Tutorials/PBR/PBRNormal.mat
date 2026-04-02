@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BRDF
-  m_Shader: {fileID: 4800000, guid: dd7ea11bf5aa6cd498555f075dbdfaab, type: 3}
+  m_Name: PBRNormal
+  m_Shader: {fileID: 4800000, guid: 15416d51f699a1943ba8820d6d28c310, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -59,6 +59,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _albedo:
+        m_Texture: {fileID: 2800000, guid: c1a2ec53121e0534993a06f58db23322, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -78,13 +82,13 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _metallic: 0.8
-    - _smoothness: 0.8
+    - _metallic: 0.5
+    - _smoothness: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _albedo: {r: 0.78431374, g: 0.19607839, b: 0.2745097, a: 0}
-    - _ambient_light_color: {r: 0.16862741, g: 0.16862741, b: 0.16862741, a: 0}
-    - _light_color: {r: 0.5568628, g: 0.8, b: 0.7949255, a: 0}
+    - _albedo: {r: 0.78431374, g: 0.19607843, b: 0.27450973, a: 1}
+    - _ambient_light_color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+    - _light_color: {r: 0.8490566, g: 0.8490566, b: 0.8490566, a: 1}
     - _world_light_direction: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
