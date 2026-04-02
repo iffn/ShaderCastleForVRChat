@@ -26,7 +26,9 @@ public class MaterialRGBSlider : UdonSharpBehaviour
 
     private void Start()
     {
-        Color value = linkedMaterial.GetColor(propertyName);
+        Color initialColor = linkedMaterial.GetColor(propertyName);
+        WriteToSliders(initialColor);
+        WriteToNumericInputs(initialColor);
     }
 
     public override void OnDeserialization()
