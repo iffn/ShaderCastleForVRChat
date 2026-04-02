@@ -18,9 +18,9 @@ Shader "ShaderCastle/Light/AmbientLight"
             #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal   
 
             float3 _world_light_direction;
-            half4 _albedo;
             half4 _light_color;
             half4 _ambient_light_color;
+            half4 _albedo;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -49,14 +49,14 @@ Shader "ShaderCastle/Light/AmbientLight"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
 
-                fixed3 ambient_light = _albedo * _ambient_light_color;
+                fixed3 ambientLight = _albedo * _ambient_light_color;
 
                 fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
                 diffuse *= _albedo;
                 diffuse *= _light_color.rgb;
                 diffuse = saturate(diffuse);
                 
-                fixed4 color = fixed4(diffuse + ambient_light, 1);
+                fixed4 color = fixed4(diffuse + ambientLight, 1);
                 return color;
             }
             ENDCG

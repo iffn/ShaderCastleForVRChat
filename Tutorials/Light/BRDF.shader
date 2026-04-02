@@ -4,6 +4,7 @@ Shader "ShaderCastle/Light/BRDF"
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
         _light_color ("Light color", color) = (1,1,1,1)
+        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
@@ -23,6 +24,7 @@ Shader "ShaderCastle/Light/BRDF"
             float3 _world_light_direction;
             half4 _albedo;
             half4 _light_color;
+            half4 _ambient_light_color;
             float _smoothness;
             float _metallic;
 
@@ -68,9 +70,15 @@ Shader "ShaderCastle/Light/BRDF"
                 light.dir = _world_light_direction;
                 light.ndotl = saturate(dot(worldNormal, normalized_world_light_direction));
 
+                float3 reflectDir = reflect(-viewDir, worldNormal);
+                float perceptualRoughness = 1.0 - _smoothness;
+                float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
+                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
+                half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                
                 UnityIndirect indirectLight;
-				indirectLight.diffuse = 0;
-				indirectLight.specular = 0;
+                indirectLight.diffuse = _ambient_light_color;
+                indirectLight.specular = indirectSpecular;
 
                 return UNITY_BRDF_PBS(
 					albedo, specularTint,

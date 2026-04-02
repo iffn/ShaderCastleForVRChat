@@ -4,6 +4,7 @@ Shader "ShaderCastle/Light/Metallic"
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
         _light_color ("Light color", color) = (1,1,1,1)
+        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
@@ -20,8 +21,9 @@ Shader "ShaderCastle/Light/Metallic"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
-            half4 _albedo;
             half4 _light_color;
+            half4 _ambient_light_color;
+            half4 _albedo;
             float _smoothness;
             float _metallic;
 
@@ -60,6 +62,8 @@ Shader "ShaderCastle/Light/Metallic"
 				float oneMinusReflectivity;
 
                 float3 albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb, specularTint, oneMinusReflectivity);
+                
+                fixed3 ambientLight = albedo * _ambient_light_color;
 
                 fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
                 diffuse *= albedo;
@@ -74,7 +78,7 @@ Shader "ShaderCastle/Light/Metallic"
                 specular = pow(specular, _smoothness * 100);
                 float3 specularColor = specularTint * _light_color * specular;
 
-                fixed4 color = fixed4(diffuse + specularColor, 1);
+                fixed4 color = fixed4(diffuse + specularColor + ambientLight, 1);
                 return color;
             }
             ENDCG

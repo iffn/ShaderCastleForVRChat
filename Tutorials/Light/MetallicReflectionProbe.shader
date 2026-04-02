@@ -4,7 +4,7 @@ Shader "ShaderCastle/Light/MetallicReflectionProbe"
     {
         _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
         _light_color ("Light color", color) = (1,1,1,1)
-        _reflection_probe_light_multiplier ("Reflection probe light multiplier", color) = (1,1,1,1)
+        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
@@ -21,11 +21,11 @@ Shader "ShaderCastle/Light/MetallicReflectionProbe"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
-            half4 _albedo;
             half4 _light_color;
+            half4 _ambient_light_color;
+            half4 _albedo;
             float _smoothness;
             float _metallic;
-            half4 _reflection_probe_light_multiplier;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -62,6 +62,8 @@ Shader "ShaderCastle/Light/MetallicReflectionProbe"
                 float oneMinusReflectivity;
 
                 float3 albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb, specularTint, oneMinusReflectivity);
+                
+                fixed3 ambientLight = albedo * _ambient_light_color;
 
                 fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
                 diffuse *= albedo;
@@ -77,7 +79,6 @@ Shader "ShaderCastle/Light/MetallicReflectionProbe"
                 half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mipmapSmoothness);
                 half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 indirectSpecular *= specularTint;
-                indirectSpecular *= _reflection_probe_light_multiplier;
 
                 float3 halfVector = normalize(normalized_world_light_direction + viewDir);
                 float specular = dot(halfVector, worldNormal);
@@ -85,7 +86,7 @@ Shader "ShaderCastle/Light/MetallicReflectionProbe"
                 specular = pow(specular, _smoothness * 100);
                 float3 specularColor = specularTint * _light_color.rgb * specular;
 
-                fixed4 color = fixed4(diffuse + specularColor + indirectSpecular, 1);
+                fixed4 color = fixed4(diffuse + specularColor + indirectSpecular + ambientLight, 1);
                 return color;
             }
             ENDCG
