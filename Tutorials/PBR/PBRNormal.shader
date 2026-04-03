@@ -6,7 +6,7 @@ Shader "ShaderCastle/Light/PBRNormal"
         _light_color ("Light color", color) = (1,1,1,1)
         _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", 2D) = "white" {}
-        _normal ("Normal", 2D) = "white" {}
+        [Normal] _normal ("Normal", 2D) = "bump" {}
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
     }
@@ -35,7 +35,7 @@ Shader "ShaderCastle/Light/PBRNormal"
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
-                float tangent : TANGENT;
+                float4 tangent : TANGENT;
                 float2 uv : TEXCOORD0;
             };
 
@@ -45,9 +45,9 @@ Shader "ShaderCastle/Light/PBRNormal"
                 float3 worldPos : TEXCOORD0;
                 float3 normal : TEXCOORD1;
                 float3 worldNormal : TEXCOORD2;
-                float3 worldTangent : TANGENT;
-                float3 worldBitangent : BITANGENT;
-                float2 uv : TEXCOORD3;
+                float3 worldTangent : TEXCOORD3;
+                float3 worldBitangent : TEXCOORD4;
+                float2 uv : TEXCOORD5;
             };
 
             // Vertex function
@@ -58,8 +58,8 @@ Shader "ShaderCastle/Light/PBRNormal"
                 o.normal = v.normal;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldNormal = normalize(o.worldNormal);
-                //o.worldTangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz));
-                //o.worldBitangent = cross(o.worldNormal, o.worldTangent) * v.tangent.w;
+                o.worldTangent = UnityObjectToWorldDir(v.tangent.xyz);
+                o.worldBitangent = cross(o.worldNormal, o.worldTangent) * v.tangent.w;
                 o.uv = TRANSFORM_TEX(v.uv, _albedo); // Includes tiling and offset
 
                 return o;
@@ -67,9 +67,14 @@ Shader "ShaderCastle/Light/PBRNormal"
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
+                float3 worldNormal = normalize(i.worldNormal);
+                float3 worldTangent = normalize(i.worldTangent);
+                float3 worldBitangent = normalize(i.worldBitangent);
+                float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);
+
                 float3 normalMap = UnpackNormal(tex2D(_normal, i.uv));
-                float3x3 tbn = float3x3(i.worldTangent, i.worldBitangent, i.worldNormal);
-                float3 worldNormal = normalize(mul(normalMap, tbn));
+                float3 bumpedNormal = normalize(mul(normalMap, tbn));
+
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
 
@@ -82,9 +87,9 @@ Shader "ShaderCastle/Light/PBRNormal"
                 UnityLight light;
                 light.color = _light_color;
                 light.dir = _world_light_direction;
-                light.ndotl = saturate(dot(worldNormal, normalized_world_light_direction));
+                light.ndotl = saturate(dot(bumpedNormal, normalized_world_light_direction));
 
-                float3 reflectDir = reflect(-viewDir, worldNormal);
+                float3 reflectDir = reflect(-viewDir, bumpedNormal);
                 float perceptualRoughness = 1.0 - _smoothness;
                 float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
                 half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
@@ -97,7 +102,7 @@ Shader "ShaderCastle/Light/PBRNormal"
                 return UNITY_BRDF_PBS(
 					albedo, specularTint,
 					oneMinusReflectivity, _smoothness,
-					worldNormal, viewDir,
+					bumpedNormal, viewDir,
 					light, indirectLight
 				);
             }
