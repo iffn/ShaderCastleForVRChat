@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
+Shader "ShaderCastle/Basics/CullOff"
 {
     SubShader
     {
@@ -8,6 +8,7 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -17,24 +18,20 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
             // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
-                float4 localPos : TEXCOORD0;
             };
 
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                o.localPos = v.vertex;
+                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
 
             // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
-                fixed3 col = fixed3(i.localPos.xxx + 0.5);
-                #ifndef UNITY_COLORSPACE_GAMMA
-                    col = pow(col, 2.2); 
-                #endif
-                return fixed4(col, 1);
+            fixed4 frag () : SV_Target {
+                fixed4 col = fixed4(1, 0, 0, 1); // Red
+                return col;
             }
             ENDCG
         }
