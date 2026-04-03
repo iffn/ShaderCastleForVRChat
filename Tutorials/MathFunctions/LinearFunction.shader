@@ -1,5 +1,9 @@
 Shader "ShaderCastle/MathFunctions/LinearFunction"
 {
+    Properties
+    {
+        _scale ("Scale", float) = 1
+    }
     SubShader
     {
         Pass
@@ -7,6 +11,8 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+
+            float _scale;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -33,11 +39,11 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
             fixed4 frag (v2f i) : SV_Target {
                 // Preparation
                 float2 uv = i.uv;
-                float2 coordinate = uv * 2 - 1;
+                float2 coordinate = (uv * 2 - 1) * _scale;
                 fixed3 black = fixed3(0,0,0);
                 fixed3 red = fixed3(1,0,0);
                 fixed3 col = fixed3(1,1,1);
-                float halfAxisThickness = 0.01;
+                float halfAxisThickness = 0.01 * _scale;
                 float axis = step(-halfAxisThickness, coordinate.x) * step(coordinate.x, halfAxisThickness);
                 col = lerp(col, black, axis);
                 axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);
