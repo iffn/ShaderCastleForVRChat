@@ -1,10 +1,9 @@
-Shader "ShaderCastle/VertexOffset/CullFront"
+Shader "ShaderCastle/VertexOffset/LocalVertexOffset"
 {
     SubShader
     {
         Pass
         {
-            Cull Front
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -23,8 +22,8 @@ Shader "ShaderCastle/VertexOffset/CullFront"
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
-                o.pos = UnityObjectToClipPos(v.vertex);
+                v.vertex *= sin(_Time.y) * 0.5 + 0.5;
+                o.pos = UnityObjectToClipPos(v.vertex); // Basic object to clip space transformation
                 return o;
             }
 
