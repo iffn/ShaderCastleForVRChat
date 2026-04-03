@@ -48,9 +48,10 @@ Shader "ShaderCastle/MathFunctions/SignFunction"
                 col = lerp(col, black, axis);
                 axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);
                 col = lerp(col, black, axis);
+                float x = coordinate.x;
 
                 // Function to plot
-                float function = sign(coordinate.x);
+                float function = sign(x);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;
