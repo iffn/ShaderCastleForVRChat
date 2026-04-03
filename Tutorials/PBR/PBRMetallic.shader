@@ -1,4 +1,4 @@
-Shader "ShaderCastle/PBRRoughness/PBRNormal"
+Shader "ShaderCastle/PBRRoughness/PBRMetallic"
 {
     Properties
     {
@@ -7,8 +7,8 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
         _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", 2D) = "white" {}
         [NoScaleOffset][Normal] _normal ("Normal", 2D) = "bump" {}
+        [NoScaleOffset]_arm ("ARM", 2D) = "white" {}
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
-        _metallic ("Metallic", Range(0, 1)) = 0.5
     }
     SubShader
     {
@@ -23,13 +23,13 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
-            sampler2D _albedo;
-            sampler2D _normal;
-            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
             half4 _light_color;
             half4 _ambient_light_color;
+            sampler2D _albedo;
+            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
+            sampler2D _normal;
+            sampler2D _arm;
             float _smoothness;
-            float _metallic;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -71,6 +71,9 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 float3 worldTangent = normalize(i.worldTangent);
                 float3 worldBitangent = normalize(i.worldBitangent);
                 float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);
+                
+                float3 arm = tex2D(_arm, i.uv).rgb;
+                float metallic = arm.b;
 
                 float3 normalMap = UnpackNormal(tex2D(_normal, i.uv));
                 float3 bumpedNormal = normalize(mul(normalMap, tbn));
@@ -80,9 +83,9 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
 
                 fixed4 color = tex2D(_albedo, i.uv);
 
-                float3 specularTint = color * _metallic;
+                float3 specularTint = color * metallic;
 				float oneMinusReflectivity;
-                float3 albedo = DiffuseAndSpecularFromMetallic(color.rgb, _metallic, specularTint, oneMinusReflectivity);
+                float3 albedo = DiffuseAndSpecularFromMetallic(color.rgb, metallic, specularTint, oneMinusReflectivity);
 
                 UnityLight light;
                 light.color = _light_color;

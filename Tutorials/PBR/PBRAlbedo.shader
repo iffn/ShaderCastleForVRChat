@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/PBRAlbedo"
+Shader "ShaderCastle/PBR/PBRAlbedo"
 {
     Properties
     {
@@ -22,10 +22,10 @@ Shader "ShaderCastle/Light/PBRAlbedo"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
-            sampler2D _albedo;
-            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
             half4 _light_color;
             half4 _ambient_light_color;
+            sampler2D _albedo;
+            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
             float _smoothness;
             float _metallic;
 

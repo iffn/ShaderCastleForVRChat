@@ -1,4 +1,4 @@
-Shader "ShaderCastle/PBRRoughness/PBRNormal"
+Shader "ShaderCastle/PBRRoughness/PBRRoughness"
 {
     Properties
     {
@@ -7,7 +7,7 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
         _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", 2D) = "white" {}
         [NoScaleOffset][Normal] _normal ("Normal", 2D) = "bump" {}
-        _smoothness ("Smoothness", Range(0, 1)) = 0.5
+        [NoScaleOffset]_arm ("ARM", 2D) = "white" {}
         _metallic ("Metallic", Range(0, 1)) = 0.5
     }
     SubShader
@@ -23,12 +23,12 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
+            half4 _light_color;
+            half4 _ambient_light_color;
             sampler2D _albedo;
             sampler2D _normal;
             float4 _albedo_ST; // Required to get the sampler state (-> _ST)
-            half4 _light_color;
-            half4 _ambient_light_color;
-            float _smoothness;
+            sampler2D _arm;
             float _metallic;
 
             // Mesh to vertex transfer data
@@ -90,8 +90,8 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 light.ndotl = saturate(dot(bumpedNormal, normalized_world_light_direction));
 
                 float3 reflectDir = reflect(-viewDir, bumpedNormal);
-                float perceptualRoughness = 1.0 - _smoothness;
-                float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
+                float roughness = tex2D(_arm, i.uv).g;
+                float mip = roughness * UNITY_SPECCUBE_LOD_STEPS;
                 half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
                 half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 
@@ -101,7 +101,7 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
 
                 return UNITY_BRDF_PBS(
 					albedo, specularTint,
-					oneMinusReflectivity, _smoothness,
+					oneMinusReflectivity, 1.0 - roughness,
 					bumpedNormal, viewDir,
 					light, indirectLight
 				);

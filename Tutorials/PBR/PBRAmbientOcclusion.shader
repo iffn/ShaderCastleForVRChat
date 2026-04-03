@@ -1,4 +1,4 @@
-Shader "ShaderCastle/PBRRoughness/PBRNormal"
+Shader "ShaderCastle/PBR/PBRAmbientOcclusion"
 {
     Properties
     {
@@ -7,6 +7,7 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
         _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", 2D) = "white" {}
         [NoScaleOffset][Normal] _normal ("Normal", 2D) = "bump" {}
+        [NoScaleOffset]_arm ("ARM", 2D) = "white" {}
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
     }
@@ -23,11 +24,12 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
             #include "UnityPBSLighting.cginc"
 
             float3 _world_light_direction;
+            half4 _light_color;
+            half4 _ambient_light_color;
             sampler2D _albedo;
             sampler2D _normal;
             float4 _albedo_ST; // Required to get the sampler state (-> _ST)
-            half4 _light_color;
-            half4 _ambient_light_color;
+            sampler2D _arm;
             float _smoothness;
             float _metallic;
 
@@ -71,6 +73,9 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 float3 worldTangent = normalize(i.worldTangent);
                 float3 worldBitangent = normalize(i.worldBitangent);
                 float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);
+                
+                float3 arm = tex2D(_arm, i.uv).rgb;
+                float ambientOcclusion = arm.r;
 
                 float3 normalMap = UnpackNormal(tex2D(_normal, i.uv));
                 float3 bumpedNormal = normalize(mul(normalMap, tbn));
@@ -96,8 +101,8 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 
                 UnityIndirect indirectLight;
-                indirectLight.diffuse = _ambient_light_color;
-                indirectLight.specular = indirectSpecular;
+                indirectLight.diffuse = _ambient_light_color * ambientOcclusion;
+                indirectLight.specular = indirectSpecular * ambientOcclusion;
 
                 return UNITY_BRDF_PBS(
 					albedo, specularTint,
