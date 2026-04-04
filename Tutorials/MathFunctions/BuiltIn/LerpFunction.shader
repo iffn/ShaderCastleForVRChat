@@ -1,8 +1,10 @@
-Shader "ShaderCastle/MathFunctions/LinearFunction"
+Shader "ShaderCastle/MathFunctions/LerpFunction"
 {
     Properties
     {
         _scale ("Scale", float) = 2
+        _a ("a", float) = 1
+        _b ("b", float) = 2
     }
     SubShader
     {
@@ -13,6 +15,8 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
             #pragma fragment frag
 
             float _scale;
+            float _a;
+            float _b;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -56,7 +60,7 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = x;
+                float function = lerp(_a, _b, x);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;

@@ -1,8 +1,9 @@
-Shader "ShaderCastle/MathFunctions/AbsFunction"
+Shader "ShaderCastle/MathFunctions/ScaleVerticalFunction"
 {
     Properties
     {
-        _scale ("Scale", float) = 1
+        _scale ("Scale", float) = 2
+        _a ("a", float) = 1
     }
     SubShader
     {
@@ -13,6 +14,7 @@ Shader "ShaderCastle/MathFunctions/AbsFunction"
             #pragma fragment frag
 
             float _scale;
+            float _a;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -42,8 +44,13 @@ Shader "ShaderCastle/MathFunctions/AbsFunction"
                 float2 coordinate = (uv * 2 - 1) * _scale;
                 fixed3 black = fixed3(0,0,0);
                 fixed3 red = fixed3(1,0,0);
+                fixed3 grey = fixed3(0.5, 0.5, 0.5);
                 fixed3 col = fixed3(1,1,1);
                 float halfAxisThickness = 0.01 * _scale;
+                float minorAxis = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 + 0.5;
+                col = lerp(col, grey, minorAxis);
+                minorAxis = sign(abs(frac(coordinate.y) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 + 0.5;
+                col = lerp(col, grey, minorAxis);
                 float axis = step(-halfAxisThickness, coordinate.x) * step(coordinate.x, halfAxisThickness);
                 col = lerp(col, black, axis);
                 axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);
@@ -51,11 +58,11 @@ Shader "ShaderCastle/MathFunctions/AbsFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = abs(x);
+                float function = x * _a;
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;
-                float plot = step(-halfAxisThickness, plotFunction) * step(plotFunction, halfAxisThickness);
+                float plot = step(-halfAxisThickness, plotFunction) * step(plotFunction, halfAxisThickness * 2);
                 col = lerp(col, red, plot);
                 return fixed4(col, 1);
             }

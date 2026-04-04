@@ -1,8 +1,12 @@
-Shader "ShaderCastle/MathFunctions/LinearFunction"
+Shader "ShaderCastle/MathFunctions/TestFunction"
 {
     Properties
     {
         _scale ("Scale", float) = 2
+        _a ("a", float) = 1
+        _b ("b", float) = 1
+        _c ("c", float) = 1
+        _d ("d", float) = 1
     }
     SubShader
     {
@@ -13,6 +17,10 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
             #pragma fragment frag
 
             float _scale;
+            float _a;
+            float _b;
+            float _c;
+            float _d;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -56,7 +64,9 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = x;
+                // https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-intrinsic-functions
+                float function = smoothstep(_a, _b, x);
+                //float function = _a * (_c + (x - _d)) / _b; // a*(c+(x-d)/b)
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;

@@ -1,4 +1,4 @@
-Shader "ShaderCastle/MathFunctions/LinearFunction"
+Shader "ShaderCastle/MathFunctions/SignFunction"
 {
     Properties
     {
@@ -56,7 +56,7 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = x;
+                float function = sign(x);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;

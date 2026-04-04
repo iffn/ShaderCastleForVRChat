@@ -1,8 +1,9 @@
-Shader "ShaderCastle/MathFunctions/LinearFunction"
+Shader "ShaderCastle/MathFunctions/StepXAFunction"
 {
     Properties
     {
         _scale ("Scale", float) = 2
+        _a ("a", float) = 1
     }
     SubShader
     {
@@ -13,6 +14,7 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
             #pragma fragment frag
 
             float _scale;
+            float _a;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -56,7 +58,7 @@ Shader "ShaderCastle/MathFunctions/LinearFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = x;
+                float function = step(x, _a);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;

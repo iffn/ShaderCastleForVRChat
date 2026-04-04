@@ -1,8 +1,8 @@
-Shader "ShaderCastle/MathFunctions/SignFunction"
+Shader "ShaderCastle/MathFunctions/CosFunction"
 {
     Properties
     {
-        _scale ("Scale", float) = 1
+        _scale ("Scale", float) = 2
     }
     SubShader
     {
@@ -42,8 +42,13 @@ Shader "ShaderCastle/MathFunctions/SignFunction"
                 float2 coordinate = (uv * 2 - 1) * _scale;
                 fixed3 black = fixed3(0,0,0);
                 fixed3 red = fixed3(1,0,0);
+                fixed3 grey = fixed3(0.5, 0.5, 0.5);
                 fixed3 col = fixed3(1,1,1);
                 float halfAxisThickness = 0.01 * _scale;
+                float minorAxis = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 + 0.5;
+                col = lerp(col, grey, minorAxis);
+                minorAxis = sign(abs(frac(coordinate.y) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 + 0.5;
+                col = lerp(col, grey, minorAxis);
                 float axis = step(-halfAxisThickness, coordinate.x) * step(coordinate.x, halfAxisThickness);
                 col = lerp(col, black, axis);
                 axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);
@@ -51,11 +56,11 @@ Shader "ShaderCastle/MathFunctions/SignFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = sign(x);
+                float function = cos(x);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;
-                float plot = step(-halfAxisThickness, plotFunction) * step(plotFunction, halfAxisThickness);
+                float plot = step(-halfAxisThickness, plotFunction) * step(plotFunction, halfAxisThickness * 2);
                 col = lerp(col, red, plot);
                 return fixed4(col, 1);
             }
