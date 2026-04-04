@@ -27,7 +27,6 @@ Shader "ShaderCastle/Light/UnityDirectionalLight"
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
-                o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
 
                 return o;
             }
@@ -35,12 +34,13 @@ Shader "ShaderCastle/Light/UnityDirectionalLight"
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 _world_light_direction = _WorldSpaceLightPos0.xyz;
+                float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
+
+                fixed3 NdotL = dot(worldNormal, _world_light_direction);
+                NdotL = saturate(NdotL);
                 
-                fixed3 diffuse = dot(_world_light_direction, i.worldNormal);
-                diffuse *= lightColor;
-                diffuse = saturate(diffuse);
+                fixed3 diffuse = NdotL * lightColor;
                 
                 fixed4 color = fixed4(diffuse, 1);
                 return color;

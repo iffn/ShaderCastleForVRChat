@@ -45,9 +45,10 @@ Shader "ShaderCastle/Light/LightColor"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 
-                fixed3 diffuse = dot(normalized_world_light_direction, i.worldNormal);
-                diffuse *= _light_color.rgb;
-                diffuse = saturate(diffuse);
+                fixed3 NdotL = dot(worldNormal, normalized_world_light_direction);
+                NdotL = saturate(NdotL);
+
+                fixed3 diffuse = NdotL * _light_color.rgb;
                 
                 fixed4 color = fixed4(diffuse, 1);
                 return color;

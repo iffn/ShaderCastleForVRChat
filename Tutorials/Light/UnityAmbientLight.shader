@@ -2,9 +2,6 @@ Shader "ShaderCastle/Light/AmbientLight"
 {
     Properties
     {
-        _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
-        _light_color ("Light color", color) = (1,1,1,1)
-        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
     }
     SubShader
@@ -15,11 +12,9 @@ Shader "ShaderCastle/Light/AmbientLight"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal   
+            #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal 
+            #include "Lighting.cginc" // Required for _LightColor0
 
-            float3 _world_light_direction;
-            half4 _light_color;
-            half4 _ambient_light_color;
             half4 _albedo;
 
             // Mesh to vertex transfer data
@@ -47,14 +42,17 @@ Shader "ShaderCastle/Light/AmbientLight"
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 normalized_world_light_direction = normalize(_world_light_direction);
+                float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
+                float3 lightColor = _LightColor0.rgb;
 
-                fixed3 NdotL = dot(worldNormal, normalized_world_light_direction);
+                fixed3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+
+                fixed3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
 
-                fixed3 diffuse = NdotL * _light_color.rgb;
+                fixed3 directLight = NdotL * lightColor.rgb;
                 
-                fixed4 color = fixed4((diffuse + _ambient_light_color) * _albedo, 1);
+                fixed4 color = fixed4((directLight + ambientLight) * _albedo, 1);
                 return color;
             }
             ENDCG

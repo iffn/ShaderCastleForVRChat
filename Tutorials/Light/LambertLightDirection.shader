@@ -43,10 +43,10 @@ Shader "ShaderCastle/Light/LambertLightDirection"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
 
-                fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
-                diffuse = saturate(diffuse);
+                fixed3 NdotL = dot(worldNormal, normalized_world_light_direction);
+                NdotL = saturate(NdotL);
                 
-                fixed4 color = fixed4(diffuse, 1);
+                fixed4 color = fixed4(NdotL, 1);
                 return color;
             }
             ENDCG

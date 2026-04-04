@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AmbientLight
-  m_Shader: {fileID: 4800000, guid: a83836749d5963043ac17cc95d1e52bb, type: 3}
+  m_Name: UnityAmbientLight
+  m_Shader: {fileID: 4800000, guid: 50cfc6dcea6dfb8439d715596439e920, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -80,8 +80,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _albedo: {r: 0.78431374, g: 0.19607839, b: 0.2745097, a: 0}
-    - _ambient_light_color: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+    - _albedo: {r: 0.78431374, g: 0.19607843, b: 0.27450982, a: 1}
+    - _ambient_light_color: {r: 0.16981128, g: 0.16981128, b: 0.16981128, a: 0}
     - _light_color: {r: 0.5568628, g: 0.8, b: 0.7949255, a: 0}
     - _world_light_direction: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
