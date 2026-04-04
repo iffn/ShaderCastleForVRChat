@@ -35,14 +35,14 @@ public class MaterialFloatSlider : UdonSharpBehaviour
         
         float value = linkedMaterial.GetFloat(propertyName);
         slider.SetValueWithoutNotify(value);
-        numericInput.SetTextWithoutNotify(value.ToString());
+        numericInput.SetTextWithoutNotify(value.ToString("F2"));
     }
 
     public override void OnDeserialization()
     {
         base.OnDeserialization();
         slider.SetValueWithoutNotify(syncedValue); // ToDo: Smoothing
-        numericInput.SetTextWithoutNotify(syncedValue.ToString()); // ToDo: Smoothing
+        numericInput.SetTextWithoutNotify(syncedValue.ToString("F2")); // ToDo: Smoothing
         
         ApplyValue();
     }
@@ -52,7 +52,7 @@ public class MaterialFloatSlider : UdonSharpBehaviour
         if(ignoreUpdates)
             return;
         syncedValue = slider.value;
-        numericInput.SetTextWithoutNotify(syncedValue.ToString());
+        numericInput.SetTextWithoutNotify(syncedValue.ToString("F2"));
         SyncAndApplyValue();
     }
 
@@ -60,15 +60,15 @@ public class MaterialFloatSlider : UdonSharpBehaviour
     {
         if (ignoreUpdates)
             return;
-        syncedValue = Mathf.Clamp(int.Parse(numericInput.text), min, max);
-        numericInput.SetTextWithoutNotify(syncedValue.ToString());
+        syncedValue = Mathf.Clamp(float.Parse(numericInput.text), min, max);
+        numericInput.SetTextWithoutNotify(syncedValue.ToString("F2"));
         slider.SetValueWithoutNotify(syncedValue);
         SyncAndApplyValue();
     }
 
     void SyncAndApplyValue()
     {
-        if (Networking.IsOwner(gameObject))
+        if (!Networking.IsOwner(gameObject))
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
 
         RequestSerialization(); // ToDo: Slow down rate

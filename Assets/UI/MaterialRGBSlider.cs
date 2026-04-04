@@ -53,9 +53,9 @@ public class MaterialRGBSlider : UdonSharpBehaviour
 
     public void NumericInputUpdatedLocally()
     {
-        syncedColor.r = Mathf.Clamp(int.Parse(numericInputRed.text), 0f, 1f);
-        syncedColor.g = Mathf.Clamp(int.Parse(numericInputGreen.text), 0f, 1f);
-        syncedColor.b = Mathf.Clamp(int.Parse(numericInputBlue.text), 0f, 1f);
+        syncedColor.r = Mathf.Clamp(float.Parse(numericInputRed.text), 0f, 1f);
+        syncedColor.g = Mathf.Clamp(float.Parse(numericInputGreen.text), 0f, 1f);
+        syncedColor.b = Mathf.Clamp(float.Parse(numericInputBlue.text), 0f, 1f);
 
         WriteToNumericInputs(syncedColor); // Do because of clamp
         WriteToSliders(syncedColor);
@@ -79,7 +79,7 @@ public class MaterialRGBSlider : UdonSharpBehaviour
 
     void SyncAndApplyValue()
     {
-        if (Networking.IsOwner(gameObject))
+        if (!Networking.IsOwner(gameObject))
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
 
         RequestSerialization(); // ToDo: Slow down rate
