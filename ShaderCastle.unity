@@ -3545,7 +3545,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: cd71f11a6a3db8b4199f2a3937c3a87b, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -5080,7 +5080,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1d02c09a65d3e8d47b4ed515eeabef81, type: 2}
+      objectReference: {fileID: 2100000, guid: 43cccee55f121004f911096b29ac886b, type: 2}
     - target: {fileID: 668238383703315284, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_Material
@@ -13018,7 +13018,6 @@ GameObject:
   m_Component:
   - component: {fileID: 663410913}
   - component: {fileID: 663410915}
-  - component: {fileID: 663410914}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -13041,14 +13040,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1523742254}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!81 &663410914
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 663410912}
-  m_Enabled: 1
 --- !u!20 &663410915
 Camera:
   m_ObjectHideFlags: 0
@@ -14619,7 +14610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 764611682}
   - component: {fileID: 764611684}
-  - component: {fileID: 764611683}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -14642,14 +14632,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 729419955}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!81 &764611683
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764611681}
-  m_Enabled: 1
 --- !u!20 &764611684
 Camera:
   m_ObjectHideFlags: 0
@@ -16917,7 +16899,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: d6062d1bd2e625d48aa487b3b726922a, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -17209,7 +17191,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: d6062d1bd2e625d48aa487b3b726922a, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -18989,7 +18971,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: cd71f11a6a3db8b4199f2a3937c3a87b, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -28863,7 +28845,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: 43cccee55f121004f911096b29ac886b, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -37708,7 +37690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: linkedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 6803ed1c065c1084c92decbd2bab4604, type: 2}
+      objectReference: {fileID: 2100000, guid: 43cccee55f121004f911096b29ac886b, type: 2}
     - target: {fileID: 2676203948154258433, guid: 20c874979b2d9424c968f75a6346cad2,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -41947,27 +41929,11 @@ MonoBehaviour:
   RenderReflectionIntensity: 0
   RenderSkybox: {fileID: 0}
   NetworkIDs:
-  - gameObject: {fileID: 138966777}
-    ID: 10
-    SerializedTypeNames:
-    - VRC.SDK3.Components.VRCPickup
-  - gameObject: {fileID: 488196204}
-    ID: 11
-    SerializedTypeNames:
-    - VRC.SDK3.Components.VRCPickup
   - gameObject: {fileID: 3480278762663670689}
     ID: 12
     SerializedTypeNames:
     - VRC.Udon.UdonBehaviour
     - VRC.Udon.UdonBehaviour
-  - gameObject: {fileID: 1225994468}
-    ID: 20
-    SerializedTypeNames:
-    - VRC.SDK3.Components.VRCPickup
-  - gameObject: {fileID: 1549770832}
-    ID: 21
-    SerializedTypeNames:
-    - VRC.SDK3.Components.VRCPickup
   - gameObject: {fileID: 1192501269}
     ID: 22
     SerializedTypeNames:
@@ -42200,14 +42166,34 @@ MonoBehaviour:
     ID: 79
     SerializedTypeNames:
     - VRC.Udon.UdonBehaviour
-  - gameObject: {fileID: 0}
+  - gameObject: {fileID: 650516437}
     ID: 80
     SerializedTypeNames:
     - VRC.Udon.UdonBehaviour
-  - gameObject: {fileID: 0}
+  - gameObject: {fileID: 379106670}
     ID: 81
     SerializedTypeNames:
     - VRC.Udon.UdonBehaviour
+  - gameObject: {fileID: 138966777}
+    ID: 10
+    SerializedTypeNames:
+    - VRC.SDK3.Components.VRCPickup
+    - VRC.SDK3.Components.VRCObjectSync
+  - gameObject: {fileID: 1225994468}
+    ID: 20
+    SerializedTypeNames:
+    - VRC.SDK3.Components.VRCPickup
+    - VRC.SDK3.Components.VRCObjectSync
+  - gameObject: {fileID: 1549770832}
+    ID: 21
+    SerializedTypeNames:
+    - VRC.SDK3.Components.VRCPickup
+    - VRC.SDK3.Components.VRCObjectSync
+  - gameObject: {fileID: 488196204}
+    ID: 11
+    SerializedTypeNames:
+    - VRC.SDK3.Components.VRCPickup
+    - VRC.SDK3.Components.VRCObjectSync
   portraitCameraPositionOffset: {x: 0, y: 0, z: 0}
   portraitCameraRotationOffset: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   PlayerPersistence: []
