@@ -72,9 +72,9 @@ public class MaterialRGBSlider : UdonSharpBehaviour
 
     void WriteToNumericInputs(Color color)
     {
-        numericInputRed.SetTextWithoutNotify(color.r.ToString());
-        numericInputGreen.SetTextWithoutNotify(color.g.ToString());
-        numericInputBlue.SetTextWithoutNotify(color.b.ToString());
+        numericInputRed.SetTextWithoutNotify(color.r.ToString("F2"));
+        numericInputGreen.SetTextWithoutNotify(color.g.ToString("F2"));
+        numericInputBlue.SetTextWithoutNotify(color.b.ToString("F2"));
     }
 
     void SyncAndApplyValue()
