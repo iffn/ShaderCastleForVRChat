@@ -1,12 +1,12 @@
-Shader "ShaderCastle/Light/DepthBufferWrite"
+Shader "ShaderCastle/DepthBuffer/FootstepDisplay"
 {
     Properties
     {
-        _depthWrite ("Depth write", float) = 1
-        
+        footstepCRT("Footstep CRT", 2D) = "white" {}
     }
     SubShader
     {
+        
         Pass
         {
             CGPROGRAM
@@ -15,23 +15,20 @@ Shader "ShaderCastle/Light/DepthBufferWrite"
             #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal 
             #include "Lighting.cginc" // Required for _LightColor0
 
-            float _depthWrite;
+            sampler2D footstepCRT;
 
             // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
+                float2 uv : TEXCOORD0;
             };
 
             // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
-            };
-
-            struct frag_out {
-                fixed4 color : SV_Target;
-                float depth : SV_Depth; // This allows you to "set" the depth
+                float2 uv : TEXCOORD1;
             };
 
             // Vertex function
@@ -40,12 +37,12 @@ Shader "ShaderCastle/Light/DepthBufferWrite"
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
                 o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
-
+                o.uv = v.uv;
                 return o;
             }
 
             // Fragment function
-            frag_out frag (v2f i) {
+            fixed4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
@@ -57,13 +54,10 @@ Shader "ShaderCastle/Light/DepthBufferWrite"
 
                 fixed3 directLight = NdotL * lightColor.rgb;
                 
-                fixed3 albedo = fixed3(1.0, 0.2, 0.2);
-
-                frag_out o;
-                o.color = fixed4((directLight + ambientLight) * albedo, 1);
-                o.depth = _depthWrite;
-
-                return o;
+                fixed3 albedo = tex2D(footstepCRT, i.uv).rgb;
+                
+                fixed4 color = fixed4((directLight + ambientLight) * albedo, 1);
+                return color;
             }
             ENDCG
         }
