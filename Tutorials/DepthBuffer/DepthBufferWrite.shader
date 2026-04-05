@@ -2,7 +2,7 @@ Shader "ShaderCastle/Light/DepthBufferWrite"
 {
     Properties
     {
-        _depthWrite ("depthWrite", float) = 1
+        _depthWrite ("Depth write", float) = 1
         
     }
     SubShader
