@@ -52,8 +52,6 @@ Shader "ShaderCastle/VertexOffset/CullOff"
                 triStream.Append(o);
             }
 
-            
-
             // Fragment function
             fixed4 frag (g2f i) : SV_Target {
                 float closest = min(i.barycentric.x, min(i.barycentric.y, i.barycentric.z));
