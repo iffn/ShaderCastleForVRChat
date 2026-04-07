@@ -58,7 +58,6 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi4DSlide3D"
                 float closestDistance = 8.0;
                 float secondClosestDistance = 8.0;
                 float closestSeed = 0;
-                float4 closestCell;
 
                 [unroll]
                 for(int w = -1; w <= 1; w++) {
@@ -71,9 +70,9 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi4DSlide3D"
                                 float seed = hash11(hash11(hash11(cell.x) + cell.y) + cell.z) + cell.w;
                                 
                                 float4 randomOffset = float4(
-                                    hash11(seed + 123.123), 
-                                    hash11(seed + 456.456),
-                                    hash11(seed + 789.789),
+                                    hash11(seed + 111.111), 
+                                    hash11(seed + 222.222),
+                                    hash11(seed + 333.333),
                                     hash11(seed + 444.444)
                                 );
 
@@ -85,7 +84,6 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi4DSlide3D"
                                     secondClosestDistance = closestDistance;
                                     closestDistance = distance;
                                     closestSeed = seed;
-                                    closestCell = cell;
                                 } else if (distance < secondClosestDistance) {
                                     secondClosestDistance = distance;
                                 }
@@ -103,10 +101,9 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi4DSlide3D"
             
             fixed4 frag (v2f i) : SV_Target {
                 float3 pos3D = i.vertex.xyz;
-                pos3D.z += _Time;
                 pos3D *= _zoom;
 
-                float4 lookup = float4(pos3D, _Time.y);
+                float4 lookup = float4(pos3D, _Time.y * 0.3);
 
                 fixed3 color = voronoi4D(lookup);
 

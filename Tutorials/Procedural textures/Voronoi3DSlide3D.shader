@@ -57,7 +57,7 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi3DSlide3D"
 
                 float closestDistance = 8.0;
                 float secondClosestDistance = 8.0;
-                float3 closestCell;
+                float closestSeed = 0;
 
                 [unroll]
                 for(int z = -1; z <= 1; z++) {
@@ -69,9 +69,9 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi3DSlide3D"
                             float seed = hash11(hash11(cell.x) + cell.y) + cell.z;
                             
                             float3 randomOffset = float3(
-                                hash11(seed), 
-                                hash11(seed + 123.456),
-                                hash11(seed + 456.456)
+                                hash11(seed + 111.111), 
+                                hash11(seed + 222.222),
+                                hash11(seed + 333.333)
                             );
 
                             float3 cellPosition = cell + randomOffset;
@@ -81,7 +81,7 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi3DSlide3D"
                             if(distance < closestDistance) {
                                 secondClosestDistance = closestDistance;
                                 closestDistance = distance;
-                                closestCell = cell;
+                                closestSeed = seed;
                             } else if (distance < secondClosestDistance) {
                                 secondClosestDistance = distance;
                             }
@@ -91,15 +91,16 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi3DSlide3D"
 
                 float edgeDist = secondClosestDistance - closestDistance;
                 
-                float cellID = hash11(hash11(hash11(closestCell.x) + closestCell.y) + closestCell.z);
+                float cellID = hash11(closestSeed);
 
                 return float3(closestDistance, cellID, edgeDist);
             }
             
             fixed4 frag (v2f i) : SV_Target {
                 float3 pos3D = i.vertex.xyz;
-                pos3D.z += _Time;
+                pos3D.z += 0.5;
                 pos3D *= _zoom;
+                pos3D.z += _Time.y * 0.3;
 
 
                 fixed3 color = voronoi3D(pos3D);
