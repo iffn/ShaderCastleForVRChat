@@ -65,9 +65,9 @@ public class MaterialRGBSlider : UdonSharpBehaviour
 
     void WriteToSliders(Color color)
     {
-        sliderRed.value = color.r;
-        sliderGreen.value = color.g;
-        sliderBlue.value = color.b;
+        sliderRed.SetValueWithoutNotify(color.r);
+        sliderGreen.SetValueWithoutNotify(color.g);
+        sliderBlue.SetValueWithoutNotify(color.b);
     }
 
     void WriteToNumericInputs(Color color)
