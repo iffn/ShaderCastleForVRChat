@@ -43,6 +43,14 @@ Shader "ShaderCastle/MathFunctions/TestFunction"
                 return o;
             }
 
+            float stepPattern(float x){
+                float y = frac(x * 0.5);
+                y -= 0.5;
+                y = sign(y);
+                y = saturate(y);
+                return y;
+            }
+
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 // Preparation
@@ -65,7 +73,7 @@ Shader "ShaderCastle/MathFunctions/TestFunction"
 
                 // Function to plot
                 // https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-intrinsic-functions
-                float function = smoothstep(_a, _b, x);
+                float function = stepPattern(x);
                 //float function = _a * (_c + (x - _d)) / _b; // a*(c+(x-d)/b)
 
                 // Plotting the function
