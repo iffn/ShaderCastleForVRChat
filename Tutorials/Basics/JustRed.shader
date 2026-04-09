@@ -5,15 +5,15 @@ Shader "ShaderCastle/Basics/JustRed"
         Pass
         {
             CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+            #pragma vertex vert // The vertex function is called vert
+            #pragma fragment frag // The fragment funciton is called frag
 
             // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
+            // Vertex to fragment transfer data
             struct v2f {
                 float4 pos : SV_POSITION;
             };
@@ -21,15 +21,14 @@ Shader "ShaderCastle/Basics/JustRed"
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
-                o.pos = UnityObjectToClipPos(v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex); // Basic object to clip space transformation
                 return o;
             }
 
             // Fragment function
             fixed4 frag () : SV_Target {
-                fixed4 col = fixed4(1, 0, 0, 1); // Red
-                return col;
+                fixed3 color = fixed3(1.0, 0.0, 0.0); // Red
+                return fixed4(color, 1.0); // 1 on alpha channel, default for opaque
             }
             ENDCG
         }
