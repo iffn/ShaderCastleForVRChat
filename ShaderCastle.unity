@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.33365047, g: 0.36611575, b: 0.47383785, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 19913cf9c83fe5949a10a0c9af4b4b79,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 4e606ace79504e24a9815aa1cad2d9a2,
     type: 2}
 --- !u!196 &4
@@ -24960,6 +24959,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiffSoup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5044350872729212163, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5238383635288000982, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -30518,6 +30522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DiffSoup
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044350872729212163, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5238383635288000982, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
