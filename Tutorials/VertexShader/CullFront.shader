@@ -1,10 +1,10 @@
-Shader "ShaderCastle/VertexOffset/CullBack"
+Shader "ShaderCastle/VertexShader/CullFront"
 {
     SubShader
     {
         Pass
         {
-            Cull Back
+            Cull Front
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

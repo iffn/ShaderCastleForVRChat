@@ -1,4 +1,4 @@
-Shader "ShaderCastle/VertexOffset/LocalVertexOffset"
+Shader "ShaderCastle/VertexShader/LocalVertexOffset"
 {
     SubShader
     {

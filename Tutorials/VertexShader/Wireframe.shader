@@ -1,4 +1,4 @@
-Shader "ShaderCastle/VertexOffset/CullOff"
+Shader "ShaderCastle/VertexShader/CullOff"
 {
     SubShader
     {
