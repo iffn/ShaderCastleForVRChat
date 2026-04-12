@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MandelbrotFunction
-  m_Shader: {fileID: 4800000, guid: 889ec57091b7deb4a8dd7f194a5e648f, type: 3}
+  m_Name: 333333
+  m_Shader: {fileID: 4800000, guid: 6891e56c6ae708945aa0406568efa801, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,14 +77,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _a: -1.18
-    - _b: 1
-    - _c: 1
-    - _d: 1
-    - _scale: 2
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _base: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _shape: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    - _albedo: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _ambient_light_color: {r: 0.16981128, g: 0.16981128, b: 0.16981128, a: 0}
+    - _light_color: {r: 0.5568628, g: 0.8, b: 0.7949255, a: 0}
+    - _world_light_direction: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

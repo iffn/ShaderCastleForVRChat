@@ -3,6 +3,8 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
     Properties
     {
         _scale ("Scale", float) = 2
+        _base ("Base", color) = (0.1, 0.1, 0.1, 1)
+        _shape ("Shape", color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -13,10 +15,8 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
             #pragma fragment frag
 
             float _scale;
-            float _a;
-            float _b;
-            float _c;
-            float _d;
+            fixed4 _base;
+            fixed4 _shape;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -43,8 +43,8 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
             fixed4 frag (v2f i) : SV_Target {
                 // Preparation
                 float2 uv = i.uv;
+                uv.x -= 0.2;
                 float2 coordinate = (uv * 2 - 1) * _scale;
-                fixed3 col = fixed3(1,1,1);
 
                 // Mandelbrot Variables
                 float2 z = float2(0, 0);
@@ -52,7 +52,7 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
                 float maxIterations = 128; // Higher = more detail
                 
                 // The Mandelbrot Loop
-                for (int j = 0; j < 128; j++) 
+                for (int j = 0; j < maxIterations; j++) 
                 {
                     // Complex math: z = z^2 + c
                     float x = (z.x * z.x - z.y * z.y) + coordinate.x;
@@ -67,11 +67,13 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
                 }
 
                 // Normalizing iterations for the lerp
-                // 0 = inside the set (black), 1 = outside the set (white)
                 float function = iterations / maxIterations;
 
                 // Plotting the function
-                col = lerp(col, fixed3(0,0,0), function);
+                function = pow(function, 2.2);
+
+                fixed3 col = lerp(_base, _shape, function);
+                
                 return fixed4(col, 1);
             }
             ENDCG
