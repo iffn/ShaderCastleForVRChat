@@ -61,18 +61,20 @@ Shader "ShaderCastle/ProceduralTextures/ValueNoise2D"
             }
 
             float valueNoise(float2 uv) {
+                // Base parameters
 				float2 i = floor(uv);
 				float2 f = frac(uv);
                 float2 u = f*f*(3.0-2.0*f); // Smoothstep between 0...1
 
+                // Random weights
                 float a = hash21(i + float2(0.0, 0.0));
                 float b = hash21(i + float2(1.0, 0.0));
                 float c = hash21(i + float2(0.0, 1.0));
                 float d = hash21(i + float2(1.0, 1.0));
 
+                // Bilinear interpolation
 				float bottom = lerp(a, b, u.x);
 				float top = lerp(c, d, u.x);
-
 				return lerp(bottom, top, u.y);
 			}
             

@@ -1,4 +1,4 @@
-Shader "ShaderCastle/ProceduralTextures/ValueNoise2D"
+Shader "ShaderCastle/ProceduralTextures/PerlinNoise2D"
 {
     Properties
     {
@@ -59,22 +59,41 @@ Shader "ShaderCastle/ProceduralTextures/ValueNoise2D"
             float hash21(float2 p) {
                 return hash11(hash11(p.x) + p.y);
             }
-            
-            float valueNoise(float2 uv) {
+
+            float2 hash22(float2 p)
+            {
+                float a = hash11(hash11(p.x) + p.y);
+                float b = hash11(a);
+                return float2(a, b);
+            }
+
+            float perlinNoise(float2 uv) {
                 // Base parameters
 				float2 i = floor(uv);
 				float2 f = frac(uv);
                 float2 u = f*f*(3.0-2.0*f); // Smoothstep between 0...1
 
-                // Random weights
-                float a = hash21(i + float2(0.0, 0.0));
-                float b = hash21(i + float2(1.0, 0.0));
-                float c = hash21(i + float2(0.0, 1.0));
-                float d = hash21(i + float2(1.0, 1.0));
+                // Random gradients
+                float2 ga = hash22(i + float2(0.0, 0.0)) * 2.0 - 1.0;
+                float2 gb = hash22(i + float2(1.0, 0.0)) * 2.0 - 1.0;
+                float2 gc = hash22(i + float2(0.0, 1.0)) * 2.0 - 1.0;
+                float2 gd = hash22(i + float2(1.0, 1.0)) * 2.0 - 1.0;
+
+                // Distnace to center
+                float2 da = f - float2(0.0, 0.0);
+                float2 db = f - float2(1.0, 0.0);
+                float2 dc = f - float2(0.0, 1.0);
+                float2 dd = f - float2(1.0, 1.0);
+
+                // Dot products as weights
+                float va = dot(ga, da);
+                float vb = dot(gb, db);
+                float vc = dot(gc, dc);
+                float vd = dot(gd, dd);
 
                 // Bilinear interpolation
-				float bottom = lerp(a, b, u.x);
-				float top = lerp(c, d, u.x);
+				float bottom = lerp(va, vb, u.x);
+				float top = lerp(vc, vd, u.x);
 				return lerp(bottom, top, u.y);
 			}
             
@@ -82,7 +101,7 @@ Shader "ShaderCastle/ProceduralTextures/ValueNoise2D"
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
-                float noise = valueNoise(pos2D);
+                float noise = perlinNoise(pos2D) * 0.5 + 0.5;
 
                 fixed3 color = noise.xxx;
 
