@@ -23,7 +23,12 @@ Shader "ShaderCastle/VertexShader/CullFront"
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
+
+                // Simple spinning quad
+                float xOffset = v.vertex.x;
+                v.vertex.x = xOffset * sin(_Time.y);
+                v.vertex.z = xOffset * cos(_Time.y);
+
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }

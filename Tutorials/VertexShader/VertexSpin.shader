@@ -1,10 +1,9 @@
-Shader "ShaderCastle/VertexShader/CullOff"
+Shader "ShaderCastle/VertexShader/VertexSpin"
 {
     SubShader
     {
         Pass
         {
-            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -24,12 +23,15 @@ Shader "ShaderCastle/VertexShader/CullOff"
             v2f vert (appdata v) {
                 v2f o;
 
-                // Simple spinning quad
                 float xOffset = v.vertex.x;
-                v.vertex.x = xOffset * sin(_Time.y);
-                v.vertex.z = xOffset * cos(_Time.y);
+                float zOffset = v.vertex.z;
+                float sinTime = sin(_Time.y);
+                float cosTime = cos(_Time.y);
+
+                v.vertex.x = xOffset * cosTime + zOffset * sinTime;
+                v.vertex.z = -xOffset * sinTime + zOffset * cosTime;
                 
-                o.pos = UnityObjectToClipPos(v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex); // Basic object to clip space transformation
                 return o;
             }
 
