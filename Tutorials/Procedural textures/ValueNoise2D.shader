@@ -56,19 +56,24 @@ Shader "ShaderCastle/ProceduralTextures/ValueNoise2D"
                 return float(h & 0x00ffffffu) / float(0x01000000u);
             }
 
+            float hash21(float2 p) {
+                return hash11(hash11(p.x) + p.y);
+            }
+
             float valueNoise(float2 uv) {
 				float2 i = floor(uv);
 				float2 f = frac(uv);
+                float2 u = f*f*(3.0-2.0*f); // Smoothstep between 0...1
 
-				float a = hash11(hash11(i.x) + i.y);
-				float b = hash11(hash11(i.x + 1.0) + i.y);
-				float c = hash11(hash11(i.x) + i.y + 1.0);
-				float d = hash11(hash11(i.x + 1.0) + i.y + 1.0);
+                float a = hash21(i + float2(0.0, 0.0));
+                float b = hash21(i + float2(1.0, 0.0));
+                float c = hash21(i + float2(0.0, 1.0));
+                float d = hash21(i + float2(1.0, 1.0));
 
-				float bottom = lerp(a, b, f.x);
-				float top = lerp(c, d, f.x);
+				float bottom = lerp(a, b, u.x);
+				float top = lerp(c, d, u.x);
 
-				return lerp(bottom, top, f.y);
+				return lerp(bottom, top, u.y);
 			}
             
             fixed4 frag (v2f i) : SV_Target {
