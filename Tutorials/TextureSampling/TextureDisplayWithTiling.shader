@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/TextureDisplayWithTiling"
+Shader "ShaderCastle/TextureSampling/TextureDisplayWithTiling"
 {
     Properties
     {
