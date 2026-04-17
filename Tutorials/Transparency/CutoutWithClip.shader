@@ -35,9 +35,7 @@ Shader "ShaderCastle/Transparency/CutoutWithClip"
 
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
 
-                float distanceStep = 1.0- step(0.5, distanceToCenter);
-
-                clip(distanceStep - 0.1);
+                clip(0.5 - distanceToCenter);
                 
                 fixed3 color = fixed3(1.0, 1.0, 1.0);
                 return fixed4(color, 1.0); // 1 on alpha channel, default for opaque

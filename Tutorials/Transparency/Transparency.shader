@@ -40,7 +40,7 @@ Shader "ShaderCastle/Transparency/Transparency"
 
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
 
-                float alpha = saturate(1 - distanceToCenter * 2.0);
+                float alpha = saturate(1.0 - distanceToCenter * 2.0);
 
                 fixed3 color = fixed3(1.0, 1.0, 1.0);
                 return fixed4(color, alpha);
