@@ -1,9 +1,8 @@
-Shader "ShaderCastle/Stencil/StencilBasicRead"
+Shader "ShaderCastle/Tutorials/Stencil/StencilBasicRead"
 {
     SubShader
     {
-        // Ensure this renders AFTER the mask (Geometry-1)
-        Tags { "RenderType"="Opaque" "Queue"="Geometry" }
+        Tags { "RenderType"="Opaque" "Queue"="Geometry" } // Mask needs to write before this
 
         Pass
         {
@@ -39,22 +38,19 @@ Shader "ShaderCastle/Stencil/StencilBasicRead"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
-
-                fixed3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-
-                fixed3 NdotL = dot(worldNormal, _world_light_direction);
+                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                half3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
+                half3 directLight = NdotL * lightColor.rgb;
+                half3 white = half3(1.0, 1.0, 1.0);
 
-                fixed3 directLight = NdotL * lightColor.rgb;
-                
-                fixed3 white = fixed3(1.0, 1.0, 1.0);
+                half3 color = half3((directLight + ambientLight) * white);
 
-                fixed4 color = fixed4((directLight + ambientLight) * white, 1);
-                return color;
+                return half4(color, 1.0);
             }
             ENDCG
         }

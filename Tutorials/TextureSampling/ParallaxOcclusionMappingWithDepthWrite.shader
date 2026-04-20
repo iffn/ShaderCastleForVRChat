@@ -1,4 +1,4 @@
-Shader "ShaderCastle/TextureSampling/ParallaxOcclusionMappingWithDepthWrite"
+Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepthWrite"
 {
     Properties
     {

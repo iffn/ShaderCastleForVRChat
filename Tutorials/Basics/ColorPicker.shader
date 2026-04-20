@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ColorPicker"
+Shader "ShaderCastle/Tutorials/Basics/colororPicker"
 {
     Properties
     {
@@ -14,32 +14,29 @@ Shader "ShaderCastle/Basics/ColorPicker"
             #pragma vertex vert
             #pragma fragment frag
 
+            // Values in properties need to be readded here
             float _red;
             float _green;
             float _blue;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
 
             // Fragment function
-            fixed4 frag () : SV_Target {
-                fixed4 col = fixed4(_red, _green, _blue, 1);
-                return col;
+            half4 frag () : SV_Target {
+                half3 color = half3(_red, _green, _blue);
+                return half4(color, 1.0);
             }
             ENDCG
         }

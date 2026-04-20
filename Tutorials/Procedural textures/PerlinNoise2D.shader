@@ -1,4 +1,4 @@
-Shader "ShaderCastle/ProceduralTextures/PerlinNoise2D"
+Shader "ShaderCastlev/Tutorials/ProceduralTextures/PerlinNoise2D"
 {
     Properties
     {
@@ -15,27 +15,21 @@ Shader "ShaderCastle/ProceduralTextures/PerlinNoise2D"
 
             float _zoom;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float4 vertex : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.vertex = v.vertex;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
-
-            // Fragment function
 
             float hash11(float p) {
 
@@ -97,15 +91,15 @@ Shader "ShaderCastle/ProceduralTextures/PerlinNoise2D"
 				return lerp(bottom, top, u.y);
 			}
             
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
                 float noise = perlinNoise(pos2D) * 0.5 + 0.5;
 
-                fixed3 color = noise.xxx;
+                half3 color = noise.xxx;
 
-                return fixed4(color.rgb, 1.0);
+                return half4(color.rgb, 1.0);
             }
 
             ENDCG

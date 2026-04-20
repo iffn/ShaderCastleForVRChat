@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/JustRed"
+Shader "ShaderCastle/Tutorials/Basics/JustRed"
 {
     SubShader
     {
@@ -26,9 +26,9 @@ Shader "ShaderCastle/Basics/JustRed"
             }
 
             // Fragment function
-            fixed4 frag () : SV_Target {
-                fixed3 color = fixed3(1.0, 0.0, 0.0); // Red
-                return fixed4(color, 1.0); // 1 on alpha channel, default for opaque
+            half4 frag () : SV_Target {
+                half3 color = half3(1.0, 0.0, 0.0); // Red
+                return half4(color, 1.0); // 1.0 on alpha channel, default for opaque
             }
             ENDCG
         }

@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/PhongSpecular"
+Shader "ShaderCastle/Tutorials/Light/PhongSpecular"
 {
     Properties
     {
@@ -24,20 +24,17 @@ Shader "ShaderCastle/Light/PhongSpecular"
             half4 _albedo;
             float _smoothness;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -48,14 +45,13 @@ Shader "ShaderCastle/Light/PhongSpecular"
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 
-                fixed3 ambientLight = _albedo * _ambient_light_color;
+                half3 ambientLight = _albedo * _ambient_light_color;
 
-                fixed3 diffuse = dot(normalized_world_light_direction, worldNormal);
+                half3 diffuse = dot(normalized_world_light_direction, worldNormal);
                 diffuse *= _albedo;
                 diffuse *= _light_color.rgb;
                 diffuse = saturate(diffuse);
@@ -67,8 +63,8 @@ Shader "ShaderCastle/Light/PhongSpecular"
                 specular = pow(specular, _smoothness * 100);
                 float specularColor = _light_color * specular;
                 
-                fixed4 color = fixed4(diffuse + specularColor + ambientLight, 1);
-                return color;
+                half3 color = half3(diffuse + specularColor + ambientLight);
+                return half4(color, 1.0);
             }
             ENDCG
         }

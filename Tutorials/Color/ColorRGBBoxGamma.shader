@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
+Shader "ShaderCastle/Tutorials/Color/ColorRGBBoxGamma"
 {
     SubShader
     {
@@ -8,18 +8,15 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
             #pragma vertex vert
             #pragma fragment frag
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float4 localPos : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.localPos = v.vertex;
@@ -27,11 +24,14 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
-                fixed3 col = fixed3(i.localPos.xyz + 0.5);
-                col = pow(col, 2.2);
-                return fixed4(col, 1);
+            half4 frag (v2f i) : SV_Target {
+                half3 color = half3(i.localPos.xyz + 0.5);
+
+                #ifndef UNITY_COLORSPACE_GAMMA
+                    color = pow(color, 2.2); 
+                #endif
+
+                return half4(color, 1.0);
             }
             ENDCG
         }

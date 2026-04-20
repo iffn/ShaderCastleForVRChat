@@ -1,4 +1,4 @@
-Shader "ShaderCastle/TextureSampling/TextureDisplayWithTiling"
+Shader "ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling"
 {
     Properties
     {
@@ -17,19 +17,16 @@ Shader "ShaderCastle/TextureSampling/TextureDisplayWithTiling"
             sampler2D _MainTex;
             float4 _MainTex_ST; // Required to get the sampler state (-> _ST)
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 // Basic object to clip space transformation

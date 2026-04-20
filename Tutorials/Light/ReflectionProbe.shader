@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ReflectionProbe"
+Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
 {
     Properties
     {
@@ -19,20 +19,17 @@ Shader "ShaderCastle/Basics/ReflectionProbe"
             float _blurMipMap;
             half4 _reflection_probe_light_multiplier;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -41,8 +38,7 @@ Shader "ShaderCastle/Basics/ReflectionProbe"
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 reflectDir = reflect(-viewDir, worldNormal);
@@ -51,7 +47,7 @@ Shader "ShaderCastle/Basics/ReflectionProbe"
                 half3 reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 reflection *= _reflection_probe_light_multiplier.rgb;
 
-                return fixed4(reflection, 1);
+                return half4(reflection, 1.0);
             }
             ENDCG
         }

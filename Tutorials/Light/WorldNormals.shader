@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/WorldNormals"
+Shader "ShaderCastle/Tutorials/Light/WorldNormals"
 {
     SubShader
     {
@@ -9,13 +9,11 @@ Shader "ShaderCastle/Basics/WorldNormals"
             #pragma fragment frag
             #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
@@ -24,7 +22,6 @@ Shader "ShaderCastle/Basics/WorldNormals"
             // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
                 o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
@@ -33,10 +30,9 @@ Shader "ShaderCastle/Basics/WorldNormals"
             }
 
             // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
-                fixed4 col = fixed4(i.worldNormal, 1.0);
-                //fixed4 col = fixed4(i.worldNormal + 0.5 * 0.5, 1.0); // Alternative
-                return col;
+            half4 frag (v2f i) : SV_Target {
+                half3 color = half3(i.worldNormal);
+                return half4(color, 1.0);
             }
             ENDCG
         }

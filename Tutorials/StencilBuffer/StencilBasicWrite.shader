@@ -1,9 +1,8 @@
-Shader "ShaderCastle/Stencil/StencilBasicWrite" {
-    SubShader {
-        Tags { 
-            "RenderType"="Opaque" 
-            "Queue"="Geometry-1" 
-        }
+Shader "ShaderCastle/Tutorials/Stencil/StencilBasicWrite"
+{
+    SubShader
+    {
+        Tags { "RenderType"="Opaque" "Queue"="Geometry-1" } // Runs before geometry
 
         ColorMask 0
         ZWrite Off

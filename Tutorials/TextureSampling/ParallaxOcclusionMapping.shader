@@ -1,4 +1,4 @@
-Shader "ShaderCastle/TextureSampling/ParallaxOcclusionMapping"
+Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping"
 {
     Properties
     {
@@ -33,7 +33,7 @@ Shader "ShaderCastle/TextureSampling/ParallaxOcclusionMapping"
             struct v2f {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
-                float3 viewDirTS : TEXCOORD1;  // view direction tangent space
+                float3 viewDirTS : TEXCOORD1;
             };
 
             v2f vert (appdata v) {
@@ -57,7 +57,6 @@ Shader "ShaderCastle/TextureSampling/ParallaxOcclusionMapping"
                 return tex2D(_HeightMap, uv).r;
             }
 
-            // Parallax Occlusion Mapping Logic
             float2 ParallaxOcclusionMapping(float2 uv, float3 viewDirTS) {
                 float minSamples = _MaxSamples * 0.5;
                 float numSamples = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1), viewDirTS)));

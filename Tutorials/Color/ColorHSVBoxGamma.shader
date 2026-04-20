@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
+Shader "ShaderCastle/Tutorials/Color/ColorRGBBoxGamma"
 {
     SubShader
     {
@@ -8,18 +8,15 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
             #pragma vertex vert
             #pragma fragment frag
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float4 localPos : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.localPos = v.vertex;
@@ -29,19 +26,21 @@ Shader "ShaderCastle/Basics/ColorRGBBoxGamma"
 
             static const float4 K_HSV = float4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
             
-            fixed3 hsv2rgb(fixed3 hsv) {
+            half3 hsv2rgb(half3 hsv) {
                 float3 p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);
-                fixed3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);
+                half3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);
                 return rgb;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
-                fixed3 hsv = fixed3(i.localPos.xyz + 0.5);
-                float3 col = hsv2rgb(hsv);
-                col = pow(col, 2.2);
+            half4 frag (v2f i) : SV_Target {
+                half3 hsv = half3(i.localPos.xyz + 0.5);
+                float3 color = hsv2rgb(hsv);
+
+                #ifndef UNITY_COLORSPACE_GAMMA
+                    color = pow(color, 2.2); 
+                #endif
                 
-                return fixed4(col, 1);
+                return half4(color, 1.0);
             }
             ENDCG
         }

@@ -1,4 +1,4 @@
-Shader "ShaderCastle/ProceduralTextures/Voronoi2D"
+Shader "ShaderCastle/Tutorials/ProceduralTextures/Voronoi2D"
 {
     Properties
     {
@@ -15,27 +15,21 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi2D"
 
             float _zoom;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float4 vertex : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.vertex = v.vertex;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
-
-            // Fragment function
 
             float hash11(float p) {
                 uint h = asuint(p);
@@ -93,12 +87,12 @@ Shader "ShaderCastle/ProceduralTextures/Voronoi2D"
                 return float3(closestDistance, cellID, edgeDist);
             }
             
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
-                fixed3 color = voronoi2D(pos2D);
-                return fixed4(color.rgb, 1.0);
+                half3 color = voronoi2D(pos2D);
+                return half4(color.rgb, 1.0);
             }
 
             ENDCG

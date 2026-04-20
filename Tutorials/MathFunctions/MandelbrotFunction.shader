@@ -1,10 +1,10 @@
-Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
+Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
 {
     Properties
     {
         _scale ("Scale", float) = 2
-        _base ("Base", color) = (0.1, 0.1, 0.1, 1)
-        _shape ("Shape", color) = (1, 1, 1, 1)
+        _base ("Base", color) = (0.1, 0.1, 0.1, 1.0)
+        _shape ("Shape", color) = (1.0, 1.0, 1.0, 1.0)
     }
     SubShader
     {
@@ -15,32 +15,27 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
             #pragma fragment frag
 
             float _scale;
-            fixed4 _base;
-            fixed4 _shape;
+            half4 _base;
+            half4 _shape;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 // Preparation
                 float2 uv = i.uv;
                 uv.x -= 0.2;
@@ -72,9 +67,9 @@ Shader "ShaderCastle/MathFunctions/MandelbrotFunction"
                 // Plotting the function
                 function = pow(function, 2.2);
 
-                fixed3 col = lerp(_base, _shape, function);
+                half3 color = lerp(_base, _shape, function);
                 
-                return fixed4(col, 1);
+                return half4(color, 1.0);
             }
             ENDCG
         }

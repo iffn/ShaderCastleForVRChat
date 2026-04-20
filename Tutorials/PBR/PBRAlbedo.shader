@@ -1,4 +1,4 @@
-Shader "ShaderCastle/PBR/PBRAlbedo"
+Shader "ShaderCastle/Tutorials/PBR/PBRAlbedo"
 {
     Properties
     {
@@ -25,18 +25,16 @@ Shader "ShaderCastle/PBR/PBRAlbedo"
             half4 _light_color;
             half4 _ambient_light_color;
             sampler2D _albedo;
-            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
+            float4 _albedo_ST;
             float _smoothness;
             float _metallic;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
@@ -45,7 +43,6 @@ Shader "ShaderCastle/PBR/PBRAlbedo"
                 float2 uv : TEXCOORD3;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -58,14 +55,13 @@ Shader "ShaderCastle/PBR/PBRAlbedo"
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
 
-                fixed4 color = tex2D(_albedo, i.uv);
+                half4 color = tex2D(_albedo, i.uv);
 
                 float3 specularTint = color * _metallic;
 				float oneMinusReflectivity;

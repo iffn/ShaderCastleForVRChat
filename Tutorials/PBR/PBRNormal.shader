@@ -1,4 +1,4 @@
-Shader "ShaderCastle/PBRRoughness/PBRNormal"
+Shader "ShaderCastle/Tutorials/PBRRoughness/PBRNormal"
 {
     Properties
     {
@@ -25,13 +25,12 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
             float3 _world_light_direction;
             sampler2D _albedo;
             sampler2D _normal;
-            float4 _albedo_ST; // Required to get the sampler state (-> _ST)
+            float4 _albedo_ST;
             half4 _light_color;
             half4 _ambient_light_color;
             float _smoothness;
             float _metallic;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -39,7 +38,6 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 float2 uv : TEXCOORD0;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
@@ -50,7 +48,6 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 float2 uv : TEXCOORD5;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -66,7 +63,7 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
             }
 
             // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 worldTangent = normalize(i.worldTangent);
                 float3 worldBitangent = normalize(i.worldBitangent);
@@ -78,7 +75,7 @@ Shader "ShaderCastle/PBRRoughness/PBRNormal"
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
 
-                fixed4 color = tex2D(_albedo, i.uv);
+                half4 color = tex2D(_albedo, i.uv);
 
                 float3 specularTint = color * _metallic;
 				float oneMinusReflectivity;

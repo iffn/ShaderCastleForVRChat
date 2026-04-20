@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Basics/MipMapLevel"
+Shader "ShaderCastle/Tutorials/TextureSampling/MipMapLevel"
 {
     Properties
     {
@@ -16,19 +16,16 @@ Shader "ShaderCastle/Basics/MipMapLevel"
             sampler2D _MainTex;
             float _mipMap;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 // Basic object to clip space transformation
@@ -37,9 +34,7 @@ Shader "ShaderCastle/Basics/MipMapLevel"
                 return o;
             }
 
-            // Fragment function
             fixed4 frag (v2f i) : SV_Target {
-                // Adjust X for the 1.5 aspect ratio quad
                 float2 uv = i.uv;
                 
                 float4 textureLookup = float4(uv, 0.0, _mipMap);

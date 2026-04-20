@@ -1,4 +1,4 @@
-Shader "ShaderCastle/VertexShader/BasicGeometryShader"
+Shader "ShaderCastle/Tutorials/VertexShader/BasicGeometryShader"
 {
     SubShader
     {
@@ -14,6 +14,8 @@ Shader "ShaderCastle/VertexShader/BasicGeometryShader"
 
             #include "UnityCG.cginc"
 
+            // Order: Mesh -> Vertex -> Geometry -> Fragment
+
             // Mesh data
             struct appdata
             {
@@ -21,7 +23,7 @@ Shader "ShaderCastle/VertexShader/BasicGeometryShader"
                 float3 normal : NORMAL;
             };
 
-            // Vertex to Geometry shader data
+            // Vertex to Geometry transfer data
             struct v2g
             {
                 float4 pos : POSITION;
@@ -37,7 +39,7 @@ Shader "ShaderCastle/VertexShader/BasicGeometryShader"
                 return o;
             }
 
-            // Geometry to fragment shader data
+            // Geometry to fragment transfer data
             struct g2f
             {
                 float4 pos : SV_POSITION;
@@ -89,11 +91,10 @@ Shader "ShaderCastle/VertexShader/BasicGeometryShader"
             }
 
             // Fragment function
-            fixed4 frag(g2f i) : SV_Target
+            half4 frag(g2f i) : SV_Target
             {
-                fixed3 color = fixed3(0.0, 0.0, 1.0); // Blue
-
-                return fixed4(color, 1);
+                half3 color = half3(0.0, 0.0, 1.0); // Blue
+                return half4(color, 1.0);
             }
 
             ENDCG

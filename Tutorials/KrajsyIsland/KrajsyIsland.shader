@@ -1,9 +1,5 @@
-Shader "Unlit/krajsyIslandV2"
+Shader "ShaderCastle/Demos/krajsyIsland"
 {
-    Properties
-    {
-        _MainTex ("Texture", 2D) = "white" {}
-    }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
@@ -26,13 +22,9 @@ Shader "Unlit/krajsyIslandV2"
 
             struct v2f
             {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float2 uv : TEXCOORD0;
             };
-
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
 
             float noiseMethod(float2 uv)
             {
@@ -72,7 +64,7 @@ Shader "Unlit/krajsyIslandV2"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;
                 return o;
             }
 

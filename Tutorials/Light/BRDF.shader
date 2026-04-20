@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Light/BRDF"
+Shader "ShaderCastle/Tutorials/Light/BRDF"
 {
     Properties
     {
@@ -28,13 +28,11 @@ Shader "ShaderCastle/Light/BRDF"
             float _smoothness;
             float _metallic;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
@@ -42,7 +40,6 @@ Shader "ShaderCastle/Light/BRDF"
                 float3 worldNormal : TEXCOORD2;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
@@ -54,8 +51,7 @@ Shader "ShaderCastle/Light/BRDF"
                 return o;
             }
 
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);

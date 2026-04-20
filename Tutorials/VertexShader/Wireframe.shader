@@ -1,4 +1,4 @@
-Shader "ShaderCastle/VertexShader/CullOff"
+Shader "ShaderCastle/Tutorials/VertexShader/Wireframe"
 {
     SubShader
     {
@@ -12,31 +12,35 @@ Shader "ShaderCastle/VertexShader/CullOff"
             
             // Based on https://www.youtube.com/watch?v=ehk8ljz2nHI
 
-            // Mesh to vertex transfer data
+            // Order: Mesh -> Vertex -> Geometry -> Fragment
+
+            // Mesh data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
-            struct v2f {
+            // Vertex to Geometry transfer data
+            struct v2g {
                 float4 pos : SV_POSITION;
             };
             
-            struct g2f {
-                float4 pos : SV_POSITION;
-                float3 barycentric : TEXCOORD0;
-            };
-
             // Vertex function
-            v2f vert (appdata v) {
-                v2f o;
+            v2g vert (appdata v) {
+                v2g o;
                 // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }
-
+            
+            // Geometry to fragment transfer data
+            struct g2f {
+                float4 pos : SV_POSITION;
+                float3 barycentric : TEXCOORD0;
+            };
+            
+            // Geometry function
             [maxvertexcount(3)]
-            void geom(triangle v2f IN[3], inout TriangleStream<g2f> triStream) {
+            void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {
                 g2f o;
 
                 o.pos = IN[0].pos;
@@ -53,16 +57,16 @@ Shader "ShaderCastle/VertexShader/CullOff"
             }
 
             // Fragment function
-            fixed4 frag (g2f i) : SV_Target {
+            half4 frag (g2f i) : SV_Target {
                 float closest = min(i.barycentric.x, min(i.barycentric.y, i.barycentric.z));
                 float WireframeWith = 0.02;
                 float frame = step(closest, WireframeWith);
 
-                fixed3 frameColor = fixed3(0.0, 0.0, 0.0); // Black
+                half3 frameColor = half3(0.0, 0.0, 0.0); // Black
+                half3 color = half3(1.0, 0.0, 0.0); // Red
 
-                fixed3 col = fixed3(1.0, 0.0, 0.0); // Red
-                col = lerp(col, frameColor, frame);
-                return fixed4(col, 1.0);
+                color = lerp(color, frameColor, frame);
+                return half4(color, 1.0);
             }
             ENDCG
         }

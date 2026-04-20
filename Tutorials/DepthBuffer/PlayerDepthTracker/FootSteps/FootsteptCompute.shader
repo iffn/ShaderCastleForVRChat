@@ -1,13 +1,13 @@
-Shader "iffnsShaders/DepthBuffer/FootstepCompute"
+Shader "iffnsShaders/Tutorials/DepthBuffer/FootstepCompute"
 {
     Properties
     {
         _depthTexture("Depth texture", 2D) = "white" {}
-        _depthCenterToCenterOffsetAndScale ("Depth center to center offset and scale", Vector) = (0,0,1,1)
-        _nearClipDistance("Near clip distance", float) = -1
-        _farClipDistance("Far clip distance", float) = 1
-        _footstepColor ("Footstep color", color) = (1,1,1,1)
-        _baseColor ("Base color", color) = (1,1,1,1)
+        _depthCenterToCenterOffsetAndScale ("Depth center to center offset and scale", Vector) = (0.0, 0.0, 1.0, 1.0)
+        _nearClipDistance("Near clip distance", float) = -1.0
+        _farClipDistance("Far clip distance", float) = 1.0
+        _footstepColor ("Footstep color", color) = (1.0, 1.0, 1.0, 1.0)
+        _baseColor ("Base color", color) = (1.0, 1.0, 1.0, 1.0)
         _fade("Fade", float) = 0.01
     }
 
@@ -36,7 +36,7 @@ Shader "iffnsShaders/DepthBuffer/FootstepCompute"
     {
         float2 uv = i.globalTexcoord;
         float2 uvCenterRender = uv + 0.5;
-        fixed3 currentColor = currentTexture(uv);
+        half3 currentColor = currentTexture(uv);
         currentColor = lerp(currentColor, _baseColor, _fade);
 
         float2 uvDepth = uv - _depthCenterToCenterOffsetAndScale.xy;
@@ -45,11 +45,9 @@ Shader "iffnsShaders/DepthBuffer/FootstepCompute"
         float depthDistance = lerp(_farClipDistance, _nearClipDistance, depthValueRaw);
         float footstepPaint = step(depthDistance, 0.02);
 
-        fixed3 returnColor = lerp(currentColor, _footstepColor.rgb, footstepPaint);
+        half3 color = lerp(currentColor, _footstepColor.rgb, footstepPaint);
 
-        //returnColor = fixed3(footstepPaint.xxx);
-
-        return float4(returnColor, 1);
+        return float4(color, 1.0);
     }
 
     ENDCG

@@ -1,4 +1,4 @@
-Shader "ShaderCastle/ProceduralTextures/RandomColor"
+Shader "ShaderCastle/Tutorials/ProceduralTextures/RandomColor"
 {
     Properties
     {
@@ -15,21 +15,17 @@ Shader "ShaderCastle/ProceduralTextures/RandomColor"
 
             float _zoom;
 
-            // Mesh to vertex transfer data
             struct appdata {
                 float4 vertex : POSITION;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float4 vertex : TEXCOORD0;
             };
 
-            // Vertex function
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.vertex = v.vertex;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
@@ -50,8 +46,7 @@ Shader "ShaderCastle/ProceduralTextures/RandomColor"
                 return float(h & 0x00ffffffu) / float(0x01000000u);
             }
             
-            // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
@@ -63,8 +58,8 @@ Shader "ShaderCastle/ProceduralTextures/RandomColor"
                 float g = hash11(r);
                 float b = hash11(g);
 
-                fixed3 color = fixed3(r, g, b);
-                return fixed4(color, 1.0);
+                half3 color = half3(r, g, b);
+                return half4(color, 1.0);
             }
 
             ENDCG

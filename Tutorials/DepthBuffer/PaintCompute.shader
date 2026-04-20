@@ -1,9 +1,9 @@
-Shader "iffnsShaders/DepthBuffer/PaintCompute"
+Shader "iffnsShaders/Tutorials/DepthBuffer/PaintCompute"
 {
     Properties
     {
         _depthTexture("Depth texture", 2D) = "white" {}
-        _paint_color ("Paint color", color) = (1,1,1,1)
+        _paint_color ("Paint color", color) = (1.0, 1.0, 1.0, 1.0)
     }
 
     CGINCLUDE
@@ -23,16 +23,14 @@ Shader "iffnsShaders/DepthBuffer/PaintCompute"
     {
         float2 uv = i.globalTexcoord;
 
-        fixed3 currentColor = currentTexture(uv);
+        half3 currentColor = currentTexture(uv);
         float2 uvDepth = uv;
         uvDepth.x = uvDepth.x;
         float depthValueRaw = tex2D(_depthTexture, uvDepth).r;
 
-        fixed3 returnColor = lerp(currentColor, _paint_color.rgb, depthValueRaw);
+        half3 color = lerp(currentColor, _paint_color.rgb, depthValueRaw);
 
-        //returnColor = depthValueRaw.rrr;
-
-        return float4(returnColor, 1);
+        return float4(color, 1.0);
     }
 
     ENDCG

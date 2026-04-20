@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorial/DitheredTransparency4x4"
+Shader "ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4"
 {
     SubShader
     {
@@ -30,7 +30,7 @@ Shader "ShaderCastle/Tutorial/DitheredTransparency4x4"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            half4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
                 float alpha = saturate(1.0 - distanceToCenter * 2.0);
@@ -48,8 +48,8 @@ Shader "ShaderCastle/Tutorial/DitheredTransparency4x4"
 
                 clip(alpha - threshold);
 
-                fixed3 color = fixed3(1.0, 1.0, 1.0);
-                return fixed4(color, 1.0);
+                half3 color = half3(1.0, 1.0, 1.0);
+                return half4(color, 1.0);
             }
             ENDCG
         }

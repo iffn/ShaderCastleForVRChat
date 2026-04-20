@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Water/DepthBufferWater"
+Shader "ShaderCastle/Tutorials/Water/DepthBufferWater"
 {
     Properties
     {
