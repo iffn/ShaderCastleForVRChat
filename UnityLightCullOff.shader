@@ -6,10 +6,11 @@ Shader "ShaderCastle/Light/UnityLightCullOff"
     }
     SubShader
     {
-        
+        Tags { "RenderType"="Opaque" "Queue"="Geometry" }
         Pass
         {
             Cull off
+            ZWrite on
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -59,4 +60,5 @@ Shader "ShaderCastle/Light/UnityLightCullOff"
             ENDCG
         }
     }
+    Fallback "VertexLit"
 }
