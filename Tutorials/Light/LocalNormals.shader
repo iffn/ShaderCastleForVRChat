@@ -31,9 +31,8 @@ Shader "ShaderCastle/Basics/LocalNormals"
 
             // Fragment function
             fixed4 frag (v2f i) : SV_Target {
-                fixed4 col = fixed4(i.normal, 1.0);
-                // fixed4 col = fixed4(i.normal + 0.5 * 0.5, 1.0); // Alternative
-                return col;
+                fixed3 color = fixed3(i.normal);
+                return fixed4(color, 1.0);
             }
             ENDCG
         }
