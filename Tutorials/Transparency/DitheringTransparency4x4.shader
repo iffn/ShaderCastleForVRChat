@@ -33,7 +33,7 @@ Shader "ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4"
             half4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
-                float alpha = saturate(1.0 - distanceToCenter * 2.0);
+                float alpha = 1.0 - distanceToCenter * 2.0;
 
                 // 4x4 Bayer dithering matrix
                 float4x4 ditherMatrix = float4x4(

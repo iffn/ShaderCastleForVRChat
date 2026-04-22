@@ -53,7 +53,7 @@ Shader "ShaderCastle/Tutorials/MathFunctions/ScaleHorizontalFunction"
                 float x = coordinate.x;
 
                 // Function to plot
-                float function = x / _a;
+                float function = sin(x / _a);
 
                 // Plotting the function
                 float plotFunction = function - coordinate.y;
