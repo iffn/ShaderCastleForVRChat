@@ -12,6 +12,9 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepth
         Tags { "RenderType"="Opaque" }
         Pass
         {
+            ZTest LEqual
+            ZWrite On
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -40,7 +43,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepth
             
             struct frag_out {
                 fixed4 color : SV_Target;
-                float depth : SV_DepthGreaterEqual;
+                float depth : SV_DepthLessEqual;
             };
 
             v2f vert (appdata v) {
