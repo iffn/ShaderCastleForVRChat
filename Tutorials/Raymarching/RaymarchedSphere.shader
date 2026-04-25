@@ -4,6 +4,7 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 	{
 		_SphereRadius ("Sphere Radius", Float) = 0.5
 		_SphereColor ("Sphere Color", Color) = (1, 0, 0, 1)
+		_MaxViewDistance ("Sphere Radius", Float) = 20.0
 	}
 
 	SubShader
@@ -19,7 +20,9 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 			#pragma fragment frag
 			#include "UnityCG.cginc"
 
-            
+			float _SphereRadius;
+			float4 _SphereColor;
+			float _MaxViewDistance;
 
 			struct appdata
 			{
@@ -32,9 +35,6 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 				float3 localPos : TEXCOORD0;
 				float3 cameraPos : TEXCOORD1;
 			};
-
-			float _SphereRadius;
-			float4 _SphereColor;
 
 			float sphereSDF(float3 p)
 			{
@@ -62,6 +62,17 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 			v2f vert (appdata v)
 			{
 				v2f o;
+				
+				float3 objectCenter = float3(unity_ObjectToWorld[0][3], 
+                                 unity_ObjectToWorld[1][3], 
+                                 unity_ObjectToWorld[2][3]);
+				float dist = distance(_WorldSpaceCameraPos, objectCenter);
+				if (dist > _MaxViewDistance) 
+				{
+					o.pos = float4(0,0,0,0);
+					return o;
+				}
+
 				o.pos = UnityObjectToClipPos(v.vertex);
 				o.localPos = v.vertex.xyz;
 				o.cameraPos = mul(unity_WorldToObject, float4(_WorldSpaceCameraPos, 1.0)).xyz;
@@ -70,13 +81,15 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 
 			half4 frag (v2f i) : SV_Target
 			{
-				float3 rayDir = normalize(i.localPos - i.cameraPos);
+				float3 ray = i.localPos - i.cameraPos;
+				float3 rayDir = normalize(ray);
+				float maxDistance = length(ray);
 				float3 rayOrigin = i.cameraPos;
 
-				float t = 0;
+				float currentDistance = 0;
 				for (int step = 0; step < 64; step++)
 				{
-					float3 p = rayOrigin + rayDir * t;
+					float3 p = rayOrigin + rayDir * currentDistance;
 					float distanceToShape = mainSDF(p);
 
                     if (distanceToShape < 0.001)
@@ -87,8 +100,8 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
                         return _SphereColor * diff;
                     }
 
-					t += distanceToShape;
-					if (t > 10.0) break;
+					currentDistance += distanceToShape;
+					if (currentDistance > maxDistance) break;
 				}
 
 				discard;
