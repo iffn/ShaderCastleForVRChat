@@ -4,7 +4,6 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 	{
 		_SphereRadius ("Sphere Radius", Float) = 0.5
 		_SphereColor ("Sphere Color", Color) = (1, 0, 0, 1)
-		_MaxViewDistance ("Sphere Radius", Float) = 20.0
 	}
 
 	SubShader
@@ -62,16 +61,6 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 			v2f vert (appdata v)
 			{
 				v2f o;
-				
-				float3 objectCenter = float3(unity_ObjectToWorld[0][3], 
-                                 unity_ObjectToWorld[1][3], 
-                                 unity_ObjectToWorld[2][3]);
-				float dist = distance(_WorldSpaceCameraPos, objectCenter);
-				if (dist > _MaxViewDistance) 
-				{
-					o.pos = float4(0,0,0,0);
-					return o;
-				}
 
 				o.pos = UnityObjectToClipPos(v.vertex);
 				o.localPos = v.vertex.xyz;
