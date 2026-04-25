@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RaymarchedSphere-Included
-  m_Shader: {fileID: 4800000, guid: f4cd6f35cbee2a64f8cd0d2e50369711, type: 3}
+  m_Name: RaymarchedBox-Included
+  m_Shader: {fileID: 4800000, guid: 10259983c5b3bdb4c922b2fd474e7b9b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -74,6 +74,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Radius: 0.5
+    - _SideLength: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SphereRadius: 0.5

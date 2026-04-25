@@ -53,7 +53,7 @@ half4 frag (v2f i) : SV_Target
 			float3 n = getNormal(p); // The "Universal" way
 			float3 lightDir = normalize(float3(1, 1, -1));
 			float diff = max(0.2, dot(n, lightDir));
-			return _SphereColor * diff;
+			return _Color * diff;
 		}
 
 		currentDistance += distanceToShape;
