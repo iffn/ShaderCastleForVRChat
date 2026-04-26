@@ -14,8 +14,8 @@ Shader "ShaderCastle/Environment/UnityLightCullOff"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #include "UnityCG.cginc" // Required for UnityObjectToWorldNormal 
-            #include "Lighting.cginc" // Required for _LightColor0
+            #include "UnityCG.cginc"
+            #include "Lighting.cginc"
 
             half4 _albedo;
 
@@ -25,7 +25,6 @@ Shader "ShaderCastle/Environment/UnityLightCullOff"
                 float3 normal : NORMAL;
             };
 
-            // Transfer data from the vertex to the fragment function
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
@@ -35,15 +34,15 @@ Shader "ShaderCastle/Environment/UnityLightCullOff"
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.worldNormal = UnityObjectToWorldNormal(v.normal); // Part of UnityCG.cginc
-                o.worldNormal = normalize(o.worldNormal); // Make sure the world normals are normalized
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                o.worldNormal = normalize(o.worldNormal);
 
                 return o;
             }
 
             // Fragment function
-            fixed4 frag (v2f i) : SV_Target {
-                float3 worldNormal = normalize(i.worldNormal);
+            fixed4 frag (v2f i, fixed facing : VFACE) : SV_Target {
+                float3 worldNormal = i.worldNormal * (facing > 0 ? 1.0 : -1.0);
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
 
