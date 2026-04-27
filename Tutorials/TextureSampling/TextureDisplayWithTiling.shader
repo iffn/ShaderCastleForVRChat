@@ -29,13 +29,11 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling"
 
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex); // Includes tiling and offset
                 return o;
             }
 
-            // Fragment function
             fixed4 frag (v2f i) : SV_Target {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 return col;
