@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling"
+Shader "ShaderCastle/Tutorials/TextureSampling/UVMapping"
 {
     Properties
     {
@@ -33,7 +33,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling"
                 v2f o;
                 float4 pos = v.vertex;
                 float2 uv = v.uv - float2(0.5, 0.5);
-                float4 uvPos = float4(uv.x, 0.0, uv.y, 0.0);
+                float4 uvPos = float4(uv.x, uv.y, 0.0, 0.0);
                 
                 float lerpValue = sin(_Time.y) * 0.5 + 0.5;
                 
