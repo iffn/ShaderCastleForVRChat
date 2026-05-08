@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 3700848156864473940}
   - component: {fileID: 7103312278593840972}
   m_Layer: 0
-  m_Name: Title
+  m_Name: 3D Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2928736010999273997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 302726105813571253, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.569
+      value: 0.767
       objectReference: {fileID: 0}
     - target: {fileID: 302726105813571253, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}

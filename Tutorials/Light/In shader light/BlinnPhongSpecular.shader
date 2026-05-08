@@ -1,0 +1,74 @@
+Shader "ShaderCastle/Tutorials/Light/BlinnPhongSpecular"
+{
+    Properties
+    {
+        _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
+        _light_color ("Light color", color) = (1,1,1,1)
+        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
+        _albedo ("Albedo", color) = (1,1,1,1)
+        _smoothness ("Smoothness", Range(0, 1)) = 0.5
+    }
+    SubShader
+    {
+        
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #include "UnityCG.cginc"
+
+            float3 _world_light_direction;
+            half4 _light_color;
+            half4 _ambient_light_color;
+            half4 _albedo;
+            float _smoothness;
+
+            struct appdata {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+            };
+
+            struct v2f {
+                float4 pos : SV_POSITION;
+                float3 worldPos : TEXCOORD0;
+                float3 normal : TEXCOORD1;
+                float3 worldNormal : TEXCOORD2;
+            };
+
+            v2f vert (appdata v) {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+                o.normal = v.normal;
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                o.worldNormal = normalize(o.worldNormal);
+
+                return o;
+            }
+
+            half4 frag (v2f i) : SV_Target {
+                float3 worldNormal = normalize(i.worldNormal);
+                float3 normalized_world_light_direction = normalize(_world_light_direction);
+
+                half3 ambientLight = _albedo * _ambient_light_color;
+
+                half3 diffuse = dot(normalized_world_light_direction, worldNormal);
+                diffuse *= _albedo;
+                diffuse *= _light_color.rgb;
+                diffuse = saturate(diffuse);
+
+                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 halfVector = normalize(normalized_world_light_direction + viewDir);
+                float specular = dot(halfVector, worldNormal);
+                specular = saturate(specular);
+                specular = pow(specular, _smoothness * 100);
+                float4 specularColor = _light_color * specular;
+
+                half3 color = half3(diffuse + specularColor + ambientLight);
+                return half4(color, 1.0);
+            }
+            ENDCG
+        }
+    }
+}
