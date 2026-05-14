@@ -405,6 +405,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2086081743145107749, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: '[ToDo: Description about AlphaToMask]
+
+
+        Note: The result will
+        depend on your Anti-Aliasing level and apparently your graphics card.
+
+        -
+        For Nvidia cards, the output seems to be differnt layers of transparency.
+
+        -
+        For AMD Graphics cards, the output seems to be dithered, meaning you can
+        see individual pixels despite Anti-Aliasing.'
+      objectReference: {fileID: 0}
     - target: {fileID: 2453436135830993782, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y

@@ -2,7 +2,7 @@ Shader "ShaderCastle/Tutorials/Transparency/AlphaToMask"
 {
     SubShader
     {
-        Tags { "RenderType"="TransparentCutout" "Queue"="AlphaTest" }
+        Tags { "RenderType"="Opaque" "Queue"="AlphaTest" "LightMode"="ForwardBase" }
         
         Pass
         {
@@ -31,10 +31,8 @@ Shader "ShaderCastle/Tutorials/Transparency/AlphaToMask"
 
             half4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
-
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
-
-                float alpha = step(distanceToCenter, 0.5);
+                float alpha = 1.0 - distanceToCenter * 2.0;
 
                 half3 color = half3(1.0, 1.0, 1.0);
                 return half4(color, alpha);
