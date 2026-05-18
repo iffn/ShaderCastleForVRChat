@@ -2323,6 +2323,16 @@ PrefabInstance:
         += distanceToShape;\r\n\t\t\t\t\tif (currentDistance > maxDistance) break;\r\n\t\t\t\t}\r\n\r\n\t\t\t\tdiscard;\r\n\t\t\t\treturn
         0;\r\n\t\t\t}\r\n\t\t\t<color=#569CD6>ENDCG</color>\r\n\t\t}\r\n\t}\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab

@@ -831,6 +831,16 @@ PrefabInstance:
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018715596
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018715596
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1463,6 +1473,16 @@ PrefabInstance:
         half3 color = half3(r, g, b);\r\n                return half4(color, 1.0);\r\n           
         }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.029565217
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.029565217
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1869,6 +1889,16 @@ PrefabInstance:
         += 0.125 * valueNoise(pos2D);\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.019805824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.019805824
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -2492,6 +2522,16 @@ PrefabInstance:
         pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -3178,6 +3218,16 @@ PrefabInstance:
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.01906542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.01906542
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3672,6 +3722,16 @@ PrefabInstance:
         float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
         color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
         1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018378379
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018378379
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -4177,6 +4237,16 @@ PrefabInstance:
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018715596
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018715596
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -4509,6 +4579,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 865bb25031415c24eafa956bb2c96063,
         type: 2}
+    - target: {fileID: 658870634197251216, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 658870634197251216, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 662025258118020327, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4658,6 +4738,16 @@ PrefabInstance:
         pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
         return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.019245282
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.019245282
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -5333,6 +5423,16 @@ PrefabInstance:
         half3 color = noise.xxx;\r\n\r\n                return half4(color.rgb, 1.0);\r\n           
         }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.022666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.022666667
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5478,6 +5578,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4396967301989451004, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5008773921672645143, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Name
@@ -5531,6 +5636,16 @@ PrefabInstance:
     - target: {fileID: 6620407579961775055, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6849757964011303140, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6849757964011303140, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7116856329258836659, guid: 3b78f404deb68354e9b08eaf5d093c61,

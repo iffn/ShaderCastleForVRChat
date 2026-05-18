@@ -293,6 +293,16 @@ PrefabInstance:
         return half4(color, 1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.019805824
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.019805824
+      objectReference: {fileID: 0}
     - target: {fileID: 4291591348241919310, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -563,6 +573,16 @@ PrefabInstance:
         0.0, 0.0); <color=#57A64A>// Red\r</color>\n\r\n                color = lerp(color,
         frameColor, frame);\r\n                return half4(color, 1.0);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.027199998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.027199998
       objectReference: {fileID: 0}
     - target: {fileID: 4291591348241919310, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

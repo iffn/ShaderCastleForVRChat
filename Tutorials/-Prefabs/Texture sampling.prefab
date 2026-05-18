@@ -615,6 +615,16 @@ PrefabInstance:
         o.depth = clipPos.z / clipPos.w;\r\n\r\n                return o;\r\n           
         }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.01632
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.01632
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1438,6 +1448,16 @@ PrefabInstance:
         i) : SV_Target {\r\n                half3 color = triplanarColor(i.localPos,
         i.normal);\r\n\r\n                return half4 (color, 1.0);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.028732393
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.028732393
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3079,6 +3099,16 @@ PrefabInstance:
         = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
         }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -4152,6 +4182,16 @@ PrefabInstance:
         normalize(i.viewDirTS));\r\n                \r\n                fixed3 color
         = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
         }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}

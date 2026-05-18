@@ -1134,6 +1134,16 @@ PrefabInstance:
         _smoothness,\r\n\t\t\t\t\tworldNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.021473683
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.021473683
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -2016,6 +2026,16 @@ PrefabInstance:
         return UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
         _smoothness,\r\n\t\t\t\t\tworldNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.022921348
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.022921348
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3969,6 +3989,16 @@ PrefabInstance:
         half3 diffuse = saturate(dot(lightDir, worldNormal)) * _LightColor0.rgb *
         attenuation;\r\n                return half4(diffuse, 1.0);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.019615384
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.019615384
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -9013,6 +9043,16 @@ PrefabInstance:
         _smoothness,\r\n\t\t\t\t\tbumpedNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018378379
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018378379
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -12755,6 +12795,16 @@ PrefabInstance:
         + specularColor + ambientLight);\r\n                return half4(color, 1.0);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.027567567
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.027567567
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -14603,6 +14653,16 @@ PrefabInstance:
         viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n            }\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018053098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018053098
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -16193,6 +16253,16 @@ PrefabInstance:
         half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.022417583
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.022417583
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -17702,6 +17772,16 @@ PrefabInstance:
         _smoothness,\r\n\t\t\t\t\tbumpedNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018715596
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018715596
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -18551,6 +18631,16 @@ PrefabInstance:
         half3 color = half3(diffuse + specularColor + ambientLight);\r\n               
         return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.028333332
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.028333332
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -20475,6 +20565,16 @@ PrefabInstance:
         indirectLight\r\n\t\t\t\t);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}"
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018888889
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018888889
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -21051,6 +21151,16 @@ PrefabInstance:
         * _light_color * specular;\r\n\r\n                half3 color = half3(diffuse
         + specularColor + ambientLight);\r\n                return half4(color, 1.0);\r\n           
         }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.024578312
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.024578312
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -24845,6 +24955,16 @@ PrefabInstance:
         specularTint,\r\n\t\t\t\t\toneMinusReflectivity, 1.0 - roughness,\r\n\t\t\t\t\tbumpedNormal,
         viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n            }\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.018545454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.018545454
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

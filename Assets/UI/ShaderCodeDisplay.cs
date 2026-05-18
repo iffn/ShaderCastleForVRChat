@@ -6,6 +6,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 [CustomEditor(typeof(ShaderCodeDisplay))]
 public class UpdateCodeDisplayEditor : Editor
@@ -38,6 +39,9 @@ public class ShaderCodeDisplay : MonoBehaviour
     [SerializeField] MeshRenderer linkedMeshRenderer;
     [SerializeField] TMP_InputField linkedCopyCodeInput;
     [SerializeField] TMP_Text linkedColoredCodeDisplay;
+
+    int maxLinexWithDefaultFontSize = 68;
+    float defaultFontSize = 0.03f;
 
     string GetShaderCodeFromMaterial(Material linkedMaterial)
     {
@@ -82,6 +86,12 @@ public class ShaderCodeDisplay : MonoBehaviour
 
         linkedCopyCodeInput.text = codeDisplay;
         linkedColoredCodeDisplay.text = coloredCode;
+
+        int lineCount = codeDisplay.Count(c => c == '\n') + 1;
+        if(lineCount > maxLinexWithDefaultFontSize)
+            linkedColoredCodeDisplay.fontSize = defaultFontSize * maxLinexWithDefaultFontSize / lineCount;
+        else
+            linkedColoredCodeDisplay.fontSize = defaultFontSize;
         
         EditorUtility.SetDirty(linkedCopyCodeInput);
         EditorUtility.SetDirty(linkedColoredCodeDisplay);
