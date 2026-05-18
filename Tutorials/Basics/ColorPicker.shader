@@ -33,7 +33,6 @@ Shader "ShaderCastle/Tutorials/Basics/ColorPicker"
                 return o;
             }
 
-            // Fragment function
             half4 frag () : SV_Target {
                 half3 color = half3(_red, _green, _blue);
                 return half4(color, 1.0);

@@ -1122,7 +1122,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Basic
 
-        Tessellation'
+        tessellation'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1157,15 +1157,15 @@ PrefabInstance:
         #include \"UnityCG.cginc\"\r\n\r\n            struct appdata {\r\n               
         float4 vertex : POSITION;\r\n            };\r\n\r\n            struct v2f
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
-        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float3
-        worldCenter = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13,
-        unity_ObjectToWorld._m23);\r\n                \r\n                float scaleX
-        = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));\r\n               
-        float scaleY = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11,
-        unity_ObjectToWorld._m21));\r\n\r\n                float3 lookDir = _WorldSpaceCameraPos
-        - worldCenter;\r\n                lookDir.y = 0;\r\n                lookDir
-        = normalize(lookDir);\r\n\r\n                float3 worldUp = float3(0, 1,
-        0);\r\n                float3 worldRight = normalize(cross(lookDir, worldUp));\r\n\r\n               
+        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float4x4
+        objectToWorld = unity_ObjectToWorld;\r\n\r\n                float3 worldCenter
+        = float3(objectToWorld._m03, objectToWorld._m13, objectToWorld._m23);\r\n               
+        \r\n                float scaleX = length(float3(objectToWorld._m00, objectToWorld._m10,
+        objectToWorld._m20));\r\n                float scaleY = length(float3(objectToWorld._m01,
+        objectToWorld._m11, objectToWorld._m21));\r\n\r\n                float3 lookDir
+        = _WorldSpaceCameraPos - worldCenter;\r\n                lookDir.y = 0;\r\n               
+        lookDir = normalize(lookDir);\r\n\r\n                float3 worldUp = float3(0,
+        1, 0);\r\n                float3 worldRight = normalize(cross(lookDir, worldUp));\r\n\r\n               
         float3 worldPos = worldCenter \r\n                                + worldRight
         * v.vertex.x * scaleX \r\n                                + worldUp * v.vertex.y
         * scaleY;\r\n\r\n                o.pos = mul(UNITY_MATRIX_VP, float4(worldPos,
@@ -1186,22 +1186,22 @@ PrefabInstance:
         <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n           
         };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
         v) {\r\n                <color=#569CD6>v2f</color> o;\r\n\r\n               
-        float3 worldCenter = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13,
-        unity_ObjectToWorld._m23);\r\n                \r\n                <color=#569CD6>float</color>
-        scaleX = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10,
-        unity_ObjectToWorld._m20));\r\n                <color=#569CD6>float</color>
-        scaleY = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11,
-        unity_ObjectToWorld._m21));\r\n\r\n                float3 lookDir = _WorldSpaceCameraPos
-        - worldCenter;\r\n                lookDir.y = 0;\r\n                lookDir
-        = normalize(lookDir);\r\n\r\n                float3 worldUp = float3(0, 1,
-        0);\r\n                float3 worldRight = normalize(cross(lookDir, worldUp));\r\n\r\n               
-        float3 worldPos = worldCenter \r\n                                + worldRight
-        * v.<color=#569CD6>vertex</color>.x * scaleX \r\n                               
-        + worldUp * v.<color=#569CD6>vertex</color>.y * scaleY;\r\n\r\n               
-        o.pos = mul(UNITY_MATRIX_VP, float4(worldPos, 1.0));\r\n\r\n               
-        return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
-        half3 color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
-        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        float4x4 objectToWorld = unity_ObjectToWorld;\r\n\r\n                float3
+        worldCenter = float3(objectToWorld._m03, objectToWorld._m13, objectToWorld._m23);\r\n               
+        \r\n                <color=#569CD6>float</color> scaleX = length(float3(objectToWorld._m00,
+        objectToWorld._m10, objectToWorld._m20));\r\n                <color=#569CD6>float</color>
+        scaleY = length(float3(objectToWorld._m01, objectToWorld._m11, objectToWorld._m21));\r\n\r\n               
+        float3 lookDir = _WorldSpaceCameraPos - worldCenter;\r\n                lookDir.y
+        = 0;\r\n                lookDir = normalize(lookDir);\r\n\r\n               
+        float3 worldUp = float3(0, 1, 0);\r\n                float3 worldRight =
+        normalize(cross(lookDir, worldUp));\r\n\r\n                float3 worldPos
+        = worldCenter \r\n                                + worldRight * v.<color=#569CD6>vertex</color>.x
+        * scaleX \r\n                                + worldUp * v.<color=#569CD6>vertex</color>.y
+        * scaleY;\r\n\r\n                o.pos = mul(UNITY_MATRIX_VP, float4(worldPos,
+        1.0));\r\n\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag () : SV_Target {\r\n                half3 color = half3(1.0, 0.0,
+        0.0); <color=#57A64A>// Red\r</color>\n                return half4(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291591348241919310, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -1264,15 +1264,15 @@ PrefabInstance:
         #include \"UnityCG.cginc\"\r\n\r\n            struct appdata {\r\n               
         float4 vertex : POSITION;\r\n            };\r\n\r\n            struct v2f
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
-        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float3
-        worldCenter = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13,
-        unity_ObjectToWorld._m23);\r\n                \r\n                float scaleX
-        = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));\r\n               
-        float scaleY = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11,
-        unity_ObjectToWorld._m21));\r\n\r\n                float3 lookDir = _WorldSpaceCameraPos
-        - worldCenter;\r\n                lookDir.y = 0;\r\n                lookDir
-        = normalize(lookDir);\r\n\r\n                float3 worldUp = float3(0, 1,
-        0);\r\n                float3 worldRight = normalize(cross(lookDir, worldUp));\r\n\r\n               
+        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float4x4
+        objectToWorld = unity_ObjectToWorld;\r\n\r\n                float3 worldCenter
+        = float3(objectToWorld._m03, objectToWorld._m13, objectToWorld._m23);\r\n               
+        \r\n                float scaleX = length(float3(objectToWorld._m00, objectToWorld._m10,
+        objectToWorld._m20));\r\n                float scaleY = length(float3(objectToWorld._m01,
+        objectToWorld._m11, objectToWorld._m21));\r\n\r\n                float3 lookDir
+        = _WorldSpaceCameraPos - worldCenter;\r\n                lookDir.y = 0;\r\n               
+        lookDir = normalize(lookDir);\r\n\r\n                float3 worldUp = float3(0,
+        1, 0);\r\n                float3 worldRight = normalize(cross(lookDir, worldUp));\r\n\r\n               
         float3 worldPos = worldCenter \r\n                                + worldRight
         * v.vertex.x * scaleX \r\n                                + worldUp * v.vertex.y
         * scaleY;\r\n\r\n                o.pos = mul(UNITY_MATRIX_VP, float4(worldPos,
@@ -1403,10 +1403,12 @@ PrefabInstance:
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
         v2f vert (appdata v) {\r\n                v2f o;\r\n                v.vertex.x
         *= sin(_Time.y);\r\n                v.vertex.y *= sin(_Time.y);\r\n               
-        v.vertex.z = 1.0;\r\n                o.pos = v.vertex;\r\n               
-        return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
-        half3 color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
-        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+        v.vertex.z = 1.0; // Setting the z value as close to the camera as possible\r\n               
+        o.pos = v.vertex; // Directly applying the vertex position to the camera
+        space\r\n                return o;\r\n            }\r\n\r\n            half4
+        frag () : SV_Target {\r\n                half3 color = half3(1.0, 0.0, 0.0);
+        // Red\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1422,10 +1424,12 @@ PrefabInstance:
         <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
         <color=#569CD6>v2f</color> o;\r\n                v.<color=#569CD6>vertex</color>.x
         *= sin(_Time.y);\r\n                v.<color=#569CD6>vertex</color>.y *=
-        sin(_Time.y);\r\n                v.<color=#569CD6>vertex</color>.z = 1.0;\r\n               
-        o.pos = v.<color=#569CD6>vertex</color>;\r\n                return o;\r\n           
-        }\r\n\r\n            half4 frag () : SV_Target {\r\n                half3
-        color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
+        sin(_Time.y);\r\n                v.<color=#569CD6>vertex</color>.z = 1.0;
+        <color=#57A64A>// Setting the z value as close to the camera as possible\r</color>\n               
+        o.pos = v.<color=#569CD6>vertex</color>; <color=#57A64A>// Directly applying
+        the vertex position to the camera space\r</color>\n                return
+        o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
+        half3 color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
         return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
@@ -1491,10 +1495,12 @@ PrefabInstance:
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
         v2f vert (appdata v) {\r\n                v2f o;\r\n                v.vertex.x
         *= sin(_Time.y);\r\n                v.vertex.y *= sin(_Time.y);\r\n               
-        v.vertex.z = 1.0;\r\n                o.pos = v.vertex;\r\n               
-        return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
-        half3 color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
-        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+        v.vertex.z = 1.0; // Setting the z value as close to the camera as possible\r\n               
+        o.pos = v.vertex; // Directly applying the vertex position to the camera
+        space\r\n                return o;\r\n            }\r\n\r\n            half4
+        frag () : SV_Target {\r\n                half3 color = half3(1.0, 0.0, 0.0);
+        // Red\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1631,7 +1637,8 @@ PrefabInstance:
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
         <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
         <color=#569CD6>v2f</color> o;\r\n                v.<color=#569CD6>vertex</color>
-        *= sin(_Time.y) * 0.5 + 0.5;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        *= sin(_Time.y) * 0.5 + 0.5; <color=#57A64A>// Modifying the mesh position
+        before transforming it\r</color>\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
         return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
         half3 color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
         return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
@@ -1697,7 +1704,8 @@ PrefabInstance:
         struct appdata {\r\n                float4 vertex : POSITION;\r\n           
         };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n           
         };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
-        v.vertex *= sin(_Time.y) * 0.5 + 0.5;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        v.vertex *= sin(_Time.y) * 0.5 + 0.5; // Modifying the mesh position before
+        transforming it\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
         return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
         half3 color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
         1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
@@ -1812,15 +1820,16 @@ PrefabInstance:
         #include \"UnityCG.cginc\"\r\n\r\n            struct appdata {\r\n               
         float4 vertex : POSITION;\r\n            };\r\n\r\n            struct v2f
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
-        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float
-        viewScaleX = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10,
-        unity_ObjectToWorld._m20));\r\n                float viewScaleY = length(float3(unity_ObjectToWorld._m01,
-        unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));\r\n               
-        float4 viewPosition = float4(v.vertex.x * viewScaleX, v.vertex.y * viewScaleY,
-        0, 0);\r\n\r\n                float4 viewSpaceCenter = mul(UNITY_MATRIX_MV,
-        float4(0, 0, 0, 1));\r\n                float4 viewPos = viewSpaceCenter
-        + viewPosition;\r\n\r\n                o.pos = mul(UNITY_MATRIX_P, viewPos);\r\n               
-        return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
+        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float4x4
+        objectToWorld = unity_ObjectToWorld;\r\n\r\n                float viewScaleX
+        = length(float3(objectToWorld._m00, objectToWorld._m10, objectToWorld._m20));\r\n               
+        float viewScaleY = length(float3(objectToWorld._m01, objectToWorld._m11,
+        objectToWorld._m21));\r\n                \r\n                float4 viewPosition
+        = float4(v.vertex.x * viewScaleX, v.vertex.y * viewScaleY, 0, 0);\r\n\r\n               
+        float4 viewSpaceCenter = mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1));\r\n               
+        float4 viewPos = viewSpaceCenter + viewPosition;\r\n\r\n                o.pos
+        = mul(UNITY_MATRIX_P, viewPos);\r\n                \r\n                return
+        o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
         half3 color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
         1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
@@ -1836,17 +1845,17 @@ PrefabInstance:
         <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n           
         };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
         v) {\r\n                <color=#569CD6>v2f</color> o;\r\n\r\n               
-        <color=#569CD6>float</color> viewScaleX = length(float3(unity_ObjectToWorld._m00,
-        unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));\r\n               
-        <color=#569CD6>float</color> viewScaleY = length(float3(unity_ObjectToWorld._m01,
-        unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));\r\n               
+        float4x4 objectToWorld = unity_ObjectToWorld;\r\n\r\n                <color=#569CD6>float</color>
+        viewScaleX = length(float3(objectToWorld._m00, objectToWorld._m10, objectToWorld._m20));\r\n               
+        <color=#569CD6>float</color> viewScaleY = length(float3(objectToWorld._m01,
+        objectToWorld._m11, objectToWorld._m21));\r\n                \r\n               
         float4 viewPosition = float4(v.<color=#569CD6>vertex</color>.x * viewScaleX,
         v.<color=#569CD6>vertex</color>.y * viewScaleY, 0, 0);\r\n\r\n               
         float4 viewSpaceCenter = mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1));\r\n               
         float4 viewPos = viewSpaceCenter + viewPosition;\r\n\r\n                o.pos
-        = mul(UNITY_MATRIX_P, viewPos);\r\n                return o;\r\n           
-        }\r\n\r\n            half4 frag () : SV_Target {\r\n                half3
-        color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
+        = mul(UNITY_MATRIX_P, viewPos);\r\n                \r\n                return
+        o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
+        half3 color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
         return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
@@ -1910,15 +1919,16 @@ PrefabInstance:
         #include \"UnityCG.cginc\"\r\n\r\n            struct appdata {\r\n               
         float4 vertex : POSITION;\r\n            };\r\n\r\n            struct v2f
         {\r\n                float4 pos : SV_POSITION;\r\n            };\r\n\r\n           
-        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float
-        viewScaleX = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10,
-        unity_ObjectToWorld._m20));\r\n                float viewScaleY = length(float3(unity_ObjectToWorld._m01,
-        unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));\r\n               
-        float4 viewPosition = float4(v.vertex.x * viewScaleX, v.vertex.y * viewScaleY,
-        0, 0);\r\n\r\n                float4 viewSpaceCenter = mul(UNITY_MATRIX_MV,
-        float4(0, 0, 0, 1));\r\n                float4 viewPos = viewSpaceCenter
-        + viewPosition;\r\n\r\n                o.pos = mul(UNITY_MATRIX_P, viewPos);\r\n               
-        return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
+        v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n                float4x4
+        objectToWorld = unity_ObjectToWorld;\r\n\r\n                float viewScaleX
+        = length(float3(objectToWorld._m00, objectToWorld._m10, objectToWorld._m20));\r\n               
+        float viewScaleY = length(float3(objectToWorld._m01, objectToWorld._m11,
+        objectToWorld._m21));\r\n                \r\n                float4 viewPosition
+        = float4(v.vertex.x * viewScaleX, v.vertex.y * viewScaleY, 0, 0);\r\n\r\n               
+        float4 viewSpaceCenter = mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1));\r\n               
+        float4 viewPos = viewSpaceCenter + viewPosition;\r\n\r\n                o.pos
+        = mul(UNITY_MATRIX_P, viewPos);\r\n                \r\n                return
+        o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
         half3 color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
         1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
@@ -2243,14 +2253,14 @@ PrefabInstance:
         struct appdata {\r\n                float4 vertex : POSITION;\r\n           
         };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n           
         };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n               
-        float xOffset = v.vertex.x;\r\n                float zOffset = v.vertex.z;\r\n               
+        float xOffset = v.vertex.x;\r\n                float zOffset = v.vertex.z;\r\n\r\n               
         float sinTime = sin(_Time.y);\r\n                float cosTime = cos(_Time.y);\r\n\r\n               
         v.vertex.x = xOffset * cosTime + zOffset * sinTime;\r\n                v.vertex.z
         = -xOffset * sinTime + zOffset * cosTime;\r\n                \r\n               
         o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
         }\r\n\r\n            half4 frag () : SV_Target {\r\n                half3
-        color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
-        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+        color = half3(1.0, 0.0, 0.0);\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2266,15 +2276,15 @@ PrefabInstance:
         <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
         <color=#569CD6>v2f</color> o;\r\n\r\n                <color=#569CD6>float</color>
         xOffset = v.<color=#569CD6>vertex</color>.x;\r\n                <color=#569CD6>float</color>
-        zOffset = v.<color=#569CD6>vertex</color>.z;\r\n                <color=#569CD6>float</color>
+        zOffset = v.<color=#569CD6>vertex</color>.z;\r\n\r\n                <color=#569CD6>float</color>
         sinTime = sin(_Time.y);\r\n                <color=#569CD6>float</color> cosTime
         = cos(_Time.y);\r\n\r\n                v.<color=#569CD6>vertex</color>.x
         = xOffset * cosTime + zOffset * sinTime;\r\n                v.<color=#569CD6>vertex</color>.z
         = -xOffset * sinTime + zOffset * cosTime;\r\n                \r\n               
         o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
         return o;\r\n            }\r\n\r\n            half4 frag () : SV_Target {\r\n               
-        half3 color = half3(1.0, 0.0, 0.0); <color=#57A64A>// Red\r</color>\n               
-        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        half3 color = half3(1.0, 0.0, 0.0);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291591348241919310, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -2337,14 +2347,14 @@ PrefabInstance:
         struct appdata {\r\n                float4 vertex : POSITION;\r\n           
         };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n           
         };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n               
-        float xOffset = v.vertex.x;\r\n                float zOffset = v.vertex.z;\r\n               
+        float xOffset = v.vertex.x;\r\n                float zOffset = v.vertex.z;\r\n\r\n               
         float sinTime = sin(_Time.y);\r\n                float cosTime = cos(_Time.y);\r\n\r\n               
         v.vertex.x = xOffset * cosTime + zOffset * sinTime;\r\n                v.vertex.z
         = -xOffset * sinTime + zOffset * cosTime;\r\n                \r\n               
         o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
         }\r\n\r\n            half4 frag () : SV_Target {\r\n                half3
-        color = half3(1.0, 0.0, 0.0); // Red\r\n                return half4(color,
-        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+        color = half3(1.0, 0.0, 0.0);\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2594,7 +2604,9 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Tessellation with subdivision
+      value: 'Tessellation
+
+        with subdivision'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

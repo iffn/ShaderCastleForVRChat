@@ -21,10 +21,12 @@ Shader "ShaderCastle/Tutorials/VertexShader/VerticalBillboard"
             v2f vert (appdata v) {
                 v2f o;
 
-                float3 worldCenter = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13, unity_ObjectToWorld._m23);
+                float4x4 objectToWorld = unity_ObjectToWorld;
+
+                float3 worldCenter = float3(objectToWorld._m03, objectToWorld._m13, objectToWorld._m23);
                 
-                float scaleX = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));
-                float scaleY = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));
+                float scaleX = length(float3(objectToWorld._m00, objectToWorld._m10, objectToWorld._m20));
+                float scaleY = length(float3(objectToWorld._m01, objectToWorld._m11, objectToWorld._m21));
 
                 float3 lookDir = _WorldSpaceCameraPos - worldCenter;
                 lookDir.y = 0;

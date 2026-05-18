@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/Basics/TextureDisplayWithTiling"
+Shader "ShaderCastle/Tutorials/Basics/Time"
 {
     Properties
     {
@@ -15,7 +15,7 @@ Shader "ShaderCastle/Tutorials/Basics/TextureDisplayWithTiling"
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float4 _MainTex_ST; // Required to get the sampler state (-> _ST)
+            float4 _MainTex_ST;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -30,13 +30,13 @@ Shader "ShaderCastle/Tutorials/Basics/TextureDisplayWithTiling"
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex); // Includes tiling and offset
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
 
             // Fragment function
             half4 frag (v2f i) : SV_Target {
-                float time = _Time.y * 0.2;
+                float time = _Time.y * 0.2; // Time in seconds stored in _Time.y
                 half3 color = tex2D(_MainTex, i.uv + time.xx);
                 return half4(color, 1.0);
             }

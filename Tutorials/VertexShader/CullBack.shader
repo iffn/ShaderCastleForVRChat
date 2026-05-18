@@ -4,7 +4,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/CullBack"
     {
         Pass
         {
-            Cull Back
+            Cull Back // Cull = 'Skip drawing' when looking from this side
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

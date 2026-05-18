@@ -4,7 +4,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/CullOff"
     {
         Pass
         {
-            Cull Off
+            Cull Off // Cull = 'Skip drawing' when looking from this side
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -30,7 +30,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/CullOff"
             }
 
             half4 frag () : SV_Target {
-                half3 color = half3(1.0, 0.0, 0.0); // Red
+                half3 color = half3(1.0, 0.0, 0.0);
                 return half4(color, 1.0);
             }
             ENDCG

@@ -22,8 +22,8 @@ Shader "ShaderCastle/Tutorials/VertexShader/FaceHugger"
                 v2f o;
                 v.vertex.x *= sin(_Time.y);
                 v.vertex.y *= sin(_Time.y);
-                v.vertex.z = 1.0;
-                o.pos = v.vertex;
+                v.vertex.z = 1.0; // Setting the z value as close to the camera as possible
+                o.pos = v.vertex; // Directly applying the vertex position to the camera space
                 return o;
             }
 

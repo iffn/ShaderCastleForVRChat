@@ -19,7 +19,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/LocalVertexOffset"
 
             v2f vert (appdata v) {
                 v2f o;
-                v.vertex *= sin(_Time.y) * 0.5 + 0.5;
+                v.vertex *= sin(_Time.y) * 0.5 + 0.5; // Modifying the mesh position before transforming it
                 o.pos = UnityObjectToClipPos(v.vertex);
                 return o;
             }

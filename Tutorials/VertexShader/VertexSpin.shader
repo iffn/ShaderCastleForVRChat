@@ -22,6 +22,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/VertexSpin"
 
                 float xOffset = v.vertex.x;
                 float zOffset = v.vertex.z;
+
                 float sinTime = sin(_Time.y);
                 float cosTime = cos(_Time.y);
 
@@ -33,7 +34,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/VertexSpin"
             }
 
             half4 frag () : SV_Target {
-                half3 color = half3(1.0, 0.0, 0.0); // Red
+                half3 color = half3(1.0, 0.0, 0.0);
                 return half4(color, 1.0);
             }
             ENDCG

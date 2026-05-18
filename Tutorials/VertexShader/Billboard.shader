@@ -21,14 +21,18 @@ Shader "ShaderCastle/Tutorials/VertexShader/Billboard"
             v2f vert (appdata v) {
                 v2f o;
 
-                float viewScaleX = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));
-                float viewScaleY = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));
+                float4x4 objectToWorld = unity_ObjectToWorld;
+
+                float viewScaleX = length(float3(objectToWorld._m00, objectToWorld._m10, objectToWorld._m20));
+                float viewScaleY = length(float3(objectToWorld._m01, objectToWorld._m11, objectToWorld._m21));
+                
                 float4 viewPosition = float4(v.vertex.x * viewScaleX, v.vertex.y * viewScaleY, 0, 0);
 
                 float4 viewSpaceCenter = mul(UNITY_MATRIX_MV, float4(0, 0, 0, 1));
                 float4 viewPos = viewSpaceCenter + viewPosition;
 
                 o.pos = mul(UNITY_MATRIX_P, viewPos);
+                
                 return o;
             }
 
