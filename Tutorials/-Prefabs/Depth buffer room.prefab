@@ -3016,6 +3016,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteLessEqual\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        ZTest LEqual\r\n            ZWrite On\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 5.0\r\n            #include \"UnityCG.cginc\"\r\n            #include
+        \"Lighting.cginc\"\r\n\r\n            float _depthWrite;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float3 worldNormal : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct frag_out {\r\n                half4 color :
+        SV_Target;\r\n                float depth : SV_DepthLessEqual;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.worldNormal
+        = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal =
+        normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3025,6 +3055,40 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteLessEqual\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth write\"</color>,
+        float) = 1.0\r\n        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n       
+        {\r\n            ZTest LEqual\r\n            ZWrite On\r\n\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 5.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        frag_out {\r\n                half4 color : SV_Target;\r\n               
+        <color=#569CD6>float</color> depth : SV_DepthLessEqual;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        float3 worldNormal = normalize(i.worldNormal);\r\n                float3
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        float3 lightColor = _LightColor0.rgb;\r\n                half3 ambientLight
+        = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n                half3 NdotL = dot(worldNormal,
+        _world_light_direction);\r\n                NdotL = saturate(NdotL);\r\n               
+        half3 directLight = NdotL * lightColor.rgb;\r\n                half3 albedo
+        = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight + ambientLight)
+        * albedo;\r\n\r\n                frag_out o;\r\n                o.color =
+        half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3058,6 +3122,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3087,6 +3157,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteLessEqual\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        ZTest LEqual\r\n            ZWrite On\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 5.0\r\n            #include \"UnityCG.cginc\"\r\n            #include
+        \"Lighting.cginc\"\r\n\r\n            float _depthWrite;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float3 worldNormal : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct frag_out {\r\n                half4 color :
+        SV_Target;\r\n                float depth : SV_DepthLessEqual;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.worldNormal
+        = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal =
+        normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3619,6 +3719,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWrite\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n            #include \"Lighting.cginc\"\r\n\r\n           
+        float _depthWrite;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float3 normal : NORMAL;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            struct
+        frag_out {\r\n                half4 color : SV_Target;\r\n               
+        float depth : SV_Depth;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3628,6 +3756,39 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWrite\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth write\"</color>,
+        float) = 1.0\r\n        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n       
+        {\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        frag_out {\r\n                half4 color : SV_Target;\r\n               
+        <color=#569CD6>float</color> depth : SV_Depth;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        float3 worldNormal = normalize(i.worldNormal);\r\n                float3
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        float3 lightColor = _LightColor0.rgb;\r\n                half3 ambientLight
+        = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n                half3 NdotL = dot(worldNormal,
+        _world_light_direction);\r\n                NdotL = saturate(NdotL);\r\n               
+        half3 directLight = NdotL * lightColor.rgb;\r\n                half3 albedo
+        = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight + ambientLight)
+        * albedo;\r\n\r\n                frag_out o;\r\n                o.color =
+        half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3661,6 +3822,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3690,6 +3857,34 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWrite\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n            #include \"Lighting.cginc\"\r\n\r\n           
+        float _depthWrite;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float3 normal : NORMAL;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            struct
+        frag_out {\r\n                half4 color : SV_Target;\r\n               
+        float depth : SV_Depth;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -4022,6 +4217,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteGreaterEqual\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        ZTest LEqual\r\n            ZWrite On\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 5.0\r\n            #include \"UnityCG.cginc\"\r\n            #include
+        \"Lighting.cginc\"\r\n\r\n            float _depthWrite;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float3 worldNormal : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct frag_out {\r\n                half4 color :
+        SV_Target;\r\n                float depth : SV_DepthGreaterEqual;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.worldNormal
+        = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal =
+        normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4031,6 +4256,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteGreaterEqual\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth write\"</color>,
+        float) = 1.0\r\n        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n       
+        {\r\n            ZTest LEqual\r\n            ZWrite On\r\n\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 5.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        frag_out {\r\n                half4 color : SV_Target;\r\n               
+        <color=#569CD6>float</color> depth : SV_DepthGreaterEqual;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        float3 worldNormal = normalize(i.worldNormal);\r\n                float3
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        float3 lightColor = _LightColor0.rgb;\r\n                half3 ambientLight
+        = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n                half3 NdotL = dot(worldNormal,
+        _world_light_direction);\r\n                NdotL = saturate(NdotL);\r\n               
+        half3 directLight = NdotL * lightColor.rgb;\r\n                half3 albedo
+        = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight + ambientLight)
+        * albedo;\r\n\r\n                frag_out o;\r\n                o.color =
+        half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -4064,6 +4324,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4093,6 +4359,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteGreaterEqual\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _depthWrite (\"Depth write\", float) = 1.0\r\n       
+        \r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        ZTest LEqual\r\n            ZWrite On\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 5.0\r\n            #include \"UnityCG.cginc\"\r\n            #include
+        \"Lighting.cginc\"\r\n\r\n            float _depthWrite;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float3 normal : NORMAL;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float3 worldNormal : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct frag_out {\r\n                half4 color :
+        SV_Target;\r\n                float depth : SV_DepthGreaterEqual;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.worldNormal
+        = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal =
+        normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (v2f i) {\r\n                float3 worldNormal
+        = normalize(i.worldNormal);\r\n                float3 _world_light_direction
+        = normalize(_WorldSpaceLightPos0.xyz);\r\n                float3 lightColor
+        = _LightColor0.rgb;\r\n                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        half3 NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                half3 directLight = NdotL * lightColor.rgb;\r\n               
+        half3 albedo = half3(1.0, 0.2, 0.2);\r\n                half3 color = (directLight
+        + ambientLight) * albedo;\r\n\r\n                frag_out o;\r\n               
+        o.color = half4(color, 1.0);\r\n                o.depth = _depthWrite;\r\n\r\n               
+        return o;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

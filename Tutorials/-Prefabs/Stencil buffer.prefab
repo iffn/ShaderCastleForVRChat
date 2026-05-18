@@ -335,6 +335,20 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Stencil/StencilBasicWrite\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Geometry-1\"</color> }
+        <color=#57A64A>// Runs before geometry\r</color>\n\r\n        ColorMask 0\r\n       
+        ZWrite Off\r\n\r\n        <color=#569CD6>Pass</color> {\r\n            Stencil
+        {\r\n                Ref 1 <color=#57A64A>// What values are being written:            
+        xxxx xxx1 (x doesn't matter because of the mask)\r</color>\n               
+        WriteMask 1 <color=#57A64A>// Only the last bit should be changed: 0000 0001\r</color>\n               
+        Comp Always\r\n                <color=#569CD6>Pass</color> Replace\r\n           
+        }\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab

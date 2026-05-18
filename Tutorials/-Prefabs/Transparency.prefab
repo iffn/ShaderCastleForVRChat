@@ -122,6 +122,29 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 uv = i.uv;\r\n\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -511,6 +534,30 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/AlphaToMask\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> <color=#D69D85>\"LightMode\"</color>=<color=#D69D85>\"ForwardBase\"</color>
+        }\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        AlphaToMask On\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 uv = i.uv;\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                <color=#569CD6>float</color>
+        alpha = 1.0 - distanceToCenter * 2.0;\r\n\r\n                half3 color
+        = half3(1.0, 1.0, 1.0);\r\n                return half4(color, alpha);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -880,6 +927,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/Transparency\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Transparent\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Transparent\"</color> }\r\n       
+        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n\r\n            ZWrite
+        Off\r\n            Blend SrcAlpha OneMinusSrcAlpha\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 uv = i.uv;\r\n\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                <color=#569CD6>float</color>
+        alpha = saturate(1.0 - distanceToCenter * 2.0);\r\n\r\n                half3
+        color = half3(1.0, 1.0, 1.0);\r\n                return half4(color, alpha);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1252,6 +1323,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithEarlydepthstencilClip\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Compiler statements commented out for this demo to see
+        when it fails\r</color>\n            <color=#57A64A>//#if defined(UNITY_COMPILER_HLSL)
+        || defined(SHADER_API_D3D11)\r</color>\n            [earlydepthstencil]\r\n           
+        <color=#57A64A>//#endif\r</color>\n            half4 frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                float2 uv = i.uv;\r\n\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - float2(0.5, 0.5));\r\n\r\n               
+        clip(0.5 - distanceToCenter);\r\n                \r\n                half3
+        color = half3(1.0, 1.0, 1.0);\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1641,6 +1738,38 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        float4 <color=#569CD6>vertex</color> : POSITION;\r\n                float2
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float4 screenPos : TEXCOORD1;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - float2(0.5, 0.5));\r\n               
+        <color=#569CD6>float</color> alpha = 1.0 - distanceToCenter * 2.0;\r\n\r\n               
+        <color=#57A64A>// 4x4 Bayer dithering matrix\r</color>\n                float4x4
+        ditherMatrix = float4x4(\r\n                    0.0625, 0.5625, 0.1875, 0.6875,\r\n                   
+        0.8125, 0.3125, 0.9375, 0.4375,\r\n                    0.25,   0.75,   0.125, 
+        0.625,\r\n                    1.0,    0.5,    0.875,  0.375\r\n               
+        );\r\n\r\n                uint2 pixelPos = i.screenPos.xy / i.screenPos.w
+        * _ScreenParams.xy;\r\n                <color=#569CD6>float</color> threshold
+        = ditherMatrix[pixelPos.x % 4][pixelPos.y % 4];\r\n\r\n                clip(alpha
+        - threshold);\r\n\r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -2029,6 +2158,36 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/DitheredTransparency2x2\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        float4 <color=#569CD6>vertex</color> : POSITION;\r\n                float2
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float4 screenPos : TEXCOORD1;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - float2(0.5, 0.5));\r\n               
+        <color=#569CD6>float</color> alpha = 1.0 - distanceToCenter * 2.0;\r\n\r\n               
+        <color=#57A64A>// 2x2 Bayer dithering matrix\r</color>\n                float2x2
+        ditherMatrix = float2x2(\r\n                    0, 0.5,\r\n                   
+        0.75, 0.25\r\n                );\r\n\r\n                uint2 pixelPos =
+        i.screenPos.xy / i.screenPos.w * _ScreenParams.xy;\r\n                <color=#569CD6>float</color>
+        threshold = ditherMatrix[pixelPos.x % 2][pixelPos.y % 2];\r\n\r\n               
+        clip(alpha - threshold);\r\n\r\n                half3 color = half3(1.0,
+        1.0, 1.0);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -2407,6 +2566,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n                float2
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                if(distanceToCenter
+        > 0.5)\r\n                    discard;\r\n                \r\n               
+        half3 color = half3(1.0, 1.0, 1.0);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

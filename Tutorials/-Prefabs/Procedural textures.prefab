@@ -212,11 +212,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -323,6 +334,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -398,6 +414,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -462,11 +483,62 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastlev/Tutorials/ProceduralTextures/PerlinNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n\r\n            float2 hash22(float2 p)\r\n           
+        {\r\n                float a = hash11(hash11(p.x) + p.y);\r\n               
+        float b = hash11(a);\r\n                return float2(a, b);\r\n           
+        }\r\n\r\n            float perlinNoise(float2 uv) {\r\n                //
+        Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2 f = frac(uv);\r\n               
+        float2 u = f*f*(3.0-2.0*f); // Smoothstep between 0...1\r\n\r\n               
+        // Random gradients\r\n                float2 ga = hash22(i + float2(0.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gb = hash22(i + float2(1.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gc = hash22(i + float2(0.0,
+        1.0)) * 2.0 - 1.0;\r\n                float2 gd = hash22(i + float2(1.0,
+        1.0)) * 2.0 - 1.0;\r\n\r\n                // Distnace to center\r\n               
+        float2 da = f - float2(0.0, 0.0);\r\n                float2 db = f - float2(1.0,
+        0.0);\r\n                float2 dc = f - float2(0.0, 1.0);\r\n               
+        float2 dd = f - float2(1.0, 1.0);\r\n\r\n                // Dot products
+        as weights\r\n                float va = dot(ga, da);\r\n               
+        float vb = dot(gb, db);\r\n                float vc = dot(gc, dc);\r\n               
+        float vd = dot(gd, dd);\r\n\r\n                // Bilinear interpolation\r\n\t\t\t\tfloat
+        bottom = lerp(va, vb, u.x);\r\n\t\t\t\tfloat top = lerp(vc, vd, u.x);\r\n\t\t\t\treturn
+        lerp(bottom, top, u.y);\r\n\t\t\t}\r\n            \r\n            half4 frag
+        (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float noise = perlinNoise(pos2D) *
+        0.5 + 0.5;\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -572,6 +644,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastlev/Tutorials/ProceduralTextures/PerlinNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n\r\n            float2 hash22(float2 p)\r\n           
+        {\r\n                float a = hash11(hash11(p.x) + p.y);\r\n               
+        float b = hash11(a);\r\n                return float2(a, b);\r\n           
+        }\r\n\r\n            float perlinNoise(float2 uv) {\r\n                //
+        Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2 f = frac(uv);\r\n               
+        float2 u = f*f*(3.0-2.0*f); // Smoothstep between 0...1\r\n\r\n               
+        // Random gradients\r\n                float2 ga = hash22(i + float2(0.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gb = hash22(i + float2(1.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gc = hash22(i + float2(0.0,
+        1.0)) * 2.0 - 1.0;\r\n                float2 gd = hash22(i + float2(1.0,
+        1.0)) * 2.0 - 1.0;\r\n\r\n                // Distnace to center\r\n               
+        float2 da = f - float2(0.0, 0.0);\r\n                float2 db = f - float2(1.0,
+        0.0);\r\n                float2 dc = f - float2(0.0, 1.0);\r\n               
+        float2 dd = f - float2(1.0, 1.0);\r\n\r\n                // Dot products
+        as weights\r\n                float va = dot(ga, da);\r\n               
+        float vb = dot(gb, db);\r\n                float vc = dot(gc, dc);\r\n               
+        float vd = dot(gd, dd);\r\n\r\n                // Bilinear interpolation\r\n\t\t\t\tfloat
+        bottom = lerp(va, vb, u.x);\r\n\t\t\t\tfloat top = lerp(vc, vd, u.x);\r\n\t\t\t\treturn
+        lerp(bottom, top, u.y);\r\n\t\t\t}\r\n            \r\n            half4 frag
+        (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float noise = perlinNoise(pos2D) *
+        0.5 + 0.5;\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -663,6 +780,57 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastlev/Tutorials/ProceduralTextures/PerlinNoise2D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return <color=#569CD6>float</color>(h &
+        0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            <color=#569CD6>float</color> hash21(float2 p) {\r\n               
+        return hash11(hash11(p.x) + p.y);\r\n            }\r\n\r\n            float2
+        hash22(float2 p)\r\n            {\r\n                <color=#569CD6>float</color>
+        a = hash11(hash11(p.x) + p.y);\r\n                <color=#569CD6>float</color>
+        b = hash11(a);\r\n                return float2(a, b);\r\n            }\r\n\r\n           
+        <color=#569CD6>float</color> perlinNoise(float2 uv) {\r\n               
+        <color=#57A64A>// Base parameters\r</color>\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2
+        f = frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); <color=#57A64A>//
+        Smoothstep between 0...1\r</color>\n\r\n                <color=#57A64A>//
+        Random gradients\r</color>\n                float2 ga = hash22(i + float2(0.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gb = hash22(i + float2(1.0,
+        0.0)) * 2.0 - 1.0;\r\n                float2 gc = hash22(i + float2(0.0,
+        1.0)) * 2.0 - 1.0;\r\n                float2 gd = hash22(i + float2(1.0,
+        1.0)) * 2.0 - 1.0;\r\n\r\n                <color=#57A64A>// Distnace to center\r</color>\n               
+        float2 da = f - float2(0.0, 0.0);\r\n                float2 db = f - float2(1.0,
+        0.0);\r\n                float2 dc = f - float2(0.0, 1.0);\r\n               
+        float2 dd = f - float2(1.0, 1.0);\r\n\r\n                <color=#57A64A>//
+        Dot products as weights\r</color>\n                <color=#569CD6>float</color>
+        va = dot(ga, da);\r\n                <color=#569CD6>float</color> vb = dot(gb,
+        db);\r\n                <color=#569CD6>float</color> vc = dot(gc, dc);\r\n               
+        <color=#569CD6>float</color> vd = dot(gd, dd);\r\n\r\n                <color=#57A64A>//
+        Bilinear interpolation\r</color>\n\t\t\t\t<color=#569CD6>float</color> bottom
+        = lerp(va, vb, u.x);\r\n\t\t\t\t<color=#569CD6>float</color> top = lerp(vc,
+        vd, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n                pos2D
+        *= _zoom;\r\n\r\n                <color=#569CD6>float</color> noise = perlinNoise(pos2D)
+        * 0.5 + 0.5;\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -732,11 +900,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -843,6 +1022,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -918,6 +1102,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -982,11 +1171,45 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/RandomColor\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n            \r\n            float hash11(float p) {\r\n               
+        uint h = asuint(p);\r\n                \r\n                h ^= 0x27D4EB2DU;
+        \r\n                \r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n                \r\n                return float(h & 0x00ffffffu)
+        / float(0x01000000u);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float2 gridID = floor(pos2D);\r\n\r\n               
+        float randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
+        float r = randomSeed01;\r\n                float g = hash11(r);\r\n               
+        float b = hash11(g);\r\n\r\n                half3 color = half3(r, g, b);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1093,6 +1316,34 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/RandomColor\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n            \r\n            float hash11(float p) {\r\n               
+        uint h = asuint(p);\r\n                \r\n                h ^= 0x27D4EB2DU;
+        \r\n                \r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n                \r\n                return float(h & 0x00ffffffu)
+        / float(0x01000000u);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float2 gridID = floor(pos2D);\r\n\r\n               
+        float randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
+        float r = randomSeed01;\r\n                float g = hash11(r);\r\n               
+        float b = hash11(g);\r\n\r\n                half3 color = half3(r, g, b);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1183,6 +1434,35 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/RandomColor\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n            \r\n            float hash11(float p) {\r\n               
+        uint h = asuint(p);\r\n                \r\n                h ^= 0x27D4EB2DU;
+        \r\n                \r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n                \r\n                return <color=#569CD6>float</color>(h
+        & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n            \r\n            half4 frag (<color=#569CD6>v2f</color> i)
+        : SV_Target {\r\n                float2 pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float2 gridID = floor(pos2D);\r\n\r\n               
+        <color=#569CD6>float</color> randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
+        <color=#569CD6>float</color> r = randomSeed01;\r\n                <color=#569CD6>float</color>
+        g = hash11(r);\r\n                <color=#569CD6>float</color> b = hash11(g);\r\n\r\n               
+        half3 color = half3(r, g, b);\r\n                return half4(color, 1.0);\r\n           
+        }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1252,11 +1532,58 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n\r\n            float valueNoise(float2 uv) {\r\n               
+        // Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2 f =
+        frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); // Smoothstep between
+        0...1\r\n\r\n                // Random weights\r\n                float a
+        = hash21(i + float2(0.0, 0.0));\r\n                float b = hash21(i + float2(1.0,
+        0.0));\r\n                float c = hash21(i + float2(0.0, 1.0));\r\n               
+        float d = hash21(i + float2(1.0, 1.0));\r\n\r\n                // Bilinear
+        interpolation\r\n\t\t\t\tfloat bottom = lerp(a, b, u.x);\r\n\t\t\t\tfloat
+        top = lerp(c, d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float2
+        pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n               
+        \r\n                // Based on https://www.shadertoy.com/view/lsf3WH\r\n               
+        float2x2 octaveTransform = float2x2(\r\n                     1.6,  1.2, \r\n                   
+        -1.2,  1.6);\r\n                    \r\n                float noise = 0.5
+        * valueNoise(pos2D);\r\n                \r\n                pos2D = mul(octaveTransform,
+        pos2D);\r\n                \r\n                noise += 0.25 * valueNoise(pos2D);\r\n               
+        \r\n                pos2D = mul(octaveTransform, pos2D);\r\n               
+        \r\n                noise += 0.125 * valueNoise(pos2D);\r\n\r\n               
+        half3 color = noise.xxx;\r\n\r\n                return half4(color.rgb, 1.0);\r\n           
+        }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1363,6 +1690,47 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n\r\n            float valueNoise(float2 uv) {\r\n               
+        // Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2 f =
+        frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); // Smoothstep between
+        0...1\r\n\r\n                // Random weights\r\n                float a
+        = hash21(i + float2(0.0, 0.0));\r\n                float b = hash21(i + float2(1.0,
+        0.0));\r\n                float c = hash21(i + float2(0.0, 1.0));\r\n               
+        float d = hash21(i + float2(1.0, 1.0));\r\n\r\n                // Bilinear
+        interpolation\r\n\t\t\t\tfloat bottom = lerp(a, b, u.x);\r\n\t\t\t\tfloat
+        top = lerp(c, d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float2
+        pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n               
+        \r\n                // Based on https://www.shadertoy.com/view/lsf3WH\r\n               
+        float2x2 octaveTransform = float2x2(\r\n                     1.6,  1.2, \r\n                   
+        -1.2,  1.6);\r\n                    \r\n                float noise = 0.5
+        * valueNoise(pos2D);\r\n                \r\n                pos2D = mul(octaveTransform,
+        pos2D);\r\n                \r\n                noise += 0.25 * valueNoise(pos2D);\r\n               
+        \r\n                pos2D = mul(octaveTransform, pos2D);\r\n               
+        \r\n                noise += 0.125 * valueNoise(pos2D);\r\n\r\n               
+        half3 color = noise.xxx;\r\n\r\n                return half4(color.rgb, 1.0);\r\n           
+        }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1454,6 +1822,53 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return <color=#569CD6>float</color>(h &
+        0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            <color=#569CD6>float</color> hash21(float2 p) {\r\n               
+        return hash11(hash11(p.x) + p.y);\r\n            }\r\n\r\n            <color=#569CD6>float</color>
+        valueNoise(float2 uv) {\r\n                <color=#57A64A>// Base parameters\r</color>\n\t\t\t\tfloat2
+        i = floor(uv);\r\n\t\t\t\tfloat2 f = frac(uv);\r\n                float2
+        u = f*f*(3.0-2.0*f); <color=#57A64A>// Smoothstep between 0...1\r</color>\n\r\n               
+        <color=#57A64A>// Random weights\r</color>\n                <color=#569CD6>float</color>
+        a = hash21(i + float2(0.0, 0.0));\r\n                <color=#569CD6>float</color>
+        b = hash21(i + float2(1.0, 0.0));\r\n                <color=#569CD6>float</color>
+        c = hash21(i + float2(0.0, 1.0));\r\n                <color=#569CD6>float</color>
+        d = hash21(i + float2(1.0, 1.0));\r\n\r\n                <color=#57A64A>//
+        Bilinear interpolation\r</color>\n\t\t\t\t<color=#569CD6>float</color> bottom
+        = lerp(a, b, u.x);\r\n\t\t\t\t<color=#569CD6>float</color> top = lerp(c,
+        d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n                pos2D
+        *= _zoom;\r\n                \r\n                <color=#57A64A>// Based
+        on https://www.shadertoy.com/view/lsf3WH\r</color>\n                float2x2
+        octaveTransform = float2x2(\r\n                     1.6,  1.2, \r\n                   
+        -1.2,  1.6);\r\n                    \r\n                <color=#569CD6>float</color>
+        noise = 0.5 * valueNoise(pos2D);\r\n                \r\n                pos2D
+        = mul(octaveTransform, pos2D);\r\n                \r\n                noise
+        += 0.25 * valueNoise(pos2D);\r\n                \r\n                pos2D
+        = mul(octaveTransform, pos2D);\r\n                \r\n                noise
+        += 0.125 * valueNoise(pos2D);\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -1735,11 +2150,62 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi2D(float2 position) {\r\n                float2 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int y = -1; y <=
+        1; y++) {\r\n                    [unroll]\r\n                    for(int
+        x = -1; x <= 1; x++) {\r\n                        float2 cellOffset = float2(x,
+        y);\r\n                        float2 cell = baseCell + cellOffset;\r\n                       
+        float seed = hash11(cell.x) + cell.y;\r\n                        \r\n                       
+        float2 randomOffset = float2(\r\n                            hash11(seed
+        + 111.111),\r\n                            hash11(seed + 222.222)\r\n                       
+        );\r\n\r\n                        float2 cellPosition = cell + randomOffset;\r\n                       
+        float2 distanceToCell = cellPosition - position;\r\n                       
+        float distance = length(distanceToCell);\r\n\r\n                        if(distance
+        < closestDistance) {\r\n                            secondClosestDistance
+        = closestDistance;\r\n                            closestDistance = distance;\r\n                           
+        closestSeed = seed;\r\n                        } else if (distance < secondClosestDistance)
+        {\r\n                            secondClosestDistance = distance;\r\n                       
+        }\r\n                    }\r\n                }\r\n\r\n                float
+        edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
+        float cellID = hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1846,6 +2312,51 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi2D(float2 position) {\r\n                float2 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int y = -1; y <=
+        1; y++) {\r\n                    [unroll]\r\n                    for(int
+        x = -1; x <= 1; x++) {\r\n                        float2 cellOffset = float2(x,
+        y);\r\n                        float2 cell = baseCell + cellOffset;\r\n                       
+        float seed = hash11(cell.x) + cell.y;\r\n                        \r\n                       
+        float2 randomOffset = float2(\r\n                            hash11(seed
+        + 111.111),\r\n                            hash11(seed + 222.222)\r\n                       
+        );\r\n\r\n                        float2 cellPosition = cell + randomOffset;\r\n                       
+        float2 distanceToCell = cellPosition - position;\r\n                       
+        float distance = length(distanceToCell);\r\n\r\n                        if(distance
+        < closestDistance) {\r\n                            secondClosestDistance
+        = closestDistance;\r\n                            closestDistance = distance;\r\n                           
+        closestSeed = seed;\r\n                        } else if (distance < secondClosestDistance)
+        {\r\n                            secondClosestDistance = distance;\r\n                       
+        }\r\n                    }\r\n                }\r\n\r\n                float
+        edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
+        float cellID = hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1936,6 +2447,52 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Voronoi2D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            float3 voronoi2D(float2 position) {\r\n               
+        float2 baseCell = floor(position);\r\n\r\n                <color=#569CD6>float</color>
+        closestDistance = 8.0;\r\n                <color=#569CD6>float</color> secondClosestDistance
+        = 8.0;\r\n                <color=#569CD6>float</color> closestSeed = 0;\r\n\r\n               
+        [unroll]\r\n                for(int y = -1; y <= 1; y++) {\r\n                   
+        [unroll]\r\n                    for(int x = -1; x <= 1; x++) {\r\n                       
+        float2 cellOffset = float2(x, y);\r\n                        float2 cell
+        = baseCell + cellOffset;\r\n                        float seed = hash11(cell.x)
+        + cell.y;\r\n                        \r\n                        float2 randomOffset
+        = float2(\r\n                            hash11(seed + 111.111),\r\n                           
+        hash11(seed + 222.222)\r\n                        );\r\n\r\n                       
+        float2 cellPosition = cell + randomOffset;\r\n                        float2
+        distanceToCell = cellPosition - position;\r\n                        float
+        distance = length(distanceToCell);\r\n\r\n                        if(distance
+        < closestDistance) {\r\n                            secondClosestDistance
+        = closestDistance;\r\n                            closestDistance = distance;\r\n                           
+        closestSeed = seed;\r\n                        } else if (distance < secondClosestDistance)
+        {\r\n                            secondClosestDistance = distance;\r\n                       
+        }\r\n                    }\r\n                }\r\n\r\n                float
+        edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
+        float cellID = hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2005,6 +2562,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -2015,6 +2577,12 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2121,6 +2689,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -2196,6 +2769,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2260,11 +2838,66 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float3 lookupPosition = float3(pos2D,
+        _Time.y * 0.3);\r\n\r\n                half3 color = voronoi3D(lookupPosition);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2371,6 +3004,55 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float3 lookupPosition = float3(pos2D,
+        _Time.y * 0.3);\r\n\r\n                half3 color = voronoi3D(lookupPosition);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -2445,6 +3127,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide2D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            float3 voronoi3D(float3 position) {\r\n               
+        float3 baseCell = floor(position);\r\n\r\n                <color=#569CD6>float</color>
+        closestDistance = 8.0;\r\n                <color=#569CD6>float</color> secondClosestDistance
+        = 8.0;\r\n                <color=#569CD6>float</color> closestSeed = 0;\r\n\r\n               
+        [unroll]\r\n                for(int z = -1; z <= 1; z++) {\r\n                   
+        for(int y = -1; y <= 1; y++) {\r\n                        [unroll]\r\n                       
+        for(int x = -1; x <= 1; x++) {\r\n                            float3 cellOffset
+        = float3(x, y, z);\r\n                            float3 cell = baseCell
+        + cellOffset;\r\n                            float seed = hash11(hash11(cell.x)
+        + cell.y) + cell.z;\r\n                            \r\n                           
+        float3 randomOffset = float3(\r\n                                hash11(seed
+        + 111.111), \r\n                                hash11(seed + 222.222),\r\n                               
+        hash11(seed + 333.333)\r\n                            );\r\n\r\n                           
+        float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
+        pos2D *= _zoom;\r\n\r\n                float3 lookupPosition = float3(pos2D,
+        _Time.y * 0.3);\r\n\r\n                half3 color = voronoi3D(lookupPosition);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -2530,11 +3262,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2641,6 +3384,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -2715,6 +3463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -2807,6 +3560,57 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi4DSlide3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi4D(float4 position) {\r\n                float4 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int w = -1; w <=
+        1; w++) {\r\n                    for(int z = -1; z <= 1; z++) {\r\n                       
+        for(int y = -1; y <= 1; y++) {\r\n                            [unroll]\r\n                           
+        for(int x = -1; x <= 1; x++) {\r\n                                float4
+        cellOffset = float4(x, y, z, w);\r\n                                float4
+        cell = baseCell + cellOffset;\r\n                                float seed
+        = hash11(hash11(hash11(cell.x) + cell.y) + cell.z) + cell.w;\r\n                               
+        \r\n                                float4 randomOffset = float4(\r\n                                   
+        hash11(seed + 111.111), \r\n                                    hash11(seed
+        + 222.222),\r\n                                    hash11(seed + 333.333),\r\n                                   
+        hash11(seed + 444.444)\r\n                                );\r\n\r\n                               
+        float4 cellPosition = cell + randomOffset;\r\n                               
+        float4 distanceToCell = cellPosition - position;\r\n                               
+        float distance = length(distanceToCell);\r\n\r\n                               
+        if(distance < closestDistance) {\r\n                                    secondClosestDistance
+        = closestDistance;\r\n                                    closestDistance
+        = distance;\r\n                                    closestSeed = seed;\r\n                               
+        } else if (distance < secondClosestDistance) {\r\n                                   
+        secondClosestDistance = distance;\r\n                                }\r\n                           
+        }\r\n                        }\r\n                    }\r\n               
+        }\r\n\r\n                float edgeDist = secondClosestDistance - closestDistance;\r\n               
+        \r\n                float cellID = hash11(closestSeed);\r\n\r\n               
+        return float3(closestDistance, cellID, edgeDist);\r\n            }\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float3
+        pos3D = i.vertex.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
+        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
+        color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
+        1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2816,6 +3620,58 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Voronoi4DSlide3D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            float3 voronoi4D(float4 position) {\r\n               
+        float4 baseCell = floor(position);\r\n\r\n                <color=#569CD6>float</color>
+        closestDistance = 8.0;\r\n                <color=#569CD6>float</color> secondClosestDistance
+        = 8.0;\r\n                <color=#569CD6>float</color> closestSeed = 0;\r\n\r\n               
+        [unroll]\r\n                for(int w = -1; w <= 1; w++) {\r\n                   
+        for(int z = -1; z <= 1; z++) {\r\n                        for(int y = -1;
+        y <= 1; y++) {\r\n                            [unroll]\r\n                           
+        for(int x = -1; x <= 1; x++) {\r\n                                float4
+        cellOffset = float4(x, y, z, w);\r\n                                float4
+        cell = baseCell + cellOffset;\r\n                                float seed
+        = hash11(hash11(hash11(cell.x) + cell.y) + cell.z) + cell.w;\r\n                               
+        \r\n                                float4 randomOffset = float4(\r\n                                   
+        hash11(seed + 111.111), \r\n                                    hash11(seed
+        + 222.222),\r\n                                    hash11(seed + 333.333),\r\n                                   
+        hash11(seed + 444.444)\r\n                                );\r\n\r\n                               
+        float4 cellPosition = cell + randomOffset;\r\n                               
+        float4 distanceToCell = cellPosition - position;\r\n                               
+        float distance = length(distanceToCell);\r\n\r\n                               
+        if(distance < closestDistance) {\r\n                                    secondClosestDistance
+        = closestDistance;\r\n                                    closestDistance
+        = distance;\r\n                                    closestSeed = seed;\r\n                               
+        } else if (distance < secondClosestDistance) {\r\n                                   
+        secondClosestDistance = distance;\r\n                                }\r\n                           
+        }\r\n                        }\r\n                    }\r\n               
+        }\r\n\r\n                float edgeDist = secondClosestDistance - closestDistance;\r\n               
+        \r\n                float cellID = hash11(closestSeed);\r\n\r\n               
+        return float3(closestDistance, cellID, edgeDist);\r\n            }\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float3
+        pos3D = i.vertex.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
+        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
+        color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
+        1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2849,6 +3705,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2878,6 +3740,57 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi4DSlide3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi4D(float4 position) {\r\n                float4 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int w = -1; w <=
+        1; w++) {\r\n                    for(int z = -1; z <= 1; z++) {\r\n                       
+        for(int y = -1; y <= 1; y++) {\r\n                            [unroll]\r\n                           
+        for(int x = -1; x <= 1; x++) {\r\n                                float4
+        cellOffset = float4(x, y, z, w);\r\n                                float4
+        cell = baseCell + cellOffset;\r\n                                float seed
+        = hash11(hash11(hash11(cell.x) + cell.y) + cell.z) + cell.w;\r\n                               
+        \r\n                                float4 randomOffset = float4(\r\n                                   
+        hash11(seed + 111.111), \r\n                                    hash11(seed
+        + 222.222),\r\n                                    hash11(seed + 333.333),\r\n                                   
+        hash11(seed + 444.444)\r\n                                );\r\n\r\n                               
+        float4 cellPosition = cell + randomOffset;\r\n                               
+        float4 distanceToCell = cellPosition - position;\r\n                               
+        float distance = length(distanceToCell);\r\n\r\n                               
+        if(distance < closestDistance) {\r\n                                    secondClosestDistance
+        = closestDistance;\r\n                                    closestDistance
+        = distance;\r\n                                    closestSeed = seed;\r\n                               
+        } else if (distance < secondClosestDistance) {\r\n                                   
+        secondClosestDistance = distance;\r\n                                }\r\n                           
+        }\r\n                        }\r\n                    }\r\n               
+        }\r\n\r\n                float edgeDist = secondClosestDistance - closestDistance;\r\n               
+        \r\n                float cellID = hash11(closestSeed);\r\n\r\n               
+        return float3(closestDistance, cellID, edgeDist);\r\n            }\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float3
+        pos3D = i.vertex.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
+        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
+        color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
+        1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3155,6 +4068,55 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D.z += 0.5;\r\n                pos3D *= _zoom;\r\n                pos3D.z
+        += _Time.y * 0.3;\r\n\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3164,6 +4126,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide3D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            float3 voronoi3D(float3 position) {\r\n               
+        float3 baseCell = floor(position);\r\n\r\n                <color=#569CD6>float</color>
+        closestDistance = 8.0;\r\n                <color=#569CD6>float</color> secondClosestDistance
+        = 8.0;\r\n                <color=#569CD6>float</color> closestSeed = 0;\r\n\r\n               
+        [unroll]\r\n                for(int z = -1; z <= 1; z++) {\r\n                   
+        for(int y = -1; y <= 1; y++) {\r\n                        [unroll]\r\n                       
+        for(int x = -1; x <= 1; x++) {\r\n                            float3 cellOffset
+        = float3(x, y, z);\r\n                            float3 cell = baseCell
+        + cellOffset;\r\n                            float seed = hash11(hash11(cell.x)
+        + cell.y) + cell.z;\r\n                            \r\n                           
+        float3 randomOffset = float3(\r\n                                hash11(seed
+        + 111.111), \r\n                                hash11(seed + 222.222),\r\n                               
+        hash11(seed + 333.333)\r\n                            );\r\n\r\n                           
+        float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D.z += 0.5;\r\n                pos3D *= _zoom;\r\n                pos3D.z
+        += _Time.y * 0.3;\r\n\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3197,6 +4209,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3226,6 +4244,55 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D.z += 0.5;\r\n                pos3D *= _zoom;\r\n                pos3D.z
+        += _Time.y * 0.3;\r\n\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3483,6 +4550,55 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                // Basic object
+        to clip space transformation\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3492,6 +4608,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                <color=#57A64A>//
+        Basic object to clip space transformation\r</color>\n                o.vertex
+        = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n\r\n            float hash11(float p) {\r\n               
+        uint h = asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            float3 voronoi3D(float3 position) {\r\n               
+        float3 baseCell = floor(position);\r\n\r\n                <color=#569CD6>float</color>
+        closestDistance = 8.0;\r\n                <color=#569CD6>float</color> secondClosestDistance
+        = 8.0;\r\n                <color=#569CD6>float</color> closestSeed = 0;\r\n\r\n               
+        [unroll]\r\n                for(int z = -1; z <= 1; z++) {\r\n                   
+        for(int y = -1; y <= 1; y++) {\r\n                        [unroll]\r\n                       
+        for(int x = -1; x <= 1; x++) {\r\n                            float3 cellOffset
+        = float3(x, y, z);\r\n                            float3 cell = baseCell
+        + cellOffset;\r\n                            float seed = hash11(hash11(cell.x)
+        + cell.y) + cell.z;\r\n                            \r\n                           
+        float3 randomOffset = float3(\r\n                                hash11(seed
+        + 111.111), \r\n                                hash11(seed + 222.222),\r\n                               
+        hash11(seed + 333.333)\r\n                            );\r\n\r\n                           
+        float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3525,6 +4691,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3554,6 +4726,55 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Voronoi3D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                // Basic object
+        to clip space transformation\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n                uint h =
+        asuint(p);\r\n\r\n                h ^= 0x27D4EB2DU; \r\n\r\n               
+        h = h * 1103515245U + 12345U;\r\n                h ^= (h >> 16);\r\n               
+        h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
+        *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n\r\n               
+        return float(h & 0x00ffffffu) / float(0x01000000u);\r\n            }\r\n\r\n           
+        float3 voronoi3D(float3 position) {\r\n                float3 baseCell =
+        floor(position);\r\n\r\n                float closestDistance = 8.0;\r\n               
+        float secondClosestDistance = 8.0;\r\n                float closestSeed =
+        0;\r\n\r\n                [unroll]\r\n                for(int z = -1; z <=
+        1; z++) {\r\n                    for(int y = -1; y <= 1; y++) {\r\n                       
+        [unroll]\r\n                        for(int x = -1; x <= 1; x++) {\r\n                           
+        float3 cellOffset = float3(x, y, z);\r\n                            float3
+        cell = baseCell + cellOffset;\r\n                            float seed =
+        hash11(hash11(cell.x) + cell.y) + cell.z;\r\n                           
+        \r\n                            float3 randomOffset = float3(\r\n                               
+        hash11(seed + 111.111), \r\n                                hash11(seed +
+        222.222),\r\n                                hash11(seed + 333.333)\r\n                           
+        );\r\n\r\n                            float3 cellPosition = cell + randomOffset;\r\n                           
+        float3 distanceToCell = cellPosition - position;\r\n                           
+        float distance = length(distanceToCell);\r\n\r\n                           
+        if(distance < closestDistance) {\r\n                                secondClosestDistance
+        = closestDistance;\r\n                                closestDistance = distance;\r\n                               
+        closestSeed = seed;\r\n                            } else if (distance <
+        secondClosestDistance) {\r\n                                secondClosestDistance
+        = distance;\r\n                            }\r\n                        }\r\n                   
+        }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
+        - closestDistance;\r\n                \r\n                float cellID =
+        hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
+        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
+        pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3795,11 +5016,52 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n            \r\n            float valueNoise(float2
+        uv) {\r\n                // Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2
+        f = frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); // Smoothstep
+        between 0...1\r\n\r\n                // Random weights\r\n               
+        float a = hash21(i + float2(0.0, 0.0));\r\n                float b = hash21(i
+        + float2(1.0, 0.0));\r\n                float c = hash21(i + float2(0.0,
+        1.0));\r\n                float d = hash21(i + float2(1.0, 1.0));\r\n\r\n               
+        // Bilinear interpolation\r\n\t\t\t\tfloat bottom = lerp(a, b, u.x);\r\n\t\t\t\tfloat
+        top = lerp(c, d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float2
+        pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
+        float noise = valueNoise(pos2D);\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3906,6 +5168,41 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        target 3.5\r\n\r\n            float _zoom;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return float(h & 0x00ffffffu) / float(0x01000000u);\r\n           
+        }\r\n\r\n            float hash21(float2 p) {\r\n                return hash11(hash11(p.x)
+        + p.y);\r\n            }\r\n            \r\n            float valueNoise(float2
+        uv) {\r\n                // Base parameters\r\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2
+        f = frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); // Smoothstep
+        between 0...1\r\n\r\n                // Random weights\r\n               
+        float a = hash21(i + float2(0.0, 0.0));\r\n                float b = hash21(i
+        + float2(1.0, 0.0));\r\n                float c = hash21(i + float2(0.0,
+        1.0));\r\n                float d = hash21(i + float2(1.0, 1.0));\r\n\r\n               
+        // Bilinear interpolation\r\n\t\t\t\tfloat bottom = lerp(a, b, u.x);\r\n\t\t\t\tfloat
+        top = lerp(c, d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float2
+        pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
+        float noise = valueNoise(pos2D);\r\n\r\n                half3 color = noise.xxx;\r\n\r\n               
+        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -3996,6 +5293,46 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, float)
+        = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #pragma target 3.5\r\n\r\n            float _zoom;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 vertex : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.vertex = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            float hash11(float p) {\r\n\r\n                if(p
+        == -0)\r\n                    p = 0;\r\n\r\n                uint h = asuint(p+0.0);\r\n\r\n               
+        h ^= 0x27D4EB2DU; \r\n\r\n                h = h * 1103515245U + 12345U;\r\n               
+        h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
+        ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
+        (h >> 16);\r\n\r\n                return <color=#569CD6>float</color>(h &
+        0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
+        }\r\n\r\n            <color=#569CD6>float</color> hash21(float2 p) {\r\n               
+        return hash11(hash11(p.x) + p.y);\r\n            }\r\n            \r\n           
+        <color=#569CD6>float</color> valueNoise(float2 uv) {\r\n                <color=#57A64A>//
+        Base parameters\r</color>\n\t\t\t\tfloat2 i = floor(uv);\r\n\t\t\t\tfloat2
+        f = frac(uv);\r\n                float2 u = f*f*(3.0-2.0*f); <color=#57A64A>//
+        Smoothstep between 0...1\r</color>\n\r\n                <color=#57A64A>//
+        Random weights\r</color>\n                <color=#569CD6>float</color> a
+        = hash21(i + float2(0.0, 0.0));\r\n                <color=#569CD6>float</color>
+        b = hash21(i + float2(1.0, 0.0));\r\n                <color=#569CD6>float</color>
+        c = hash21(i + float2(0.0, 1.0));\r\n                <color=#569CD6>float</color>
+        d = hash21(i + float2(1.0, 1.0));\r\n\r\n                <color=#57A64A>//
+        Bilinear interpolation\r</color>\n\t\t\t\t<color=#569CD6>float</color> bottom
+        = lerp(a, b, u.x);\r\n\t\t\t\t<color=#569CD6>float</color> top = lerp(c,
+        d, u.x);\r\n\t\t\t\treturn lerp(bottom, top, u.y);\r\n\t\t\t}\r\n           
+        \r\n            half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n                pos2D
+        *= _zoom;\r\n\r\n                <color=#569CD6>float</color> noise = valueNoise(pos2D);\r\n\r\n               
+        half3 color = noise.xxx;\r\n\r\n                return half4(color.rgb, 1.0);\r\n           
+        }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4065,11 +5402,41 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Checkerboard\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        float _zoom;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 vertex : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.vertex = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n            \r\n            float stepPattern(float
+        x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
+        y = sign(y);\r\n                y = saturate(y);\r\n                return
+        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float2 pos2D = i.vertex.xy;\r\n\r\n                pos2D *= _zoom;\r\n\r\n               
+        half3 black = (0.0, 0.0, 0.0);\r\n                half3 white = (1.0, 1.0,
+        1.0);\r\n\r\n                \r\n                float xStep = stepPattern(pos2D.x);\r\n               
+        float yStep = stepPattern(-pos2D.y);\r\n                float pattern = abs(xStep
+        - yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4176,6 +5543,30 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/Checkerboard\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        float _zoom;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 vertex : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.vertex = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n            \r\n            float stepPattern(float
+        x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
+        y = sign(y);\r\n                y = saturate(y);\r\n                return
+        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float2 pos2D = i.vertex.xy;\r\n\r\n                pos2D *= _zoom;\r\n\r\n               
+        half3 black = (0.0, 0.0, 0.0);\r\n                half3 white = (1.0, 1.0,
+        1.0);\r\n\r\n                \r\n                float xStep = stepPattern(pos2D.x);\r\n               
+        float yStep = stepPattern(-pos2D.y);\r\n                float pattern = abs(xStep
+        - yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -4265,6 +5656,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/Checkerboard\"</color>\r\n{\r\n   
+        Properties\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>, <color=#569CD6>float</color>)
+        = 1\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>float</color> _zoom;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        float4 <color=#569CD6>vertex</color> : POSITION;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 <color=#569CD6>vertex</color>
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.<color=#569CD6>vertex</color> = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n            \r\n            <color=#569CD6>float</color>
+        stepPattern(<color=#569CD6>float</color> x){\r\n                <color=#569CD6>float</color>
+        y = frac(x * 0.5);\r\n                y -= 0.5;\r\n                y = sign(y);\r\n               
+        y = saturate(y);\r\n                return y;\r\n            }\r\n\r\n           
+        half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        float2 pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n\r\n               
+        pos2D *= _zoom;\r\n\r\n                half3 black = (0.0, 0.0, 0.0);\r\n               
+        half3 white = (1.0, 1.0, 1.0);\r\n\r\n                \r\n               
+        <color=#569CD6>float</color> xStep = stepPattern(pos2D.x);\r\n               
+        <color=#569CD6>float</color> yStep = stepPattern(-pos2D.y);\r\n               
+        <color=#569CD6>float</color> pattern = abs(xStep - yStep);\r\n\r\n               
+        half3 color = lerp(black, white, pattern);\r\n\r\n                return
+        half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}

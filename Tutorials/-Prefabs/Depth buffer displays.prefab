@@ -250,6 +250,28 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #include
+        <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n            <color=#569CD6>sampler2D</color>
+        _CameraDepthTexture;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                float4 <color=#569CD6>vertex</color> : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                \r\n                <color=#569CD6>float</color> aspectRatio
+        = _ScreenParams.x / _ScreenParams.y;\r\n                v.<color=#569CD6>vertex</color>.x
+        *= aspectRatio;\r\n\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n               
+        half3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -681,6 +703,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens\"</color>\r\n{\r\n   
+        SubShader\r\n    {\r\n        <color=#57A64A>// Set queue to Transparent
+        to ensure it renders after opaque objects\r</color>\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Transparent\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Transparent\"</color> }\r\n\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        float4 <color=#569CD6>vertex</color> : POSITION;\r\n                UNITY_VERTEX_INPUT_INSTANCE_ID\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                float4 pos : SV_POSITION;\r\n                float4
+        screenPos : TEXCOORD0;\r\n                UNITY_VERTEX_OUTPUT_STEREO\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n\r\n               
+        UNITY_SETUP_INSTANCE_ID(v);\r\n                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.screenPos = ComputeScreenPos(o.pos);\r\n                \r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);\r\n\r\n               
+        float2 screenUV = i.screenPos.xy / i.screenPos.w;\r\n\r\n               
+        <color=#569CD6>float</color> depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture,
+        screenUV).r;\r\n\r\n                half3 color = depth.xxx;\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1088,6 +1138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4291161931844092710, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
