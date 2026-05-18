@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/Basics/colororPicker"
+Shader "ShaderCastle/Tutorials/Basics/ColorPicker"
 {
     Properties
     {
