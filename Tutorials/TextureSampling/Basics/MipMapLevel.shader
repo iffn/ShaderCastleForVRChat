@@ -28,7 +28,6 @@ Shader "ShaderCastle/Tutorials/TextureSampling/MipMapLevel"
 
             v2f vert (appdata v) {
                 v2f o;
-                // Basic object to clip space transformation
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
@@ -37,7 +36,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/MipMapLevel"
             fixed4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 
-                float4 textureLookup = float4(uv, 0.0, _mipMap);
+                float4 textureLookup = float4(uv, 0.0, _mipMap); // 2D uvs, unused 3rd dimension, mip map level
                 
                 fixed3 color = tex2Dlod(_MainTex, textureLookup);
 
