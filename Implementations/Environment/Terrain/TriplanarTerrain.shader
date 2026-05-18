@@ -90,4 +90,5 @@ Shader "ShaderCastle/Implementations/Environment/TriplanarTerrain"
             ENDCG
         }
     }
+    Fallback "VertexLit" // Light weight shadow casting and depth writing
 }
