@@ -93,6 +93,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -135,6 +154,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -164,6 +189,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -437,6 +481,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/AlphaToMask\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" \"Queue\"=\"AlphaTest\"
+        \"LightMode\"=\"ForwardBase\" }\r\n        \r\n        Pass\r\n        {\r\n           
+        AlphaToMask On\r\n\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n                float2
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, alpha);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -479,6 +543,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -508,6 +578,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/AlphaToMask\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" \"Queue\"=\"AlphaTest\"
+        \"LightMode\"=\"ForwardBase\" }\r\n        \r\n        Pass\r\n        {\r\n           
+        AlphaToMask On\r\n\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n                float2
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, alpha);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -761,6 +851,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/Transparency\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Transparent\" \"Queue\"=\"Transparent\"
+        }\r\n        \r\n        Pass\r\n        {\r\n\r\n            ZWrite Off\r\n           
+        Blend SrcAlpha OneMinusSrcAlpha\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                float alpha = saturate(1.0
+        - distanceToCenter * 2.0);\r\n\r\n                half3 color = half3(1.0,
+        1.0, 1.0);\r\n                return half4(color, alpha);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -803,6 +913,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -832,6 +948,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/Transparency\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Transparent\" \"Queue\"=\"Transparent\"
+        }\r\n        \r\n        Pass\r\n        {\r\n\r\n            ZWrite Off\r\n           
+        Blend SrcAlpha OneMinusSrcAlpha\r\n\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                float alpha = saturate(1.0
+        - distanceToCenter * 2.0);\r\n\r\n                half3 color = half3(1.0,
+        1.0, 1.0);\r\n                return half4(color, alpha);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1085,6 +1221,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithEarlydepthstencilClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Compiler statements commented
+        out for this demo to see when it fails\r\n            //#if defined(UNITY_COMPILER_HLSL)
+        || defined(SHADER_API_D3D11)\r\n            [earlydepthstencil]\r\n           
+        //#endif\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float2 uv = i.uv;\r\n\r\n                float distanceToCenter = length(uv
+        - float2(0.5, 0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1127,6 +1285,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1156,6 +1320,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithEarlydepthstencilClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Compiler statements commented
+        out for this demo to see when it fails\r\n            //#if defined(UNITY_COMPILER_HLSL)
+        || defined(SHADER_API_D3D11)\r\n            [earlydepthstencil]\r\n           
+        //#endif\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float2 uv = i.uv;\r\n\r\n                float distanceToCenter = length(uv
+        - float2(0.5, 0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1417,6 +1603,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float4 screenPos : TEXCOORD1;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                // 4x4 Bayer dithering matrix\r\n               
+        float4x4 ditherMatrix = float4x4(\r\n                    0.0625, 0.5625,
+        0.1875, 0.6875,\r\n                    0.8125, 0.3125, 0.9375, 0.4375,\r\n                   
+        0.25,   0.75,   0.125,  0.625,\r\n                    1.0,    0.5,    0.875, 
+        0.375\r\n                );\r\n\r\n                uint2 pixelPos = i.screenPos.xy
+        / i.screenPos.w * _ScreenParams.xy;\r\n                float threshold =
+        ditherMatrix[pixelPos.x % 4][pixelPos.y % 4];\r\n\r\n                clip(alpha
+        - threshold);\r\n\r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1459,6 +1673,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1488,6 +1708,34 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float4 screenPos : TEXCOORD1;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                // 4x4 Bayer dithering matrix\r\n               
+        float4x4 ditherMatrix = float4x4(\r\n                    0.0625, 0.5625,
+        0.1875, 0.6875,\r\n                    0.8125, 0.3125, 0.9375, 0.4375,\r\n                   
+        0.25,   0.75,   0.125,  0.625,\r\n                    1.0,    0.5,    0.875, 
+        0.375\r\n                );\r\n\r\n                uint2 pixelPos = i.screenPos.xy
+        / i.screenPos.w * _ScreenParams.xy;\r\n                float threshold =
+        ditherMatrix[pixelPos.x % 4][pixelPos.y % 4];\r\n\r\n                clip(alpha
+        - threshold);\r\n\r\n                half3 color = half3(1.0, 1.0, 1.0);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1745,6 +1993,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/DitheredTransparency2x2\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float4 screenPos : TEXCOORD1;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                // 2x2 Bayer dithering matrix\r\n               
+        float2x2 ditherMatrix = float2x2(\r\n                    0, 0.5,\r\n                   
+        0.75, 0.25\r\n                );\r\n\r\n                uint2 pixelPos =
+        i.screenPos.xy / i.screenPos.w * _ScreenParams.xy;\r\n                float
+        threshold = ditherMatrix[pixelPos.x % 2][pixelPos.y % 2];\r\n\r\n               
+        clip(alpha - threshold);\r\n\r\n                half3 color = half3(1.0,
+        1.0, 1.0);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1787,6 +2061,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1816,6 +2096,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/DitheredTransparency2x2\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n\r\n        Pass\r\n        {\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n            #include \"UnityCG.cginc\"\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float4 screenPos : TEXCOORD1;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n                float alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                // 2x2 Bayer dithering matrix\r\n               
+        float2x2 ditherMatrix = float2x2(\r\n                    0, 0.5,\r\n                   
+        0.75, 0.25\r\n                );\r\n\r\n                uint2 pixelPos =
+        i.screenPos.xy / i.screenPos.w * _ScreenParams.xy;\r\n                float
+        threshold = ditherMatrix[pixelPos.x % 2][pixelPos.y % 2];\r\n\r\n               
+        clip(alpha - threshold);\r\n\r\n                half3 color = half3(1.0,
+        1.0, 1.0);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2073,6 +2379,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                if(distanceToCenter
+        > 0.5)\r\n                    discard;\r\n                \r\n               
+        half3 color = half3(1.0, 1.0, 1.0);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2115,6 +2440,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2144,6 +2475,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"TransparentCutout\"
+        \"Queue\"=\"AlphaTest\" }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float2 uv = i.uv;\r\n\r\n                float distanceToCenter
+        = length(uv - float2(0.5, 0.5));\r\n\r\n                if(distanceToCenter
+        > 0.5)\r\n                    discard;\r\n                \r\n               
+        half3 color = half3(1.0, 1.0, 1.0);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

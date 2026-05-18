@@ -196,6 +196,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -238,6 +243,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -267,6 +278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -530,6 +546,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            Cull Off\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n\r\n            struct appdata {\r\n                float4 vertex
+        : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 localPos : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.localPos = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 color = half3(i.localPos.xxx + 0.5);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -572,6 +605,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -601,6 +640,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            Cull Off\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n\r\n            struct appdata {\r\n                float4 vertex
+        : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 localPos : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.localPos = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 color = half3(i.localPos.xxx + 0.5);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -858,6 +914,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -900,6 +961,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -929,6 +996,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1190,6 +1262,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1232,6 +1309,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1261,6 +1344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1527,6 +1615,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorHSVCylinderGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n            \r\n            static const float4 K_HSV = float4(1.0,
+        2.0 / 3.0, 1.0 / 3.0, 3.0);\r\n            half3 hsv2rgb(half3 hsv) {\r\n               
+        float3 p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n               
+        half3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);\r\n               
+        return rgb;\r\n            }\r\n            \r\n            static const
+        float4 K_RGB = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\r\n            half3
+        rgb2hsv(half3 rgb) {\r\n                float4 p = lerp(float4(rgb.bg, K_RGB.wz),
+        float4(rgb.gb, K_RGB.xy), step(rgb.b, rgb.g));\r\n                float4
+        q = lerp(float4(p.xyw, rgb.r), float4(rgb.r, p.yzx), step(p.x, rgb.r));\r\n               
+        float d = q.x - min(q.w, q.y);\r\n                float e = 1.0e-10; // Small
+        epsilon to prevent division by zero\r\n                half3 hsv = half3(abs(q.z
+        + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\r\n                return
+        hsv;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float angle = atan2(i.localPos.x, i.localPos.z) * 0.15915494309;\r\n               
+        float distance = length(i.localPos.xz) * 2;\r\n                float height
+        = i.localPos.y * 0.5 + 0.5;\r\n\r\n                half3 hsv = half3(angle,
+        distance, height);\r\n                float3 color = hsv2rgb(hsv);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1569,6 +1689,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1598,6 +1724,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorHSVCylinderGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n            \r\n            static const float4 K_HSV = float4(1.0,
+        2.0 / 3.0, 1.0 / 3.0, 3.0);\r\n            half3 hsv2rgb(half3 hsv) {\r\n               
+        float3 p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n               
+        half3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);\r\n               
+        return rgb;\r\n            }\r\n            \r\n            static const
+        float4 K_RGB = float4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\r\n            half3
+        rgb2hsv(half3 rgb) {\r\n                float4 p = lerp(float4(rgb.bg, K_RGB.wz),
+        float4(rgb.gb, K_RGB.xy), step(rgb.b, rgb.g));\r\n                float4
+        q = lerp(float4(p.xyw, rgb.r), float4(rgb.r, p.yzx), step(p.x, rgb.r));\r\n               
+        float d = q.x - min(q.w, q.y);\r\n                float e = 1.0e-10; // Small
+        epsilon to prevent division by zero\r\n                half3 hsv = half3(abs(q.z
+        + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\r\n                return
+        hsv;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        float angle = atan2(i.localPos.x, i.localPos.z) * 0.15915494309;\r\n               
+        float distance = length(i.localPos.xz) * 2;\r\n                float height
+        = i.localPos.y * 0.5 + 0.5;\r\n\r\n                half3 hsv = half3(angle,
+        distance, height);\r\n                float3 color = hsv2rgb(hsv);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1855,6 +2013,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1897,6 +2060,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1926,6 +2095,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2208,6 +2382,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            static const float4 K_HSV = float4(1.0, 2.0 / 3.0, 1.0
+        / 3.0, 3.0);\r\n            \r\n            half3 hsv2rgb(half3 hsv) {\r\n               
+        float3 p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n               
+        half3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);\r\n               
+        return rgb;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 hsv = half3(i.localPos.xyz + 0.5);\r\n               
+        float3 color = hsv2rgb(hsv);\r\n\r\n                #ifndef UNITY_COLORSPACE_GAMMA\r\n                   
+        color = pow(color, 2.2); \r\n                #endif\r\n                \r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2250,6 +2446,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2279,6 +2481,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            static const float4 K_HSV = float4(1.0, 2.0 / 3.0, 1.0
+        / 3.0, 3.0);\r\n            \r\n            half3 hsv2rgb(half3 hsv) {\r\n               
+        float3 p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n               
+        half3 rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);\r\n               
+        return rgb;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 hsv = half3(i.localPos.xyz + 0.5);\r\n               
+        float3 color = hsv2rgb(hsv);\r\n\r\n                #ifndef UNITY_COLORSPACE_GAMMA\r\n                   
+        color = pow(color, 2.2); \r\n                #endif\r\n                \r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2536,6 +2760,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2578,6 +2807,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2607,6 +2842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2868,6 +3108,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2910,6 +3155,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2939,6 +3190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3200,6 +3456,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            Cull Off\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n\r\n            struct appdata {\r\n                float4 vertex
+        : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 localPos : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.localPos = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 color = half3(i.localPos.xxx + 0.5);\r\n               
+        #ifdef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color, 0.45454545454);
+        \r\n                #endif\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3242,6 +3515,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3271,6 +3550,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            Cull Off\r\n           
+        CGPROGRAM\r\n            #pragma vertex vert\r\n            #pragma fragment
+        frag\r\n\r\n            struct appdata {\r\n                float4 vertex
+        : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float4 localPos : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.localPos = v.vertex;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        return o;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                half3 color = half3(i.localPos.xxx + 0.5);\r\n               
+        #ifdef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color, 0.45454545454);
+        \r\n                #endif\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3521,6 +3817,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3563,6 +3864,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3592,6 +3899,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3878,6 +4190,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            half3 oklab2rgb(half3 lab) {\r\n                float3
+        lms;\r\n                lms.x = lab.x + 0.3963377774f * lab.y + 0.2158037573f
+        * lab.z;\r\n                lms.y = lab.x - 0.1055613458f * lab.y - 0.0638541728f
+        * lab.z;\r\n                lms.z = lab.x - 0.0894841775f * lab.y - 1.2914855480f
+        * lab.z;\r\n\r\n                float3 lms_linear = lms * lms * lms;\r\n\r\n               
+        half3 rgb;\r\n                rgb.r = +4.0767416621f * lms_linear.x - 3.3077115913f
+        * lms_linear.y + 0.2309699292f * lms_linear.z;\r\n                rgb.g =
+        -1.2684380046f * lms_linear.x + 2.6097574011f * lms_linear.y - 0.3413193965f
+        * lms_linear.z;\r\n                rgb.b = -0.0041960863f * lms_linear.x
+        - 0.7034186147f * lms_linear.y + 1.7076147010f * lms_linear.z;\r\n\r\n               
+        return rgb;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float3 coordinate01 = half3(i.localPos.xyz + 0.5);\r\n               
+        half3 oklab;\r\n                oklab.x = coordinate01.z;\r\n               
+        oklab.y = (coordinate01.y - 0.5) * 0.8;\r\n                oklab.z = (coordinate01.x
+        - 0.5) * 0.8;\r\n                float3 color = oklab2rgb(oklab);\r\n               
+        \r\n                #ifndef UNITY_COLORSPACE_GAMMA\r\n                   
+        color = pow(color, 2.2); \r\n                #endif\r\n\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3920,6 +4263,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3949,6 +4298,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            half3 oklab2rgb(half3 lab) {\r\n                float3
+        lms;\r\n                lms.x = lab.x + 0.3963377774f * lab.y + 0.2158037573f
+        * lab.z;\r\n                lms.y = lab.x - 0.1055613458f * lab.y - 0.0638541728f
+        * lab.z;\r\n                lms.z = lab.x - 0.0894841775f * lab.y - 1.2914855480f
+        * lab.z;\r\n\r\n                float3 lms_linear = lms * lms * lms;\r\n\r\n               
+        half3 rgb;\r\n                rgb.r = +4.0767416621f * lms_linear.x - 3.3077115913f
+        * lms_linear.y + 0.2309699292f * lms_linear.z;\r\n                rgb.g =
+        -1.2684380046f * lms_linear.x + 2.6097574011f * lms_linear.y - 0.3413193965f
+        * lms_linear.z;\r\n                rgb.b = -0.0041960863f * lms_linear.x
+        - 0.7034186147f * lms_linear.y + 1.7076147010f * lms_linear.z;\r\n\r\n               
+        return rgb;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target
+        {\r\n                float3 coordinate01 = half3(i.localPos.xyz + 0.5);\r\n               
+        half3 oklab;\r\n                oklab.x = coordinate01.z;\r\n               
+        oklab.y = (coordinate01.y - 0.5) * 0.8;\r\n                oklab.z = (coordinate01.x
+        - 0.5) * 0.8;\r\n                float3 color = oklab2rgb(oklab);\r\n               
+        \r\n                #ifndef UNITY_COLORSPACE_GAMMA\r\n                   
+        color = pow(color, 2.2); \r\n                #endif\r\n\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -4210,6 +4590,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = half3(i.localPos.xyz + 0.5);\r\n\r\n                #ifndef
+        UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color, 2.2); \r\n               
+        #endif\r\n\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4252,6 +4649,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4281,6 +4684,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float4 localPos : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert
+        (appdata v) {\r\n                v2f o;\r\n                o.localPos = v.vertex;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = half3(i.localPos.xyz + 0.5);\r\n\r\n                #ifndef
+        UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color, 2.2); \r\n               
+        #endif\r\n\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -4538,6 +4958,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4580,6 +5005,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4609,6 +5040,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

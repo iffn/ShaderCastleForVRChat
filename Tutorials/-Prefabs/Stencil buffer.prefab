@@ -313,6 +313,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Stencil/StencilBasicWrite\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" \"Queue\"=\"Geometry-1\"
+        } // Runs before geometry\r\n\r\n        ColorMask 0\r\n        ZWrite Off\r\n\r\n       
+        Pass {\r\n            Stencil {\r\n                Ref 1 // What values are
+        being written:             xxxx xxx1 (x doesn't matter because of the mask)\r\n               
+        WriteMask 1 // Only the last bit should be changed: 0000 0001\r\n               
+        Comp Always\r\n                Pass Replace\r\n            }\r\n        }\r\n   
+        }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -355,6 +367,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -384,6 +402,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Stencil/StencilBasicWrite\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\" \"Queue\"=\"Geometry-1\"
+        } // Runs before geometry\r\n\r\n        ColorMask 0\r\n        ZWrite Off\r\n\r\n       
+        Pass {\r\n            Stencil {\r\n                Ref 1 // What values are
+        being written:             xxxx xxx1 (x doesn't matter because of the mask)\r\n               
+        WriteMask 1 // Only the last bit should be changed: 0000 0001\r\n               
+        Comp Always\r\n                Pass Replace\r\n            }\r\n        }\r\n   
+        }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

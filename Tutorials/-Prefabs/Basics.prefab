@@ -682,36 +682,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253998906147439542}
     m_Modifications:
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.535
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
@@ -999,6 +969,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplayWithTiling\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n           
+        float4 _MainTex_ST; // Required to get the sampler state (-> _ST)\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex); // Includes tiling and offset\r\n                return o;\r\n           
+        }\r\n\r\n            // Fragment function\r\n            half4 frag (v2f
+        i) : SV_Target {\r\n                float time = _Time.y * 0.2;\r\n               
+        half3 color = tex2D(_MainTex, i.uv + time.xx);\r\n                return
+        half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n   
+        }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1145,36 +1136,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253998906147439542}
     m_Modifications:
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
@@ -1430,6 +1391,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/JustRed\"\r\n{\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert // The vertex function is called vert\r\n            #pragma
+        fragment frag // The fragment funciton is called frag\r\n\r\n           
+        // Mesh to vertex transfer data\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n            };\r\n\r\n            // Vertex
+        to fragment transfer data\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n            };\r\n\r\n            // Vertex
+        function\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex); // Basic object to clip space transformation\r\n               
+        return o;\r\n            }\r\n\r\n            // Fragment function\r\n           
+        half4 frag () : SV_Target {\r\n                half3 color = half3(1.0, 0.0,
+        0.0); // Red\r\n                return half4(color, 1.0); // 1.0 on alpha
+        channel, default for opaque\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1571,36 +1551,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253998906147439542}
     m_Modifications:
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.365
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
@@ -1857,6 +1807,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/UVCoordinate\"\r\n{\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Fragment function\r\n           
+        half4 frag (v2f i) : SV_Target {\r\n                half3 color = half3(i.uv,
+        0.0);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -1998,36 +1964,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253998906147439542}
     m_Modifications:
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.365
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
@@ -2268,6 +2204,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/ColorPicker\"\r\n{\r\n    Properties\r\n   
+        {\r\n        _red (\"Red\", float) = 1.0\r\n        _green (\"Green\", float)
+        = 0.0\r\n        _blue (\"Blue\", float) = 0.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n\r\n            // Values
+        in properties need to be readded here\r\n            float _red;\r\n           
+        float _green;\r\n            float _blue;\r\n\r\n            struct appdata
+        {\r\n                float4 vertex : POSITION;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                return o;\r\n           
+        }\r\n\r\n            // Fragment function\r\n            half4 frag () :
+        SV_Target {\r\n                half3 color = half3(_red, _green, _blue);\r\n               
+        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -2886,6 +2841,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -3022,36 +2982,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4253998906147439542}
     m_Modifications:
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 267335926281293373, guid: 3b78f404deb68354e9b08eaf5d093c61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
@@ -3290,6 +3220,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}

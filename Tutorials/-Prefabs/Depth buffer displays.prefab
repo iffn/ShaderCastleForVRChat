@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2364900269482054340}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.031, z: -0.238}
-  m_LocalScale: {x: 0.44315, y: 0.44315, z: 0.44315}
+  m_LocalRotation: {x: 0.46193978, y: 0.19134173, z: 0.19134173, w: 0.84462327}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7838124824208503536}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 45}
 --- !u!33 &6762576381180146734
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2364900269482054340}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &530594009831794205
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e9e7e8ad59719264da8e8beeb06a09cd, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -222,6 +222,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _CameraDepthTexture;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        \r\n                float aspectRatio = _ScreenParams.x / _ScreenParams.y;\r\n               
+        v.vertex.x *= aspectRatio;\r\n\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (v2f i) : SV_Target {\r\n                half3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,
+        i.uv);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -264,6 +282,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -293,6 +317,24 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _CameraDepthTexture;\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        \r\n                float aspectRatio = _ScreenParams.x / _ScreenParams.y;\r\n               
+        v.vertex.x *= aspectRatio;\r\n\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        half4 frag (v2f i) : SV_Target {\r\n                half3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,
+        i.uv);\r\n                return half4(color, 1.0);\r\n            }\r\n           
+        ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -513,7 +555,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: e9e7e8ad59719264da8e8beeb06a09cd, type: 2}
     - target: {fileID: 668238383703315284, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_Material
@@ -537,52 +579,57 @@ PrefabInstance:
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.44315
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.44315
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.44315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.216
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.84462327
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.46193978
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.19134173
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.19134173
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094626453843948672, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2453436135830993782, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -600,6 +647,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        // Set queue to Transparent to ensure it renders
+        after opaque objects\r\n        Tags { \"RenderType\"=\"Transparent\" \"Queue\"=\"Transparent\"
+        }\r\n\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        UNITY_VERTEX_INPUT_INSTANCE_ID\r\n            };\r\n\r\n            struct
+        v2f {\r\n                float4 pos : SV_POSITION;\r\n                float4
+        screenPos : TEXCOORD0;\r\n                UNITY_VERTEX_OUTPUT_STEREO\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n               
+        UNITY_SETUP_INSTANCE_ID(v);\r\n                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.screenPos =
+        ComputeScreenPos(o.pos);\r\n                \r\n                return o;\r\n           
+        }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);\r\n\r\n                float2
+        screenUV = i.screenPos.xy / i.screenPos.w;\r\n\r\n                float depth
+        = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r;\r\n\r\n               
+        half3 color = depth.xxx;\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -642,6 +713,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -672,11 +749,35 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens\"\r\n{\r\n   
+        SubShader\r\n    {\r\n        // Set queue to Transparent to ensure it renders
+        after opaque objects\r\n        Tags { \"RenderType\"=\"Transparent\" \"Queue\"=\"Transparent\"
+        }\r\n\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        UNITY_VERTEX_INPUT_INSTANCE_ID\r\n            };\r\n\r\n            struct
+        v2f {\r\n                float4 pos : SV_POSITION;\r\n                float4
+        screenPos : TEXCOORD0;\r\n                UNITY_VERTEX_OUTPUT_STEREO\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n\r\n               
+        UNITY_SETUP_INSTANCE_ID(v);\r\n                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.screenPos =
+        ComputeScreenPos(o.pos);\r\n                \r\n                return o;\r\n           
+        }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);\r\n\r\n                float2
+        screenUV = i.screenPos.xy / i.screenPos.w;\r\n\r\n                float depth
+        = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r;\r\n\r\n               
+        half3 color = depth.xxx;\r\n                return half4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 5044350872729212163, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_Name
@@ -973,6 +1074,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1015,6 +1121,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1044,6 +1156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}

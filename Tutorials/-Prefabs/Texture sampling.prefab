@@ -473,6 +473,67 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepthWrite\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            ZTest LEqual\r\n           
+        ZWrite On\r\n\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n            #pragma target 5.0\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n               
+        float4 posView : TEXCOORD3;\r\n            };\r\n            \r\n           
+        struct frag_out {\r\n                fixed4 color : SV_Target;\r\n               
+        float depth : SV_DepthLessEqual;\r\n            };\r\n\r\n            v2f
+        vert (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);\r\n                \r\n               
+        o.posView = mul(UNITY_MATRIX_MV, v.vertex); \r\n\r\n                float3
+        objViewDir = ObjSpaceViewDir(v.vertex);\r\n                float3x3 objToTangent
+        = float3x3(v.tangent.xyz, cross(v.normal, v.tangent.xyz) * v.tangent.w, v.normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS, out float outHeight)
+        {\r\n                float minSamples = _MaxSamples * 0.5;\r\n               
+        float numSamples = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1),
+        viewDirTS)));\r\n                float stepHeight = 1.0 / numSamples;\r\n               
+        \r\n                float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z *
+        _HeightScale;\r\n                float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        float2 finalUV = prevUV * weight + currentUV * (1.0 - weight);\r\n               
+        \r\n                outHeight = heightMapValue; \r\n                \r\n               
+        return finalUV;\r\n            }\r\n\r\n            frag_out frag (v2f i)
+        {\r\n                float3 viewDirTS = normalize(i.viewDirTS);\r\n               
+        float finalHeight;\r\n                \r\n                float2 offsetUV
+        = ParallaxOcclusionMapping(i.uv, viewDirTS, finalHeight);\r\n               
+        \r\n                frag_out o;\r\n\r\n                o.color = tex2D(_MainTex,
+        offsetUV);\r\n\r\n                float depthOffset = (1.0 - finalHeight)
+        * _HeightScale;\r\n                float viewSpaceZOffset = depthOffset /
+        viewDirTS.z;\r\n                float newViewZ = i.posView.z - viewSpaceZOffset;\r\n               
+        float4 clipPos = mul(UNITY_MATRIX_P, float4(i.posView.xy, newViewZ, i.posView.w));\r\n               
+        o.depth = clipPos.z / clipPos.w;\r\n\r\n                return o;\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -515,6 +576,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -544,6 +611,67 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepthWrite\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            ZTest LEqual\r\n           
+        ZWrite On\r\n\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n            #pragma target 5.0\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n               
+        float4 posView : TEXCOORD3;\r\n            };\r\n            \r\n           
+        struct frag_out {\r\n                fixed4 color : SV_Target;\r\n               
+        float depth : SV_DepthLessEqual;\r\n            };\r\n\r\n            v2f
+        vert (appdata v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);\r\n                \r\n               
+        o.posView = mul(UNITY_MATRIX_MV, v.vertex); \r\n\r\n                float3
+        objViewDir = ObjSpaceViewDir(v.vertex);\r\n                float3x3 objToTangent
+        = float3x3(v.tangent.xyz, cross(v.normal, v.tangent.xyz) * v.tangent.w, v.normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS, out float outHeight)
+        {\r\n                float minSamples = _MaxSamples * 0.5;\r\n               
+        float numSamples = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1),
+        viewDirTS)));\r\n                float stepHeight = 1.0 / numSamples;\r\n               
+        \r\n                float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z *
+        _HeightScale;\r\n                float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        float2 finalUV = prevUV * weight + currentUV * (1.0 - weight);\r\n               
+        \r\n                outHeight = heightMapValue; \r\n                \r\n               
+        return finalUV;\r\n            }\r\n\r\n            frag_out frag (v2f i)
+        {\r\n                float3 viewDirTS = normalize(i.viewDirTS);\r\n               
+        float finalHeight;\r\n                \r\n                float2 offsetUV
+        = ParallaxOcclusionMapping(i.uv, viewDirTS, finalHeight);\r\n               
+        \r\n                frag_out o;\r\n\r\n                o.color = tex2D(_MainTex,
+        offsetUV);\r\n\r\n                float depthOffset = (1.0 - finalHeight)
+        * _HeightScale;\r\n                float viewSpaceZOffset = depthOffset /
+        viewDirTS.z;\r\n                float newViewZ = i.posView.z - viewSpaceZOffset;\r\n               
+        float4 clipPos = mul(UNITY_MATRIX_P, float4(i.posView.xy, newViewZ, i.posView.w));\r\n               
+        o.depth = clipPos.z / clipPos.w;\r\n\r\n                return o;\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -788,11 +916,38 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/MipMapLevel\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n       
+        _mipMap (\"MipMap\", float) = 1.0\r\n    }\r\n    SubShader\r\n    {\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            sampler2D _MainTex;\r\n           
+        float _mipMap;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                // Basic object to clip
+        space transformation\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        \r\n                float4 textureLookup = float4(uv, 0.0, _mipMap);\r\n               
+        \r\n                fixed3 color = tex2Dlod(_MainTex, textureLookup);\r\n\r\n               
+        return fixed4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -898,6 +1053,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/MipMapLevel\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n       
+        _mipMap (\"MipMap\", float) = 1.0\r\n    }\r\n    SubShader\r\n    {\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            sampler2D _MainTex;\r\n           
+        float _mipMap;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                // Basic object to clip
+        space transformation\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        \r\n                float4 textureLookup = float4(uv, 0.0, _mipMap);\r\n               
+        \r\n                fixed3 color = tex2Dlod(_MainTex, textureLookup);\r\n\r\n               
+        return fixed4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -1085,6 +1261,39 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/TriplanarMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        [NoScaleOffset]_MainTex (\"Texture\", 2D)
+        = \"white\" {}\r\n        _Sharpness (\"Sharpness\", Range(1, 64)) = 2.0\r\n       
+        _MainTexScale (\"Texture Scale\", Float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Tags { \"RenderType\"=\"Opaque\" }\r\n\r\n        Pass\r\n       
+        {\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _MainTex;\r\n            float _Sharpness;\r\n            float
+        _MainTexScale;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n                float3 normal : NORMAL;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 localPos : TEXCOORD0;\r\n                float3 normal : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.localPos = v.vertex;\r\n               
+        o.normal = v.normal;\r\n                return o;\r\n            }\r\n\r\n           
+        half3 triplanarColor(float3 pos, float3 normal) {\r\n                float3
+        weights = abs(normal);\r\n                weights = pow(weights, _Sharpness);\r\n               
+        weights /= (weights.x + weights.y + weights.z);\r\n\r\n                float3
+        direction = sign(normal);\r\n\r\n                float2 uvX = float2(pos.z
+        * direction.x, pos.y) * _MainTexScale;\r\n                float2 uvY = float2(pos.x
+        * direction.y, pos.z) * _MainTexScale;\r\n                float2 uvZ = float2(pos.x
+        * -direction.z, pos.y) * _MainTexScale;\r\n\r\n                half4 colX
+        = tex2D(_MainTex, uvX);\r\n                half4 colY = tex2D(_MainTex, uvY);\r\n               
+        half4 colZ = tex2D(_MainTex, uvZ);\r\n\r\n                half4 finalCol
+        = colX * weights.x + colY * weights.y + colZ * weights.z;\r\n               
+        return finalCol;\r\n            }\r\n\r\n            half4 frag (v2f i) :
+        SV_Target {\r\n                half3 color = triplanarColor(i.localPos, i.normal);\r\n\r\n               
+        return half4 (color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1127,6 +1336,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1156,6 +1371,39 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/TriplanarMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        [NoScaleOffset]_MainTex (\"Texture\", 2D)
+        = \"white\" {}\r\n        _Sharpness (\"Sharpness\", Range(1, 64)) = 2.0\r\n       
+        _MainTexScale (\"Texture Scale\", Float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Tags { \"RenderType\"=\"Opaque\" }\r\n\r\n        Pass\r\n       
+        {\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _MainTex;\r\n            float _Sharpness;\r\n            float
+        _MainTexScale;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n                float3 normal : NORMAL;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float3 localPos : TEXCOORD0;\r\n                float3 normal : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.localPos = v.vertex;\r\n               
+        o.normal = v.normal;\r\n                return o;\r\n            }\r\n\r\n           
+        half3 triplanarColor(float3 pos, float3 normal) {\r\n                float3
+        weights = abs(normal);\r\n                weights = pow(weights, _Sharpness);\r\n               
+        weights /= (weights.x + weights.y + weights.z);\r\n\r\n                float3
+        direction = sign(normal);\r\n\r\n                float2 uvX = float2(pos.z
+        * direction.x, pos.y) * _MainTexScale;\r\n                float2 uvY = float2(pos.x
+        * direction.y, pos.z) * _MainTexScale;\r\n                float2 uvZ = float2(pos.x
+        * -direction.z, pos.y) * _MainTexScale;\r\n\r\n                half4 colX
+        = tex2D(_MainTex, uvX);\r\n                half4 colY = tex2D(_MainTex, uvY);\r\n               
+        half4 colZ = tex2D(_MainTex, uvZ);\r\n\r\n                half4 finalCol
+        = colX * weights.x + colY * weights.y + colZ * weights.z;\r\n               
+        return finalCol;\r\n            }\r\n\r\n            half4 frag (v2f i) :
+        SV_Target {\r\n                half3 color = triplanarColor(i.localPos, i.normal);\r\n\r\n               
+        return half4 (color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -1448,6 +1696,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping-SF1\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        0.0, uv.y, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1490,6 +1761,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1519,6 +1796,29 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping-SF1\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        0.0, uv.y, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2146,11 +2446,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2256,6 +2579,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -2435,6 +2775,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex);\r\n\r\n                float3 objViewDir = ObjSpaceViewDir(v.vertex);\r\n\r\n               
+        float3 normal = v.normal;\r\n                float3 tangent = v.tangent.xyz;\r\n               
+        float3 binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n               
+        float3x3 objToTangent = float3x3(tangent, binormal, normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS) {\r\n               
+        float minSamples = _MaxSamples * 0.5;\r\n                float numSamples
+        = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1), viewDirTS)));\r\n               
+        float stepHeight = 1.0 / numSamples;\r\n                \r\n               
+        float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        return prevUV * weight + currentUV * (1.0 - weight);\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 offsetUV = ParallaxOcclusionMapping(i.uv,
+        normalize(i.viewDirTS));\r\n                \r\n                fixed3 color
+        = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2477,6 +2867,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2506,6 +2902,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex);\r\n\r\n                float3 objViewDir = ObjSpaceViewDir(v.vertex);\r\n\r\n               
+        float3 normal = v.normal;\r\n                float3 tangent = v.tangent.xyz;\r\n               
+        float3 binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n               
+        float3x3 objToTangent = float3x3(tangent, binormal, normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS) {\r\n               
+        float minSamples = _MaxSamples * 0.5;\r\n                float numSamples
+        = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1), viewDirTS)));\r\n               
+        float stepHeight = 1.0 / numSamples;\r\n                \r\n               
+        float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        return prevUV * weight + currentUV * (1.0 - weight);\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 offsetUV = ParallaxOcclusionMapping(i.uv,
+        normalize(i.viewDirTS));\r\n                \r\n                fixed3 color
+        = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -2744,6 +3190,35 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/MipMapSize\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        uv.x *= 1.5;\r\n\r\n                float isSidebar = step(1.0, uv.x);\r\n\r\n               
+        float mipLevel = floor(log2(1.0 / (1.0001 - uv.y))) + 2; \r\n               
+        mipLevel = lerp(1.0, mipLevel, isSidebar);\r\n                \r\n               
+        float2 sidebarUV;\r\n                sidebarUV.x = (uv.x - 1.0) * pow(2.0,
+        mipLevel - 1);\r\n                sidebarUV.y = frac(uv.y * pow(2.0, mipLevel
+        - 1));\r\n\r\n                float2 lookupUV = lerp(uv, sidebarUV, isSidebar);\r\n\r\n               
+        float outOfBounds = step(1.0, sidebarUV.x) * isSidebar;\r\n               
+        clip(0.5 - outOfBounds);\r\n                \r\n                float4 textureLookup
+        = float4(lookupUV, 0.0, mipLevel);\r\n                \r\n               
+        fixed3 color = tex2Dlod(_MainTex, textureLookup);\r\n                // color
+        = fixed3(mipLevel * 0.1, 0.0, 0.0); // MipMap debug\r\n                //
+        color = fixed3(lookupUV, 0.0); // Lookup debug\r\n\r\n                return
+        fixed4(color, 1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n   
+        }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -2754,6 +3229,12 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2859,6 +3340,35 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/MipMapSize\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 uv = i.uv;\r\n               
+        uv.x *= 1.5;\r\n\r\n                float isSidebar = step(1.0, uv.x);\r\n\r\n               
+        float mipLevel = floor(log2(1.0 / (1.0001 - uv.y))) + 2; \r\n               
+        mipLevel = lerp(1.0, mipLevel, isSidebar);\r\n                \r\n               
+        float2 sidebarUV;\r\n                sidebarUV.x = (uv.x - 1.0) * pow(2.0,
+        mipLevel - 1);\r\n                sidebarUV.y = frac(uv.y * pow(2.0, mipLevel
+        - 1));\r\n\r\n                float2 lookupUV = lerp(uv, sidebarUV, isSidebar);\r\n\r\n               
+        float outOfBounds = step(1.0, sidebarUV.x) * isSidebar;\r\n               
+        clip(0.5 - outOfBounds);\r\n                \r\n                float4 textureLookup
+        = float4(lookupUV, 0.0, mipLevel);\r\n                \r\n               
+        fixed3 color = tex2Dlod(_MainTex, textureLookup);\r\n                // color
+        = fixed3(mipLevel * 0.1, 0.0, 0.0); // MipMap debug\r\n                //
+        color = fixed3(lookupUV, 0.0); // Lookup debug\r\n\r\n                return
+        fixed4(color, 1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n   
+        }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -3009,11 +3519,67 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex);\r\n\r\n                float3 objViewDir = ObjSpaceViewDir(v.vertex);\r\n\r\n               
+        float3 normal = v.normal;\r\n                float3 tangent = v.tangent.xyz;\r\n               
+        float3 binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n               
+        float3x3 objToTangent = float3x3(tangent, binormal, normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS) {\r\n               
+        float minSamples = _MaxSamples * 0.5;\r\n                float numSamples
+        = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1), viewDirTS)));\r\n               
+        float stepHeight = 1.0 / numSamples;\r\n                \r\n               
+        float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        return prevUV * weight + currentUV * (1.0 - weight);\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 offsetUV = ParallaxOcclusionMapping(i.uv,
+        normalize(i.viewDirTS));\r\n                \r\n                fixed3 color
+        = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3119,6 +3685,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Albedo\", 2D) = \"white\" {}\r\n       
+        [NoScaleOffset]_HeightMap (\"Heightmap\", 2D) = \"black\" {}\r\n        _HeightScale
+        (\"Height Scale\", Range(0, 1)) = 0.05\r\n        _MaxSamples (\"Max Samples\",
+        Range(1, 64)) = 30\r\n    }\r\n    SubShader\r\n    {\r\n        Tags { \"RenderType\"=\"Opaque\"
+        }\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma
+        vertex vert\r\n            #pragma fragment frag\r\n            #include
+        \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n            float4
+        _MainTex_ST;\r\n            sampler2D _HeightMap;\r\n            float _HeightScale;\r\n           
+        float _MaxSamples;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n               
+        float3 normal : NORMAL;\r\n                float4 tangent : TANGENT;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex);\r\n\r\n                float3 objViewDir = ObjSpaceViewDir(v.vertex);\r\n\r\n               
+        float3 normal = v.normal;\r\n                float3 tangent = v.tangent.xyz;\r\n               
+        float3 binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n               
+        float3x3 objToTangent = float3x3(tangent, binormal, normal);\r\n               
+        o.viewDirTS = mul(objToTangent, objViewDir);\r\n\r\n                return
+        o;\r\n            }\r\n\r\n            float sampleHeightmap(float2 uv) {\r\n               
+        return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n            float2
+        ParallaxOcclusionMapping(float2 uv, float3 viewDirTS) {\r\n               
+        float minSamples = _MaxSamples * 0.5;\r\n                float numSamples
+        = lerp(_MaxSamples, minSamples, abs(dot(float3(0, 0, 1), viewDirTS)));\r\n               
+        float stepHeight = 1.0 / numSamples;\r\n                \r\n               
+        float2 parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        float2 uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        float currentLayerHeight = 1.0;\r\n                float2 currentUV = uv;\r\n               
+        float heightMapValue = sampleHeightmap(currentUV);\r\n\r\n               
+        // Raymarch\r\n                [loop]\r\n                for (int i = 0;
+        i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                // Refinement: Linear Interpolation between the
+        last two steps\r\n                float2 prevUV = currentUV - uvOffsetStep;\r\n               
+        float nextH = heightMapValue - currentLayerHeight;\r\n                float
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        float weight = nextH / (nextH - prevH);\r\n                \r\n               
+        return prevUV * weight + currentUV * (1.0 - weight);\r\n            }\r\n\r\n           
+        fixed4 frag (v2f i) : SV_Target {\r\n                float2 offsetUV = ParallaxOcclusionMapping(i.uv,
+        normalize(i.viewDirTS));\r\n                \r\n                fixed3 color
+        = tex2D(_MainTex, offsetUV);\r\n                return fixed4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -3310,6 +3926,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3352,6 +3991,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3381,6 +4026,29 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3638,6 +4306,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3323022602836515612, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3680,6 +4353,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3709,6 +4388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -3937,11 +4621,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4047,6 +4742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -4194,11 +4894,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4304,6 +5015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -4451,11 +5167,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4561,6 +5300,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -4708,6 +5464,25 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n           
+        float4 _MainTex_ST; // Required to get the sampler state (-> _ST)\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex); // Includes tiling and offset\r\n                return o;\r\n           
+        }\r\n\r\n            fixed4 frag (v2f i) : SV_Target {\r\n               
+        fixed4 col = tex2D(_MainTex, i.uv);\r\n                return col;\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
@@ -4719,6 +5494,12 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4824,6 +5605,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _MainTex;\r\n           
+        float4 _MainTex_ST; // Required to get the sampler state (-> _ST)\r\n\r\n           
+        struct appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2f {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
+        o.pos = UnityObjectToClipPos(v.vertex);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _MainTex); // Includes tiling and offset\r\n                return o;\r\n           
+        }\r\n\r\n            fixed4 frag (v2f i) : SV_Target {\r\n               
+        fixed4 col = tex2D(_MainTex, i.uv);\r\n                return col;\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -4993,11 +5793,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5103,6 +5914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -5250,11 +6066,34 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
     - target: {fileID: 2137213028586095986, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5360,6 +6199,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -5549,6 +6405,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3883131558245652288, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
     - target: {fileID: 4007255147528135500, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5591,6 +6470,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4658141203783412723, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
     - target: {fileID: 4768175009745845452, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5620,6 +6505,29 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5011955837517992159, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        #include \"UnityCG.cginc\"\r\n\r\n            sampler2D _albedo;\r\n           
+        float _modelScale;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                float4 pos = v.vertex;\r\n               
+        float2 uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            fixed4 frag (v2f i) : SV_Target
+        {\r\n                fixed4 col = tex2D(_albedo, i.uv);\r\n               
+        return col;\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
