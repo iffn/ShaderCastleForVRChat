@@ -19,7 +19,7 @@ Shader "ShaderCastle/Implementations/Environment/TriplanarTerrain"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
-            #include "Lighting.cginc" // Required for _LightColor0
+            #include "Lighting.cginc"
 
             sampler2D _TopTexture;
             sampler2D _CliffTexture;
