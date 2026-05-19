@@ -77,10 +77,13 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _zoom: 2
+    - _lineThickness: 0.03
+    - _zoom: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _colorA: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-    - _colorB: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _colorA: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _colorB: {r: 0.26666668, g: 0.26666668, b: 0.26666668, a: 1}
+    - _lineColor: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 1}
+    - _wallColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

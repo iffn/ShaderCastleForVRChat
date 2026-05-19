@@ -56,7 +56,9 @@ Shader "ShaderCastle/Tutorials/MathFunctions/TestFunction"
 
                 // Function to plot
                 // https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-intrinsic-functions
-                float function = x * x * (3.0 - 2.0 * x);
+                
+                float sawtooth = abs(frac(x) - 0.5) * 2.0;
+                float function = step(0.9, sawtooth);
                 //float function = _a * (_c + (x - _d)) / _b; // a*(c+(x-d)/b)
 
                 // Plotting the function

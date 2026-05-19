@@ -2,14 +2,17 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/CheckerboardFloor"
 {
     Properties
     {
+        _zoom ("Zoom", float) = 1
+        _lineThickness ("Line thickness", float) = 0.05
         _colorA ("Color A", color) = (1,1,1,1)
         _colorB ("Color B", color) = (0,0,0,1)
-        _zoom ("Zoom", float) = 1
+        _lineColor ("Line color", color) = (0,0,0,1)
     }
     SubShader
     {
         Pass
         {
+            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -18,6 +21,8 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/CheckerboardFloor"
             #include "Lighting.cginc"
 
             float _zoom;
+            float _lineThickness;
+            half4 _lineColor;
             half4 _colorA;
             half4 _colorB;
 
@@ -40,14 +45,6 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/CheckerboardFloor"
                 o.worldNormal = normalize(o.worldNormal);
                 return o;
             }
-            
-            float stepPattern(float x){
-                float y = frac(x * 0.5);
-                y -= 0.5;
-                y = sign(y);
-                y = saturate(y);
-                return y;
-            }
 
             half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
@@ -56,16 +53,17 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/CheckerboardFloor"
 
                 pos2D *= _zoom;
 
-                half3 black = (0.0, 0.0, 0.0);
-                half3 white = (1.0, 1.0, 1.0);
+                float2 checkerboardPattern2 = saturate(sign(frac(pos2D * 0.5) - 0.5));
+                float checkerboardPattern = abs(checkerboardPattern2.x - checkerboardPattern2.y);
 
-                
-                float xStep = stepPattern(pos2D.x);
-                float yStep = stepPattern(-pos2D.y);
-                float pattern = abs(xStep - yStep);
+                float2 sawtooth2 = abs(frac(pos2D) - 0.5) * 2.0;
+                float2 linePattern2 = step(1.0 - _lineThickness, sawtooth2);
+                float linePattern = saturate(linePattern2.x + linePattern2.y);
 
-                half3 albedo = lerp(_colorA, _colorB, pattern);
+                half3 albedo = lerp(_colorA, _colorB, checkerboardPattern);
+                albedo = lerp(albedo, _lineColor, linePattern);
 
+                // Light
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
                 half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
