@@ -9,7 +9,7 @@ Shader "ShaderCastle/Tutorials/Raymarching/Boolean/RaymarchedUnion-Included"
 
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" "Queue"="Geometry" }//
+		Tags { "RenderType"="Opaque" "Queue"="Geometry" }
 
         Cull Front
 

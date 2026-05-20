@@ -106,7 +106,7 @@ public class ShaderCodeDisplay : MonoBehaviour
 
         // Hardcoded regex patterns
         string stringPattern = @"(""[^""\\]*(?:\\.[^""\\]*)*"")";
-        string keywordPattern = @"(?<!<[^>]*)\b(Shader|SubShader|Pass|CGPROGRAM|ENDCG|vertex|fragment|float|fixed|v2f|appdata|Properties|sampler2D|struct)\b(?![^>]*>)";
+        string keywordPattern = @"\b(Shader|SubShader|Pass|CGPROGRAM|ENDCG|vertex|fragment|float\d?|half\d?|fixed\d?|v2f|appdata|Properties|sampler2D|struct)\b";
         string commentPattern = @"(//.*)";
 
         // Clean out any existing color tags first to avoid nesting issues
@@ -117,7 +117,10 @@ public class ShaderCodeDisplay : MonoBehaviour
         coloredCode = System.Text.RegularExpressions.Regex.Replace(coloredCode, stringPattern, $"<color={stringColor}>$1</color>");
 
         // 2. Colorize Keywords
-        coloredCode = System.Text.RegularExpressions.Regex.Replace(coloredCode, keywordPattern, $"<color={keywordColor}>$1</color>");
+        coloredCode = System.Text.RegularExpressions.Regex.Replace(coloredCode, keywordPattern, m => {
+            if (m.Index > 0 && coloredCode[m.Index - 1] == '=') return m.Value;
+            return $"<color={keywordColor}>{m.Value}</color>";
+        });
 
         // 3. Colorize Comments last and strip nested tags inside them
         coloredCode = System.Text.RegularExpressions.Regex.Replace(coloredCode, commentPattern, m => {
