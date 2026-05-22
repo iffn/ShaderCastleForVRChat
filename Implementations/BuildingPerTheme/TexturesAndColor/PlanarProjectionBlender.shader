@@ -11,7 +11,6 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
 
         Pass
         {
-            Cull Off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
