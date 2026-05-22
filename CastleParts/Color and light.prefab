@@ -375,6 +375,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 102241425989218888, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 102241425989218888, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
     - target: {fileID: 239652922418919730, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -600,6 +606,88 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1039503786302875299, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/TextureDisplayWithTiling\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _MainTex;\r\n            <color=#569CD6>float4</color>
+        _MainTex_ST; <color=#57A64A>// Required to get the sampler state (-> _ST)\r</color>\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex); <color=#57A64A>// Includes tiling and
+        offset\r</color>\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>fixed4</color> col = tex2D(_MainTex,
+        i.uv);\r\n                return col;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058316506886864041, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/UVMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _modelScale (<color=#D69D85>\"Model
+        scale\"</color>, <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
+        Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
+        _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                <color=#569CD6>float4</color>
+        pos = v.<color=#569CD6>vertex</color>;\r\n                <color=#569CD6>float2</color>
+        uv = v.uv - <color=#569CD6>float2</color>(0.5, 0.5);\r\n                <color=#569CD6>float4</color>
+        uvPos = <color=#569CD6>float4</color>(uv.x, uv.y, 0.0, 0.0);\r\n               
+        \r\n                <color=#569CD6>float</color> lerpValue = sin(_Time.y)
+        * 0.5 + 0.5;\r\n                \r\n                <color=#569CD6>float4</color>
+        finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>fixed4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>fixed4</color>
+        col = tex2D(_albedo, i.uv);\r\n                return col;\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141646210634971267, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/TextureDisplay\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = tex2D(_MainTex, i.uv);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1164335230266901482, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -684,6 +772,74 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364178218379773292, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset]_HeightMap
+        (<color=#D69D85>\"Heightmap\"</color>, 2D) = <color=#D69D85>\"black\"</color>
+        {}\r\n        _HeightScale (<color=#D69D85>\"Height Scale\"</color>, Range(0,
+        1)) = 0.05\r\n        _MaxSamples (<color=#D69D85>\"Max Samples\"</color>,
+        Range(1, 64)) = 30\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        }\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _MainTex;\r\n            <color=#569CD6>float4</color>
+        _MainTex_ST;\r\n            <color=#569CD6>sampler2D</color> _HeightMap;\r\n           
+        <color=#569CD6>float</color> _HeightScale;\r\n            <color=#569CD6>float</color>
+        _MaxSamples;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n                <color=#569CD6>float4</color>
+        tangent : TANGENT;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float2</color> uv :
+        TEXCOORD0;\r\n                <color=#569CD6>float3</color> viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);\r\n\r\n                <color=#569CD6>float3</color>
+        objViewDir = ObjSpaceViewDir(v.<color=#569CD6>vertex</color>);\r\n\r\n               
+        <color=#569CD6>float3</color> normal = v.normal;\r\n                <color=#569CD6>float3</color>
+        tangent = v.tangent.xyz;\r\n                <color=#569CD6>float3</color>
+        binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n                float3x3
+        objToTangent = float3x3(tangent, binormal, normal);\r\n                o.viewDirTS
+        = mul(objToTangent, objViewDir);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>float</color> sampleHeightmap(<color=#569CD6>float2</color>
+        uv) {\r\n                return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n           
+        <color=#569CD6>float2</color> ParallaxOcclusionMapping(<color=#569CD6>float2</color>
+        uv, <color=#569CD6>float3</color> viewDirTS) {\r\n                <color=#569CD6>float</color>
+        minSamples = _MaxSamples * 0.5;\r\n                <color=#569CD6>float</color>
+        numSamples = lerp(_MaxSamples, minSamples, abs(dot(<color=#569CD6>float3</color>(0,
+        0, 1), viewDirTS)));\r\n                <color=#569CD6>float</color> stepHeight
+        = 1.0 / numSamples;\r\n                \r\n                <color=#569CD6>float2</color>
+        parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        <color=#569CD6>float2</color> uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        <color=#569CD6>float</color> currentLayerHeight = 1.0;\r\n               
+        <color=#569CD6>float2</color> currentUV = uv;\r\n                <color=#569CD6>float</color>
+        heightMapValue = sampleHeightmap(currentUV);\r\n\r\n                <color=#57A64A>//
+        Raymarch\r</color>\n                [loop]\r\n                for (int i
+        = 0; i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                <color=#57A64A>// Refinement: Linear Interpolation
+        between the last two steps\r</color>\n                <color=#569CD6>float2</color>
+        prevUV = currentUV - uvOffsetStep;\r\n                <color=#569CD6>float</color>
+        nextH = heightMapValue - currentLayerHeight;\r\n                <color=#569CD6>float</color>
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        <color=#569CD6>float</color> weight = nextH / (nextH - prevH);\r\n               
+        \r\n                return prevUV * weight + currentUV * (1.0 - weight);\r\n           
+        }\r\n\r\n            <color=#569CD6>fixed4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float2</color> offsetUV
+        = ParallaxOcclusionMapping(i.uv, normalize(i.viewDirTS));\r\n               
+        \r\n                <color=#569CD6>fixed3</color> color = tex2D(_MainTex,
+        offsetUV);\r\n                return <color=#569CD6>fixed4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 1421559116395023174, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -691,6 +847,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1421559116395023174, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
+    - target: {fileID: 1660981134026044785, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/TextureDisplay\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = tex2D(_MainTex, i.uv);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1763560249573531603, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -704,12 +884,12 @@ PrefabInstance:
     - target: {fileID: 1836414229888386681, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.358
+      value: 4.064
       objectReference: {fileID: 0}
     - target: {fileID: 1836414229888386681, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.256
       objectReference: {fileID: 0}
     - target: {fileID: 1839146441825953531, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -831,6 +1011,85 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346385267058965384, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/UVMapping-SF1\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _modelScale (<color=#D69D85>\"Model
+        scale\"</color>, <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
+        Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
+        _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                <color=#569CD6>float4</color>
+        pos = v.<color=#569CD6>vertex</color>;\r\n                <color=#569CD6>float2</color>
+        uv = v.uv - <color=#569CD6>float2</color>(0.5, 0.5);\r\n                <color=#569CD6>float4</color>
+        uvPos = <color=#569CD6>float4</color>(uv.x, 0.0, uv.y, 0.0);\r\n               
+        \r\n                <color=#569CD6>float</color> lerpValue = sin(_Time.y)
+        * 0.5 + 0.5;\r\n                \r\n                <color=#569CD6>float4</color>
+        finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>fixed4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>fixed4</color>
+        col = tex2D(_albedo, i.uv);\r\n                return col;\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416274730992132428, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/TriplanarMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        [NoScaleOffset]_MainTex
+        (<color=#D69D85>\"Texture\"</color>, 2D) = <color=#D69D85>\"white\"</color>
+        {}\r\n        _Sharpness (<color=#D69D85>\"Sharpness\"</color>, Range(1,
+        64)) = 2.0\r\n        _MainTexScale (<color=#D69D85>\"Texture Scale\"</color>,
+        Float) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n       
+        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        }\r\n\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n            <color=#569CD6>sampler2D</color>
+        _MainTex;\r\n            <color=#569CD6>float</color> _Sharpness;\r\n           
+        <color=#569CD6>float</color> _MainTexScale;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> localPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.localPos = v.<color=#569CD6>vertex</color>;\r\n                o.normal
+        = v.normal;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half3</color> triplanarColor(<color=#569CD6>float3</color>
+        pos, <color=#569CD6>float3</color> normal) {\r\n                <color=#569CD6>float3</color>
+        weights = abs(normal);\r\n                weights = pow(weights, _Sharpness);\r\n               
+        weights /= (weights.x + weights.y + weights.z);\r\n\r\n                <color=#569CD6>float3</color>
+        direction = sign(normal);\r\n\r\n                <color=#569CD6>float2</color>
+        uvX = <color=#569CD6>float2</color>(pos.z * direction.x, pos.y) * _MainTexScale;\r\n               
+        <color=#569CD6>float2</color> uvY = <color=#569CD6>float2</color>(pos.x *
+        direction.y, pos.z) * _MainTexScale;\r\n                <color=#569CD6>float2</color>
+        uvZ = <color=#569CD6>float2</color>(pos.x * -direction.z, pos.y) * _MainTexScale;\r\n\r\n               
+        <color=#569CD6>half4</color> colX = tex2D(_MainTex, uvX);\r\n               
+        <color=#569CD6>half4</color> colY = tex2D(_MainTex, uvY);\r\n               
+        <color=#569CD6>half4</color> colZ = tex2D(_MainTex, uvZ);\r\n\r\n               
+        <color=#569CD6>half4</color> finalCol = colX * weights.x + colY * weights.y
+        + colZ * weights.z;\r\n                return finalCol;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>half3</color> color = triplanarColor(i.localPos,
+        i.normal);\r\n\r\n                return <color=#569CD6>half4</color> (color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 2460839307819796539, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1152,12 +1411,12 @@ PrefabInstance:
     - target: {fileID: 3254877990593727135, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.99999857
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3254877990593727135, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00000023841858
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 3254877990593727135, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1299,6 +1558,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.449
+      objectReference: {fileID: 0}
     - target: {fileID: 3705513675810732243, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1354,6 +1618,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4005709307621856300, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4065649881568738925, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1443,6 +1712,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151993154121773800, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepthWrite\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset]_HeightMap
+        (<color=#D69D85>\"Heightmap\"</color>, 2D) = <color=#D69D85>\"black\"</color>
+        {}\r\n        _HeightScale (<color=#D69D85>\"Height Scale\"</color>, Range(0,
+        1)) = 0.05\r\n        _MaxSamples (<color=#D69D85>\"Max Samples\"</color>,
+        Range(1, 64)) = 30\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        }\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            ZTest
+        LEqual\r\n            ZWrite On\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #pragma target 5.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _MainTex;\r\n            <color=#569CD6>float4</color>
+        _MainTex_ST;\r\n            <color=#569CD6>sampler2D</color> _HeightMap;\r\n           
+        <color=#569CD6>float</color> _HeightScale;\r\n            <color=#569CD6>float</color>
+        _MaxSamples;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n                <color=#569CD6>float4</color>
+        tangent : TANGENT;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float2</color> uv :
+        TEXCOORD0;\r\n                <color=#569CD6>float3</color> viewDirTS : TEXCOORD1;\r\n               
+        <color=#569CD6>float4</color> posView : TEXCOORD3;\r\n            };\r\n           
+        \r\n            <color=#569CD6>struct</color> frag_out {\r\n               
+        <color=#569CD6>fixed4</color> color : SV_Target;\r\n                <color=#569CD6>float</color>
+        depth : SV_DepthLessEqual;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);\r\n                \r\n               
+        o.posView = mul(UNITY_MATRIX_MV, v.<color=#569CD6>vertex</color>); \r\n\r\n               
+        <color=#569CD6>float3</color> objViewDir = ObjSpaceViewDir(v.<color=#569CD6>vertex</color>);\r\n               
+        float3x3 objToTangent = float3x3(v.tangent.xyz, cross(v.normal, v.tangent.xyz)
+        * v.tangent.w, v.normal);\r\n                o.viewDirTS = mul(objToTangent,
+        objViewDir);\r\n\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>float</color> sampleHeightmap(<color=#569CD6>float2</color>
+        uv) {\r\n                return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n           
+        <color=#569CD6>float2</color> ParallaxOcclusionMapping(<color=#569CD6>float2</color>
+        uv, <color=#569CD6>float3</color> viewDirTS, out <color=#569CD6>float</color>
+        outHeight) {\r\n                <color=#569CD6>float</color> minSamples =
+        _MaxSamples * 0.5;\r\n                <color=#569CD6>float</color> numSamples
+        = lerp(_MaxSamples, minSamples, abs(dot(<color=#569CD6>float3</color>(0,
+        0, 1), viewDirTS)));\r\n                <color=#569CD6>float</color> stepHeight
+        = 1.0 / numSamples;\r\n                \r\n                <color=#569CD6>float2</color>
+        parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        <color=#569CD6>float2</color> uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        <color=#569CD6>float</color> currentLayerHeight = 1.0;\r\n               
+        <color=#569CD6>float2</color> currentUV = uv;\r\n                <color=#569CD6>float</color>
+        heightMapValue = sampleHeightmap(currentUV);\r\n\r\n                <color=#57A64A>//
+        Raymarch\r</color>\n                [loop]\r\n                for (int i
+        = 0; i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                <color=#57A64A>// Refinement: Linear Interpolation
+        between the last two steps\r</color>\n                <color=#569CD6>float2</color>
+        prevUV = currentUV - uvOffsetStep;\r\n                <color=#569CD6>float</color>
+        nextH = heightMapValue - currentLayerHeight;\r\n                <color=#569CD6>float</color>
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        <color=#569CD6>float</color> weight = nextH / (nextH - prevH);\r\n               
+        \r\n                <color=#569CD6>float2</color> finalUV = prevUV * weight
+        + currentUV * (1.0 - weight);\r\n                \r\n                outHeight
+        = heightMapValue; \r\n                \r\n                return finalUV;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        <color=#569CD6>float3</color> viewDirTS = normalize(i.viewDirTS);\r\n               
+        <color=#569CD6>float</color> finalHeight;\r\n                \r\n               
+        <color=#569CD6>float2</color> offsetUV = ParallaxOcclusionMapping(i.uv, viewDirTS,
+        finalHeight);\r\n                \r\n                frag_out o;\r\n\r\n               
+        o.color = tex2D(_MainTex, offsetUV);\r\n\r\n                <color=#569CD6>float</color>
+        depthOffset = (1.0 - finalHeight) * _HeightScale;\r\n                <color=#569CD6>float</color>
+        viewSpaceZOffset = depthOffset / viewDirTS.z;\r\n                <color=#569CD6>float</color>
+        newViewZ = i.posView.z - viewSpaceZOffset;\r\n                <color=#569CD6>float4</color>
+        clipPos = mul(UNITY_MATRIX_P, <color=#569CD6>float4</color>(i.posView.xy,
+        newViewZ, i.posView.w));\r\n                o.depth = clipPos.z / clipPos.w;\r\n\r\n               
+        return o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 4160506786977309663, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1464,7 +1813,7 @@ PrefabInstance:
     - target: {fileID: 4230030835888712121, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.931
+      value: -6.366
       objectReference: {fileID: 0}
     - target: {fileID: 4230030835888712121, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1572,6 +1921,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4462734830873575919, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
+    - target: {fileID: 4634436759973258212, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/UVMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _modelScale (<color=#D69D85>\"Model
+        scale\"</color>, <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
+        Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
+        _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                <color=#569CD6>float4</color>
+        pos = v.<color=#569CD6>vertex</color>;\r\n                <color=#569CD6>float2</color>
+        uv = v.uv - <color=#569CD6>float2</color>(0.5, 0.5);\r\n                <color=#569CD6>float4</color>
+        uvPos = <color=#569CD6>float4</color>(uv.x, uv.y, 0.0, 0.0);\r\n               
+        \r\n                <color=#569CD6>float</color> lerpValue = sin(_Time.y)
+        * 0.5 + 0.5;\r\n                \r\n                <color=#569CD6>float4</color>
+        finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>fixed4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>fixed4</color>
+        col = tex2D(_albedo, i.uv);\r\n                return col;\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4637703837595370387, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1647,6 +2028,67 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844639289340944327, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/MipMapSize\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n               
+        uv.x *= 1.5;\r\n\r\n                <color=#569CD6>float</color> isSidebar
+        = step(1.0, uv.x);\r\n\r\n                <color=#569CD6>float</color> mipLevel
+        = floor(log2(1.0 / (1.0001 - uv.y))) + 2; \r\n                mipLevel =
+        lerp(1.0, mipLevel, isSidebar);\r\n                \r\n                <color=#569CD6>float2</color>
+        sidebarUV;\r\n                sidebarUV.x = (uv.x - 1.0) * pow(2.0, mipLevel
+        - 1);\r\n                sidebarUV.y = frac(uv.y * pow(2.0, mipLevel - 1));\r\n\r\n               
+        <color=#569CD6>float2</color> lookupUV = lerp(uv, sidebarUV, isSidebar);\r\n\r\n               
+        <color=#569CD6>float</color> outOfBounds = step(1.0, sidebarUV.x) * isSidebar;\r\n               
+        clip(0.5 - outOfBounds);\r\n                \r\n                <color=#569CD6>float4</color>
+        textureLookup = <color=#569CD6>float4</color>(lookupUV, 0.0, mipLevel);\r\n               
+        \r\n                <color=#569CD6>fixed3</color> color = tex2Dlod(_MainTex,
+        textureLookup);\r\n                <color=#57A64A>// color = fixed3(mipLevel
+        * 0.1, 0.0, 0.0); // MipMap debug\r</color>\n                <color=#57A64A>//
+        color = fixed3(lookupUV, 0.0); // Lookup debug\r</color>\n\r\n               
+        return <color=#569CD6>fixed4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4969329228393971075, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/TextureDisplay\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = tex2D(_MainTex, i.uv);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4998140927889587938, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1738,6 +2180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427373913564327739, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5473283770605902916, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1953,7 +2400,7 @@ PrefabInstance:
     - target: {fileID: 6084451363467025262, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.686
+      value: -4.225
       objectReference: {fileID: 0}
     - target: {fileID: 6084451363467025262, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2038,12 +2485,12 @@ PrefabInstance:
     - target: {fileID: 6306015774182201652, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0100017
+      value: 1.239
       objectReference: {fileID: 0}
     - target: {fileID: 6306015774182201652, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6328504319998290645, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2190,7 +2637,7 @@ PrefabInstance:
     - target: {fileID: 6735760450290632052, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.819
+      value: -5.224
       objectReference: {fileID: 0}
     - target: {fileID: 6735760450290632052, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2217,6 +2664,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6871070447406390377, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset]_HeightMap
+        (<color=#D69D85>\"Heightmap\"</color>, 2D) = <color=#D69D85>\"black\"</color>
+        {}\r\n        _HeightScale (<color=#D69D85>\"Height Scale\"</color>, Range(0,
+        1)) = 0.05\r\n        _MaxSamples (<color=#D69D85>\"Max Samples\"</color>,
+        Range(1, 64)) = 30\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        }\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _MainTex;\r\n            <color=#569CD6>float4</color>
+        _MainTex_ST;\r\n            <color=#569CD6>sampler2D</color> _HeightMap;\r\n           
+        <color=#569CD6>float</color> _HeightScale;\r\n            <color=#569CD6>float</color>
+        _MaxSamples;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n                <color=#569CD6>float4</color>
+        tangent : TANGENT;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float2</color> uv :
+        TEXCOORD0;\r\n                <color=#569CD6>float3</color> viewDirTS : TEXCOORD1;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _MainTex);\r\n\r\n                <color=#569CD6>float3</color>
+        objViewDir = ObjSpaceViewDir(v.<color=#569CD6>vertex</color>);\r\n\r\n               
+        <color=#569CD6>float3</color> normal = v.normal;\r\n                <color=#569CD6>float3</color>
+        tangent = v.tangent.xyz;\r\n                <color=#569CD6>float3</color>
+        binormal = cross(normal, tangent) * v.tangent.w;\r\n\r\n                float3x3
+        objToTangent = float3x3(tangent, binormal, normal);\r\n                o.viewDirTS
+        = mul(objToTangent, objViewDir);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>float</color> sampleHeightmap(<color=#569CD6>float2</color>
+        uv) {\r\n                return tex2D(_HeightMap, uv).r;\r\n            }\r\n\r\n           
+        <color=#569CD6>float2</color> ParallaxOcclusionMapping(<color=#569CD6>float2</color>
+        uv, <color=#569CD6>float3</color> viewDirTS) {\r\n                <color=#569CD6>float</color>
+        minSamples = _MaxSamples * 0.5;\r\n                <color=#569CD6>float</color>
+        numSamples = lerp(_MaxSamples, minSamples, abs(dot(<color=#569CD6>float3</color>(0,
+        0, 1), viewDirTS)));\r\n                <color=#569CD6>float</color> stepHeight
+        = 1.0 / numSamples;\r\n                \r\n                <color=#569CD6>float2</color>
+        parallaxLimit = -viewDirTS.xy / viewDirTS.z * _HeightScale;\r\n               
+        <color=#569CD6>float2</color> uvOffsetStep = parallaxLimit / numSamples;\r\n\r\n               
+        <color=#569CD6>float</color> currentLayerHeight = 1.0;\r\n               
+        <color=#569CD6>float2</color> currentUV = uv;\r\n                <color=#569CD6>float</color>
+        heightMapValue = sampleHeightmap(currentUV);\r\n\r\n                <color=#57A64A>//
+        Raymarch\r</color>\n                [loop]\r\n                for (int i
+        = 0; i < numSamples; i++) {\r\n                    if (heightMapValue < currentLayerHeight)
+        {\r\n                        currentLayerHeight -= stepHeight;\r\n                       
+        currentUV += uvOffsetStep;\r\n                        heightMapValue = sampleHeightmap(currentUV);\r\n                   
+        } else {\r\n                        break;\r\n                    }\r\n               
+        }\r\n\r\n                <color=#57A64A>// Refinement: Linear Interpolation
+        between the last two steps\r</color>\n                <color=#569CD6>float2</color>
+        prevUV = currentUV - uvOffsetStep;\r\n                <color=#569CD6>float</color>
+        nextH = heightMapValue - currentLayerHeight;\r\n                <color=#569CD6>float</color>
+        prevH = sampleHeightmap(prevUV) - (currentLayerHeight + stepHeight);\r\n               
+        <color=#569CD6>float</color> weight = nextH / (nextH - prevH);\r\n               
+        \r\n                return prevUV * weight + currentUV * (1.0 - weight);\r\n           
+        }\r\n\r\n            <color=#569CD6>fixed4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float2</color> offsetUV
+        = ParallaxOcclusionMapping(i.uv, normalize(i.viewDirTS));\r\n               
+        \r\n                <color=#569CD6>fixed3</color> color = tex2D(_MainTex,
+        offsetUV);\r\n                return <color=#569CD6>fixed4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 6941558835414033164, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2231,6 +2746,35 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961930348887104151, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/MipMapLevel\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _mipMap (<color=#D69D85>\"MipMap\"</color>,
+        <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n           
+        <color=#569CD6>float</color> _mipMap;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float2</color> uv :
+        TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n               
+        \r\n                <color=#569CD6>float4</color> textureLookup = <color=#569CD6>float4</color>(uv,
+        0.0, _mipMap); <color=#57A64A>// 2D uvs, unused 3rd dimension, mip map level\r</color>\n               
+        \r\n                <color=#569CD6>fixed3</color> color = tex2Dlod(_MainTex,
+        textureLookup);\r\n\r\n                return <color=#569CD6>fixed4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7027304157444875798, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2382,6 +2926,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7382091195206155144, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7382091195206155144, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
     - target: {fileID: 7399290194367110624, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -2677,7 +3227,7 @@ PrefabInstance:
     - target: {fileID: 8693292800533742801, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.59
+      value: -3.069
       objectReference: {fileID: 0}
     - target: {fileID: 8693292800533742801, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2732,12 +3282,12 @@ PrefabInstance:
     - target: {fileID: 8772055881682378261, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.638
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 8772055881682378261, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8802733343286511612, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -3403,6 +3953,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3899787505314775872, guid: 83ae999c77b293e42b75b50f88c3b727,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 02834b1e45a460a4f8862321b86bf7fb, type: 2}
+    - target: {fileID: 3899787505314775872, guid: 83ae999c77b293e42b75b50f88c3b727,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1a9c9097732c5d428df6fed2dc949d7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3619,6 +4179,37 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 457713793754058778, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n\r\n            static const <color=#569CD6>float4</color>
+        K_HSV = <color=#569CD6>float4</color>(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\r\n           
+        \r\n            <color=#569CD6>half3</color> hsv2rgb(<color=#569CD6>half3</color>
+        hsv) {\r\n                <color=#569CD6>float3</color> p = abs(frac(hsv.xxx
+        + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n                <color=#569CD6>half3</color>
+        rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx), hsv.y);\r\n               
+        return rgb;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        hsv = <color=#569CD6>half3</color>(i.localPos.xyz + 0.5);\r\n               
+        <color=#569CD6>float3</color> color = hsv2rgb(hsv);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n                \r\n                return
+        <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 536202199223831690, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
       propertyPath: m_Name
@@ -3700,6 +4291,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339625579802290977, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorHSVCylinderGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n            \r\n            static const <color=#569CD6>float4</color>
+        K_HSV = <color=#569CD6>float4</color>(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\r\n           
+        <color=#569CD6>half3</color> hsv2rgb(<color=#569CD6>half3</color> hsv) {\r\n               
+        <color=#569CD6>float3</color> p = abs(frac(hsv.xxx + K_HSV.xyz) * 6.0 - K_HSV.www);\r\n               
+        <color=#569CD6>half3</color> rgb = hsv.z * lerp(K_HSV.xxx, saturate(p - K_HSV.xxx),
+        hsv.y);\r\n                return rgb;\r\n            }\r\n            \r\n           
+        static const <color=#569CD6>float4</color> K_RGB = <color=#569CD6>float4</color>(0.0,
+        -1.0 / 3.0, 2.0 / 3.0, -1.0);\r\n            <color=#569CD6>half3</color>
+        rgb2hsv(<color=#569CD6>half3</color> rgb) {\r\n                <color=#569CD6>float4</color>
+        p = lerp(<color=#569CD6>float4</color>(rgb.bg, K_RGB.wz), <color=#569CD6>float4</color>(rgb.gb,
+        K_RGB.xy), step(rgb.b, rgb.g));\r\n                <color=#569CD6>float4</color>
+        q = lerp(<color=#569CD6>float4</color>(p.xyw, rgb.r), <color=#569CD6>float4</color>(rgb.r,
+        p.yzx), step(p.x, rgb.r));\r\n                <color=#569CD6>float</color>
+        d = q.x - min(q.w, q.y);\r\n                <color=#569CD6>float</color>
+        e = 1.0e-10; <color=#57A64A>// Small epsilon to prevent division by zero\r</color>\n               
+        <color=#569CD6>half3</color> hsv = <color=#569CD6>half3</color>(abs(q.z +
+        (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\r\n                return
+        hsv;\r\n            }\r\n\r\n            <color=#569CD6>half4</color> frag
+        (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float</color>
+        angle = atan2(i.localPos.x, i.localPos.z) * 0.15915494309;\r\n               
+        <color=#569CD6>float</color> distance = length(i.localPos.xz) * 2;\r\n               
+        <color=#569CD6>float</color> height = i.localPos.y * 0.5 + 0.5;\r\n\r\n               
+        <color=#569CD6>half3</color> hsv = <color=#569CD6>half3</color>(angle, distance,
+        height);\r\n                <color=#569CD6>float3</color> color = hsv2rgb(hsv);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1405357207947256535, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
@@ -4076,6 +4712,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4506823187611865236, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Cull Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(i.localPos.xxx + 0.5);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4545178334799004149, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4238,6 +4898,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5467647808704968992, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half3</color>
+        oklab2rgb(<color=#569CD6>half3</color> lab) {\r\n                <color=#569CD6>float3</color>
+        lms;\r\n                lms.x = lab.x + 0.3963377774f * lab.y + 0.2158037573f
+        * lab.z;\r\n                lms.y = lab.x - 0.1055613458f * lab.y - 0.0638541728f
+        * lab.z;\r\n                lms.z = lab.x - 0.0894841775f * lab.y - 1.2914855480f
+        * lab.z;\r\n\r\n                <color=#569CD6>float3</color> lms_linear
+        = lms * lms * lms;\r\n\r\n                <color=#569CD6>half3</color> rgb;\r\n               
+        rgb.r = +4.0767416621f * lms_linear.x - 3.3077115913f * lms_linear.y + 0.2309699292f
+        * lms_linear.z;\r\n                rgb.g = -1.2684380046f * lms_linear.x
+        + 2.6097574011f * lms_linear.y - 0.3413193965f * lms_linear.z;\r\n               
+        rgb.b = -0.0041960863f * lms_linear.x - 0.7034186147f * lms_linear.y + 1.7076147010f
+        * lms_linear.z;\r\n\r\n                return rgb;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float3</color> coordinate01 = <color=#569CD6>half3</color>(i.localPos.xyz
+        + 0.5);\r\n                <color=#569CD6>half3</color> oklab;\r\n               
+        oklab.x = coordinate01.z;\r\n                oklab.y = (coordinate01.y -
+        0.5) * 0.8;\r\n                oklab.z = (coordinate01.x - 0.5) * 0.8;\r\n               
+        <color=#569CD6>float3</color> color = oklab2rgb(oklab);\r\n               
+        \r\n                #ifndef UNITY_COLORSPACE_GAMMA\r\n                   
+        color = pow(color, 2.2); \r\n                #endif\r\n\r\n               
+        return <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 5474109900911705576, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -4277,6 +4976,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651631687510128307, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(i.localPos.xyz + 0.5);\r\n\r\n               
+        #ifndef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color,
+        2.2); \r\n                #endif\r\n\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5675180047186834890, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
@@ -4413,6 +5136,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769614932574674965, guid: 1a50df4f00ab7e64f92681e163667a3e,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Color/ColorRGBBoxGamma\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Cull Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> localPos
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.localPos = v.<color=#569CD6>vertex</color>;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(i.localPos.xxx + 0.5);\r\n               
+        #ifdef UNITY_COLORSPACE_GAMMA\r\n                    color = pow(color, 0.45454545454);
+        \r\n                #endif\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6848092190294196567, guid: 1a50df4f00ab7e64f92681e163667a3e,
         type: 3}
@@ -4684,6 +5431,30 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11759477909612933, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/TextureDisplay\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>half3</color>
+        color = tex2D(_MainTex, i.uv);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 42405234808069540, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4947,6 +5718,85 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 455353760510461415, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBR/PBRAmbientOcclusion\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset][Normal] _normal
+        (<color=#D69D85>\"Normal\"</color>, 2D) = <color=#D69D85>\"bump\"</color>
+        {}\r\n        [NoScaleOffset]_arm (<color=#D69D85>\"ARM\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>sampler2D</color>
+        _normal;\r\n            <color=#569CD6>float4</color> _albedo_ST;\r\n           
+        <color=#569CD6>sampler2D</color> _arm;\r\n            <color=#569CD6>float</color>
+        _smoothness;\r\n            <color=#569CD6>float</color> _metallic;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n                <color=#569CD6>float4</color>
+        tangent : TANGENT;\r\n                <color=#569CD6>float2</color> uv :
+        TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n               
+        <color=#569CD6>float3</color> worldTangent : TEXCOORD3;\r\n               
+        <color=#569CD6>float3</color> worldBitangent : TEXCOORD4;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD5;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.worldTangent
+        = UnityObjectToWorldDir(v.tangent.xyz);\r\n                o.worldBitangent
+        = cross(o.worldNormal, o.worldTangent) * v.tangent.w;\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _albedo); <color=#57A64A>// Includes tiling and
+        offset\r</color>\n\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> worldTangent = normalize(i.worldTangent);\r\n               
+        <color=#569CD6>float3</color> worldBitangent = normalize(i.worldBitangent);\r\n               
+        float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);\r\n               
+        \r\n                <color=#569CD6>float3</color> arm = tex2D(_arm, i.uv).rgb;\r\n               
+        <color=#569CD6>float</color> ambientOcclusion = arm.r;\r\n\r\n               
+        <color=#569CD6>float3</color> normalMap = UnpackNormal(tex2D(_normal, i.uv));\r\n               
+        <color=#569CD6>float3</color> bumpedNormal = normalize(mul(normalMap, tbn));\r\n\r\n               
+        <color=#569CD6>float3</color> normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, _metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(bumpedNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, bumpedNormal);\r\n                <color=#569CD6>float</color>
+        perceptualRoughness = 1.0 - _smoothness;\r\n                <color=#569CD6>float</color>
+        mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mip);\r\n                <color=#569CD6>half3</color> indirectSpecular
+        = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                \r\n               
+        UnityIndirect indirectLight;\r\n                indirectLight.diffuse = _ambient_light_color
+        * ambientOcclusion;\r\n                indirectLight.specular = indirectSpecular
+        * ambientOcclusion;\r\n\r\n                return UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo,
+        specularTint,\r\n\t\t\t\t\toneMinusReflectivity, _smoothness,\r\n\t\t\t\t\tbumpedNormal,
+        viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 468893574975442102, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5065,6 +5915,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 623631693538141391, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
+    - target: {fileID: 643457416604297138, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/BlinnPhongSpecular\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n            <color=#569CD6>float3</color>
+        _world_light_direction;\r\n            <color=#569CD6>half4</color> _light_color;\r\n           
+        <color=#569CD6>half4</color> _ambient_light_color;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>float</color> _smoothness;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldPos : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal
+        : TEXCOORD1;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD2;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>half3</color> ambientLight = _albedo * _ambient_light_color;\r\n\r\n               
+        <color=#569CD6>half3</color> diffuse = dot(normalized_world_light_direction,
+        worldNormal);\r\n                diffuse *= _albedo;\r\n                diffuse
+        *= _light_color.rgb;\r\n                diffuse = saturate(diffuse);\r\n\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n                <color=#569CD6>float3</color> halfVector
+        = normalize(normalized_world_light_direction + viewDir);\r\n               
+        <color=#569CD6>float</color> specular = dot(halfVector, worldNormal);\r\n               
+        specular = saturate(specular);\r\n                specular = pow(specular,
+        _smoothness * 100);\r\n                <color=#569CD6>float4</color> specularColor
+        = _light_color * specular;\r\n\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(diffuse + specularColor + ambientLight);\r\n               
+        return <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 645117527377296940, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5896,6 +6796,35 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1998747820433220153, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/UnityDirectionalLight\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                \r\n                <color=#569CD6>half3</color>
+        diffuse = NdotL * lightColor;\r\n                \r\n                return
+        <color=#569CD6>half4</color>(diffuse, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 2003301970239214583, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6192,6 +7121,82 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566492100853272995, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBRRoughness/PBRMetallic\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset][Normal] _normal
+        (<color=#D69D85>\"Normal\"</color>, 2D) = <color=#D69D85>\"bump\"</color>
+        {}\r\n        [NoScaleOffset]_arm (<color=#D69D85>\"ARM\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float4</color>
+        _albedo_ST;\r\n            <color=#569CD6>sampler2D</color> _normal;\r\n           
+        <color=#569CD6>sampler2D</color> _arm;\r\n            <color=#569CD6>float</color>
+        _smoothness;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n               
+        <color=#569CD6>float4</color> tangent : TANGENT;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n               
+        <color=#569CD6>float3</color> worldTangent : TEXCOORD3;\r\n               
+        <color=#569CD6>float3</color> worldBitangent : TEXCOORD4;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD5;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.worldTangent
+        = UnityObjectToWorldDir(v.tangent.xyz);\r\n                o.worldBitangent
+        = cross(o.worldNormal, o.worldTangent) * v.tangent.w;\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _albedo); <color=#57A64A>// Includes tiling and
+        offset\r</color>\n\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> worldTangent = normalize(i.worldTangent);\r\n               
+        <color=#569CD6>float3</color> worldBitangent = normalize(i.worldBitangent);\r\n               
+        float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);\r\n               
+        \r\n                <color=#569CD6>float3</color> arm = tex2D(_arm, i.uv).rgb;\r\n               
+        <color=#569CD6>float</color> metallic = arm.b;\r\n\r\n                <color=#569CD6>float3</color>
+        normalMap = UnpackNormal(tex2D(_normal, i.uv));\r\n                <color=#569CD6>float3</color>
+        bumpedNormal = normalize(mul(normalMap, tbn));\r\n\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(bumpedNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, bumpedNormal);\r\n                <color=#569CD6>float</color>
+        perceptualRoughness = 1.0 - _smoothness;\r\n                <color=#569CD6>float</color>
+        mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mip);\r\n                <color=#569CD6>half3</color> indirectSpecular
+        = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                \r\n               
+        UnityIndirect indirectLight;\r\n                indirectLight.diffuse = _ambient_light_color;\r\n               
+        indirectLight.specular = indirectSpecular;\r\n\r\n                return
+        UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
+        _smoothness,\r\n\t\t\t\t\tbumpedNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 2574343214689047708, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -6573,6 +7578,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3075818680428843709, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
+    - target: {fileID: 3091220793565234778, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/LambertLightDirection\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n   
+        }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n        \r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, normalized_world_light_direction);\r\n               
+        \r\n                return <color=#569CD6>half4</color>(NdotL, 1.0);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 3091937038768445889, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -6629,6 +7663,42 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245991846158136800, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/AmbientLight\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        color) = (1,1,1,1)\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n            #include
+        <color=#D69D85>\"Lighting.cginc\"</color> <color=#57A64A>// Required for
+        _LightColor0\r</color>\n\r\n            <color=#569CD6>half4</color> _albedo;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n\r\n               
+        <color=#569CD6>half3</color> ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n\r\n                <color=#569CD6>half3</color>
+        directLight = NdotL * lightColor.rgb;\r\n                \r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>((directLight
+        + ambientLight) * _albedo);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 3258778043781072787, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -6934,6 +8004,70 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3657297232758312062, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
+    - target: {fileID: 3708786698995572745, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/UnityMultiplelLights\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Tags { <color=#D69D85>\"LightMode\"</color> = <color=#D69D85>\"ForwardBase\"</color>
+        }\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                \r\n                <color=#569CD6>half3</color>
+        diffuse = NdotL * lightColor;\r\n                \r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(diffuse);\r\n                return
+        <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Tags { <color=#D69D85>\"LightMode\"</color> = <color=#D69D85>\"ForwardAdd\"</color>
+        }\r\n            Blend One One\r\n            ZWrite Off\r\n\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma multi_compile_fwdadd <color=#57A64A>// Tells Unity to run this pass
+        for all extra lights\r</color>\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> worldPos :
+        TEXCOORD1;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldPos
+        = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>).xyz;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        lightDir;\r\n                <color=#569CD6>float</color> attenuation;\r\n\r\n               
+        <color=#57A64A>// _WorldSpaceLightPos0.w is 0 for Directional, 1 for Point/Spot\r</color>\n               
+        if (_WorldSpaceLightPos0.w == 0.0) {\r\n                    lightDir = normalize(_WorldSpaceLightPos0.xyz);\r\n                   
+        attenuation = 1.0;\r\n                } else {\r\n                    <color=#569CD6>float3</color>
+        vertexToLightSource = _WorldSpaceLightPos0.xyz - i.worldPos;\r\n                   
+        <color=#569CD6>float</color> distance = length(vertexToLightSource);\r\n                   
+        lightDir = normalize(vertexToLightSource);\r\n                    \r\n                   
+        attenuation = 1.0 / (1.0 + distance * distance);\r\n                }\r\n\r\n               
+        <color=#569CD6>half3</color> diffuse = saturate(dot(lightDir, worldNormal))
+        * _LightColor0.rgb * attenuation;\r\n                return <color=#569CD6>half4</color>(diffuse,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 3717317481783841749, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7249,6 +8383,69 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4089401658385536090, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBR/PBRAlbedo\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float4</color>
+        _albedo_ST;\r\n            <color=#569CD6>float</color> _smoothness;\r\n           
+        <color=#569CD6>float</color> _metallic;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldPos : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        normal : TEXCOORD1;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD2;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD3;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.uv = TRANSFORM_TEX(v.uv,
+        _albedo); <color=#57A64A>// Includes tiling and offset\r</color>\n\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        normal = normalize(i.normal);\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, _metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(worldNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, worldNormal);\r\n                <color=#569CD6>float</color>
+        perceptualRoughness = 1.0 - _smoothness;\r\n                <color=#569CD6>float</color>
+        mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mip);\r\n                <color=#569CD6>half3</color> indirectSpecular
+        = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                \r\n               
+        UnityIndirect indirectLight;\r\n                indirectLight.diffuse = _ambient_light_color;\r\n               
+        indirectLight.specular = indirectSpecular;\r\n\r\n                return
+        UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
+        _smoothness,\r\n\t\t\t\t\tworldNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4105734414952465155, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7380,6 +8577,65 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4253369063398721972, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/BRDF\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>half4</color> _light_color;\r\n           
+        <color=#569CD6>half4</color> _ambient_light_color;\r\n            <color=#569CD6>float</color>
+        _smoothness;\r\n            <color=#569CD6>float</color> _metallic;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldPos : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal
+        : TEXCOORD1;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD2;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> normal
+        = normalize(i.normal);\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>float3</color> specularTint
+        = _albedo * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color> oneMinusReflectivity;\r\n               
+        <color=#569CD6>float3</color> albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb,
+        _metallic, specularTint, oneMinusReflectivity);\r\n\r\n                UnityLight
+        light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(worldNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, worldNormal);\r\n                <color=#569CD6>float</color>
+        perceptualRoughness = 1.0 - _smoothness;\r\n                <color=#569CD6>float</color>
+        mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mip);\r\n                <color=#569CD6>half3</color> indirectSpecular
+        = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                \r\n               
+        UnityIndirect indirectLight;\r\n                indirectLight.diffuse = _ambient_light_color;\r\n               
+        indirectLight.specular = indirectSpecular;\r\n\r\n                return
+        UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
+        _smoothness,\r\n\t\t\t\t\tworldNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4265204119585483331, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7439,6 +8695,44 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340892281111514308, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/ReflectionProbe\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _blurMipMap (<color=#D69D85>\"BlurMipMap\"</color>,
+        <color=#569CD6>float</color>) = 0\r\n        _reflection_probe_light_multiplier
+        (<color=#D69D85>\"Reflection probe light multiplier\"</color>, color) = (1,1,1,1)\r\n   
+        }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color><color=#57A64A>//\r</color>\n           
+        #include <color=#D69D85>\"UnityStandardBRDF.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float</color> _blurMipMap;\r\n            <color=#569CD6>half4</color>
+        _reflection_probe_light_multiplier;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD1;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>).xyz;\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                return
+        o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color> frag
+        (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);\r\n               
+        <color=#569CD6>float3</color> reflectDir = reflect(-viewDir, worldNormal);\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, _blurMipMap);\r\n\r\n                <color=#569CD6>half3</color>
+        reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                reflection
+        *= _reflection_probe_light_multiplier.rgb;\r\n\r\n                return
+        <color=#569CD6>half4</color>(reflection, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4391781032449279413, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -8202,6 +9496,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5673735086917175119, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
+    - target: {fileID: 5687448021227518738, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/Albedo\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _albedo (<color=#D69D85>\"Albedo\"</color>, color) = (1,1,1,1)\r\n    }\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>half4</color> _light_color;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldNormal : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal); <color=#57A64A>// Part
+        of UnityCG.cginc\r</color>\n                o.worldNormal = normalize(o.worldNormal);
+        <color=#57A64A>// Make sure the world normals are normalized\r</color>\n\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>half3</color> diffuse = dot(normalized_world_light_direction,
+        worldNormal);\r\n                diffuse *= _albedo;\r\n                diffuse
+        *= _light_color.rgb;\r\n                diffuse = saturate(diffuse);\r\n               
+        \r\n                return <color=#569CD6>half4</color>(diffuse, 1.0);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 5692207989411682863, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -8234,6 +9563,82 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5751349520753605438, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBR/PBRARM\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset][Normal] _normal
+        (<color=#D69D85>\"Normal\"</color>, 2D) = <color=#D69D85>\"bump\"</color>
+        {}\r\n        [NoScaleOffset]_arm (<color=#D69D85>\"ARM\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float4</color>
+        _albedo_ST;\r\n            <color=#569CD6>sampler2D</color> _normal;\r\n           
+        <color=#569CD6>sampler2D</color> _arm;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n                <color=#569CD6>float4</color> tangent
+        : TANGENT;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldPos : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        normal : TEXCOORD1;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD2;\r\n                <color=#569CD6>float3</color> worldTangent
+        : TEXCOORD3;\r\n                <color=#569CD6>float3</color> worldBitangent
+        : TEXCOORD4;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD5;\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.worldTangent
+        = UnityObjectToWorldDir(v.tangent.xyz);\r\n                o.worldBitangent
+        = cross(o.worldNormal, o.worldTangent) * v.tangent.w;\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _albedo); <color=#57A64A>// Includes tiling and
+        offset\r</color>\n\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> worldTangent = normalize(i.worldTangent);\r\n               
+        <color=#569CD6>float3</color> worldBitangent = normalize(i.worldBitangent);\r\n               
+        float3x3 tbn = float3x3(worldTangent, worldBitangent, worldNormal);\r\n               
+        \r\n                <color=#569CD6>float3</color> arm = tex2D(_arm, i.uv).rgb;\r\n               
+        <color=#569CD6>float</color> ambientOcclusion = arm.r;\r\n               
+        <color=#569CD6>float</color> roughness = arm.g;\r\n                <color=#569CD6>float</color>
+        metallic = arm.b;\r\n\r\n                <color=#569CD6>float3</color> normalMap
+        = UnpackNormal(tex2D(_normal, i.uv));\r\n                <color=#569CD6>float3</color>
+        bumpedNormal = normalize(mul(normalMap, tbn));\r\n\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(bumpedNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, bumpedNormal);\r\n                <color=#569CD6>float</color>
+        mip = roughness * UNITY_SPECCUBE_LOD_STEPS;\r\n                <color=#569CD6>half4</color>
+        rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);\r\n               
+        <color=#569CD6>half3</color> indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n               
+        \r\n                UnityIndirect indirectLight;\r\n                indirectLight.diffuse
+        = _ambient_light_color * ambientOcclusion;\r\n                indirectLight.specular
+        = indirectSpecular * ambientOcclusion;\r\n\r\n                return UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo,
+        specularTint,\r\n\t\t\t\t\toneMinusReflectivity, 1.0 - roughness,\r\n\t\t\t\t\tbumpedNormal,
+        viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 5754934063720978288, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -8248,6 +9653,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770813999631055602, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/JustRed\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert <color=#57A64A>// The vertex function
+        is called vert\r</color>\n            #pragma <color=#569CD6>fragment</color>
+        frag <color=#57A64A>// The fragment funciton is called frag\r</color>\n\r\n           
+        <color=#57A64A>// Mesh to vertex transfer data\r</color>\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n            };\r\n\r\n           
+        <color=#57A64A>// Vertex to fragment transfer data\r</color>\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n            };\r\n\r\n           
+        <color=#57A64A>// Vertex function\r</color>\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);
+        <color=#57A64A>// Basic object to clip space transformation\r</color>\n               
+        return o;\r\n            }\r\n\r\n            <color=#57A64A>// Fragment
+        function\r</color>\n            <color=#569CD6>half4</color> frag () : SV_Target
+        {\r\n                <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0,
+        0.0, 0.0); <color=#57A64A>// Red\r</color>\n                return <color=#569CD6>half4</color>(color,
+        1.0); <color=#57A64A>// 1.0 on alpha channel, default for opaque\r</color>\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5788660575179502935, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -8927,6 +10358,62 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6648597581454366013, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
+    - target: {fileID: 6696660441746858338, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/Metallic\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n            #include
+        <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float3</color>
+        _world_light_direction;\r\n            <color=#569CD6>half4</color> _light_color;\r\n           
+        <color=#569CD6>half4</color> _ambient_light_color;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>float</color> _smoothness;\r\n           
+        <color=#569CD6>float</color> _metallic;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>float3</color> specularTint = _albedo * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n\r\n                <color=#569CD6>float3</color>
+        albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb, specularTint,
+        oneMinusReflectivity);\r\n                \r\n                <color=#569CD6>half3</color>
+        ambientLight = albedo * _ambient_light_color;\r\n\r\n                <color=#569CD6>half3</color>
+        diffuse = dot(normalized_world_light_direction, worldNormal);\r\n               
+        diffuse *= albedo;\r\n                diffuse *= oneMinusReflectivity;\r\n               
+        diffuse *= _light_color.rgb;\r\n                diffuse = saturate(diffuse);\r\n\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n                <color=#569CD6>float3</color> halfVector
+        = normalize(normalized_world_light_direction + viewDir);\r\n               
+        <color=#569CD6>float</color> specular = dot(halfVector, worldNormal);\r\n               
+        specular = saturate(specular);\r\n                specular = pow(specular,
+        _smoothness * 100);\r\n                <color=#569CD6>float3</color> specularColor
+        = specularTint * _light_color * specular;\r\n\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(diffuse + specularColor + ambientLight);\r\n               
+        return <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 6730702735110130411, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -8957,6 +10444,80 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767170148282407618, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBRRoughness/PBRRoughness\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset][Normal] _normal
+        (<color=#D69D85>\"Normal\"</color>, 2D) = <color=#D69D85>\"bump\"</color>
+        {}\r\n        [NoScaleOffset]_arm (<color=#D69D85>\"ARM\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>sampler2D</color>
+        _normal;\r\n            <color=#569CD6>float4</color> _albedo_ST;\r\n           
+        <color=#569CD6>sampler2D</color> _arm;\r\n            <color=#569CD6>float</color>
+        _metallic;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n               
+        <color=#569CD6>float4</color> tangent : TANGENT;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n               
+        <color=#569CD6>float3</color> worldTangent : TEXCOORD3;\r\n               
+        <color=#569CD6>float3</color> worldBitangent : TEXCOORD4;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD5;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.worldTangent
+        = UnityObjectToWorldDir(v.tangent.xyz);\r\n                o.worldBitangent
+        = cross(o.worldNormal, o.worldTangent) * v.tangent.w;\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _albedo);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        worldTangent = normalize(i.worldTangent);\r\n                <color=#569CD6>float3</color>
+        worldBitangent = normalize(i.worldBitangent);\r\n                float3x3
+        tbn = float3x3(worldTangent, worldBitangent, worldNormal);\r\n\r\n               
+        <color=#569CD6>float3</color> normalMap = UnpackNormal(tex2D(_normal, i.uv));\r\n               
+        <color=#569CD6>float3</color> bumpedNormal = normalize(mul(normalMap, tbn));\r\n\r\n               
+        <color=#569CD6>float3</color> normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, _metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(bumpedNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, bumpedNormal);\r\n                <color=#569CD6>float</color>
+        roughness = tex2D(_arm, i.uv).g;\r\n                <color=#569CD6>float</color>
+        mip = roughness * UNITY_SPECCUBE_LOD_STEPS;\r\n                <color=#569CD6>half4</color>
+        rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);\r\n               
+        <color=#569CD6>half3</color> indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n               
+        \r\n                UnityIndirect indirectLight;\r\n                indirectLight.diffuse
+        = _ambient_light_color;\r\n                indirectLight.specular = indirectSpecular;\r\n\r\n               
+        return UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
+        1.0 - roughness,\r\n\t\t\t\t\tbumpedNormal, viewDir,\r\n\t\t\t\t\tlight,
+        indirectLight\r\n\t\t\t\t);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 6785048138394200036, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -9033,6 +10594,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6852124758561161806, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/LightColor\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n   
+        }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n        \r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        \r\n                <color=#569CD6>half3</color> NdotL = dot(worldNormal,
+        normalized_world_light_direction);\r\n                NdotL = saturate(NdotL);\r\n\r\n               
+        <color=#569CD6>half3</color> diffuse = NdotL * _light_color.rgb;\r\n               
+        \r\n                return <color=#569CD6>half4</color>(diffuse, 1.0);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 6858934957315857476, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
@@ -9604,6 +11197,56 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7686459315438798467, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/PhongSpecular\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n            <color=#569CD6>float3</color>
+        _world_light_direction;\r\n            <color=#569CD6>half4</color> _light_color;\r\n           
+        <color=#569CD6>half4</color> _ambient_light_color;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>float</color> _smoothness;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float3</color> normal : NORMAL;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float3</color>
+        worldPos : TEXCOORD0;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD1;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        \r\n                <color=#569CD6>half3</color> ambientLight = _albedo *
+        _ambient_light_color;\r\n\r\n                <color=#569CD6>half3</color>
+        diffuse = dot(normalized_world_light_direction, worldNormal);\r\n               
+        diffuse *= _albedo;\r\n                diffuse *= _light_color.rgb;\r\n               
+        diffuse = saturate(diffuse);\r\n\r\n                <color=#569CD6>float3</color>
+        viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);\r\n               
+        <color=#569CD6>float3</color> reflectionDir = reflect(-normalized_world_light_direction,
+        worldNormal);\r\n                <color=#569CD6>float</color> specular =
+        dot(viewDir, reflectionDir);\r\n                specular = saturate(specular);\r\n               
+        specular = pow(specular, _smoothness * 100);\r\n                <color=#569CD6>float</color>
+        specularColor = _light_color * specular;\r\n                \r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(diffuse
+        + specularColor + ambientLight);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 7714986392933688167, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -10117,6 +11760,80 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8365259462737589283, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/PBRRoughness/PBRNormal\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, 2D) =
+        <color=#D69D85>\"white\"</color> {}\r\n        [NoScaleOffset][Normal] _normal
+        (<color=#D69D85>\"Normal\"</color>, 2D) = <color=#D69D85>\"bump\"</color>
+        {}\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>, Range(0,
+        1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>, Range(0,
+        1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n       
+        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #pragma target 3.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>sampler2D</color>
+        _albedo;\r\n            <color=#569CD6>sampler2D</color> _normal;\r\n           
+        <color=#569CD6>float4</color> _albedo_ST;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>float</color> _smoothness;\r\n            <color=#569CD6>float</color>
+        _metallic;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n               
+        <color=#569CD6>float4</color> tangent : TANGENT;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n               
+        <color=#569CD6>float3</color> worldTangent : TEXCOORD3;\r\n               
+        <color=#569CD6>float3</color> worldBitangent : TEXCOORD4;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD5;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n                o.worldTangent
+        = UnityObjectToWorldDir(v.tangent.xyz);\r\n                o.worldBitangent
+        = cross(o.worldNormal, o.worldTangent) * v.tangent.w;\r\n               
+        o.uv = TRANSFORM_TEX(v.uv, _albedo); <color=#57A64A>// Includes tiling and
+        offset\r</color>\n\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        worldNormal = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        worldTangent = normalize(i.worldTangent);\r\n                <color=#569CD6>float3</color>
+        worldBitangent = normalize(i.worldBitangent);\r\n                float3x3
+        tbn = float3x3(worldTangent, worldBitangent, worldNormal);\r\n\r\n               
+        <color=#569CD6>float3</color> normalMap = UnpackNormal(tex2D(_normal, i.uv));\r\n               
+        <color=#569CD6>float3</color> bumpedNormal = normalize(mul(normalMap, tbn));\r\n\r\n               
+        <color=#569CD6>float3</color> normalized_world_light_direction = normalize(_world_light_direction);\r\n               
+        <color=#569CD6>float3</color> viewDir = normalize(_WorldSpaceCameraPos -
+        i.worldPos);\r\n\r\n                <color=#569CD6>half4</color> color =
+        tex2D(_albedo, i.uv);\r\n\r\n                <color=#569CD6>float3</color>
+        specularTint = color * _metallic;\r\n\t\t\t\t<color=#569CD6>float</color>
+        oneMinusReflectivity;\r\n                <color=#569CD6>float3</color> albedo
+        = DiffuseAndSpecularFromMetallic(color.rgb, _metallic, specularTint, oneMinusReflectivity);\r\n\r\n               
+        UnityLight light;\r\n                light.color = _light_color;\r\n               
+        light.dir = _world_light_direction;\r\n                light.ndotl = saturate(dot(bumpedNormal,
+        normalized_world_light_direction));\r\n\r\n                <color=#569CD6>float3</color>
+        reflectDir = reflect(-viewDir, bumpedNormal);\r\n                <color=#569CD6>float</color>
+        perceptualRoughness = 1.0 - _smoothness;\r\n                <color=#569CD6>float</color>
+        mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;\r\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mip);\r\n                <color=#569CD6>half3</color> indirectSpecular
+        = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n                \r\n               
+        UnityIndirect indirectLight;\r\n                indirectLight.diffuse = _ambient_light_color;\r\n               
+        indirectLight.specular = indirectSpecular;\r\n\r\n                return
+        UNITY_BRDF_PBS(\r\n\t\t\t\t\talbedo, specularTint,\r\n\t\t\t\t\toneMinusReflectivity,
+        _smoothness,\r\n\t\t\t\t\tbumpedNormal, viewDir,\r\n\t\t\t\t\tlight, indirectLight\r\n\t\t\t\t);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 8375113241577664853, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -10491,6 +12208,44 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8945136347903698035, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/AmbientLight\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n    {\r\n       
+        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>   \r\n\r\n           
+        <color=#569CD6>float3</color> _world_light_direction;\r\n            <color=#569CD6>half4</color>
+        _light_color;\r\n            <color=#569CD6>half4</color> _ambient_light_color;\r\n           
+        <color=#569CD6>half4</color> _albedo;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldNormal
+        : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, normalized_world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n\r\n                <color=#569CD6>half3</color>
+        diffuse = NdotL * _light_color.rgb;\r\n                \r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>((diffuse
+        + _ambient_light_color) * _albedo);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 8956870559401301319, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -10718,6 +12473,71 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220986102400888152, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Light/MetallicReflectionProbe\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _world_light_direction
+        (<color=#D69D85>\"World light direciton\"</color>, Vector) = (1,1,1,0)\r\n       
+        _light_color (<color=#D69D85>\"Light color\"</color>, color) = (1,1,1,1)\r\n       
+        _ambient_light_color (<color=#D69D85>\"Ambient light color\"</color>, color)
+        = (1,1,1,1)\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>, color)
+        = (1,1,1,1)\r\n        _smoothness (<color=#D69D85>\"Smoothness\"</color>,
+        Range(0, 1)) = 0.5\r\n        _metallic (<color=#D69D85>\"Metallic\"</color>,
+        Range(0, 1)) = 0.5\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n            #include
+        <color=#D69D85>\"UnityPBSLighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float3</color>
+        _world_light_direction;\r\n            <color=#569CD6>half4</color> _light_color;\r\n           
+        <color=#569CD6>half4</color> _ambient_light_color;\r\n            <color=#569CD6>half4</color>
+        _albedo;\r\n            <color=#569CD6>float</color> _smoothness;\r\n           
+        <color=#569CD6>float</color> _metallic;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n                <color=#569CD6>float3</color>
+        normal : NORMAL;\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float3</color> worldPos
+        : TEXCOORD0;\r\n                <color=#569CD6>float3</color> normal : TEXCOORD1;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD2;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldPos = mul(unity_ObjectToWorld, v.<color=#569CD6>vertex</color>);\r\n               
+        o.normal = v.normal;\r\n                o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n               
+        o.worldNormal = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        i) : SV_Target {\r\n                <color=#569CD6>float3</color> worldNormal
+        = normalize(i.worldNormal);\r\n                <color=#569CD6>float3</color>
+        normalized_world_light_direction = normalize(_world_light_direction);\r\n\r\n               
+        <color=#569CD6>float3</color> specularTint = _albedo.rgb * _metallic;\r\n               
+        <color=#569CD6>float</color> oneMinusReflectivity;\r\n\r\n               
+        <color=#569CD6>float3</color> albedo = EnergyConservationBetweenDiffuseAndSpecular(_albedo.rgb,
+        specularTint, oneMinusReflectivity);\r\n                \r\n               
+        <color=#569CD6>half3</color> ambientLight = albedo * _ambient_light_color;\r\n\r\n               
+        <color=#569CD6>half3</color> diffuse = dot(normalized_world_light_direction,
+        worldNormal);\r\n                diffuse *= albedo;\r\n                diffuse
+        *= oneMinusReflectivity;\r\n                diffuse *= _light_color.rgb;\r\n               
+        diffuse = saturate(diffuse);\r\n\r\n                <color=#569CD6>float3</color>
+        viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);\r\n               
+        <color=#569CD6>float3</color> reflectDir = reflect(-viewDir, worldNormal);\r\n\r\n               
+        <color=#569CD6>float</color> roughness = 1.0 - _smoothness;\r\n               
+        <color=#569CD6>float</color> mipmapSmoothness = roughness * (1.7 - 0.7 *
+        roughness) * 6.0; <color=#57A64A>// Range from 0 to 7\r</color>\n               
+        <color=#569CD6>half4</color> rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0,
+        reflectDir, mipmapSmoothness);\r\n                <color=#569CD6>half3</color>
+        indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);\r\n               
+        indirectSpecular *= specularTint;\r\n\r\n                <color=#569CD6>float3</color>
+        halfVector = normalize(normalized_world_light_direction + viewDir);\r\n               
+        <color=#569CD6>float</color> specular = dot(halfVector, worldNormal);\r\n               
+        specular = saturate(specular);\r\n                specular = pow(specular,
+        _smoothness * 100);\r\n                <color=#569CD6>float3</color> specularColor
+        = specularTint * _light_color.rgb * specular;\r\n\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(diffuse + specularColor + indirectSpecular
+        + ambientLight);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
