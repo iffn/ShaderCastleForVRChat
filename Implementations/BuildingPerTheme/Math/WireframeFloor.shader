@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/VertexShader/Wireframe"
+Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/WireframeFloor"
 {
     Properties
     {
