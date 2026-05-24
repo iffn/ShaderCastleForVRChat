@@ -33,6 +33,7 @@ Transform:
   - {fileID: 2309406545334753027}
   - {fileID: 8833843282136479819}
   - {fileID: 85777451950716096}
+  - {fileID: 7146108551904288178}
   m_Father: {fileID: 6149804501154295228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8890764638029288375
@@ -131,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buffer
       objectReference: {fileID: 0}
+    - target: {fileID: 6170364737530096044, guid: 06abfbd613b1dbb40a30ab7fec3f7c64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a2be9f2cc06ce6429c160903c29b27c, type: 2}
     - target: {fileID: 7682661902985948579, guid: 06abfbd613b1dbb40a30ab7fec3f7c64,
         type: 3}
       propertyPath: m_IsActive
@@ -289,6 +295,31 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3763290444985505042, guid: 111f10c63bdfb55439300f3b1edcb26f,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _CameraDepthTexture;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                \r\n                <color=#569CD6>float</color> aspectRatio
+        = _ScreenParams.x / _ScreenParams.y;\r\n                v.<color=#569CD6>vertex</color>.x
+        *= aspectRatio;\r\n\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>half3</color> color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,
+        i.uv);\r\n                return <color=#569CD6>half4</color>(color, 1.0);\r\n           
+        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4165264058409880927, guid: 111f10c63bdfb55439300f3b1edcb26f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -384,6 +415,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Depth buffer displays
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992195226031722626, guid: 111f10c63bdfb55439300f3b1edcb26f,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#57A64A>// Set
+        queue to Transparent to ensure it renders after opaque objects\r</color>\n       
+        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Transparent\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Transparent\"</color> }\r\n\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        UNITY_VERTEX_INPUT_INSTANCE_ID\r\n            };\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>v2f</color> {\r\n                <color=#569CD6>float4</color>
+        pos : SV_POSITION;\r\n                <color=#569CD6>float4</color> screenPos
+        : TEXCOORD0;\r\n                UNITY_VERTEX_OUTPUT_STEREO\r\n           
+        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
+        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n\r\n               
+        UNITY_SETUP_INSTANCE_ID(v);\r\n                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.screenPos = ComputeScreenPos(o.pos);\r\n                \r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);\r\n\r\n               
+        <color=#569CD6>float2</color> screenUV = i.screenPos.xy / i.screenPos.w;\r\n\r\n               
+        <color=#569CD6>float</color> depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture,
+        screenUV).r;\r\n\r\n                <color=#569CD6>half3</color> color =
+        depth.xxx;\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 7626724218350158198, guid: 111f10c63bdfb55439300f3b1edcb26f,
         type: 3}
@@ -483,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 3388566394714201453, guid: a5d268ebcd856454399c77a1c6b9c2a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.382
       objectReference: {fileID: 0}
     - target: {fileID: 3388566394714201453, guid: a5d268ebcd856454399c77a1c6b9c2a6,
         type: 3}
@@ -493,7 +556,7 @@ PrefabInstance:
     - target: {fileID: 3388566394714201453, guid: a5d268ebcd856454399c77a1c6b9c2a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.035
+      value: -14.232
       objectReference: {fileID: 0}
     - target: {fileID: 3388566394714201453, guid: a5d268ebcd856454399c77a1c6b9c2a6,
         type: 3}
@@ -544,6 +607,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367256946062963377, guid: a5d268ebcd856454399c77a1c6b9c2a6,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Stencil/StencilBasicWrite\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Geometry-1\"</color> }
+        <color=#57A64A>// Runs before geometry\r</color>\n\r\n        ColorMask 0\r\n       
+        ZWrite Off\r\n\r\n        <color=#569CD6>Pass</color> {\r\n            Stencil
+        {\r\n                Ref 1 <color=#57A64A>// What values are being written:            
+        xxxx xxx1 (x doesn't matter because of the mask)\r</color>\n               
+        WriteMask 1 <color=#57A64A>// Only the last bit should be changed: 0000 0001\r</color>\n               
+        Comp Always\r\n                <color=#569CD6>Pass</color> Replace\r\n           
+        }\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -630,6 +707,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479024680629105698, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteLessEqual\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth
+        write\"</color>, <color=#569CD6>float</color>) = 1.0\r\n        \r\n    }\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            ZTest LEqual\r\n            ZWrite On\r\n\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 5.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> frag_out {\r\n                <color=#569CD6>half4</color>
+        color : SV_Target;\r\n                <color=#569CD6>float</color> depth
+        : SV_DepthLessEqual;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n               
+        <color=#569CD6>half3</color> ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                <color=#569CD6>half3</color>
+        directLight = NdotL * lightColor.rgb;\r\n                <color=#569CD6>half3</color>
+        albedo = <color=#569CD6>half3</color>(1.0, 0.2, 0.2);\r\n               
+        <color=#569CD6>half3</color> color = (directLight + ambientLight) * albedo;\r\n\r\n               
+        frag_out o;\r\n                o.color = <color=#569CD6>half4</color>(color,
+        1.0);\r\n                o.depth = _depthWrite;\r\n\r\n                return
+        o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 2686963545809727357, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
         type: 3}
@@ -818,6 +935,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5911948970711206451, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWriteGreaterEqual\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth
+        write\"</color>, <color=#569CD6>float</color>) = 1.0\r\n        \r\n    }\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            ZTest LEqual\r\n            ZWrite On\r\n\r\n           
+        <color=#569CD6>CGPROGRAM</color>\r\n            #pragma <color=#569CD6>vertex</color>
+        vert\r\n            #pragma <color=#569CD6>fragment</color> frag\r\n           
+        #pragma target 5.0\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> frag_out {\r\n                <color=#569CD6>half4</color>
+        color : SV_Target;\r\n                <color=#569CD6>float</color> depth
+        : SV_DepthGreaterEqual;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n               
+        <color=#569CD6>half3</color> ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                <color=#569CD6>half3</color>
+        directLight = NdotL * lightColor.rgb;\r\n                <color=#569CD6>half3</color>
+        albedo = <color=#569CD6>half3</color>(1.0, 0.2, 0.2);\r\n               
+        <color=#569CD6>half3</color> color = (directLight + ambientLight) * albedo;\r\n\r\n               
+        frag_out o;\r\n                o.color = <color=#569CD6>half4</color>(color,
+        1.0);\r\n                o.depth = _depthWrite;\r\n\r\n                return
+        o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 6942880002211873393, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -895,6 +1052,45 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7884475084058620953, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
         type: 3}
+    - target: {fileID: 8487762005537114607, guid: 7aaccdd12fe86644cb8e7d28bf85a8ac,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/DepthBuffer/DepthBufferWrite\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _depthWrite (<color=#D69D85>\"Depth
+        write\"</color>, <color=#569CD6>float</color>) = 1.0\r\n        \r\n    }\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n           
+        #include <color=#D69D85>\"Lighting.cginc\"</color>\r\n\r\n            <color=#569CD6>float</color>
+        _depthWrite;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float3</color> normal : NORMAL;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float3</color> worldNormal : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> frag_out {\r\n                <color=#569CD6>half4</color>
+        color : SV_Target;\r\n                <color=#569CD6>float</color> depth
+        : SV_Depth;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.worldNormal = UnityObjectToWorldNormal(v.normal);\r\n                o.worldNormal
+        = normalize(o.worldNormal);\r\n\r\n                return o;\r\n           
+        }\r\n\r\n            frag_out frag (<color=#569CD6>v2f</color> i) {\r\n               
+        <color=#569CD6>float3</color> worldNormal = normalize(i.worldNormal);\r\n               
+        <color=#569CD6>float3</color> _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);\r\n               
+        <color=#569CD6>float3</color> lightColor = _LightColor0.rgb;\r\n               
+        <color=#569CD6>half3</color> ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;\r\n               
+        <color=#569CD6>half3</color> NdotL = dot(worldNormal, _world_light_direction);\r\n               
+        NdotL = saturate(NdotL);\r\n                <color=#569CD6>half3</color>
+        directLight = NdotL * lightColor.rgb;\r\n                <color=#569CD6>half3</color>
+        albedo = <color=#569CD6>half3</color>(1.0, 0.2, 0.2);\r\n               
+        <color=#569CD6>half3</color> color = (directLight + ambientLight) * albedo;\r\n\r\n               
+        frag_out o;\r\n                o.color = <color=#569CD6>half4</color>(color,
+        1.0);\r\n                o.depth = _depthWrite;\r\n\r\n                return
+        o;\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1084,6 +1280,33 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2541290653479282149, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/Transparency\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Transparent\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"Transparent\"</color> }\r\n       
+        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n\r\n            ZWrite
+        Off\r\n            Blend SrcAlpha OneMinusSrcAlpha\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - <color=#569CD6>float2</color>(0.5,
+        0.5));\r\n\r\n                <color=#569CD6>float</color> alpha = saturate(1.0
+        - distanceToCenter * 2.0);\r\n\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                return
+        <color=#569CD6>half4</color>(color, alpha);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 2596250725052246677, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1120,6 +1343,33 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.41
       objectReference: {fileID: 0}
+    - target: {fileID: 3302271041214246085, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/AlphaToMask\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"Opaque\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> <color=#D69D85>\"LightMode\"</color>=<color=#D69D85>\"ForwardBase\"</color>
+        }\r\n        \r\n        <color=#569CD6>Pass</color>\r\n        {\r\n           
+        AlphaToMask On\r\n\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - <color=#569CD6>float2</color>(0.5,
+        0.5));\r\n                <color=#569CD6>float</color> alpha = 1.0 - distanceToCenter
+        * 2.0;\r\n\r\n                <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0,
+        1.0, 1.0);\r\n                return <color=#569CD6>half4</color>(color,
+        alpha);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 3487579162330395560, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1149,6 +1399,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776812596300504043, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - <color=#569CD6>float2</color>(0.5,
+        0.5));\r\n\r\n                clip(0.5 - distanceToCenter);\r\n               
+        \r\n                <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0,
+        1.0, 1.0);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 3793360848527065681, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
@@ -1298,6 +1574,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6532962940393530846, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
+    - target: {fileID: 6767354480540478126, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithClip\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#569CD6>float2</color> uv = i.uv;\r\n\r\n               
+        <color=#569CD6>float</color> distanceToCenter = length(uv - <color=#569CD6>float2</color>(0.5,
+        0.5));\r\n\r\n                if(distanceToCenter > 0.5)\r\n                   
+        discard;\r\n                \r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                return
+        <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 7604216885595115407, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1322,6 +1624,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 4.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892605871276632012, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/DitheredTransparency4x4\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n                <color=#569CD6>float4</color> screenPos
+        : TEXCOORD1;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float2</color>
+        uv = i.uv;\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - <color=#569CD6>float2</color>(0.5, 0.5));\r\n               
+        <color=#569CD6>float</color> alpha = 1.0 - distanceToCenter * 2.0;\r\n\r\n               
+        <color=#57A64A>// 4x4 Bayer dithering matrix\r</color>\n                float4x4
+        ditherMatrix = float4x4(\r\n                    0.0625, 0.5625, 0.1875, 0.6875,\r\n                   
+        0.8125, 0.3125, 0.9375, 0.4375,\r\n                    0.25,   0.75,   0.125, 
+        0.625,\r\n                    1.0,    0.5,    0.875,  0.375\r\n               
+        );\r\n\r\n                uint2 pixelPos = i.screenPos.xy / i.screenPos.w
+        * _ScreenParams.xy;\r\n                <color=#569CD6>float</color> threshold
+        = ditherMatrix[pixelPos.x % 4][pixelPos.y % 4];\r\n\r\n                clip(alpha
+        - threshold);\r\n\r\n                <color=#569CD6>half3</color> color =
+        <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                return <color=#569CD6>half4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989978328476938288, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/DitheredTransparency2x2\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n                <color=#569CD6>float4</color> screenPos
+        : TEXCOORD1;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                o.screenPos = ComputeScreenPos(o.pos);\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float2</color>
+        uv = i.uv;\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - <color=#569CD6>float2</color>(0.5, 0.5));\r\n               
+        <color=#569CD6>float</color> alpha = 1.0 - distanceToCenter * 2.0;\r\n\r\n               
+        <color=#57A64A>// 2x2 Bayer dithering matrix\r</color>\n                float2x2
+        ditherMatrix = float2x2(\r\n                    0, 0.5,\r\n                   
+        0.75, 0.25\r\n                );\r\n\r\n                uint2 pixelPos =
+        i.screenPos.xy / i.screenPos.w * _ScreenParams.xy;\r\n                <color=#569CD6>float</color>
+        threshold = ditherMatrix[pixelPos.x % 2][pixelPos.y % 2];\r\n\r\n               
+        clip(alpha - threshold);\r\n\r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                return
+        <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 8086903590942718113, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
         type: 3}
@@ -1398,6 +1770,35 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9159034041442431164, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Transparency/CutoutWithEarlydepthstencilClip\"</color>\r\n{\r\n   
+        <color=#569CD6>SubShader</color>\r\n    {\r\n        Tags { <color=#D69D85>\"RenderType\"</color>=<color=#D69D85>\"TransparentCutout\"</color>
+        <color=#D69D85>\"Queue\"</color>=<color=#D69D85>\"AlphaTest\"</color> }\r\n       
+        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
+        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Compiler statements commented out for this demo to see
+        when it fails\r</color>\n            <color=#57A64A>//#if defined(UNITY_COMPILER_HLSL)
+        || defined(SHADER_API_D3D11)\r</color>\n            [earlydepthstencil]\r\n           
+        <color=#57A64A>//#endif\r</color>\n            <color=#569CD6>half4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float2</color>
+        uv = i.uv;\r\n\r\n                <color=#569CD6>float</color> distanceToCenter
+        = length(uv - <color=#569CD6>float2</color>(0.5, 0.5));\r\n\r\n               
+        clip(0.5 - distanceToCenter);\r\n                \r\n                <color=#569CD6>half3</color>
+        color = <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                return
+        <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1408,4 +1809,144 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2357767291794172983, guid: d74ff7bd90e78054e9e11ae8f0cc0aad,
     type: 3}
   m_PrefabInstance: {fileID: 5132928239876050539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5824978972032843668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2386910885407985880}
+    m_Modifications:
+    - target: {fileID: 715048906445281953, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715048906445281953, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715048906445281953, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715048906445281953, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 715048906445281953, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.304
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4229263971719576680, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_Name
+      value: Grab pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252171285577271363, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252171285577271363, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6252171285577271363, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270750869691325468, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 8270750869691325468, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+    - target: {fileID: 8280115869875400028, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280115869875400028, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280115869875400028, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8280115869875400028, guid: 2dc09e3ecf788af4abd2460561b82d37,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2dc09e3ecf788af4abd2460561b82d37, type: 3}
+--- !u!4 &7146108551904288178 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3745420795573297702, guid: 2dc09e3ecf788af4abd2460561b82d37,
+    type: 3}
+  m_PrefabInstance: {fileID: 5824978972032843668}
   m_PrefabAsset: {fileID: 0}

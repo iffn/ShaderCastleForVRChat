@@ -1,7 +1,11 @@
-Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen"
+Shader "ShaderCastle/Tutorials/GrabPass/BasicGrabPass"
 {
     SubShader
     {
+        Tags { "Queue"="Transparent+500" "RenderType"="Transparent" } //Queue Transparent+500 = 3500. Makes sure that it renders after everything else in the world.
+
+        GrabPass {}
+
         Pass
         {
             CGPROGRAM
@@ -9,7 +13,7 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen"
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            UNITY_DECLARE_DEPTH_TEXTURE(_CameraDepthTexture);
+            sampler2D _GrabTexture;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -33,7 +37,8 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen"
             }
 
             half4 frag (v2f i) : SV_Target {
-                half3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
+                half3 color = tex2D(_GrabTexture, i.uv);
+                
                 return half4(color, 1.0);
             }
             ENDCG

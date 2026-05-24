@@ -13,6 +13,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/UVMapping"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma geometry geom
 
             #include "UnityCG.cginc"
 
@@ -40,7 +41,6 @@ Shader "ShaderCastle/Tutorials/TextureSampling/UVMapping"
                 float4 finalPos = lerp(pos * _modelScale, uvPos, lerpValue);
 
                 o.pos = UnityObjectToClipPos(finalPos);
-                o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
             }
@@ -84,7 +84,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/UVMapping"
 
                 color = lerp(color, frameColor, frame);
 
-                return float4(i.barycentric.xyz, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }
