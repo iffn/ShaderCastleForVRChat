@@ -1,4 +1,4 @@
-Shader "Unlit/PaintAPlane-Display"
+Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-Display"
 {
     Properties
     {

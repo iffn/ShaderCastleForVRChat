@@ -10,6 +10,7 @@ Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-PaintMask"
     {
         Pass
         {
+            Conservative True
             Cull Off
             CGPROGRAM
             #pragma vertex vert
@@ -45,17 +46,6 @@ Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-PaintMask"
                 o.uv = v.uv;
                 return o;
             }
-            /*
-            half4 frag (v2f i) : SV_Target {
-                float brushMask = saturate(sign(_brushSize - (i.localPos - _brushPositionLocal)));
-                brushMask = length(i.localPos - _brushPositionLocal);
-
-                half3 renderTextureColor = tex2D(_albedo, i.uv);
-
-                half3 color = lerp(_brushColor, renderTextureColor, brushMask);
-                return half4(color, 1.0);
-            }
-            */
 
             half4 frag (v2f i) : SV_Target {
                 float distance = length(i.localPos - _brushPositionLocal);
