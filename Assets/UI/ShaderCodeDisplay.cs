@@ -34,16 +34,15 @@ public class UpdateCodeDisplayEditor : Editor
     }
 }
 
-public class ShaderCodeDisplay : MonoBehaviour
+public abstract class ShaderCodeDisplay : MonoBehaviour
 {
-    [SerializeField] MeshRenderer linkedMeshRenderer;
     [SerializeField] TMP_InputField linkedCopyCodeInput;
     [SerializeField] TMP_Text linkedColoredCodeDisplay;
 
     int maxLinexWithDefaultFontSize = 68;
     float defaultFontSize = 0.03f;
 
-    string GetShaderCodeFromMaterial(Material linkedMaterial)
+    protected string GetShaderCodeFromMaterial(Material linkedMaterial)
     {
         string returnString = "";
 
@@ -73,13 +72,14 @@ public class ShaderCodeDisplay : MonoBehaviour
         return returnString;
     }
 
-    public void UpdateCodeDisplay()
+    public abstract void UpdateCodeDisplay();
+
+    protected void UpdateCodeDisplayFromMaterial(Material currentMaterial)
     {
-        if(linkedMeshRenderer == null || linkedCopyCodeInput == null)
+        if(linkedCopyCodeInput == null)
             return;
 
         // Update shader code
-        Material currentMaterial = linkedMeshRenderer.sharedMaterial;
         string codeDisplay = GetShaderCodeFromMaterial(currentMaterial);
 
         string coloredCode = colorShaderCode(codeDisplay);

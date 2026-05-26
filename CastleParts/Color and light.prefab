@@ -337,6 +337,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
         type: 3}
+      propertyPath: max
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: propertyName
+      value: _mipMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b99d97eb81c60247837bde4ceee6b27, type: 2}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
@@ -371,6 +386,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 18496145008920499, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91269991971783432, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91269991971783432, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91269991971783432, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 91269991971783432, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -415,6 +450,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 306312876421859684, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        geometry geom\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _albedo;\r\n            float _modelScale;\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2g {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n            \r\n            v2g vert (appdata v) {\r\n               
+        v2g o;\r\n                float4 pos = v.vertex;\r\n                float2
+        uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Geometry to fragment transfer
+        data\r\n            struct g2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 barycentric : TEXCOORD1;\r\n           
+        };\r\n            \r\n            // Geometry function\r\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = float3(1.0, 0.0, 0.0);\r\n               
+        triStream.Append(o);\r\n                \r\n                o.pos = IN[1].pos;\r\n               
+        o.uv = IN[1].uv;\r\n                o.barycentric = float3(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = float3(0.0, 0.0, 1.0);\r\n               
+        triStream.Append(o);\r\n            }\r\n\r\n            fixed4 frag (g2f
+        i) : SV_Target {\r\n                float closest = min(i.barycentric.x,
+        min(i.barycentric.y, i.barycentric.z));\r\n                float WireframeWith
+        = 0.02;\r\n                float frame = step(closest, WireframeWith);\r\n\r\n               
+        half3 frameColor = half3(0.0, 0.0, 0.0); // Black\r\n                half3
+        albedo = tex2D(_albedo, i.uv);\r\n                half3 color = half3(1.0,
+        0.0, 0.0); // Red\r\n\r\n                color = lerp(color, frameColor,
+        frame);\r\n\r\n                return float4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 473067877687060079, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -584,27 +660,27 @@ PrefabInstance:
     - target: {fileID: 894493549230193199, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894493549230193199, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 894493549230193199, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 894493549230193199, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 894493549230193199, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 1039503786302875299, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -642,27 +718,59 @@ PrefabInstance:
         {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
         Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
         <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
-        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        frag\r\n            #pragma geometry geom\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
         <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
         _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
         {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
         : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
-        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
-        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
-        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
-        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
-        <color=#569CD6>v2f</color> o;\r\n                <color=#569CD6>float4</color>
-        pos = v.<color=#569CD6>vertex</color>;\r\n                <color=#569CD6>float2</color>
-        uv = v.uv - <color=#569CD6>float2</color>(0.5, 0.5);\r\n                <color=#569CD6>float4</color>
-        uvPos = <color=#569CD6>float4</color>(uv.x, uv.y, 0.0, 0.0);\r\n               
-        \r\n                <color=#569CD6>float</color> lerpValue = sin(_Time.y)
-        * 0.5 + 0.5;\r\n                \r\n                <color=#569CD6>float4</color>
-        finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        };\r\n\r\n            <color=#569CD6>struct</color> v2g {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n            \r\n            v2g vert
+        (<color=#569CD6>appdata</color> v) {\r\n                v2g o;\r\n               
+        <color=#569CD6>float4</color> pos = v.<color=#569CD6>vertex</color>;\r\n               
+        <color=#569CD6>float2</color> uv = v.uv - <color=#569CD6>float2</color>(0.5,
+        0.5);\r\n                <color=#569CD6>float4</color> uvPos = <color=#569CD6>float4</color>(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                <color=#569CD6>float</color>
+        lerpValue = sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n               
+        <color=#569CD6>float4</color> finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
         o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
-        return o;\r\n            }\r\n\r\n            <color=#569CD6>fixed4</color>
-        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>fixed4</color>
-        col = tex2D(_albedo, i.uv);\r\n                return col;\r\n           
-        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+        return o;\r\n            }\r\n\r\n            <color=#57A64A>// Geometry
+        to fragment transfer data\r</color>\n            <color=#569CD6>struct</color>
+        g2f {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        barycentric : TEXCOORD1;\r\n            };\r\n            \r\n           
+        <color=#57A64A>// Geometry function\r</color>\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(1.0,
+        0.0, 0.0);\r\n                triStream.Append(o);\r\n                \r\n               
+        o.pos = IN[1].pos;\r\n                o.uv = IN[1].uv;\r\n               
+        o.barycentric = <color=#569CD6>float3</color>(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(0.0,
+        0.0, 1.0);\r\n                triStream.Append(o);\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (g2f i) : SV_Target {\r\n               
+        <color=#569CD6>float</color> closest = min(i.barycentric.x, min(i.barycentric.y,
+        i.barycentric.z));\r\n                <color=#569CD6>float</color> WireframeWith
+        = 0.02;\r\n                <color=#569CD6>float</color> frame = step(closest,
+        WireframeWith);\r\n\r\n                <color=#569CD6>half3</color> frameColor
+        = <color=#569CD6>half3</color>(0.0, 0.0, 0.0); <color=#57A64A>// Black\r</color>\n               
+        <color=#569CD6>half3</color> albedo = tex2D(_albedo, i.uv);\r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0, 0.0,
+        0.0); <color=#57A64A>// Red\r</color>\n\r\n                color = lerp(color,
+        frameColor, frame);\r\n\r\n                return <color=#569CD6>float4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058316506886864041, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.021935483
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058316506886864041, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.021935483
       objectReference: {fileID: 0}
     - target: {fileID: 1141646210634971267, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -884,12 +992,12 @@ PrefabInstance:
     - target: {fileID: 1836414229888386681, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.064
+      value: 3.849
       objectReference: {fileID: 0}
     - target: {fileID: 1836414229888386681, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.256
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1839146441825953531, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -897,6 +1005,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1839146441825953531, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
+    - target: {fileID: 1956007646151230349, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956007646151230349, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.365
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956007646151230349, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956007646151230349, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956007646151230349, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1963342715857259921, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -996,6 +1129,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114921598825446709, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114921598825446709, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114921598825446709, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114921598825446709, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114921598825446709, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 2143333343682180992, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1011,6 +1169,70 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278735205325388723, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/UVMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _modelScale (<color=#D69D85>\"Model
+        scale\"</color>, <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
+        Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #pragma geometry geom\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
+        _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> v2g {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n            \r\n            v2g vert
+        (<color=#569CD6>appdata</color> v) {\r\n                v2g o;\r\n               
+        <color=#569CD6>float4</color> pos = v.<color=#569CD6>vertex</color>;\r\n               
+        <color=#569CD6>float2</color> uv = v.uv - <color=#569CD6>float2</color>(0.5,
+        0.5);\r\n                <color=#569CD6>float4</color> uvPos = <color=#569CD6>float4</color>(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                <color=#569CD6>float</color>
+        lerpValue = sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n               
+        <color=#569CD6>float4</color> finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#57A64A>// Geometry
+        to fragment transfer data\r</color>\n            <color=#569CD6>struct</color>
+        g2f {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        barycentric : TEXCOORD1;\r\n            };\r\n            \r\n           
+        <color=#57A64A>// Geometry function\r</color>\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(1.0,
+        0.0, 0.0);\r\n                triStream.Append(o);\r\n                \r\n               
+        o.pos = IN[1].pos;\r\n                o.uv = IN[1].uv;\r\n               
+        o.barycentric = <color=#569CD6>float3</color>(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(0.0,
+        0.0, 1.0);\r\n                triStream.Append(o);\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (g2f i) : SV_Target {\r\n               
+        <color=#569CD6>float</color> closest = min(i.barycentric.x, min(i.barycentric.y,
+        i.barycentric.z));\r\n                <color=#569CD6>float</color> WireframeWith
+        = 0.02;\r\n                <color=#569CD6>float</color> frame = step(closest,
+        WireframeWith);\r\n\r\n                <color=#569CD6>half3</color> frameColor
+        = <color=#569CD6>half3</color>(0.0, 0.0, 0.0); <color=#57A64A>// Black\r</color>\n               
+        <color=#569CD6>half3</color> albedo = tex2D(_albedo, i.uv);\r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0, 0.0,
+        0.0); <color=#57A64A>// Red\r</color>\n\r\n                color = lerp(color,
+        frameColor, frame);\r\n\r\n                return <color=#569CD6>float4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278735205325388723, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.021935483
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278735205325388723, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.021935483
       objectReference: {fileID: 0}
     - target: {fileID: 2346385267058965384, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1090,6 +1312,16 @@ PrefabInstance:
         i.normal);\r\n\r\n                return <color=#569CD6>half4</color> (color,
         1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425870006604568558, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.172
+      objectReference: {fileID: 0}
+    - target: {fileID: 2425870006604568558, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2460839307819796539, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1261,6 +1493,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2695559106926077463, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695559106926077463, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2695559106926077463, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2746164681297974444, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1411,7 +1658,7 @@ PrefabInstance:
     - target: {fileID: 3254877990593727135, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0.904
       objectReference: {fileID: 0}
     - target: {fileID: 3254877990593727135, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1560,8 +1807,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: -7.449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676562357802022445, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3705513675810732243, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1915,6 +2182,47 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4365702280818202867, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        geometry geom\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _albedo;\r\n            float _modelScale;\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2g {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n            \r\n            v2g vert (appdata v) {\r\n               
+        v2g o;\r\n                float4 pos = v.vertex;\r\n                float2
+        uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Geometry to fragment transfer
+        data\r\n            struct g2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 barycentric : TEXCOORD1;\r\n           
+        };\r\n            \r\n            // Geometry function\r\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = float3(1.0, 0.0, 0.0);\r\n               
+        triStream.Append(o);\r\n                \r\n                o.pos = IN[1].pos;\r\n               
+        o.uv = IN[1].uv;\r\n                o.barycentric = float3(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = float3(0.0, 0.0, 1.0);\r\n               
+        triStream.Append(o);\r\n            }\r\n\r\n            fixed4 frag (g2f
+        i) : SV_Target {\r\n                float closest = min(i.barycentric.x,
+        min(i.barycentric.y, i.barycentric.z));\r\n                float WireframeWith
+        = 0.02;\r\n                float frame = step(closest, WireframeWith);\r\n\r\n               
+        half3 frameColor = half3(0.0, 0.0, 0.0); // Black\r\n                half3
+        albedo = tex2D(_albedo, i.uv);\r\n                half3 color = half3(1.0,
+        0.0, 0.0); // Red\r\n\r\n                color = lerp(color, frameColor,
+        frame);\r\n\r\n                return float4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 4462734830873575919, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -1931,27 +2239,59 @@ PrefabInstance:
         {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
         Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
         <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
-        frag\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        frag\r\n            #pragma geometry geom\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
         <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
         _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
         {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
         : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
-        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
-        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
-        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
-        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
-        <color=#569CD6>v2f</color> o;\r\n                <color=#569CD6>float4</color>
-        pos = v.<color=#569CD6>vertex</color>;\r\n                <color=#569CD6>float2</color>
-        uv = v.uv - <color=#569CD6>float2</color>(0.5, 0.5);\r\n                <color=#569CD6>float4</color>
-        uvPos = <color=#569CD6>float4</color>(uv.x, uv.y, 0.0, 0.0);\r\n               
-        \r\n                <color=#569CD6>float</color> lerpValue = sin(_Time.y)
-        * 0.5 + 0.5;\r\n                \r\n                <color=#569CD6>float4</color>
-        finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        };\r\n\r\n            <color=#569CD6>struct</color> v2g {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n            \r\n            v2g vert
+        (<color=#569CD6>appdata</color> v) {\r\n                v2g o;\r\n               
+        <color=#569CD6>float4</color> pos = v.<color=#569CD6>vertex</color>;\r\n               
+        <color=#569CD6>float2</color> uv = v.uv - <color=#569CD6>float2</color>(0.5,
+        0.5);\r\n                <color=#569CD6>float4</color> uvPos = <color=#569CD6>float4</color>(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                <color=#569CD6>float</color>
+        lerpValue = sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n               
+        <color=#569CD6>float4</color> finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
         o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
-        return o;\r\n            }\r\n\r\n            <color=#569CD6>fixed4</color>
-        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>fixed4</color>
-        col = tex2D(_albedo, i.uv);\r\n                return col;\r\n           
-        }\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+        return o;\r\n            }\r\n\r\n            <color=#57A64A>// Geometry
+        to fragment transfer data\r</color>\n            <color=#569CD6>struct</color>
+        g2f {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        barycentric : TEXCOORD1;\r\n            };\r\n            \r\n           
+        <color=#57A64A>// Geometry function\r</color>\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(1.0,
+        0.0, 0.0);\r\n                triStream.Append(o);\r\n                \r\n               
+        o.pos = IN[1].pos;\r\n                o.uv = IN[1].uv;\r\n               
+        o.barycentric = <color=#569CD6>float3</color>(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(0.0,
+        0.0, 1.0);\r\n                triStream.Append(o);\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (g2f i) : SV_Target {\r\n               
+        <color=#569CD6>float</color> closest = min(i.barycentric.x, min(i.barycentric.y,
+        i.barycentric.z));\r\n                <color=#569CD6>float</color> WireframeWith
+        = 0.02;\r\n                <color=#569CD6>float</color> frame = step(closest,
+        WireframeWith);\r\n\r\n                <color=#569CD6>half3</color> frameColor
+        = <color=#569CD6>half3</color>(0.0, 0.0, 0.0); <color=#57A64A>// Black\r</color>\n               
+        <color=#569CD6>half3</color> albedo = tex2D(_albedo, i.uv);\r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0, 0.0,
+        0.0); <color=#57A64A>// Red\r</color>\n\r\n                color = lerp(color,
+        frameColor, frame);\r\n\r\n                return <color=#569CD6>float4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634436759973258212, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.021935483
+      objectReference: {fileID: 0}
+    - target: {fileID: 4634436759973258212, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.021935483
       objectReference: {fileID: 0}
     - target: {fileID: 4637703837595370387, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -1988,6 +2328,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787823815461859287, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787823815461859287, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787823815461859287, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 4798259709140657506, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2355,17 +2710,17 @@ PrefabInstance:
     - target: {fileID: 5999235321294137549, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5999235321294137549, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5999235321294137549, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 6034609048291767743, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2776,6 +3131,11 @@ PrefabInstance:
         1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
+    - target: {fileID: 6977865889125696888, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7027304157444875798, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2815,6 +3175,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158881920257310884, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        geometry geom\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _albedo;\r\n            float _modelScale;\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2g {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n            \r\n            v2g vert (appdata v) {\r\n               
+        v2g o;\r\n                float4 pos = v.vertex;\r\n                float2
+        uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Geometry to fragment transfer
+        data\r\n            struct g2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 barycentric : TEXCOORD1;\r\n           
+        };\r\n            \r\n            // Geometry function\r\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = float3(1.0, 0.0, 0.0);\r\n               
+        triStream.Append(o);\r\n                \r\n                o.pos = IN[1].pos;\r\n               
+        o.uv = IN[1].uv;\r\n                o.barycentric = float3(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = float3(0.0, 0.0, 1.0);\r\n               
+        triStream.Append(o);\r\n            }\r\n\r\n            fixed4 frag (g2f
+        i) : SV_Target {\r\n                float closest = min(i.barycentric.x,
+        min(i.barycentric.y, i.barycentric.z));\r\n                float WireframeWith
+        = 0.02;\r\n                float frame = step(closest, WireframeWith);\r\n\r\n               
+        half3 frameColor = half3(0.0, 0.0, 0.0); // Black\r\n                half3
+        albedo = tex2D(_albedo, i.uv);\r\n                half3 color = half3(1.0,
+        0.0, 0.0); // Red\r\n\r\n                color = lerp(color, frameColor,
+        frame);\r\n\r\n                return float4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7170120976280221181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -2925,6 +3326,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376062001799629512, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376062001799629512, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376062001799629512, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7376062001799629512, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 7382091195206155144, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -3140,6 +3561,52 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8207257093222416994, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244157927881148350, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/TextureSampling/UVMapping\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _albedo (\"Albedo\", 2D) = \"white\" {}\r\n       
+        _modelScale (\"Model scale\", float) = 1.0\r\n    }\r\n    SubShader\r\n   
+        {\r\n        Pass\r\n        {\r\n            Cull Off\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n            #pragma
+        geometry geom\r\n\r\n            #include \"UnityCG.cginc\"\r\n\r\n           
+        sampler2D _albedo;\r\n            float _modelScale;\r\n\r\n            struct
+        appdata {\r\n                float4 vertex : POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            struct v2g {\r\n               
+        float4 pos : SV_POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n            \r\n            v2g vert (appdata v) {\r\n               
+        v2g o;\r\n                float4 pos = v.vertex;\r\n                float2
+        uv = v.uv - float2(0.5, 0.5);\r\n                float4 uvPos = float4(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                float lerpValue =
+        sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n                float4 finalPos
+        = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n                o.pos
+        = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            // Geometry to fragment transfer
+        data\r\n            struct g2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n                float3 barycentric : TEXCOORD1;\r\n           
+        };\r\n            \r\n            // Geometry function\r\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = float3(1.0, 0.0, 0.0);\r\n               
+        triStream.Append(o);\r\n                \r\n                o.pos = IN[1].pos;\r\n               
+        o.uv = IN[1].uv;\r\n                o.barycentric = float3(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = float3(0.0, 0.0, 1.0);\r\n               
+        triStream.Append(o);\r\n            }\r\n\r\n            fixed4 frag (g2f
+        i) : SV_Target {\r\n                float closest = min(i.barycentric.x,
+        min(i.barycentric.y, i.barycentric.z));\r\n                float WireframeWith
+        = 0.02;\r\n                float frame = step(closest, WireframeWith);\r\n\r\n               
+        half3 frameColor = half3(0.0, 0.0, 0.0); // Black\r\n                half3
+        albedo = tex2D(_albedo, i.uv);\r\n                half3 color = half3(1.0,
+        0.0, 0.0); // Red\r\n\r\n                color = lerp(color, frameColor,
+        frame);\r\n\r\n                return float4(color, 1.0);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8335754591133691897, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -3186,22 +3653,22 @@ PrefabInstance:
     - target: {fileID: 8605637363629215186, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605637363629215186, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8605637363629215186, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 8605637363629215186, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 8607861142386727631, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -3218,6 +3685,70 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684903010108650099, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/TextureSampling/UVMapping\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _albedo (<color=#D69D85>\"Albedo\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n        _modelScale (<color=#D69D85>\"Model
+        scale\"</color>, <color=#569CD6>float</color>) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            Cull
+        Off\r\n            <color=#569CD6>CGPROGRAM</color>\r\n            #pragma
+        <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n            #pragma geometry geom\r\n\r\n            #include <color=#D69D85>\"UnityCG.cginc\"</color>\r\n\r\n           
+        <color=#569CD6>sampler2D</color> _albedo;\r\n            <color=#569CD6>float</color>
+        _modelScale;\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>appdata</color>
+        {\r\n                <color=#569CD6>float4</color> <color=#569CD6>vertex</color>
+        : POSITION;\r\n                <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            <color=#569CD6>struct</color> v2g {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n            \r\n            v2g vert
+        (<color=#569CD6>appdata</color> v) {\r\n                v2g o;\r\n               
+        <color=#569CD6>float4</color> pos = v.<color=#569CD6>vertex</color>;\r\n               
+        <color=#569CD6>float2</color> uv = v.uv - <color=#569CD6>float2</color>(0.5,
+        0.5);\r\n                <color=#569CD6>float4</color> uvPos = <color=#569CD6>float4</color>(uv.x,
+        uv.y, 0.0, 0.0);\r\n                \r\n                <color=#569CD6>float</color>
+        lerpValue = sin(_Time.y) * 0.5 + 0.5;\r\n                \r\n               
+        <color=#569CD6>float4</color> finalPos = lerp(pos * _modelScale, uvPos, lerpValue);\r\n\r\n               
+        o.pos = UnityObjectToClipPos(finalPos);\r\n                o.uv = v.uv;\r\n               
+        return o;\r\n            }\r\n\r\n            <color=#57A64A>// Geometry
+        to fragment transfer data\r</color>\n            <color=#569CD6>struct</color>
+        g2f {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n                <color=#569CD6>float3</color>
+        barycentric : TEXCOORD1;\r\n            };\r\n            \r\n           
+        <color=#57A64A>// Geometry function\r</color>\n            [maxvertexcount(3)]\r\n           
+        void geom(triangle v2g IN[3], inout TriangleStream<g2f> triStream) {\r\n               
+        g2f o;\r\n\r\n                o.pos = IN[0].pos;\r\n                o.uv
+        = IN[0].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(1.0,
+        0.0, 0.0);\r\n                triStream.Append(o);\r\n                \r\n               
+        o.pos = IN[1].pos;\r\n                o.uv = IN[1].uv;\r\n               
+        o.barycentric = <color=#569CD6>float3</color>(0.0, 1.0, 0.0);\r\n               
+        triStream.Append(o);\r\n\r\n                o.pos = IN[2].pos;\r\n               
+        o.uv = IN[2].uv;\r\n                o.barycentric = <color=#569CD6>float3</color>(0.0,
+        0.0, 1.0);\r\n                triStream.Append(o);\r\n            }\r\n\r\n           
+        <color=#569CD6>fixed4</color> frag (g2f i) : SV_Target {\r\n               
+        <color=#569CD6>float</color> closest = min(i.barycentric.x, min(i.barycentric.y,
+        i.barycentric.z));\r\n                <color=#569CD6>float</color> WireframeWith
+        = 0.02;\r\n                <color=#569CD6>float</color> frame = step(closest,
+        WireframeWith);\r\n\r\n                <color=#569CD6>half3</color> frameColor
+        = <color=#569CD6>half3</color>(0.0, 0.0, 0.0); <color=#57A64A>// Black\r</color>\n               
+        <color=#569CD6>half3</color> albedo = tex2D(_albedo, i.uv);\r\n               
+        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(1.0, 0.0,
+        0.0); <color=#57A64A>// Red\r</color>\n\r\n                color = lerp(color,
+        frameColor, frame);\r\n\r\n                return <color=#569CD6>float4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684903010108650099, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.021935483
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684903010108650099, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.021935483
       objectReference: {fileID: 0}
     - target: {fileID: 8693292800533742801, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -3282,12 +3813,12 @@ PrefabInstance:
     - target: {fileID: 8772055881682378261, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.21
+      value: 0.606
       objectReference: {fileID: 0}
     - target: {fileID: 8772055881682378261, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8802733343286511612, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
@@ -3310,6 +3841,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8802733343286511612, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809319186517800181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809319186517800181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809319186517800181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809319186517800181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809319186517800181, guid: 6a3f47a4fd7129e4cbda30a041eccb98,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -3439,181 +3995,202 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4569761191953781388}
     m_Modifications:
-    - target: {fileID: 957423822697900830, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 957423822697900830, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 957423822697900830, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 957423822697900830, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 957423822697900830, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195089057225140169, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195089057225140169, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195089057225140169, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195089057225140169, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195089057225140169, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847975058247701382, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847975058247701382, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847975058247701382, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847975058247701382, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3194623171373024548, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 272474556300640350, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 3194623171373024548, guid: 052f35b77d39e604db241ae46c3814a5,
+      objectReference: {fileID: 272474556300640350, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-    - target: {fileID: 3799344850967535441, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 822444602033138183, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40c9513d644f1b842a883a1e38fc8fa5, type: 2}
+    - target: {fileID: 879412884744283990, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3799344850967535441, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 879412884744283990, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3799344850967535441, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 879412884744283990, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3799344850967535441, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 879412884744283990, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 879412884744283990, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355981901052136848, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355981901052136848, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571540712786134852, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759672113773708121, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759672113773708121, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759672113773708121, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759672113773708121, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1759672113773708121, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120833062530845610, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120833062530845610, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120833062530845610, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174526646315723673, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525346948436642474, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683193808551275551, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683193808551275551, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839875812291216720, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 2839875812291216720, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+    - target: {fileID: 3063365532672961061, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3063365532672961061, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3063365532672961061, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3835807574961454546, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.4199998
+      value: -2.42
       objectReference: {fileID: 0}
     - target: {fileID: 3835807574961454546, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
@@ -3623,7 +4200,7 @@ PrefabInstance:
     - target: {fileID: 3835807574961454546, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.950001
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 3835807574961454546, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
@@ -3660,12 +4237,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4569573502403480051, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 4534956215849347831, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 4569573502403480051, guid: 052f35b77d39e604db241ae46c3814a5,
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534956215849347831, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534956215849347831, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534956215849347831, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534956215849347831, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4685161910294673787, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3697,6 +4293,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4789449949451957791, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870836315491476276, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870836315491476276, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870836315491476276, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870836315491476276, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870836315491476276, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -3707,6 +4328,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5306390152484331709, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
+    - target: {fileID: 6063636282143663805, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6063636282143663805, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+    - target: {fileID: 6356753133542950615, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356753133542950615, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356753133542950615, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356753133542950615, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6808348483707831145, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3732,31 +4379,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7134067581116689930, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7098879106871020814, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134067581116689930, guid: 052f35b77d39e604db241ae46c3814a5,
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7098879106871020814, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134067581116689930, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7191027896897259314, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134067581116689930, guid: 052f35b77d39e604db241ae46c3814a5,
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7191027896897259314, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134067581116689930, guid: 052f35b77d39e604db241ae46c3814a5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7279709669260700964, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -3808,27 +4442,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8088107109401551581, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7590771058891840428, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8088107109401551581, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7590771058891840428, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8088107109401551581, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7590771058891840428, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8088107109401551581, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 7590771058891840428, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8088107109401551581, guid: 052f35b77d39e604db241ae46c3814a5,
+    - target: {fileID: 8059839815837181784, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059839815837181784, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059839815837181784, guid: 052f35b77d39e604db241ae46c3814a5,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8059839815837181784, guid: 052f35b77d39e604db241ae46c3814a5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -3963,6 +4612,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: c1a9c9097732c5d428df6fed2dc949d7, type: 2}
+    - target: {fileID: 4370951913967234905, guid: 83ae999c77b293e42b75b50f88c3b727,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ee455e4e7c60af84cb9c6d8c93f165cb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10194,6 +10848,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6395275481705295849, guid: aacf23fd940d08d419d1dcbc7feb3a70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.314
+      objectReference: {fileID: 0}
     - target: {fileID: 6399573733575462933, guid: aacf23fd940d08d419d1dcbc7feb3a70,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -12608,10 +13267,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3939089527819311004, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2255271451145209478, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -467569039855240993, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 32be2ea7b5764774791f095780104b64,
         type: 3}
       propertyPath: m_Name
       value: Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141101260113499581, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627130955173752333, guid: 32be2ea7b5764774791f095780104b64,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
