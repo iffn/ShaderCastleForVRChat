@@ -99885,6 +99885,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2660554201163780453, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 2678943584356604531, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _originalTexture(\"Original texture\", 2D)
+        = \"black\" {}\r\n        _updateStep(\"Update step\", float) = 0.5\r\n   
+        }\r\n\r\n    CGINCLUDE\r\n\r\n    #include \"UnityCustomRenderTexture.cginc\"\r\n   
+        \r\n    #define currentTexture(U) tex2D(_SelfTexture2D, U)\r\n\r\n    sampler2D
+        _paintMask;\r\n    float _updateStep;\r\n\r\n    fixed4 frag(v2f_customrendertexture
+        i) : SV_Target\r\n    {\r\n        float2 uv = i.globalTexcoord;\r\n\r\n       
+        float du = 1.0 / _CustomRenderTextureWidth;\r\n        float dv = 1.0 / _CustomRenderTextureHeight;\r\n       
+        float4 duv = float4(du, dv, 0 ,0);\r\n        \r\n        float4 cell = currentTexture(uv);
+        \r\n        float4 cellUp = currentTexture(uv + duv.wy);\r\n        float4
+        cellDown = currentTexture(uv - duv.wy);\r\n        float4 cellRight = currentTexture(uv
+        + duv.xw);\r\n        float4 cellLeft = currentTexture(uv - duv.xw);\r\n       
+        \r\n        fixed4 color = lerp(cell, cellUp, _updateStep);\r\n\r\n       
+        return saturate(color);\r\n    }\r\n\r\n    ENDCG\r\n\r\n    SubShader\r\n   
+        {\r\n        Cull Off ZWrite Off ZTest Always\r\n        Pass\r\n       
+        {\r\n            Name \"Update\"\r\n            CGPROGRAM\r\n           
+        #pragma vertex CustomRenderTextureVertexShader\r\n            #pragma fragment
+        frag\r\n            ENDCG\r\n        }\r\n    }\r\n\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 2702624167041114844, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -101377,6 +101399,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4081927913424267805, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 4091863252578581038, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _originalTexture(\"Original texture\", 2D)
+        = \"black\" {}\r\n        _updateStep(\"Update step\", float) = 0.5\r\n   
+        }\r\n\r\n    CGINCLUDE\r\n\r\n    #include \"UnityCustomRenderTexture.cginc\"\r\n   
+        \r\n    #define currentTexture(U) tex2D(_SelfTexture2D, U)\r\n\r\n    sampler2D
+        _paintMask;\r\n    float _updateStep;\r\n\r\n    fixed4 frag(v2f_customrendertexture
+        i) : SV_Target\r\n    {\r\n        float2 uv = i.globalTexcoord;\r\n\r\n       
+        float du = 1.0 / _CustomRenderTextureWidth;\r\n        float dv = 1.0 / _CustomRenderTextureHeight;\r\n       
+        float4 duv = float4(du, dv, 0 ,0);\r\n        \r\n        float4 cell = currentTexture(uv);
+        \r\n        float4 cellUp = currentTexture(uv + duv.wy);\r\n        float4
+        cellDown = currentTexture(uv - duv.wy);\r\n        float4 cellRight = currentTexture(uv
+        + duv.xw);\r\n        float4 cellLeft = currentTexture(uv - duv.xw);\r\n       
+        \r\n        fixed4 color = lerp(cell, cellUp, _updateStep);\r\n\r\n       
+        return saturate(color);\r\n    }\r\n\r\n    ENDCG\r\n\r\n    SubShader\r\n   
+        {\r\n        Cull Off ZWrite Off ZTest Always\r\n        Pass\r\n       
+        {\r\n            Name \"Update\"\r\n            CGPROGRAM\r\n           
+        #pragma vertex CustomRenderTextureVertexShader\r\n            #pragma fragment
+        frag\r\n            ENDCG\r\n        }\r\n    }\r\n\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4092977508773489464, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -102162,6 +102206,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4903663529813684522, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 4904406005767749945, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _originalTexture(<color=#D69D85>\"Original
+        texture\"</color>, 2D) = <color=#D69D85>\"black\"</color> {}\r\n        _updateStep(<color=#D69D85>\"Update
+        step\"</color>, <color=#569CD6>float</color>) = 0.5\r\n    }\r\n\r\n    CGINCLUDE\r\n\r\n   
+        #include <color=#D69D85>\"UnityCustomRenderTexture.cginc\"</color>\r\n   
+        \r\n    #define currentTexture(U) tex2D(_SelfTexture2D, U)\r\n\r\n    <color=#569CD6>sampler2D</color>
+        _paintMask;\r\n    <color=#569CD6>float</color> _updateStep;\r\n\r\n    <color=#569CD6>fixed4</color>
+        frag(v2f_customrendertexture i) : SV_Target\r\n    {\r\n        <color=#569CD6>float2</color>
+        uv = i.globalTexcoord;\r\n\r\n        <color=#569CD6>float</color> du = 1.0
+        / _CustomRenderTextureWidth;\r\n        <color=#569CD6>float</color> dv =
+        1.0 / _CustomRenderTextureHeight;\r\n        <color=#569CD6>float4</color>
+        duv = <color=#569CD6>float4</color>(du, dv, 0 ,0);\r\n        \r\n       
+        <color=#569CD6>float4</color> cell = currentTexture(uv); \r\n        <color=#569CD6>float4</color>
+        cellUp = currentTexture(uv + duv.wy);\r\n        <color=#569CD6>float4</color>
+        cellDown = currentTexture(uv - duv.wy);\r\n        <color=#569CD6>float4</color>
+        cellRight = currentTexture(uv + duv.xw);\r\n        <color=#569CD6>float4</color>
+        cellLeft = currentTexture(uv - duv.xw);\r\n        \r\n        <color=#569CD6>fixed4</color>
+        color = lerp(cell, cellUp, _updateStep);\r\n\r\n        return saturate(color);\r\n   
+        }\r\n\r\n    <color=#569CD6>ENDCG</color>\r\n\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        Cull Off ZWrite Off ZTest Always\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Name <color=#D69D85>\"Update\"</color>\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> CustomRenderTextureVertexShader\r\n           
+        #pragma <color=#569CD6>fragment</color> frag\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 4909541949265805418, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -103615,6 +103687,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6449770052331476418, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 6479343178856849764, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _originalTexture(<color=#D69D85>\"Original
+        texture\"</color>, 2D) = <color=#D69D85>\"black\"</color> {}\r\n        _updateStep(<color=#D69D85>\"Update
+        step\"</color>, <color=#569CD6>float</color>) = 0.5\r\n    }\r\n\r\n    CGINCLUDE\r\n\r\n   
+        #include <color=#D69D85>\"UnityCustomRenderTexture.cginc\"</color>\r\n   
+        \r\n    #define currentTexture(U) tex2D(_SelfTexture2D, U)\r\n\r\n    <color=#569CD6>sampler2D</color>
+        _paintMask;\r\n    <color=#569CD6>float</color> _updateStep;\r\n\r\n    <color=#569CD6>fixed4</color>
+        frag(v2f_customrendertexture i) : SV_Target\r\n    {\r\n        <color=#569CD6>float2</color>
+        uv = i.globalTexcoord;\r\n\r\n        <color=#569CD6>float</color> du = 1.0
+        / _CustomRenderTextureWidth;\r\n        <color=#569CD6>float</color> dv =
+        1.0 / _CustomRenderTextureHeight;\r\n        <color=#569CD6>float4</color>
+        duv = <color=#569CD6>float4</color>(du, dv, 0 ,0);\r\n        \r\n       
+        <color=#569CD6>float4</color> cell = currentTexture(uv); \r\n        <color=#569CD6>float4</color>
+        cellUp = currentTexture(uv + duv.wy);\r\n        <color=#569CD6>float4</color>
+        cellDown = currentTexture(uv - duv.wy);\r\n        <color=#569CD6>float4</color>
+        cellRight = currentTexture(uv + duv.xw);\r\n        <color=#569CD6>float4</color>
+        cellLeft = currentTexture(uv - duv.xw);\r\n        \r\n        <color=#569CD6>fixed4</color>
+        color = lerp(cell, cellUp, _updateStep);\r\n\r\n        return saturate(color);\r\n   
+        }\r\n\r\n    <color=#569CD6>ENDCG</color>\r\n\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        Cull Off ZWrite Off ZTest Always\r\n        <color=#569CD6>Pass</color>\r\n       
+        {\r\n            Name <color=#D69D85>\"Update\"</color>\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> CustomRenderTextureVertexShader\r\n           
+        #pragma <color=#569CD6>fragment</color> frag\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n\r\n}"
+      objectReference: {fileID: 0}
     - target: {fileID: 6489779230722935539, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.y
