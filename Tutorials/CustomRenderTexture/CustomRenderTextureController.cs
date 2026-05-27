@@ -1,5 +1,4 @@
 ﻿
-using JetBrains.Annotations;
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
