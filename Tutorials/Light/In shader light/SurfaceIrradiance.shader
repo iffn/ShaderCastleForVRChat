@@ -37,11 +37,21 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
 
             half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 normalized_world_light_direction = normalize(_world_light_direction);
 
-                half3 NdotL = dot(worldNormal, normalized_world_light_direction);
+                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+
+                half3 BRDFLightFactor = half3(0.9, 0.2, 0.2);
+
+                float3 normalized_world_light_direction = normalize(_world_light_direction);
+                half NdotL = dot(worldNormal, normalized_world_light_direction);
+                half3 randiantIntensity = half3(1.0, 1.0, 1.0);
+                half3 surfaceIrradiance = randiantIntensity * NdotL;
                 
-                return half4(NdotL, 1.0);
+                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+
+                half3 emittedLight = emissiveLight + reflectedLight;
+
+                return half4(emittedLight, 1.0);
             }
             ENDCG
         }

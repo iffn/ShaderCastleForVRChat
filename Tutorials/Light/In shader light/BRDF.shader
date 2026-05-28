@@ -51,37 +51,78 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 return o;
             }
 
+            float3 HalfVectorLightViewNormalized(float3 lightVector, float3 viewDir)
+            {
+                return normalize(lightVector + lightVector);
+            }
+            
+            half3 FresnelReflectionWithSchlickApproximation(float3 viewDir, float3 halfVectorLightView)
+            {
+                float3 reflectanceForPerpendicularIncidence = float3(0.8, 0.8, 0.8);
+
+                float3 powBase = (1 - dot(viewDir, halfVectorLightView));
+
+                float3 pow5 = powBase * powBase * powBase * powBase * powBase;
+                
+                return reflectanceForPerpendicularIncidence + (1 - reflectanceForPerpendicularIncidence) * pow5;
+            }
+
+            float GGXNormalDistributionFunction(float3 normal, float3 halfVectorLightView, float roughnessSquared)
+            {
+                float pi = 3.141593
+                
+                float NdotH = dot(normal, halfVectorLightView);
+                float base = (pi * (NdotH * NdotH) * (roughnessSquared - 1) - 1);
+
+                return roughnessSquared / (base * base);
+            }
+
+            float MicrofacetMaskingGeometryWithSchlikGGXApproximation(float NdotV, float3 viewVector, float roughnessSquared)
+            {
+                float halfRoughnessSquared = roughnessSquared * 0.5;
+
+                return NdotV / (NdotV * (1 - halfRoughnessSquared) + halfRoughnessSquared);
+            }
+
+            float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float roughness)
+            {
+                float3 halfVectorLightView = HalfVectorLightViewSquared(lightVector viewDir);
+
+                float3 fresnelReflection = FresnelReflectionWithSchlickApproximation(float3 viewDir, float3 halfVectorLightView);
+                
+                float roughnessSquared = roughness * roughness;
+
+                float GGXNormalDistribution = GGXNormalDistributionFunction(normal, halfVectorLightView, roughnessSquared);
+
+                float microfacetMasking = MicrofacetMaskingGeometryWithSchlikGGXApproximation(normal, lightVector, viewVector, roughnessSquared);
+
+                float3 NdotV = dot(normal, viewVector);
+            }
+
+
             half4 frag (v2f i) : SV_Target {
+
+
                 float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 normalized_world_light_direction = normalize(_world_light_direction);
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
 
-                float3 specularTint = _albedo * _metallic;
-				float oneMinusReflectivity;
-                float3 albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb, _metallic, specularTint, oneMinusReflectivity);
 
-                UnityLight light;
-                light.color = _light_color;
-                light.dir = _world_light_direction;
-                light.ndotl = saturate(dot(worldNormal, normalized_world_light_direction));
+                half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
-                float3 reflectDir = reflect(-viewDir, worldNormal);
-                float perceptualRoughness = 1.0 - _smoothness;
-                float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
-                half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                half3 BRDFLightFactor = _albedo;
+
+                float3 normalized_world_light_direction = normalize(_world_light_direction);
+                half NdotL = dot(worldNormal, normalized_world_light_direction);
+                half3 randiantIntensity = half3(1.0, 1.0, 1.0);
+                half3 surfaceIrradiance = randiantIntensity * NdotL;
                 
-                UnityIndirect indirectLight;
-                indirectLight.diffuse = _ambient_light_color;
-                indirectLight.specular = indirectSpecular;
+                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                return UNITY_BRDF_PBS(
-					albedo, specularTint,
-					oneMinusReflectivity, _smoothness,
-					worldNormal, viewDir,
-					light, indirectLight
-				);
+                half3 emittedLight = emissiveLight + reflectedLight;
+
+                return half4(emittedLight, 1.0);
             }
             ENDCG
         }

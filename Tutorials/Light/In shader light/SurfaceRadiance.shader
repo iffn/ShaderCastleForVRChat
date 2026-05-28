@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/Light/SurfaceLight"
+Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
 {
     SubShader
     {
@@ -23,8 +23,11 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceLight"
             }
 
             half4 frag () : SV_Target {
-                half3 emissiveLight = half3(1.0, 0.0, 0.0);
-                half3 reflectedLight = half3(0.0, 0.0, 0.0);
+                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+
+                half3 BRDFLightFactor = half3(0.9, 0.2, 0.2);
+                half3 surfaceIrradiance = half3(1.0, 1.0, 1.0);
+                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
                 half3 emittedLight = emissiveLight + reflectedLight;
 

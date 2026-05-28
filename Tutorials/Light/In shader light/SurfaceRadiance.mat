@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LambertLightDirection
-  m_Shader: {fileID: 4800000, guid: 723ef003b4455fb4d83b8602eb56b387, type: 3}
+  m_Name: SurfaceRadiance
+  m_Shader: {fileID: 4800000, guid: 3d62cb66420a7b54dab84f4212c1d5e2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -80,5 +80,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _world_light_direction: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
