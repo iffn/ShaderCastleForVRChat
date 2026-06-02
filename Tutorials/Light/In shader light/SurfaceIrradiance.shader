@@ -2,7 +2,9 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
 {
     Properties
     {
-        _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
+        _worldLightDirection ("World light direciton", Vector) = (1,1,1,0)
+        _radiantIntensity ("Radiant intensity", Color) = (1,1,1,1)
+        _albedo ("Albedo", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -14,7 +16,9 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
             #pragma fragment frag
             #include "UnityCG.cginc"
 
-            float3 _world_light_direction;
+            float3 _worldLightDirection;
+            half3 _radiantIntensity;
+            half3 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -36,20 +40,21 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
             }
 
             half4 frag (v2f i) : SV_Target {
+                // All vectors are normalized and point away from the surface
                 float3 worldNormal = normalize(i.worldNormal);
+                float3 lightVector = -normalize(_worldLightDirection);
 
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
-                half3 BRDFLightFactor = half3(0.9, 0.2, 0.2);
-
-                float3 normalized_world_light_direction = normalize(_world_light_direction);
-                half NdotL = dot(worldNormal, normalized_world_light_direction);
-                half3 randiantIntensity = half3(1.0, 1.0, 1.0);
-                half3 surfaceIrradiance = randiantIntensity * NdotL;
+                // Light hitting the surface:
+                half NdotL = dot(worldNormal, lightVector);
+                half3 surfaceIrradiance = _radiantIntensity * NdotL;
                 
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                // How much is reflected:
+                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets refelcted in all directions equally.
+                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
 
-                half3 emittedLight = emissiveLight + reflectedLight;
+                half3 emittedLight = emissiveLight + surfaceRadiance;
 
                 return half4(emittedLight, 1.0);
             }

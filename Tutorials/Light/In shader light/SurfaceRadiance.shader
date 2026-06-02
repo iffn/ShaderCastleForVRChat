@@ -1,5 +1,9 @@
 Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
 {
+    Properties
+    {
+        _BRDFLightFactor ("BRDF Light factor", Color) = (1,1,1,1)
+    }
     SubShader
     {
         Pass
@@ -8,6 +12,8 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
             #pragma vertex vert
             #pragma fragment frag
 
+            half3 _BRDFLightFactor;
+            
             struct appdata {
                 float4 vertex : POSITION;
             };
@@ -25,9 +31,8 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
             half4 frag () : SV_Target {
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
-                half3 BRDFLightFactor = half3(0.9, 0.2, 0.2);
                 half3 surfaceIrradiance = half3(1.0, 1.0, 1.0);
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                half3 reflectedLight = _BRDFLightFactor * surfaceIrradiance;
 
                 half3 emittedLight = emissiveLight + reflectedLight;
 

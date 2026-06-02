@@ -60,7 +60,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
 
                 
-                /*
                 float3 specularTint = _albedo * _metallic;
 				float oneMinusReflectivity;
                 float3 albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb, _metallic, specularTint, oneMinusReflectivity);
@@ -86,7 +85,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
 					worldNormal, viewDir,
 					light, indirectLight
 				);
-                */
             }
             ENDCG
         }
