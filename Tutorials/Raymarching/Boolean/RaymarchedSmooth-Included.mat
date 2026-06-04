@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RaymarchedXor-Included
-  m_Shader: {fileID: 4800000, guid: 53ebb7a972b4b7741bb7f6dd6fbe8bd3, type: 3}
+  m_Name: RaymarchedSmooth-Included
+  m_Shader: {fileID: 4800000, guid: b9f5bdc7ccc114441bbf4f0c1cacf415, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -74,10 +74,11 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Radius: 0.5
+    - _Smoothing: 0.0315021
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SphereOffset: 0.14687026
-    - _SphereRadius: 0.3358131
+    - _SphereOffset: 0.3158369
+    - _SphereRadius: 0.3
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1

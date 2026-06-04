@@ -5,7 +5,7 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
         _worldLightDirection ("World light direciton", Vector) = (1,1,1,0)
         _directionalLightColor ("Light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
-        _ambientLightColor ("Light color", Color) = (1,1,1,1)
+        _ambientLightColor ("Light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
     {

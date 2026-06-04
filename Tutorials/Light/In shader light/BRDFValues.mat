@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RaymarchedXor-Included
-  m_Shader: {fileID: 4800000, guid: 53ebb7a972b4b7741bb7f6dd6fbe8bd3, type: 3}
+  m_Name: BRDFValues
+  m_Shader: {fileID: 4800000, guid: dd7ea11bf5aa6cd498555f075dbdfaab, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -68,22 +68,26 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxViewDistance: 20
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Radius: 0.5
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SphereOffset: 0.14687026
-    - _SphereRadius: 0.3358131
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _metallic: 0.48
+    - _reflectance: 0.36
+    - _roughness: 0.3
+    - _smoothness: 0.8
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SphereColor: {r: 1, g: 0, b: 0, a: 1}
-    - _SpherePos: {r: 0, g: 0, b: 0, a: 0}
+    - _albedo: {r: 0.78431374, g: 0.1960783, b: 0.2745096, a: 1}
+    - _ambientLightColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
+    - _ambient_light_color: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
+    - _light_color: {r: 1, g: 1, b: 1, a: 1}
+    - _world_light_direction: {r: -1, g: -1, b: 1, a: 0}
   m_BuildTextureStacks: []
