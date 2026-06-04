@@ -5,6 +5,7 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
         _worldLightDirection ("World light direciton", Vector) = (1,1,1,0)
         _directionalLightColor ("Light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
+        _ambientLightColor ("Light color", Color) = (1,1,1,1)
     }
     SubShader
     {
@@ -19,6 +20,7 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
             float3 _worldLightDirection;
             half3 _directionalLightColor;
             half3 _albedo;
+            half3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -49,7 +51,9 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
                 // Light hitting the surface:
                 half NdotL = saturate(dot(worldNormal, lightVector));
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradiance = radiantIntensity * NdotL;
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
+                half3 surfaceIrradianceAmbientLight = _ambientLightColor;
+                half3 surfaceIrradiance = surfaceIrradianceDirectionalLight + surfaceIrradianceAmbientLight;
                 
                 // How much is reflected:
                 half3 BRDFLightFactor = _albedo; // Simplified model: The light gets refelcted in all directions equally.
