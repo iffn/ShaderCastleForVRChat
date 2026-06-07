@@ -54,7 +54,7 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D"
                 return hash11(hash11(p.x) + p.y);
             }
 
-            float valueNoise(float2 uv) {
+            float valueNoise2D(float2 uv) {
                 // Base parameters
 				float2 i = floor(uv);
 				float2 f = frac(uv);
@@ -81,15 +81,15 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D"
                      1.6,  1.2, 
                     -1.2,  1.6);
                     
-                float noise = 0.5 * valueNoise(pos2D);
+                float noise = 0.5 * valueNoise2D(pos2D);
                 
                 pos2D = mul(octaveTransform, pos2D);
                 
-                noise += 0.25 * valueNoise(pos2D);
+                noise += 0.25 * valueNoise2D(pos2D);
                 
                 pos2D = mul(octaveTransform, pos2D);
                 
-                noise += 0.125 * valueNoise(pos2D);
+                noise += 0.125 * valueNoise2D(pos2D);
 
                 half3 color = noise.xxx;
 

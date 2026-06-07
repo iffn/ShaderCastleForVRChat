@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/ProceduralTextures/Checkerboard"
+Shader "ShaderCastle/Tutorials/ProceduralTextures/GridSkew"
 {
     Properties
     {
@@ -40,14 +40,23 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/Checkerboard"
 
             half4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
-
                 pos2D *= _zoom;
 
-                half3 black = (0.0, 0.0, 0.0);
-                half3 white = (1.0, 1.0, 1.0);
+                // Simplex Skew Factor for 2D: (sqrt(3.0) - 1.0) / 2.0
+                const float F2 = 0.366025403;
                 
-                float xStep = stepPattern(pos2D.x);
-                float yStep = stepPattern(-pos2D.y);
+                // 1. Calculate the skew amount based on the sum of components
+                float skew = (pos2D.x + pos2D.y) * F2;
+                
+                // 2. Add the skew to the original coordinates to warp the space
+                float2 skewedPos = pos2D + skew;
+
+                half3 black = half3(0.0, 0.0, 0.0);
+                half3 white = half3(1.0, 1.0, 1.0);
+                
+                // 3. Generate the grid pattern using the skewed coordinates
+                float xStep = stepPattern(skewedPos.x);
+                float yStep = stepPattern(-skewedPos.y);
                 float pattern = abs(xStep - yStep);
 
                 half3 color = lerp(black, white, pattern);
