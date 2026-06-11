@@ -1,9 +1,9 @@
-Shader "ShaderCastle/Tutorials/Light/BRDF"
+Shader "ShaderCastle/Tutorials/Light/BRDFValues"
 {
     Properties
     {
-        _worldLightDirection ("World light direciton", Vector) = (1,1,1,1)
-        _directionalLightColor ("Directinal light color", color) = (1,1,1,1)
+        _worldLightDirection ("World light direction", Vector) = (1,1,1,1)
+        _directionalLightColor ("Directional light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _roughness ("Roughness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
@@ -12,7 +12,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
     }
     SubShader
     {
-        
         Pass
         {
             CGPROGRAM
@@ -25,7 +24,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
             float3 _worldLightDirection;
             half4 _albedo;
             half4 _directionalLightColor;
-            half4 _ambient_light_color;
             float _roughness;
             float _metallic;
             float _reflectance;
@@ -53,22 +51,11 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
 
                 return o;
             }
-            
-            half3 FresnelReflectionWithSchlickApproximation(float3 viewDir, float3 halfVectorLightView)
-            {
-                float3 reflectanceForPerpendicularIncidence = float3(0.8, 0.2, 0.2);
-
-                float3 powBase = (1 - dot(viewDir, halfVectorLightView));
-
-                float3 pow5 = powBase * powBase * powBase * powBase * powBase;
-                
-                return reflectanceForPerpendicularIncidence + (1 - reflectanceForPerpendicularIncidence) * pow5;
-            }
 
             half3 FresnelReflectionWithSchlickApproximation(float VdotH, float reflectance, float3 albedo, float metallic)
             {
                 float3 reflection = 0.16 * reflectance * reflectance;
-                float f0 = lerp(reflection, albedo, metallic);
+                float3 f0 = lerp(reflection, albedo, metallic);
 
                 return f0 + (1.0 - f0) * pow(1.0 - VdotH, 5.0);
             }

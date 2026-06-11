@@ -73,7 +73,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
             half3 FresnelReflectionWithSchlickApproximation(float VdotH, float reflectance, float3 albedo, float metallic)
             {
                 float3 reflection = 0.16 * reflectance * reflectance;
-                float f0 = lerp(reflection, albedo, metallic);
+                float3 f0 = lerp(reflection, albedo, metallic);
 
                 return f0 + (1.0 - f0) * pow(1.0 - VdotH, 5.0);
             }

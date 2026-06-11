@@ -47,29 +47,27 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 o.normal = v.normal;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldNormal = normalize(o.worldNormal);
-
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target {
-
-
+                float3 lightDirection = normalize(_world_light_direction);
+                
                 float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 normalized_world_light_direction = normalize(_world_light_direction);
-                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
-
+                float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 
                 float3 specularTint = _albedo * _metallic;
-				float oneMinusReflectivity;
+				
+                float oneMinusReflectivity;
                 float3 albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb, _metallic, specularTint, oneMinusReflectivity);
 
                 UnityLight light;
                 light.color = _light_color;
                 light.dir = _world_light_direction;
-                light.ndotl = saturate(dot(worldNormal, normalized_world_light_direction));
+                light.ndotl = saturate(dot(worldNormal, lightDirection));
 
-                float3 reflectDir = reflect(-viewDir, worldNormal);
+                float3 reflectDir = reflect(-viewVector, worldNormal);
                 float perceptualRoughness = 1.0 - _smoothness;
                 float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
                 half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
@@ -80,9 +78,12 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 indirectLight.specular = indirectSpecular;
 
                 return UNITY_BRDF_PBS(
-					albedo, specularTint,
-					oneMinusReflectivity, _smoothness,
-					worldNormal, viewDir,
+					albedo,
+                    specularTint,
+					oneMinusReflectivity,
+                    _smoothness,
+					worldNormal,
+                    viewVector,
 					light, indirectLight
 				);
             }
