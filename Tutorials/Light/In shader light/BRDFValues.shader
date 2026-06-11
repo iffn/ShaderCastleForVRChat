@@ -2,14 +2,13 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
 {
     Properties
     {
-        _world_light_direction ("World light direciton", Vector) = (1,1,1,1)
-        _light_color ("Light color", color) = (1,1,1,1)
-        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
+        _worldLightDirection ("World light direciton", Vector) = (1,1,1,1)
+        _directionalLightColor ("Directinal light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _roughness ("Roughness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
         _reflectance ("Reflectance", Range(0, 1)) = 0.5
-        _ambientLightColor ("Light color", Color) = (0.2, 0.2, 0.2, 1)
+        _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
     {
@@ -23,9 +22,9 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
             #include "UnityCG.cginc"
             #include "UnityPBSLighting.cginc"
 
-            float3 _world_light_direction;
+            float3 _worldLightDirection;
             half4 _albedo;
-            half4 _light_color;
+            half4 _directionalLightColor;
             half4 _ambient_light_color;
             float _roughness;
             float _metallic;
@@ -91,10 +90,9 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 float halfRoughnessSquaredInverse = 1 - halfRoughnessSquared;
 
                 float geometryTermView = NdotV / (NdotV * halfRoughnessSquaredInverse + halfRoughnessSquared);
-                //return geometryTermView;
 
                 float geometryTermLight = NdotL / (NdotL * halfRoughnessSquaredInverse + halfRoughnessSquared);
-                //return geometryTermLight;
+                
                 return geometryTermView * geometryTermLight;
             }
 
@@ -126,28 +124,30 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
             }
 
             half4 frag (v2f i) : SV_Target {
+                float3 lightDirection = normalize(_worldLightDirection);
+                
+                // All vectors are normalized and point away from the surface
                 float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 normalized_world_light_direction = normalize(_world_light_direction);
-                float3 lightVector = -normalized_world_light_direction;
-                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 lightVector = -lightDirection;
+                float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
 
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 half NdotL = dot(worldNormal, lightVector);
                 NdotL = max(NdotL, 0.0001);
-                half3 randiantIntensity = _light_color;
+                half3 randiantIntensity = _directionalLightColor;
                 half3 surfaceIrradiance = randiantIntensity * NdotL;
                 
-                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewDir, lightVector, NdotL, _albedo, _roughness, _metallic, _reflectance);
+                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotL, _albedo, _roughness, _metallic, _reflectance);
                 
                 half3 surfaceRadianceDirectionalLight = BRDFLightFactor * surfaceIrradiance;
                 half3 surfaceRadianceAmbientLight = _albedo * _ambientLightColor;
                 half3 surfaceRadiance = surfaceRadianceDirectionalLight + surfaceRadianceAmbientLight;
 
-                half3 emittedLight = emissiveLight + surfaceRadiance;
+                half3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(emittedLight, 1.0);
+                return half4(surfaceLight, 1.0);
             }
             ENDCG
         }
