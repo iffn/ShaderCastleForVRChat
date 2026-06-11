@@ -1,16 +1,21 @@
-Shader "ShaderCastle/Tutorials/Light/PhongModel"
+Shader "ShaderCastle/Tutorials/Light/ToonShader"
 {
     Properties
     {
         _worldLightDirection ("World light direction", Vector) = (1,1,1,0)
         _directionalLightColor ("Directional light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
-        _glossiness ("Glossiness", Float) = 32
-        _ambientLightColor ("Ambient light color", Color) = (1,1,1,1)
+        _glossiness ("Glossiness", float) = 32
+        _ambientLightColor ("Ambient light color", Color) = (0.2,0.2,0.2,1)
+
+        // Toon Settings
+        _ToonThreshold ("Diffuse Threshold", Range(0, 1)) = 0.3
+        _ToonSmoothness ("Diffuse Edge Smoothness", Range(0, 0.1)) = 0.01
+        _SpecularThreshold ("Specular Threshold", Range(0, 1)) = 0.5
+        _SpecularSmoothness ("Specular Threshold", Range(0, 0.1)) = 0.01
     }
     SubShader
     {
-        
         Pass
         {
             CGPROGRAM
@@ -23,6 +28,12 @@ Shader "ShaderCastle/Tutorials/Light/PhongModel"
             half3 _albedo;
             float _glossiness;
             half3 _ambientLightColor;
+
+            // Toon variables
+            float _ToonThreshold;
+            float _ToonSmoothness;
+            float _SpecularThreshold;
+            float _SpecularSmoothness;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -51,24 +62,27 @@ Shader "ShaderCastle/Tutorials/Light/PhongModel"
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 lightVector = -lightDirection;
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
-                float3 reflectVector = reflect(lightDirection, worldNormal); // Built in function to get the surface reflection vector
+                float3 halfVector = normalize(lightVector + viewVector);
 
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
                 half NdotL = saturate(dot(worldNormal, lightVector));
+                half NdotLToon = smoothstep(_ToonThreshold - _ToonSmoothness, _ToonThreshold + _ToonSmoothness, NdotL); // Smoothstep for toon effect without aliasing 
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotLToon;
                 
-                // Phong model:
-                float RdotV = saturate(dot(reflectVector, viewVector)); // The Phong model uses the dot product between the reflect and view vector
-                float specularFactor = pow(RdotV, _glossiness);
-                half3 specularLight = _directionalLightColor * specularFactor; // The highlight has the light color
+                // Blinn-Phong model:
+                float NdotH = saturate(dot(worldNormal, halfVector));
+                float specularFactor = pow(NdotH, _glossiness);
+                half specularFactorToon = smoothstep(_SpecularThreshold - _SpecularSmoothness, _SpecularThreshold + _SpecularSmoothness, specularFactor); // Smoothstep for toon effect without aliasing 
+                half3 specularLight = _directionalLightColor * specularFactorToon;
 
+                // 5. Final Composition
                 half3 ambientLight = _albedo * _ambientLightColor;
                 half3 diffuseLight = _albedo * surfaceIrradianceDirectionalLight;
+                
                 half3 surfaceRadiance = ambientLight + diffuseLight + specularLight;
-
                 half3 surfaceLight = emissiveLight + surfaceRadiance;
 
                 return half4(surfaceLight, 1.0);

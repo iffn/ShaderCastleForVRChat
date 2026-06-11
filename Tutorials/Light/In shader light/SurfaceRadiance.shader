@@ -37,12 +37,12 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
                 half3 surfaceIrradiance = _ambientLightColor;
                 
                 // How much is reflected:
-                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets refelcted in all directions equally.
+                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
                 half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 emittedLight = emissiveLight + reflectedLight;
+                half3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(emittedLight, 1.0);
+                return half4(surfaceLight, 1.0);
             }
             ENDCG
         }

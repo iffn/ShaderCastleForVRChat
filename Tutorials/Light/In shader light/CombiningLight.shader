@@ -1,11 +1,11 @@
-Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
+Shader "ShaderCastle/Tutorials/Light/CombiningLights"
 {
     Properties
     {
-        _worldLightDirection ("World light direciton", Vector) = (1,1,1,0)
-        _directionalLightColor ("Light color", Color) = (1,1,1,1)
+        _worldLightDirection ("World light direction", Vector) = (1,1,1,0)
+        _directionalLightColor ("Directional light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
-        _ambientLightColor ("Light color", Color) = (0.2, 0.2, 0.2, 1)
+        _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
     {
@@ -53,15 +53,16 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
                 half3 radiantIntensity = _directionalLightColor;
                 half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
                 half3 surfaceIrradianceAmbientLight = _ambientLightColor;
-                half3 surfaceIrradiance = surfaceIrradianceDirectionalLight + surfaceIrradianceAmbientLight;
+                half3 surfaceIrradiance = surfaceIrradianceDirectionalLight + surfaceIrradianceAmbientLight; // The light values can be summed up
                 
                 // How much is reflected:
-                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets refelcted in all directions equally.
+                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
                 half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
 
-                half3 emittedLight = emissiveLight + surfaceRadiance;
+                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                surfaceLight = saturate(surfaceLight); // The traditional model clamps the values to 0...1
 
-                return half4(emittedLight, 1.0);
+                return half4(surfaceLight, 1.0);
             }
             ENDCG
         }

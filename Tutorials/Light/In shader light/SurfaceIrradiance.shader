@@ -1,8 +1,8 @@
-Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
+Shader "ShaderCastle/Tutorials/Light/SurfaceIrradiance"
 {
     Properties
     {
-        _worldLightDirection ("World light direciton", Vector) = (1,1,1,0)
+        _worldLightDirection ("World light direction", Vector) = (1,1,1,0)
         _directionalLightColor ("Light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
     }
@@ -47,17 +47,18 @@ Shader "ShaderCastle/Tutorials/Light/LambertLightDirection"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = saturate(dot(worldNormal, lightVector));
+                float NdotL = dot(worldNormal, lightVector); // The dot product describes how much light hits the surface given a direction
+                NdotL = saturate(NdotL); // Saturate clamps it to 0...1 and removes the negative light direction
                 half3 radiantIntensity = _directionalLightColor;
                 half3 surfaceIrradiance = radiantIntensity * NdotL;
                 
                 // How much is reflected:
-                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets refelcted in all directions equally.
+                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
                 half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
 
-                half3 emittedLight = emissiveLight + surfaceRadiance;
+                half3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(emittedLight, 1.0);
+                return half4(surfaceLight, 1.0);
             }
             ENDCG
         }
