@@ -95,7 +95,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
                 float limitedDivisorFactor = max(1/divisor, 0); // max prevents errors at and past grazing angles
                 float3 specularBRDF = (fresnelReflection * normalDistribution * microfacetMasking) * limitedDivisorFactor;
                 
-                // Diffuse component calculations
                 float3 remainingDiffuseEnergy = 1.0 - fresnelReflection;
                 float3 diffuseSubstrateFactor = albedo * remainingDiffuseEnergy * (1.0 - metallic);
                 float3 diffuseBRDF = diffuseSubstrateFactor * ONE_OVER_PI;
