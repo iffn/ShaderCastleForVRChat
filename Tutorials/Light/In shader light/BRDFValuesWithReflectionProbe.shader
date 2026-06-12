@@ -79,11 +79,10 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
                 return geometryTermView * geometryTermLight;
             }
 
-            float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float NdotL, float3 albedo, float roughness, float metallic, float reflectance)
+            float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float NdotV, float NdotL, float3 albedo, float roughness, float metallic, float reflectance)
             {
                 float3 halfVectorLightView = normalize(viewDir + lightVector);
 
-                float NdotV = dot(normal, viewDir);
                 float NdotH = dot(normal, halfVectorLightView);
                 float VdotH = dot(viewDir, halfVectorLightView);
 
@@ -96,6 +95,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
                 float limitedDivisorFactor = max(1/divisor, 0); // max prevents errors at and past grazing angles
                 float3 specularBRDF = (fresnelReflection * normalDistribution * microfacetMasking) * limitedDivisorFactor;
                 
+                // Diffuse component calculations
                 float3 remainingDiffuseEnergy = 1.0 - fresnelReflection;
                 float3 diffuseSubstrateFactor = albedo * remainingDiffuseEnergy * (1.0 - metallic);
                 float3 diffuseBRDF = diffuseSubstrateFactor * ONE_OVER_PI;
@@ -114,13 +114,29 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 half NdotL = dot(worldNormal, lightVector);
+                float NdotV = dot(worldNormal, viewVector);
                 half3 radiantIntensity = _directionalLightColor;
                 half3 surfaceIrradiance = radiantIntensity * saturate(NdotL);
                 
-                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotL, _albedo, _roughness, _metallic, _reflectance);
+                // How much is reflected:
+                float3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotV, NdotL, _albedo, _roughness, _metallic, _reflectance);
                 
                 half3 surfaceRadianceDirectionalLight = BRDFLightFactor * surfaceIrradiance;
-                half3 surfaceRadianceAmbientLight = _albedo * _ambientLightColor * (1.0 - _metallic); // Turn metalls black when not reflecting for now
+                
+                // Environment calculations:
+                float3 reflectionVector = reflect(-viewVector, worldNormal);
+                float mipLevel = _roughness * 6.0; 
+                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float3 indirectSpecularLight = DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
+
+                // Indirect lighting energy conservation using Fresnel
+                float3 indirectFresnel = FresnelReflectionWithSchlickApproximation(NdotV, _reflectance, _albedo, _metallic);
+
+                // Blend indirect light based on metallic properties
+                half3 diffuseAmbient = _albedo * _ambientLightColor * (1.0 - _metallic);
+                half3 specularAmbient = indirectSpecularLight * indirectFresnel;
+
+                half3 surfaceRadianceAmbientLight = diffuseAmbient + specularAmbient;
                 half3 surfaceRadiance = surfaceRadianceDirectionalLight + surfaceRadianceAmbientLight;
 
                 half3 surfaceLight = emissiveLight + surfaceRadiance;
