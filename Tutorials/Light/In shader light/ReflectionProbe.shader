@@ -3,7 +3,6 @@ Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
     Properties
     {
         _blurMipMap ("BlurMipMap", float) = 0
-        _reflection_probe_light_multiplier ("Reflection probe light multiplier", color) = (1,1,1,1)
     }
     SubShader
     {
@@ -17,7 +16,6 @@ Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
             #include "UnityPBSLighting.cginc"
 
             float _blurMipMap;
-            half4 _reflection_probe_light_multiplier;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -40,12 +38,11 @@ Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
 
             half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 viewDir = normalize(_WorldSpaceCameraPos - i.worldPos);
-                float3 reflectDir = reflect(-viewDir, worldNormal);
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, _blurMipMap);
-
+                float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
+                
+                float3 reflectVector = reflect(-viewVector, worldNormal);
+                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectVector, _blurMipMap);
                 half3 reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);
-                reflection *= _reflection_probe_light_multiplier.rgb;
 
                 return half4(reflection, 1.0);
             }

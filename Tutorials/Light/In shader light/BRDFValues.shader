@@ -37,7 +37,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
-                float3 normal : TEXCOORD1;
                 float3 worldNormal : TEXCOORD2;
             };
 
@@ -45,7 +44,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-                o.normal = v.normal;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldNormal = normalize(o.worldNormal);
 
@@ -114,7 +112,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 float3 lightDirection = normalize(_worldLightDirection);
                 
                 // All vectors are normalized and point away from the surface
-                float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 lightVector = -lightDirection;
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
@@ -123,13 +120,13 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
 
                 half NdotL = dot(worldNormal, lightVector);
                 NdotL = max(NdotL, 0.0001);
-                half3 randiantIntensity = _directionalLightColor;
-                half3 surfaceIrradiance = randiantIntensity * NdotL;
+                half3 radiantIntensity = _directionalLightColor;
+                half3 surfaceIrradiance = radiantIntensity * NdotL;
                 
                 half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotL, _albedo, _roughness, _metallic, _reflectance);
                 
                 half3 surfaceRadianceDirectionalLight = BRDFLightFactor * surfaceIrradiance;
-                half3 surfaceRadianceAmbientLight = _albedo * _ambientLightColor;
+                half3 surfaceRadianceAmbientLight = _albedo * _ambientLightColor * (1.0 - _metallic); // Turn metalls black when not reflecting for now
                 half3 surfaceRadiance = surfaceRadianceDirectionalLight + surfaceRadianceAmbientLight;
 
                 half3 surfaceLight = emissiveLight + surfaceRadiance;
