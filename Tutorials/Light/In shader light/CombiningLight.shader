@@ -49,9 +49,9 @@ Shader "ShaderCastle/Tutorials/Light/CombiningLights"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = saturate(dot(worldNormal, lightVector));
+                half NdotL = dot(worldNormal, lightVector);
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 half3 surfaceIrradianceAmbientLight = _ambientLightColor;
                 half3 surfaceIrradiance = surfaceIrradianceDirectionalLight + surfaceIrradianceAmbientLight; // The light values can be summed up
                 

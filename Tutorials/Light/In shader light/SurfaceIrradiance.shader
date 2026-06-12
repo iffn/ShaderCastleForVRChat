@@ -48,9 +48,8 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceIrradiance"
 
                 // Light hitting the surface:
                 float NdotL = dot(worldNormal, lightVector); // The dot product describes how much light hits the surface given a direction
-                NdotL = saturate(NdotL); // Saturate clamps it to 0...1 and removes the negative light direction
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradiance = radiantIntensity * NdotL;
+                half3 surfaceIrradiance = radiantIntensity * saturate(NdotL); // Saturate clamps it to 0...1 and removes the negative light direction
                 
                 // How much is reflected:
                 half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.

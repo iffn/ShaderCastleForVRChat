@@ -1,4 +1,4 @@
-Shader "ShaderCastle/Tutorials/Light/BRDFValues"
+Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
 {
     Properties
     {

@@ -67,8 +67,8 @@ Shader "ShaderCastle/Tutorials/Light/ToonShader"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = saturate(dot(worldNormal, lightVector));
-                half NdotLToon = smoothstep(_ToonThreshold - _ToonSmoothness, _ToonThreshold + _ToonSmoothness, NdotL); // Smoothstep for toon effect without aliasing 
+                half NdotL = dot(worldNormal, lightVector);
+                half NdotLToon = smoothstep(_ToonThreshold - _ToonSmoothness, _ToonThreshold + _ToonSmoothness, saturate(NdotL)); // Smoothstep for toon effect without aliasing 
                 half3 radiantIntensity = _directionalLightColor;
                 half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotLToon;
                 

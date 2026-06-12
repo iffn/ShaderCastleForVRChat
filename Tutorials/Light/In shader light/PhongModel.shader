@@ -56,9 +56,9 @@ Shader "ShaderCastle/Tutorials/Light/PhongModel"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = saturate(dot(worldNormal, lightVector));
+                half NdotL = dot(worldNormal, lightVector);
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 
                 // Phong model:
                 float RdotV = saturate(dot(reflectVector, viewVector)); // The Phong model uses the dot product between the reflect and view vector

@@ -56,9 +56,9 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongModel"
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = saturate(dot(worldNormal, lightVector));
+                half NdotL = dot(worldNormal, lightVector);
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL;
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 
                 // Blinn-Phong model:
                 float NdotH = saturate(dot(worldNormal, halfVector));
