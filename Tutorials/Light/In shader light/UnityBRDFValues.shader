@@ -2,12 +2,12 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
 {
     Properties
     {
-        _world_light_direction ("World light direciton", Vector) = (1,1,1,0)
-        _light_color ("Light color", color) = (1,1,1,1)
-        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
+        _worldLightDirection ("World light direction", Vector) = (1,1,1,1)
+        _directionalLightColor ("Directional light color", color) = (1,1,1,1)
         _albedo ("Albedo", color) = (1,1,1,1)
         _smoothness ("Smoothness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
+        _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
     {
@@ -21,12 +21,13 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
             #include "UnityCG.cginc"
             #include "UnityPBSLighting.cginc"
 
-            float3 _world_light_direction;
+            float3 _worldLightDirection;
+            half4 _directionalLightColor;
             half4 _albedo;
             half4 _light_color;
-            half4 _ambient_light_color;
             float _smoothness;
             float _metallic;
+            half3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -36,36 +37,33 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
-                float3 normal : TEXCOORD1;
-                float3 worldNormal : TEXCOORD2;
+                float3 worldNormal : TEXCOORD1;
             };
 
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
-                o.normal = v.normal;
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldNormal = normalize(o.worldNormal);
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target {
-                float3 lightDirection = normalize(_world_light_direction);
+                float3 lightDirection = normalize(_worldLightDirection);
                 
-                float3 normal = normalize(i.normal);
                 float3 worldNormal = normalize(i.worldNormal);
+                float3 lightVector = -lightDirection;
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 
-                float3 specularTint = _albedo * _metallic;
-				
+                float3 specularTint;
                 float oneMinusReflectivity;
                 float3 albedo = DiffuseAndSpecularFromMetallic(_albedo.rgb, _metallic, specularTint, oneMinusReflectivity);
 
                 UnityLight light;
-                light.color = _light_color;
-                light.dir = _world_light_direction;
-                light.ndotl = saturate(dot(worldNormal, lightDirection));
+                light.color = _directionalLightColor;
+                light.dir = lightVector;
+                light.ndotl = saturate(dot(worldNormal, lightVector));
 
                 float3 reflectDir = reflect(-viewVector, worldNormal);
                 float perceptualRoughness = 1.0 - _smoothness;
@@ -74,18 +72,23 @@ Shader "ShaderCastle/Tutorials/Light/BRDF"
                 half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 
                 UnityIndirect indirectLight;
-                indirectLight.diffuse = _ambient_light_color;
+                indirectLight.diffuse = _ambientLightColor;
                 indirectLight.specular = indirectSpecular;
 
-                return UNITY_BRDF_PBS(
+
+                half4 surfaceLight = UNITY_BRDF_PBS(
 					albedo,
                     specularTint,
 					oneMinusReflectivity,
                     _smoothness,
 					worldNormal,
                     viewVector,
-					light, indirectLight
+					light,
+                    indirectLight
 				);
+
+                surfaceLight.a = 1.0;
+                return surfaceLight;
             }
             ENDCG
         }
