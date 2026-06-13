@@ -39,9 +39,9 @@ Shader "ShaderCastle/Tutorials/Light/NormalMaps"
                 float3 worldPos : TEXCOORD0;
                 float2 uv : TEXCOORD1;
                 
-                float3 worldNormal : TEXCOORD3;
-                float3 worldTangent : TEXCOORD4;
-                float3 worldBitangent : TEXCOORD5;
+                float3 worldNormal : TEXCOORD2;
+                float3 worldTangent : TEXCOORD3;
+                float3 worldBitangent : TEXCOORD4;
             };
 
             v2f vert (appdata v) {

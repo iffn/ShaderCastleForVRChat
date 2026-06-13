@@ -4,11 +4,10 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
     {
         _worldLightDirection ("World light direction", Vector) = (1,1,1,1)
         _directionalLightColor ("Directional light color", color) = (1,1,1,1)
-        _ambient_light_color ("Ambient light color", color) = (1,1,1,1)
         _albedo ("Albedo", 2D) = "white" {}
-        _normal ("Normal", 2D) = "white" {}
+        [Normal] _normalMap ("Normal map", 2D) = "bump" {}
         _arm ("ARM", 2D) = "white" {}
-        _ambientLightColor ("Light color", Color) = (0.2, 0.2, 0.2, 1)
+        _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
     {
@@ -29,22 +28,25 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
             half4 _directionalLightColor;
             sampler2D _albedo;
             float4 _albedo_ST;
-            sampler2D _normal;
+            sampler2D _normalMap;
             sampler2D _arm;
             half3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
+                float4 tangent : TANGENT;
                 float2 uv : TEXCOORD0;
             };
 
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldPos : TEXCOORD0;
-                float3 normal : TEXCOORD1;
-                float3 worldNormal : TEXCOORD2;
-                float2 uv : TEXCOORD3;
+                float2 uv : TEXCOORD1;
+                float3 normal : TEXCOORD2;
+                float3 worldNormal : TEXCOORD3;
+                float3 worldTangent : TEXCOORD4;
+                float3 worldBitangent : TEXCOORD5;
             };
 
             v2f vert (appdata v) {
@@ -52,9 +54,10 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 o.normal = v.normal;
-                o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                o.worldNormal = normalize(o.worldNormal);
                 o.uv = TRANSFORM_TEX(v.uv, _albedo);
+                o.worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
+                o.worldTangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz));
+                o.worldBitangent = normalize(cross(o.worldNormal, o.worldTangent) * v.tangent.w);
 
                 return o;
             }
@@ -120,9 +123,13 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
-                float3 worldNormal = normalize(i.worldNormal);
                 float3 lightVector = -lightDirection;
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
+                
+                half4 packedNormal = tex2D(_normalMap, i.uv);
+                float3 tangentNormal = UnpackNormal(packedNormal);
+                float3x3 tbn = float3x3(normalize(i.worldTangent), normalize(i.worldBitangent), normalize(i.worldNormal));
+                float3 worldNormal = normalize(mul(tangentNormal, tbn));
 
                 float NdotL = dot(worldNormal, lightVector);
                 float NdotV = dot(worldNormal, viewVector);
@@ -130,7 +137,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
                 half3 surfaceIrradiance = radiantIntensity * saturate(NdotL);
 
                 half3 albedo = tex2D(_albedo, i.uv);
-                half3 normalMap = tex2D(_normal, i.uv);
                 half3 arm = tex2D(_arm, i.uv);
                 float ambientOcclusion = arm.r;
                 float roughness = arm.g;
