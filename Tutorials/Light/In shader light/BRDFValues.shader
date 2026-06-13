@@ -7,7 +7,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
         _albedo ("Albedo", color) = (1,1,1,1)
         _roughness ("Roughness", Range(0, 1)) = 0.5
         _metallic ("Metallic", Range(0, 1)) = 0.5
-        _reflectance ("Reflectance", Range(0, 1)) = 0.5
         _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
     }
     SubShader
@@ -29,7 +28,6 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
             half4 _directionalLightColor;
             float _roughness;
             float _metallic;
-            float _reflectance;
             half3 _ambientLightColor;
 
             struct appdata {
@@ -53,10 +51,10 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return o;
             }
 
-            half3 FresnelReflectionWithSchlickApproximation(float VdotH, float reflectance, float3 albedo, float metallic)
+            half3 FresnelReflectionWithSchlickApproximation(float VdotH, float3 albedo, float metallic)
             {
-                float3 reflection = 0.16 * reflectance * reflectance;
-                float3 f0 = lerp(reflection, albedo, metallic);
+                float specularReflectanceNonMetallic = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
+                float3 f0 = lerp(specularReflectanceNonMetallic, albedo, metallic);
 
                 return f0 + (1.0 - f0) * pow(1.0 - VdotH, 5.0);
             }
@@ -79,7 +77,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return geometryTermView * geometryTermLight;
             }
 
-            float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float NdotL, float3 albedo, float roughness, float metallic, float reflectance)
+            float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float NdotL, float3 albedo, float roughness, float metallic)
             {
                 float3 halfVectorLightView = normalize(viewDir + lightVector);
 
@@ -87,7 +85,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 float NdotH = dot(normal, halfVectorLightView);
                 float VdotH = dot(viewDir, halfVectorLightView);
 
-                float3 fresnelReflection = FresnelReflectionWithSchlickApproximation(VdotH, reflectance, albedo, metallic);
+                float3 fresnelReflection = FresnelReflectionWithSchlickApproximation(VdotH, albedo, metallic);
                 float roughnessSquared = roughness * roughness;
                 float normalDistribution = GGXNormalDistributionFunction(NdotH, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV, NdotL, roughnessSquared);
@@ -115,15 +113,14 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
 
                 half NdotL = dot(worldNormal, lightVector);
                 half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradiance = radiantIntensity * saturate(NdotL);
+                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 
-                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotL, _albedo, _roughness, _metallic, _reflectance);
+                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotL, _albedo, _roughness, _metallic);
                 
-                half3 surfaceRadianceDirectionalLight = BRDFLightFactor * surfaceIrradiance;
-                half3 surfaceRadianceAmbientLight = _albedo * _ambientLightColor * (1.0 - _metallic); // Turn metalls black when not reflecting for now
-                half3 surfaceRadiance = surfaceRadianceDirectionalLight + surfaceRadianceAmbientLight;
+                half3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
+                half3 ambientLight = _albedo * _ambientLightColor; // Use ambient light even for non-metals since not using reflection probe
 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + directLight + ambientLight;
 
                 return half4(surfaceLight, 1.0);
             }

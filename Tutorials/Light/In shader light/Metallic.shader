@@ -46,12 +46,18 @@ Shader "ShaderCastle/Tutorials/Light/MetallicWithReflectionProbe"
                 return o;
             }
 
+            float3 fresnelReflectionMetallic(half3 albedo, float VdotH)
+            {
+                float3 specularReflectance = albedo; // Metallic change: Driven by albedo color, not locked to 0.04 constant
+                return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - VdotH, 5.0);
+            }
+
             float GGXNormalDistributionFunction(float NdotH, float roughnessSquared)
             {
                 float roughnesPow4 = roughnessSquared * roughnessSquared;
                 float base = (NdotH * NdotH) * (roughnesPow4 - 1.0) + 1.0;
                 return roughnesPow4 / (PI * base * base);
-            }
+            }    
 
             float MicrofacetMaskingGeometryWithSchlickGGXApproximation(float NdotV, float NdotL, float roughnessSquared)
             {
@@ -62,7 +68,7 @@ Shader "ShaderCastle/Tutorials/Light/MetallicWithReflectionProbe"
                 float geometryTermLight = NdotL / (NdotL * halfRoughnessSquaredInverse + halfRoughnessSquared);
                 
                 return geometryTermView * geometryTermLight;
-            }
+            }    
 
             float3 microfacetBRDF(float roughness, half3 albedo, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL)
             {
@@ -71,9 +77,8 @@ Shader "ShaderCastle/Tutorials/Light/MetallicWithReflectionProbe"
                 float VdotH = dot(viewVector, halfVector);
                 
                 float roughnessSquared = roughness * roughness;
-                float3 specularReflectance = albedo; // Metallic change: Driven by albedo color, not locked to 0.04 constant
                 
-                float3 fresnelReflection = specularReflectance + (1.0 - specularReflectance) * pow(1.0 - VdotH, 5.0);
+                float3 fresnelReflection = fresnelReflectionMetallic(albedo, VdotH);
                 float normalDistribution = GGXNormalDistributionFunction(NdotH, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV, NdotL, roughnessSquared);
                 
@@ -104,9 +109,9 @@ Shader "ShaderCastle/Tutorials/Light/MetallicWithReflectionProbe"
                 half3 BRDFLightFactor = microfacetBRDF(_roughness, _albedo, worldNormal, viewVector, halfVector, NdotL);
                 float3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
 
-                float3 ambientLight = _albedo * _ambientLightColor;
+                float3 ambientLight = _albedo * _ambientLightColor; // Use ambient light since not using reflection probe
                 
-                float3 surfaceLight = directLight + ambientLight;
+                float3 surfaceLight = emissiveLight + directLight + ambientLight;
                 
                 return half4(surfaceLight, 1.0);
             }

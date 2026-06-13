@@ -25,8 +25,8 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValuesWithReflectionProbe"
             #define ONE_OVER_PI 0.31830988618
 
             float3 _worldLightDirection;
-            half4 _albedo;
             half4 _directionalLightColor;
+            half4 _albedo;
             float _roughness;
             float _metallic;
             float _reflectance;

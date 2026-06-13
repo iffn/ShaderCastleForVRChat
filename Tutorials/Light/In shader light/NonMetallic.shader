@@ -46,6 +46,12 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 return o;
             }
 
+            float3 fresnelReflectionNonMetallic(float VdotH)
+            {
+                float specularReflectance = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
+                return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - VdotH, 5.0);
+            }
+            
             float GGXNormalDistributionFunction(float NdotH, float roughnessSquared)
             {
                 float roughnesPow4 = roughnessSquared * roughnessSquared;
@@ -71,9 +77,8 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 float VdotH = dot(viewVector, halfVector);
                 
                 float roughnessSquared = roughness * roughness;
-                float specularReflectance = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
                 
-                float3 fresnelReflection = specularReflectance + (1.0 - specularReflectance) * pow(1.0 - VdotH, 5.0);
+                float3 fresnelReflection = fresnelReflectionNonMetallic(VdotH);
                 float normalDistribution = GGXNormalDistributionFunction(NdotH, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV, NdotL, roughnessSquared);
                 
