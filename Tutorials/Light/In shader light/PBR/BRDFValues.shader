@@ -51,12 +51,20 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return o;
             }
 
-            half3 FresnelReflectionWithSchlickApproximation(float3 albedo, float metallic, float VdotH01)
+            half3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo, float metallic)
             {
                 float specularReflectanceNonMetallic = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
                 float3 f0 = lerp(specularReflectanceNonMetallic, albedo, metallic);
 
                 return f0 + (1.0 - f0) * pow(1.0 - VdotH01, 5.0);
+            }
+
+            half3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
+            {
+                float specularReflectanceNonMetallic = 0.04;
+                float3 specularReflectanceNormal = lerp(specularReflectanceNonMetallic, albedo, metallic);
+                float3 specularReflectanceGrazing = max(1.0 - roughness, specularReflectanceNormal);
+                return specularReflectanceNormal + (specularReflectanceGrazing - specularReflectanceNormal) * pow(1.0 - NdotV01, 5.0);
             }
 
             float GGXNormalDistributionFunction(float NdotH01, float roughnessSquared)
@@ -84,7 +92,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 float NdotH01 = saturate(dot(normal, halfVectorLightView));
                 float VdotH01 = saturate(dot(viewDir, halfVectorLightView));
 
-                float3 fresnelReflection = FresnelReflectionWithSchlickApproximation(albedo, metallic, VdotH01);
+                float3 fresnelReflection = FresnelReflectionWithSchlickApproximationBRDF(albedo, metallic, VdotH01);
                 float roughnessSquared = roughness * roughness;
                 float normalDistribution = GGXNormalDistributionFunction(NdotH01, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV01, NdotL01, roughnessSquared);
@@ -127,7 +135,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 half3 directLight = BRDFLightFactor * surfaceIrradiance;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
-                float3 indirectFresnel = FresnelReflectionWithSchlickApproximation(_albedo, _metallic, NdotV01);
+                float3 indirectFresnel = fresnelReflectionWithSchlickApproximationAmbient(_albedo, _metallic, _roughness, NdotV01);
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
                 half3 diffuseAmbient = _albedo * _ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - _metallic);
                 half3 specularAmbient = indirectSpecularLight * indirectFresnel;

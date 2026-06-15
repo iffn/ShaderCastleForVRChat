@@ -101364,6 +101364,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 682339423504548350, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 700931906331316321, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Physically based
+
+        non-metals'
+      objectReference: {fileID: 0}
     - target: {fileID: 736640425786222688, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -101415,6 +101422,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 791061448183588328, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 820976545794785696, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: Unity comes with its own built in BRDF function for physically based
+        rendering. However, it prefers the smoothness term, which is (1-roughness)
+      objectReference: {fileID: 0}
     - target: {fileID: 841520894067767875, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -102129,6 +102142,21 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2053333840089307568, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+      propertyPath: m_BoxSize.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053333840089307568, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_BoxSize.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053333840089307568, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_BoxSize.z
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053333840089307568, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
       propertyPath: m_Resolution
       value: 512
       objectReference: {fileID: 0}
@@ -102677,6 +102705,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3033583677002163535, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: A custom shader allows the use of texture maps like ARM with the Unity
+        BRDF.
+      objectReference: {fileID: 0}
     - target: {fileID: 3074940000305544812, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -102856,6 +102890,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250509821247810613, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Physically based
+
+        texture maps'
       objectReference: {fileID: 0}
     - target: {fileID: 3261367639085952022, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
@@ -103586,6 +103627,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4443809390664508714, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Physically based
+
+        metals'
+      objectReference: {fileID: 0}
     - target: {fileID: 4462448566211927391, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -104042,6 +104090,34 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717863350882667780, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Physically based
+
+        BRDF values'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751749354097036911, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'When looking at how light actually interacts with surfaces, there is
+        a difference between metals and non-metals.
+
+        
+
+        For metals,
+        the light can either be reflected or absorbed. How much depends on the incoming
+        light angle and material and is described by the fresnel effect.
+
+        
+
+        If
+        the surface is rough, the light is reflected in different ways. In addition,
+        the geometry can mask itself which influences how light is reflected. These
+        Microfacets aren''t modelled but instead described statistically with a roughness
+        term. Instead of calculating it perfectly, different approximation functions
+        exist.'
       objectReference: {fileID: 0}
     - target: {fileID: 5777046799544847786, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
@@ -104832,6 +104908,32 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6874153281417365360, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'To display material values that exist in the real world, the required
+        data can be stored in texture maps.
+
+
+        Besides the Albedo and Normal
+        map, a popular way of storing values are ARM (Ambiend occlusion, Roughness,
+        Metallic) maps:
+
+
+        - Ambiend occlusion: Due to the surface geometry
+        of the material, light enters certain parts less. This self shadowing is
+        applied to the indirect ambient light.
+
+
+        - Rougness: Since surfaces
+        aren''t perfectly smooth, a statistical value is stored and used in the light
+        behavior evaluation.
+
+
+        - Metallic: While materials can only be metallic
+        or non-metallic, pixels can have a areas of both metals and non-metals. Therefore,
+        the value lies in the range of 0...1.'
+      objectReference: {fileID: 0}
     - target: {fileID: 6901747576153692120, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -105513,6 +105615,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8145597863819972492, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: The reflection probe can be added to the Blinn-Phong model to display
+        more reflective materials.
+      objectReference: {fileID: 0}
     - target: {fileID: 8153271382847240634, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: serializationData.Prefab
@@ -106025,6 +106133,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8906186680769088315, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
+    - target: {fileID: 8918237022092442404, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
+        type: 3}
+      propertyPath: m_text
+      value: 'Non-metallic (=dielectric) materials, the light that isn''t reflected
+        off the surface can enter the material, bounce around inside a bunch of times
+        and then exit again if it wasn''t absorbed.
+
+        
+
+        As with
+        metals, if the surface is rough, the light is reflected in different ways.
+        In addition, the geometry can mask itself which influences how light is reflected.
+        These Microfacets aren''t modelled but instead described statistically with
+        a roughness term. Instead of calculating it perfectly, different approximation
+        functions exist.'
+      objectReference: {fileID: 0}
     - target: {fileID: 8930575348836833167, guid: bcefd6bd51ce47b438fb5d83f536cd3c,
         type: 3}
       propertyPath: serializationData.Prefab

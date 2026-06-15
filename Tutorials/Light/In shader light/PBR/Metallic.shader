@@ -44,10 +44,17 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 return o;
             }
 
-            float3 fresnelReflectionWithSchlickApproximationMetallic(half3 albedo, float cosSpecularAngle01)
+            float3 fresnelReflectionWithSchlickApproximationMetallicBRDF(half3 albedo, float cosSpecularAngle01)
             {
                 float3 specularReflectance = albedo;
                 return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - cosSpecularAngle01, 5.0);
+            }
+
+            float3 fresnelReflectionWithSchlickApproximationMetallicAmbient(half3 albedo, float roughness, float cosSpecularAngle01)
+            {
+                float3 specularReflectanceNormal = albedo;
+                float3 specularReflectanceGrazing = max(1.0 - roughness, specularReflectanceNormal); // Prevents fresnel ambient reflections at grazing angles. Already handeled in BRDF
+                return specularReflectanceNormal + (specularReflectanceGrazing - specularReflectanceNormal) * pow(1.0 - cosSpecularAngle01, 5.0);
             }
 
             float GGXNormalDistributionFunction(float NdotH01, float roughnessSquared)
@@ -68,7 +75,7 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 return geometryTermView * geometryTermLight;
             }
 
-            float3 microfacetBRDF(float roughness, half3 albedo, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
+            float3 microfacetBRDF(half3 albedo, float roughness, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
             {
                 // All dot prodcuts need to be positive
                 float NdotH01 = saturate(dot(worldNormal, halfVector));
@@ -76,7 +83,7 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 
                 float roughnessSquared = roughness * roughness;
                 
-                float3 fresnelReflection = fresnelReflectionWithSchlickApproximationMetallic(albedo, VdotH01);
+                float3 fresnelReflection = fresnelReflectionWithSchlickApproximationMetallicBRDF(albedo, VdotH01);
                 float normalDistribution = GGXNormalDistributionFunction(NdotH01, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV01, NdotL01, roughnessSquared);
                 
@@ -110,11 +117,11 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 float3 radiantIntensity = _directionalLightColor;
                 float3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL01;
                 
-                half3 BRDFLightFactor = microfacetBRDF(_roughness, _albedo, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
+                half3 BRDFLightFactor = microfacetBRDF(_albedo, _roughness, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
                 float3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
-                float3 indirectFresnel = fresnelReflectionWithSchlickApproximationMetallic(_albedo, NdotV01);
+                float3 indirectFresnel = fresnelReflectionWithSchlickApproximationMetallicAmbient(_albedo, _roughness, NdotV01);
                 float3 indirectSpecular = indirectSpecularLight * indirectFresnel;
                 
                 float3 surfaceLight = emissiveLight + directLight + indirectSpecular;

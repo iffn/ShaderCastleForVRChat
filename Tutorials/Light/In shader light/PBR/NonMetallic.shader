@@ -46,10 +46,17 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 return o;
             }
 
-            float3 fresnelReflectionWithSchlickApproximationNonMetallic(float cosSpecularAngle01)
+            float3 fresnelReflectionWithSchlickApproximationNonMetallicBRDF(float cosSpecularAngle01)
             {
                 float specularReflectance = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
                 return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - cosSpecularAngle01, 5.0);
+            }
+
+            half3 fresnelReflectionWithSchlickApproximationNonMetallicAmbient(float roughness, float NdotV01)
+            {
+                float specularReflectanceNormal = 0.04;
+                float3 specularReflectanceGrazing = max(1.0 - roughness, specularReflectanceNormal);
+                return specularReflectanceNormal + (specularReflectanceGrazing - specularReflectanceNormal) * pow(1.0 - NdotV01, 5.0);
             }
             
             float GGXNormalDistributionFunction(float NdotH01, float roughnessSquared)
@@ -77,7 +84,7 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 
                 float roughnessSquared = roughness * roughness;
                 
-                float3 fresnelReflection = fresnelReflectionWithSchlickApproximationNonMetallic(VdotH01);
+                float3 fresnelReflection = fresnelReflectionWithSchlickApproximationNonMetallicBRDF(VdotH01);
                 float normalDistribution = GGXNormalDistributionFunction(NdotH01, roughnessSquared);
                 float microfacetMasking = MicrofacetMaskingGeometryWithSchlickGGXApproximation(NdotV01, NdotL01, roughnessSquared);
                 
@@ -119,7 +126,7 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 float3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
-                float3 indirectFresnel = fresnelReflectionWithSchlickApproximationNonMetallic(NdotV01);
+                float3 indirectFresnel = fresnelReflectionWithSchlickApproximationNonMetallicAmbient(_roughness, NdotV01);
                 half3 specularAmbient = indirectSpecularLight * indirectFresnel;
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
 

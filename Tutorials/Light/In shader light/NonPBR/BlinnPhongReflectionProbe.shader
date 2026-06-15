@@ -65,6 +65,7 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongReflectionProbe"
                 float specularFactor = pow(NdotH, _glossiness);
                 half3 specularLight = _directionalLightColor * specularFactor;
 
+                //Reflection probe
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = (1.0 - saturate(_glossiness / 256.0)) * 6.0; // Use glossiness between between 0...256
                 half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);

@@ -100,7 +100,8 @@ Shader "ShaderCastle/Tutorials/Light/UnityBRDFTextures"
                     smoothness,
 					worldNormal,
                     viewVector,
-					light, indirectLight
+					light,
+                    indirectLight
 				);
             }
             ENDCG
