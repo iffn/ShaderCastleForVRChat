@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tree 1
-  m_Shader: {fileID: 4800000, guid: 4bc55e3ceadc3c949aa063a436290041, type: 3}
+  m_Name: ToonShader
+  m_Shader: {fileID: 4800000, guid: 933835fedf4876d45bc7e69c3fd2dc0f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -74,17 +74,27 @@ Material:
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularSmoothness: 0.01
+    - _SpecularThreshold: 0.89
     - _SrcBlend: 1
+    - _ToonSmoothness: 0.032
+    - _ToonThreshold: 0.26
     - _UVSec: 0
     - _ZWrite: 1
-    - _glossiness: 0
-    - _scale: 29.19
-    - _zoom: 7.38
-    - _zoom2: -0.65
+    - _diffuseHalfSmoothness: 0.05
+    - _diffuseThreshold: 0.22
+    - _glossiness: 32
+    - _specularHalfSmoothness: 0.05
+    - _specularThreshold: 0.8
     m_Colors:
+    - _BRDFLightFactor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _albedo: {r: 0.4716981, g: 0.2415499, b: 0.04672481, a: 1}
-    - _color1: {r: 0.3679245, g: 0.26748106, b: 0.109336056, a: 1}
-    - _color2: {r: 0.2924528, g: 0.1799151, b: 0.07863118, a: 1}
+    - _albedo: {r: 0.98039216, g: 0.039215688, b: 0.039215688, a: 1}
+    - _ambientLightColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+    - _directionalLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _radiantIntensity: {r: 1, g: 1, b: 1, a: 1}
+    - _specularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _worldLightDirection: {r: -1, g: -1, b: 1, a: 0}
+    - _world_light_direction: {r: -1, g: -1, b: -1, a: 0}
   m_BuildTextureStacks: []
