@@ -1,5 +1,9 @@
 Shader "ShaderCastle/Tutorials/Light/UnityMultiplelLights"
 {
+    Properties
+    {
+        _albedo ("Albedo", color) = (1.0, 1.0, 1.0, 1.0)
+    }
     SubShader
     {
         Pass
@@ -11,37 +15,58 @@ Shader "ShaderCastle/Tutorials/Light/UnityMultiplelLights"
             #pragma fragment frag
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "AutoLight.cginc"
+
+            half3 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
-
+            
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
+                float3 worldPos : TEXCOORD1;
+                UNITY_LIGHTING_COORDS(2, 3)
             };
-
+            
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                TRANSFER_VERTEX_TO_FRAGMENT(o);
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target {
+                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
-                float3 lightColor = _LightColor0.rgb;
+                
+                float3 lightVector;
+                // _WorldSpaceLightPos0.w is 0 for Directional, 1 for Point/Spot
+                if (_WorldSpaceLightPos0.w == 0.0) {
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz);
+                } else {
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
+                }
+                
+                UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos);
+                half3 radiantIntensity = _LightColor0.rgb * attenuation;
+                
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
+                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+                
+                half3 BRDFLightFactor = _albedo;
+                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
 
-                half3 NdotL = dot(worldNormal, _world_light_direction);
-                NdotL = saturate(NdotL);
+                surfaceRadiance += UNITY_LIGHTMODEL_AMBIENT.rgb * _albedo;
                 
-                half3 diffuse = NdotL * lightColor;
-                
-                half3 color = half3(diffuse);
-                return half4(color, 1.0);
+                half3 surfaceLight = emissiveLight + surfaceRadiance;
+
+                return half4(surfaceLight, 1.0);
             }
             ENDCG
         }
@@ -58,45 +83,54 @@ Shader "ShaderCastle/Tutorials/Light/UnityMultiplelLights"
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "AutoLight.cginc"
+
+            half3 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
             };
-
+            
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
                 float3 worldPos : TEXCOORD1;
+                UNITY_LIGHTING_COORDS(2, 3)
             };
-
+            
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                TRANSFER_VERTEX_TO_FRAGMENT(o);
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 lightDir;
-                float attenuation;
-
+                
+                float3 lightVector;
                 // _WorldSpaceLightPos0.w is 0 for Directional, 1 for Point/Spot
                 if (_WorldSpaceLightPos0.w == 0.0) {
-                    lightDir = normalize(_WorldSpaceLightPos0.xyz);
-                    attenuation = 1.0;
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz);
                 } else {
-                    float3 vertexToLightSource = _WorldSpaceLightPos0.xyz - i.worldPos;
-                    float distance = length(vertexToLightSource);
-                    lightDir = normalize(vertexToLightSource);
-                    
-                    attenuation = 1.0 / (1.0 + distance * distance);
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
                 }
 
-                half3 diffuse = saturate(dot(lightDir, worldNormal)) * _LightColor0.rgb * attenuation;
-                return half4(diffuse, 1.0);
+                UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos);
+                half3 radiantIntensity = _LightColor0.rgb * attenuation;
+
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
+                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+
+                half3 BRDFLightFactor = _albedo;
+                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
+
+                half3 surfaceLight = surfaceRadiance; // No emmision in second pass
+
+                return half4(surfaceLight, 0.0); // Add 0 to alpha in second pass
             }
             ENDCG
         }

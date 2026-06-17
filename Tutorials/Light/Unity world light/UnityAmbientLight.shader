@@ -37,23 +37,16 @@ Shader "ShaderCastle/Tutorials/Light/AmbientLight"
             }
 
             half4 frag (v2f i) : SV_Target {
-                // All vectors are normalized and point away from the surface
-                float3 worldNormal = normalize(i.worldNormal);
-                float3 lightVector = normalize(_WorldSpaceLightPos0.xyz);
-
-                float3 lightColor = _LightColor0.rgb;
-                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-
                 half3 emissiveLight = half3(0.0, 0.0, 0.0);
 
-                float NdotL = dot(worldNormal, lightVector);
-                half3 radiantIntensity = lightColor;
-                half3 surfaceIrradiance = radiantIntensity * saturate(NdotL);
+                // Light hitting the surface:
+                half3 surfaceIrradiance = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                
+                // How much is reflected:
+                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
+                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 BRDFLightFactor = half3(1.0,1.0,1.0); // White
-                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
-
-                half3 surfaceLight = emissiveLight + surfaceRadiance + ambientLight;
+                half3 surfaceLight = emissiveLight + reflectedLight;
 
                 return half4(surfaceLight, 1.0);
             }

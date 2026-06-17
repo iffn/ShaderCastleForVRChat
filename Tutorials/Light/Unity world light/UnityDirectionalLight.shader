@@ -1,5 +1,9 @@
-Shader "ShaderCastle/Tutorials/Light/UnityDirectionalLight"
+Shader "ShaderCastle/Tutorials/Light/UnitySingleLight"
 {
+    Properties
+    {
+        _albedo ("Albedo", color) = (1.0, 1.0, 1.0, 1.0)
+    }
     SubShader
     {
         Pass
@@ -7,8 +11,13 @@ Shader "ShaderCastle/Tutorials/Light/UnityDirectionalLight"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase
+
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "AutoLight.cginc" // Macro with Unity light functions. Defines attenuation variable
+
+            half3 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -18,32 +27,43 @@ Shader "ShaderCastle/Tutorials/Light/UnityDirectionalLight"
             struct v2f {
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
+                float3 worldPos : TEXCOORD1;
+                UNITY_LIGHTING_COORDS(2, 3) // Hidden data channels for light/shadow maps
             };
 
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+                TRANSFER_VERTEX_TO_FRAGMENT(o); // Populates the internal light coordinates
                 return o;
             }
 
             half4 frag (v2f i) : SV_Target {
-                // All vectors are normalized and point away from the surface
+                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                
                 float3 worldNormal = normalize(i.worldNormal);
-                float3 lightVector = normalize(_WorldSpaceLightPos0.xyz);
+                
+                float3 lightVector;
+                // _WorldSpaceLightPos0.w is 0 for Directional, 1 for Point/Spot
+                if (_WorldSpaceLightPos0.w == 0.0) {
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz);
+                } else {
+                    lightVector = normalize(_WorldSpaceLightPos0.xyz - i.worldPos);
+                }
+                
+                UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos); // Unity macro that writes to the attenuation variable defined in AutoLight.cginc
+                half3 radiantIntensity = _LightColor0.rgb * attenuation; // Correct Unity formula, _LightColor0.rgb also holds intensity.
+                
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
+                half3 surfaceIrradiance = radiantIntensity * NdotL01;
 
-                float3 lightColor = _LightColor0.rgb;
-
-                half3 emissiveLight = half3(0.0, 0.0, 0.0); // emissive light is still a material parameter
-
-                float NdotL = dot(worldNormal, lightVector);
-                half3 radiantIntensity = lightColor;
-                half3 surfaceIrradiance = radiantIntensity * saturate(NdotL);
-
-                half3 BRDFLightFactor = half3(1.0,1.0,1.0); // White
+                surfaceIrradiance += UNITY_LIGHTMODEL_AMBIENT.rgb;
+                
+                half3 BRDFLightFactor = _albedo;
                 half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
-
+                
                 half3 surfaceLight = emissiveLight + surfaceRadiance;
 
                 return half4(surfaceLight, 1.0);
