@@ -28,7 +28,7 @@ Shader "ShaderCastle/Tutorials/Light/UnityMultiplelLights"
                 float4 pos : SV_POSITION;
                 float3 worldNormal : TEXCOORD0;
                 float3 worldPos : TEXCOORD1;
-                UNITY_LIGHTING_COORDS(2, 3)
+                UNITY_LIGHTING_COORDS(2, 3) // Macro that writes required data to TEXCOORD 2 and 3
             };
             
             v2f vert (appdata v) {
