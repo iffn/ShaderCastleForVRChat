@@ -23,6 +23,8 @@ public class UIInterfaceEditor : Editor
 
         if (GUILayout.Button("Clean up all rect transforms"))
         {
+            
+
             PrefabStage currentStage = PrefabStageUtility.GetCurrentPrefabStage();
 
             RectTransform[] allRects;
@@ -36,6 +38,8 @@ public class UIInterfaceEditor : Editor
                 GameObject prefabRoot = currentStage.prefabContentsRoot;
                 allRects = prefabRoot.GetComponentsInChildren<RectTransform>(true);
             }
+
+            Debug.Log($"All: {allRects}");
 
             int reset = 0;
 
@@ -51,6 +55,8 @@ public class UIInterfaceEditor : Editor
                 {
                     PrefabUtility.RevertObjectOverride(rect, InteractionMode.AutomatedAction);
                     reset++;
+                    if(reset == 100)
+                        break;
                 }
                 
             }

@@ -6,6 +6,7 @@ using UnityEditor;
 using TMPro;
 using VRC.SDK3.Editor;
 using UnityEditor.SceneManagement;
+using UnityEngine.Tilemaps;
 
 [CustomEditor(typeof(ShaderDisplay))]
 public class ShaderDisplayEditor : Editor
@@ -86,17 +87,20 @@ public class ShaderDisplay : MonoBehaviour
 
     public void GetData()
     {
-        title = titleElement.text;
+        if (title.Equals("Title")||title.Length == 0)
+            title = titleElement.text;
         title = title.Replace("\r", "").Replace("\n", " ");
         description = linkedInterface.Description;
-        linkedMaterial = linkedMeshRenderer.sharedMaterial;
+        if(linkedMeshRenderer)
+            linkedMaterial = linkedMeshRenderer.sharedMaterial;
     }
 
     public void SetData()
     {
         titleElement.text = title;
         linkedInterface.Description = description;
-        linkedMeshRenderer.sharedMaterial = linkedMaterial;
+        if(linkedMeshRenderer)
+            linkedMeshRenderer.sharedMaterial = linkedMaterial;
     }
 
 }
