@@ -46,18 +46,27 @@ public class UIInterfaceEditor : Editor
                 if (rect.gameObject == ((MonoBehaviour)target).gameObject)
                     continue;
 
-                UnityEditor.PropertyModification[] modifications = PrefabUtility.GetPropertyModifications(rect);
-                
-                // If the modifications array is not null and has items, it has overrides
-                if (modifications != null && modifications.Length > 0)
+                bool hasRectOverrides = PrefabUtility.IsPartOfPrefabInstance(rect) && PrefabUtility.GetObjectOverrides(rect.gameObject).Any(x => x.instanceObject == rect);
+
+                if (hasRectOverrides)
                 {
+                    Undo.RegisterCompleteObjectUndo(rect, "Clean RectTransform");
                     PrefabUtility.RevertObjectOverride(rect, InteractionMode.AutomatedAction);
                     EditorUtility.SetDirty(rect);
+                    
                     reset++;
                     if(reset == 100)
                         break;
                 }
                 
+            }
+
+            if (reset > 0)
+            {
+                if (currentStage != null)
+                    EditorSceneManager.MarkSceneDirty(currentStage.scene);
+                else
+                    EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
             }
 
             Debug.Log($"Reset: {reset}");
