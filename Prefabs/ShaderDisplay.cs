@@ -103,8 +103,8 @@ public class ShaderDisplay : MonoBehaviour
         linkedInterface.Description = description;
         if(linkedMeshRenderer)
             linkedMeshRenderer.sharedMaterial = linkedMaterial;
-        Undo.RegisterCompleteObjectUndo(this, "Set data");
-        EditorUtility.SetDirty(gameObject);
+        Undo.RegisterCompleteObjectUndo(titleElement, "Set data");
+        EditorUtility.SetDirty(titleElement);
     }
 
 }

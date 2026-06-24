@@ -110,6 +110,8 @@ public class UIInterface : MonoBehaviour
         set
         {
             description.text = value;
+            Undo.RegisterCompleteObjectUndo(this, "Got data");
+            EditorUtility.SetDirty(description);
         }
     }
 
