@@ -46,6 +46,7 @@ public class ShaderDisplayEditor : Editor
             foreach (ShaderDisplay display in allShaderDisplays)
             {
                 display.SetData();
+                display.UpdateSize();
             }
         }
 
@@ -79,12 +80,34 @@ public class ShaderDisplay : MonoBehaviour
     [SerializeField] TMP_Text titleElement;
     [SerializeField] UIInterface linkedInterface;
     [SerializeField] MeshRenderer linkedMeshRenderer;
+    [SerializeField] Transform sliderHolder;
+    [SerializeField] Transform background;
 
     [Header("Values")]
     [SerializeField] string title;
     [SerializeField] [TextArea(3, 10)] string description;
     [SerializeField] Material linkedMaterial;
+    
+    static void RegisterChange(Object linkedObject, string linkedMessage)
+    {
+        Undo.RegisterCompleteObjectUndo(linkedObject, linkedMessage);
+        EditorUtility.SetDirty(linkedObject);
+    }
 
+    public void UpdateSize()
+    {
+        bool hasSliders = sliderHolder.childCount > 0;
+        sliderHolder.gameObject.SetActive(hasSliders);
+        RegisterChange(gameObject, "Updated size");
+
+        float width = hasSliders ? 1f : 0.5f;
+        if (background)
+        {
+            background.localScale = new Vector3(width, background.localScale.y, background.localScale.z);
+            RegisterChange(background, "Updated size");
+        }
+    }
+    
     public void GetData()
     {
         if (title.Equals("Title")||title.Length == 0)
@@ -93,8 +116,7 @@ public class ShaderDisplay : MonoBehaviour
         description = linkedInterface.Description;
         if(linkedMeshRenderer)
             linkedMaterial = linkedMeshRenderer.sharedMaterial;
-        Undo.RegisterCompleteObjectUndo(this, "Got data");
-        EditorUtility.SetDirty(this);
+        RegisterChange(this, "Got data");
     }
 
     public void SetData()
@@ -103,8 +125,7 @@ public class ShaderDisplay : MonoBehaviour
         linkedInterface.Description = description;
         if(linkedMeshRenderer)
             linkedMeshRenderer.sharedMaterial = linkedMaterial;
-        Undo.RegisterCompleteObjectUndo(titleElement, "Set data");
-        EditorUtility.SetDirty(titleElement);
+        RegisterChange(titleElement, "Set data");
     }
 
 }

@@ -154,6 +154,8 @@ MonoBehaviour:
   titleElement: {fileID: 3722247126628398497}
   linkedInterface: {fileID: 5289129512666415116}
   linkedMeshRenderer: {fileID: 9193774147605968089}
+  sliderHolder: {fileID: 4962422226410747937}
+  background: {fileID: 0}
   title: 
   description: 
   linkedMaterial: {fileID: 0}
@@ -425,6 +427,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &4962422226410747937 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1552058095251823549, guid: 542f8acec1b008e43959352f469f6444,
+    type: 3}
+  m_PrefabInstance: {fileID: 5860331161057108892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5289129512666415116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1743692815435719568, guid: 542f8acec1b008e43959352f469f6444,
@@ -512,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 2222693450485139092, guid: d1bfe9f72a265bb458a8524287613c60,
         type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Show code button
       objectReference: {fileID: 0}
     - target: {fileID: 4847705402304315681, guid: d1bfe9f72a265bb458a8524287613c60,
         type: 3}
