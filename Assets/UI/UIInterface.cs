@@ -64,7 +64,8 @@ public class UIInterfaceEditor : Editor
                         EditorUtility.SetDirty(rect);
                         
                         reset++;
-                        if (reset >= 100) 
+                        if (reset >= 500)
+                            Debug.Log("Early stop, run again for more");
                             break;
                     }
                 }
