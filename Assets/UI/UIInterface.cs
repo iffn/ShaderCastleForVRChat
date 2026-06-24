@@ -41,24 +41,33 @@ public class UIInterfaceEditor : Editor
 
             int reset = 0;
 
-            foreach (RectTransform rect in allRects)
+            System.Collections.Generic.IEnumerable<System.Linq.IGrouping<GameObject, RectTransform>> rectsByPrefab = allRects
+                .Where(r => r.gameObject != ((MonoBehaviour)target).gameObject && PrefabUtility.IsPartOfPrefabInstance(r))
+                .GroupBy(r => PrefabUtility.GetNearestPrefabInstanceRoot(r.gameObject));
+
+            foreach (System.Linq.IGrouping<GameObject, RectTransform> prefabGroup in rectsByPrefab)
             {
-                if (rect.gameObject == ((MonoBehaviour)target).gameObject)
-                    continue;
+                if (reset >= 100) break;
 
-                bool hasRectOverrides = PrefabUtility.IsPartOfPrefabInstance(rect) && PrefabUtility.GetObjectOverrides(rect.gameObject).Any(x => x.instanceObject == rect);
-
-                if (hasRectOverrides)
-                {
-                    Undo.RegisterCompleteObjectUndo(rect, "Clean RectTransform");
-                    PrefabUtility.RevertObjectOverride(rect, InteractionMode.AutomatedAction);
-                    EditorUtility.SetDirty(rect);
-                    
-                    reset++;
-                    if(reset == 100)
-                        break;
-                }
+                // Bulk fetch every single override on this prefab instance in one single call
+                System.Collections.Generic.List<ObjectOverride> allPrefabOverrides = PrefabUtility.GetObjectOverrides(prefabGroup.Key);
                 
+                // Hash the overridden components for instant lookups
+                System.Collections.Generic.HashSet<Object> overriddenObjects = new System.Collections.Generic.HashSet<Object>(allPrefabOverrides.Select(x => x.instanceObject));
+
+                foreach (RectTransform rect in prefabGroup)
+                {
+                    if (overriddenObjects.Contains(rect))
+                    {
+                        Undo.RegisterCompleteObjectUndo(rect, "Clean RectTransform");
+                        PrefabUtility.RevertObjectOverride(rect, InteractionMode.AutomatedAction);
+                        EditorUtility.SetDirty(rect);
+                        
+                        reset++;
+                        if (reset >= 100) 
+                            break;
+                    }
+                }
             }
 
             if (reset > 0)
