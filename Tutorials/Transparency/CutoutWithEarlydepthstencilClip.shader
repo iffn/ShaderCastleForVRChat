@@ -9,8 +9,6 @@ Shader "ShaderCastle/Tutorials/Transparency/CutoutWithEarlydepthstencilClip"
             #pragma vertex vert
             #pragma fragment frag
 
-
-
             struct appdata {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
