@@ -9,7 +9,8 @@ using VRC.Udon;
 public class MaterialRGBSlider : UdonSharpBehaviour
 {
     [Header("Implementation")]
-    [SerializeField] Material linkedMaterial;
+    [SerializeField] public Material linkedMaterial;
+
     [SerializeField] string propertyName;
 
     [Header("Prefab")]

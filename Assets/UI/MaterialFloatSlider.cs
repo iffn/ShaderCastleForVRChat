@@ -9,7 +9,20 @@ using VRC.SDKBase;
 public class MaterialFloatSlider : UdonSharpBehaviour
 {
     [Header("Implementation")]
-    [SerializeField] Material linkedMaterial;
+    [SerializeField] public Material linkedMaterial;
+
+    public Material LinkedMaterial
+    {
+        set
+        {
+            linkedMaterial = value;
+        }
+        get
+        {
+            return linkedMaterial;
+        }
+    }
+
     [SerializeField] string propertyName;
     [SerializeField] float min;
     [SerializeField] float max;

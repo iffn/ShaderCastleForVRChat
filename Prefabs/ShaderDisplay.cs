@@ -100,7 +100,7 @@ public class ShaderDisplay : MonoBehaviour
         sliderHolder.gameObject.SetActive(hasSliders);
         RegisterChange(gameObject, "Updated size");
 
-        float width = hasSliders ? 1f : 0.5f;
+        float width = hasSliders ? 1f : 1.0f;
         if (background)
         {
             background.localScale = new Vector3(width, background.localScale.y, background.localScale.z);
@@ -121,11 +121,30 @@ public class ShaderDisplay : MonoBehaviour
 
     public void SetData()
     {
+        
         titleElement.text = title;
         linkedInterface.Description = description;
-        if(linkedMeshRenderer)
-            linkedMeshRenderer.sharedMaterial = linkedMaterial;
         RegisterChange(titleElement, "Set data");
+
+        if (linkedMeshRenderer)
+        {
+            linkedMeshRenderer.sharedMaterial = linkedMaterial;
+            RegisterChange(linkedMeshRenderer, "Set data");
+            
+            foreach(Transform child in sliderHolder)
+            {
+                if (child.TryGetComponent<MaterialRGBSlider>(out MaterialRGBSlider rgbSlider))
+                {
+                    rgbSlider.linkedMaterial = linkedMaterial;
+                    RegisterChange(rgbSlider, "Set data");
+                }
+                else if (child.TryGetComponent<MaterialFloatSlider>(out MaterialFloatSlider floatSlider))
+                {
+                    floatSlider.linkedMaterial = linkedMaterial;
+                    RegisterChange(floatSlider, "Set data");
+                }
+            }
+        }
     }
 
 }

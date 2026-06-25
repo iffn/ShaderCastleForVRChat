@@ -3,7 +3,7 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceIrradiance"
     Properties
     {
         _worldLightDirection ("World light direction", Vector) = (1,1,1,0)
-        _directionalLightColor ("Light color", Color) = (1,1,1,1)
+        _directionalLightColor ("Directional light color", Color) = (1,1,1,1)
         _albedo ("Albedo", Color) = (1,1,1,1)
     }
     SubShader

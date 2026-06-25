@@ -9,8 +9,8 @@ Shader "ShaderCastle/Tutorials/Light/ToonShader"
         _ambientLightColor ("Ambient light color", Color) = (0.2,0.2,0.2,1)
 
         // Toon Settings
-        _ToonThreshold ("Diffuse Threshold", Range(0, 1)) = 0.3
-        _ToonSmoothness ("Diffuse Edge Smoothness", Range(0, 0.1)) = 0.01
+        _ToonThreshold ("Toon Threshold", Range(0, 1)) = 0.3
+        _ToonSmoothness ("Toon Smoothness", Range(0, 0.1)) = 0.01
         _SpecularThreshold ("Specular Threshold", Range(0, 1)) = 0.5
         _SpecularSmoothness ("Specular Threshold", Range(0, 0.1)) = 0.01
     }

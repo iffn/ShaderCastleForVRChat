@@ -2,7 +2,7 @@ Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
 {
     Properties
     {
-        _blurMipMap ("BlurMipMap", float) = 0
+        _blurMipMap ("Mip map blur", float) = 0
     }
     SubShader
     {
