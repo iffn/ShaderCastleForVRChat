@@ -4,7 +4,7 @@ Shader "ShaderCastle/Tutorials/Light/PointLight"
     {
         _pointLightWorldPosition ("Point light world position", Vector) = (1,1,1,1)
         _pointLightColor ("Point light color", color) = (1,1,1,1)
-        _pointLightIntensity ("Point light color", float) = 1.0
+        _pointLightIntensity ("Point light intensity", float) = 1.0
         _albedo ("Albedo", 2D) = "white" {}
         [Normal] _normalMap ("Normal map", 2D) = "bump" {}
         _arm ("ARM", 2D) = "white" {}

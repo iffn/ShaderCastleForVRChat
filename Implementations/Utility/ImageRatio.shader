@@ -1,4 +1,4 @@
-Shader "Unlit/ImageRatio"
+Shader "ShaderCastle/Implementations/Utility/ImageRatio"
 {
     Properties
     {
@@ -14,7 +14,6 @@ Shader "Unlit/ImageRatio"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
 
             #include "UnityCG.cginc"
 
