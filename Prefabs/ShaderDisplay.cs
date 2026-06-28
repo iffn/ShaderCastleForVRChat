@@ -78,6 +78,7 @@ public class ShaderDisplay : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] TMP_Text titleElement;
+    [SerializeField] TMP_Text secondTitle;
     [SerializeField] UIInterface linkedInterface;
     [SerializeField] MeshRenderer linkedMeshRenderer;
     [SerializeField] Transform sliderHolder;
@@ -123,8 +124,15 @@ public class ShaderDisplay : MonoBehaviour
     {
         
         titleElement.text = title;
-        linkedInterface.Description = description;
         RegisterChange(titleElement, "Set data");
+        
+        if(secondTitle)
+        {
+            secondTitle.text = title;
+            RegisterChange(secondTitle, "Set data");
+        }
+        
+        linkedInterface.Description = description;
 
         if (linkedMeshRenderer)
         {
