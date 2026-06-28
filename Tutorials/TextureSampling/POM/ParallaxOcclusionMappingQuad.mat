@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BilinearFilter
-  m_Shader: {fileID: 4800000, guid: 4a37a2947d7cd0d469be3b610fb941e4, type: 3}
+  m_Name: ParallaxOcclusionMappingQuad
+  m_Shader: {fileID: 4800000, guid: 11d9e5295ef798141b178f27b3737767, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -43,6 +43,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 2800000, guid: 75942100fbb171243b4dd4db329128ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: c1a2ec53121e0534993a06f58db23322, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -68,7 +72,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HeightScale: 15
+    - _MaxSamples: 20
     - _Metallic: 0
+    - _MinSamples: 8
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

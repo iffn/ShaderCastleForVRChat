@@ -4,7 +4,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping"
     {
         _MainTex ("Albedo", 2D) = "white" {}
         [NoScaleOffset]_HeightMap ("Heightmap", 2D) = "black" {}
-        _HeightScale ("Height Scale", Range(0, 1)) = 0.05
+        _HeightScale ("Height Scale", Range(0, 20)) = 0.05
         _MaxSamples ("Max Samples", Range(1, 64)) = 30
     }
     SubShader
