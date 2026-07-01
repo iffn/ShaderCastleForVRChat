@@ -1,5 +1,9 @@
 Shader "ShaderCastle/Tutorials/Stencil/StencilBasicRead"
 {
+    Properties
+	{
+		_mask ("Write mask", Integer) = 1
+	}
     SubShader
     {
         Tags { "RenderType"="Opaque" "Queue"="Geometry" } // Mask needs to write before this
@@ -7,8 +11,8 @@ Shader "ShaderCastle/Tutorials/Stencil/StencilBasicRead"
         Pass
         {
             Stencil {
-                Ref 1 // What the values need to be to render:  xxxx xxx1 (x doesn't matter because of the mask)
-                ReadMask 1 // Only the last bit should be read: 0000 0001
+                Ref [_mask] // What the values need to be to render,  with 1: xxxx xxx1 (x doesn't matter because of the mask)
+                ReadMask 255 // Only the last bit should be read, with 1: 0000 0001
                 Comp Equal
                 Pass Keep
             }
