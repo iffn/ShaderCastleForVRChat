@@ -6,6 +6,9 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
         [Normal] _normalMap ("Normal map", 2D) = "bump" {}
         _arm ("ARM", 2D) = "white" {}
         _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
+        _pointLightColor ("Point light color", Color) = (0.2, 0.2, 0.2, 1)
+        _pattern ("Pattern", Range(0.5, 3.0)) = 1.0
+        _intensity ("Intensity", Range(0.0, 500.0)) = 1.0
     }
     SubShader
     {
@@ -23,12 +26,16 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
 
             #define PI 3.14159265
             #define ONE_OVER_PI 0.31830988618
+            #define PIx4 12.56637061435917295
 
             sampler2D _albedo;
             float4 _albedo_ST;
             sampler2D _normalMap;
             sampler2D _arm;
             half3 _ambientLightColor;
+            float3 _pointLightColor;
+            float _pattern;
+            float _intensity;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -75,8 +82,8 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
                 o.worldPos = worldPos;
                 o.uv = TRANSFORM_TEX(uv, _albedo);
                 o.worldNormal = worldNormal;
-                //o.worldTangent = normalize(mul((float3x3)unity_ObjectToWorld, v.tangent.xyz));
-                //o.worldBitangent = normalize(cross(o.worldNormal, o.worldTangent) * v.tangent.w);
+                o.worldTangent = worldTangent;
+                o.worldBitangent = worldBitangent;
 
                 return o;
             }
@@ -146,16 +153,42 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
             }
 
             half4 frag (v2f i) : SV_Target {
-                float3 worldNormal = normalize(i.worldNormal);
+                float3 worldPos = i.worldPos;
+
+                float pattern = _pattern;
+                float halfPattern = pattern * 0.5;
+                float3 searchPos = worldPos + normalize(i.worldNormal) * (pattern * 0.55);
+                float3 worldLightPosition = (floor(searchPos / pattern) * pattern) + halfPattern.xxx;
+                float3 lightDelta = worldLightPosition - worldPos;
+                float lightDistance = length(lightDelta);
+
+                // All vectors are normalized and point away from the surface
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
 
+                float3 lightVector;
+                lightVector = lightDelta / max(0.0001, lightDistance);
+
+                float pointLightIntensity = _intensity;
+
+                half3 radiantIntensity = _pointLightColor * pointLightIntensity / (PIx4 * lightDistance * lightDistance);
+
+                half4 packedNormal = tex2D(_normalMap, i.uv);
+                float3 tangentNormal = UnpackNormal(packedNormal);
+                float3x3 tbn = float3x3(normalize(i.worldTangent), normalize(i.worldBitangent), normalize(i.worldNormal));
+                float3 worldNormal = normalize(mul(tangentNormal, tbn));
+
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
+                half3 surfaceIrradiance = radiantIntensity * NdotL01;
 
                 half3 albedo = tex2D(_albedo, i.uv).rgb;
                 half3 arm = tex2D(_arm, i.uv).rgb;
                 float ambientOcclusion = arm.r;
-                float roughness = arm.g * 3.0;
+                float roughness = arm.g;
                 float metallic = arm.b;
+
+                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotV01, NdotL01, albedo.rgb, roughness, metallic);
+                half3 directLight = BRDFLightFactor * surfaceIrradiance;
 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, roughness);
                 float3 indirectFresnel = fresnelReflectionWithSchlickApproximationAmbient(albedo, metallic, roughness, NdotV01);
@@ -164,9 +197,9 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
                 half3 specularAmbient = indirectSpecularLight * indirectFresnel;
                 half3 ambientLight = (diffuseAmbient + specularAmbient) * ambientOcclusion;
 
-                half3 color = ambientLight;
+                half3 surfaceLight = directLight + ambientLight;
 
-                return half4 (color, 1.0);
+                return half4 (surfaceLight, 1.0);
             }
             ENDCG
         }

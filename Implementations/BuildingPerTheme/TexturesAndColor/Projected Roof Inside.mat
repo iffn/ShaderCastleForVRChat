@@ -91,8 +91,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _intensity: 100
+    - _pattern: 2.6
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ambientLightColor: {r: 0.50980395, g: 0.4862745, b: 0.4509804, a: 1}
+    - _pointLightColor: {r: 0.6886792, g: 0.51001245, b: 0.51001245, a: 1}
   m_BuildTextureStacks: []
