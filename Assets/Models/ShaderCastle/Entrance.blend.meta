@@ -12,13 +12,43 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Floor inside
+    second: {fileID: 2100000, guid: c1a9c9097732c5d428df6fed2dc949d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor outside
+    second: {fileID: 2100000, guid: 5470c862f0ea06448b6c9882b500d7d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Grass
     second: {fileID: 2100000, guid: 027c6b1de7fd1794c8079402d5843fae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Roof
-    second: {fileID: 2100000, guid: ee455e4e7c60af84cb9c6d8c93f165cb, type: 2}
+    second: {fileID: 2100000, guid: f30fc2f0ab3ba1549a499c29d2550d40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof inside
+    second: {fileID: 2100000, guid: 4b558fe9e6de5594ba1c2e3d3a0420ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof outside
+    second: {fileID: 2100000, guid: f30fc2f0ab3ba1549a499c29d2550d40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall inside
+    second: {fileID: 2100000, guid: 02834b1e45a460a4f8862321b86bf7fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall outside
+    second: {fileID: 2100000, guid: b242aaa1c9c88a040823ca4219b35f12, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

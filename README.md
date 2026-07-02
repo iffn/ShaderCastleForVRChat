@@ -6,6 +6,10 @@ A VRChat world project for learning about shaders. Currently being developed for
 **Work in progress**
 
 ## Requirements:
-- DiffSoupVRC by danielfvm: https://github.com/danielfvm/DiffSoupVRC
+### Have to:
 - Unity Vector Graphics: https://docs.unity3d.com/Packages/com.unity.vectorgraphics@2.0/manual/index.html
+- Skybox Series Free: https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633
+
+### Should:
+- DiffSoupVRC by danielfvm: https://github.com/danielfvm/DiffSoupVRC
 - MarchingCubeEditorForUnity: https://github.com/iffn/MarchingCubeEditorForUnity
