@@ -46,7 +46,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/BasicGeometryShader"
             };
 
             // Geometry function
-            [maxvertexcount(4)]
+            [maxvertexcount(4)] // Set max vertex count
             void geom(triangle v2g input[3], inout TriangleStream<g2f> triStream)
             {
                 // Goal: Ignore the triangle and place 1 quad sticking out of the triangle instead

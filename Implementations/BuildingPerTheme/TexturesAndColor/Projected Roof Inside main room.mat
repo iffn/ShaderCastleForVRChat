@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Projected Wall Inside
+  m_Name: Projected Roof Inside main room
   m_Shader: {fileID: 4800000, guid: 3d539b06511632b4f89e6747f64a423b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3ab47818a4c277f43aed5d6d423c1a24, type: 3}
+        m_Texture: {fileID: 2800000, guid: 63d833120855efb41ba187694e0ae8bf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -60,15 +60,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _albedo:
-        m_Texture: {fileID: 2800000, guid: b711522b77497434da70b10d641d3087, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0b13f33c4518e9e42ae94bdaf206725c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _arm:
-        m_Texture: {fileID: 2800000, guid: bfe6c4d779974c04bad4c440efc86439, type: 3}
+        m_Texture: {fileID: 2800000, guid: 86182dfef2fc2f741ad8172c1cc17139, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normalMap:
-        m_Texture: {fileID: 2800000, guid: 631ab12c5d828434686ca1157ac1b732, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a5df2ea6980e774798f2b31ded8c699, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -91,11 +91,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _intensity: 0
-    - _pattern: 2.46
+    - _intensity: 64
+    - _pattern: 2.11
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ambientLightColor: {r: 0.6698113, g: 0.62737197, b: 0.5718672, a: 1}
-    - _pointLightColor: {r: 0.8301887, g: 0.6319916, b: 0.40334642, a: 1}
+    - _ambientLightColor: {r: 0.8113208, g: 0.6567105, b: 0.4247953, a: 1}
+    - _pointLightColor: {r: 0.5188679, g: 0.38259435, b: 0.22761656, a: 1}
   m_BuildTextureStacks: []

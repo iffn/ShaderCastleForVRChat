@@ -1,10 +1,10 @@
-Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarProjectionInside"
+Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarProjectionInsideManyLights"
 {
     Properties
     {
         _albedo ("Albedo", 2D) = "white" {}
         [Normal] _normalMap ("Normal map", 2D) = "bump" {}
-        _arm ("ARM", 2D) = "white" {}
+        _arm ("ARM", 2D) = "green" {}
         _ambientLightColor ("Ambient light color", Color) = (0.2, 0.2, 0.2, 1)
         _pointLightColor ("Point light color", Color) = (0.2, 0.2, 0.2, 1)
         _pattern ("Pattern", Range(0.5, 3.0)) = 1.0
@@ -49,6 +49,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
                 float3 worldNormal : TEXCOORD2;
                 float3 worldTangent : TEXCOORD3;
                 float3 worldBitangent : TEXCOORD4;
+                float3 localPos : TEXCOORD5;
             };
             
             void GetProjectionData(float3 position, float3 projectionVector, out float2 uv, out float3 tangent, out float3 bitangent)
@@ -84,7 +85,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
                 o.worldNormal = worldNormal;
                 o.worldTangent = worldTangent;
                 o.worldBitangent = worldBitangent;
-
+                o.localPos = v.vertex;
                 return o;
             }
 
@@ -154,11 +155,20 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
 
             half4 frag (v2f i) : SV_Target {
                 float3 worldPos = i.worldPos;
+                float3 objectOrigin = unity_ObjectToWorld._m03_m13_m23;
 
                 float pattern = _pattern;
                 float halfPattern = pattern * 0.5;
+
                 float3 searchPos = worldPos + normalize(i.worldNormal) * (pattern * 0.55);
-                float3 worldLightPosition = (floor(searchPos / pattern) * pattern) + halfPattern.xxx;
+
+                // Offset search position to be relative to the local origin before snapping
+                float3 localSearchPos = searchPos - objectOrigin;
+                float3 localLightPos = (floor(localSearchPos / pattern) * pattern) + halfPattern.xxx;
+
+                // Shift back to world space
+                float3 worldLightPosition = localLightPos + objectOrigin;
+
                 float3 lightDelta = worldLightPosition - worldPos;
                 float lightDistance = length(lightDelta);
 
