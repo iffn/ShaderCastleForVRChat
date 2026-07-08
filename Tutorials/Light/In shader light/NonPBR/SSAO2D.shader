@@ -6,6 +6,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
         _ambientLightColor ("Ambient light color", Color) = (1,1,1,1)
         _AoRadius ("AO Radius", Range(0.001, 0.1)) = 0.01
         _AoIntensity ("AO Intensity", Range(0, 5)) = 1.5
+        _samples ("Samples", Range(1, 64)) = 16
     }
     SubShader
     {
@@ -25,6 +26,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
             half3 _ambientLightColor;
             float _AoRadius;
             float _AoIntensity;
+            int _samples;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -81,13 +83,13 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 float2x2 noiseRotationMatrix = float2x2(cosAngle, -sinAngle, sinAngle, cosAngle);
 
                 // --- Curved Asymmetric Spiral Loop ---
-                const int totalSamples = 16;
+                int samples = _samples; // Use a const for optimized shaders instead
                 float totalOcclusion = 0.0;
                 const float goldenAngleRadians = 2.39996323; 
 
-                for (int sampleIndex = 0; sampleIndex < totalSamples; sampleIndex++)
+                for (int sampleIndex = 0; sampleIndex < samples; sampleIndex++)
                 {
-                    float spiralRadius = sqrt((sampleIndex + 0.5) / totalSamples); 
+                    float spiralRadius = sqrt((sampleIndex + 0.5) / samples); 
                     float spiralAngle = sampleIndex * goldenAngleRadians; 
                     
                     float2 baseSpiralOffset = float2(cos(spiralAngle), sin(spiralAngle)) * spiralRadius;
@@ -115,7 +117,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 }
                 
                 // --- Final Combination ---
-                float averageOcclusion = totalOcclusion / (float)totalSamples;
+                float averageOcclusion = totalOcclusion / (float)samples;
                 float finalVisibility = 1.0 - (averageOcclusion * _AoIntensity);
                 
                 return saturate(finalVisibility); 

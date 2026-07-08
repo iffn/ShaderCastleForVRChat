@@ -6,6 +6,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
         _ambientLightColor ("Ambient light color", Color) = (1,1,1,1)
         _AoRadius ("AO Radius", Range(0.001, 2.0)) = 0.5
         _AoIntensity ("AO Intensity", Range(0, 5)) = 1.5
+        _samples ("Samples", Range(1, 64)) = 16
     }
     SubShader
     {
@@ -25,6 +26,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
             half3 _ambientLightColor;
             float _AoRadius;
             float _AoIntensity;
+            int _samples;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -71,11 +73,11 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 float3x3 tbn = float3x3(tangent, bitangent, viewSpaceNormal); // Matrix to transform from Tangent to View space
 
                 // --- 2. 3D Hemisphere Loop ---
-                const int totalSamples = 16;
+                int samples = _samples; // Use a const for optimized shaders instead
                 float totalOcclusion = 0.0;
                 float bias = 0.025; // Prevents self-shadowing artifact on flat surfaces
 
-                for (int sampleIndex = 0; sampleIndex < totalSamples; sampleIndex++)
+                for (int sampleIndex = 0; sampleIndex < samples; sampleIndex++)
                 {
                     // Generate pseudo-random values (r1, r2) for this specific sample
                     float2 seed = screenUV + float2(sampleIndex * 0.13, sampleIndex * 0.27);
@@ -90,7 +92,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                     float3 tangentSample = float3(cos(phi) * sinTheta, sin(phi) * sinTheta, cosTheta);
                     
                     // Distribute points volumetrically within the hemisphere, clustering slightly toward the center
-                    float scale = (float)sampleIndex / (float)totalSamples;
+                    float scale = (float)sampleIndex / (float)samples;
                     scale = lerp(0.1, 1.0, scale * scale);
                     tangentSample *= scale;
 
@@ -122,7 +124,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 }
                 
                 // --- 7. Final Combination ---
-                float averageOcclusion = totalOcclusion / (float)totalSamples;
+                float averageOcclusion = totalOcclusion / (float)samples;
                 float finalVisibility = 1.0 - (averageOcclusion * _AoIntensity);
                 
                 return saturate(finalVisibility); 
