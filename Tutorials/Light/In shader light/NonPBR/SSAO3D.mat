@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SSAO
+  m_Name: SSAO3D
   m_Shader: {fileID: 4800000, guid: 10cfc08b6bf1a5e42b94a4cd621b351b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -61,8 +61,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AoIntensity: 0.91
-    - _AoRadius: 0.0515
+    - _AoIntensity: 0.52
+    - _AoRadius: 0.23
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
