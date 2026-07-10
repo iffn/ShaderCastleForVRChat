@@ -151,14 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb4ffb11c5859948870f1a33f3f8cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleElement: {fileID: 3722247126628398497}
-  linkedInterface: {fileID: 5289129512666415116}
+  mainInterface: {fileID: 5289129512666415116}
+  secondInterface: {fileID: 0}
   linkedMeshRenderer: {fileID: 9193774147605968089}
-  sliderHolder: {fileID: 4962422226410747937}
   background: {fileID: 0}
   title: 
   description: 
   linkedMaterial: {fileID: 0}
+  separateDescriptionBlock: 1
 --- !u!1 &5553522423356828060
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,24 +415,6 @@ PrefabInstance:
       addedObject: {fileID: 3992333524175125994}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 542f8acec1b008e43959352f469f6444, type: 3}
---- !u!114 &3722247126628398497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7132576107753199165, guid: 542f8acec1b008e43959352f469f6444,
-    type: 3}
-  m_PrefabInstance: {fileID: 5860331161057108892}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &4962422226410747937 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1552058095251823549, guid: 542f8acec1b008e43959352f469f6444,
-    type: 3}
-  m_PrefabInstance: {fileID: 5860331161057108892}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5289129512666415116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1743692815435719568, guid: 542f8acec1b008e43959352f469f6444,

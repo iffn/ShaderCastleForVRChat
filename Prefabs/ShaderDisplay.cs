@@ -77,18 +77,37 @@ public class ShaderDisplayEditor : Editor
 public class ShaderDisplay : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] TMP_Text titleElement;
-    [SerializeField] TMP_Text secondTitle;
-    [SerializeField] UIInterface linkedInterface;
+    [SerializeField] UIInterface mainInterface;
+    [SerializeField] UIInterface secondInterface;
     [SerializeField] MeshRenderer linkedMeshRenderer;
-    [SerializeField] Transform sliderHolder;
     [SerializeField] Transform background;
 
     [Header("Values")]
     [SerializeField] string title;
     [SerializeField] [TextArea(3, 10)] string description;
     [SerializeField] Material linkedMaterial;
+    [SerializeField] bool separateDescriptionCanvas = false;
     
+    UIInterface CurrentUIInterface
+    {
+        get
+        {
+            if(secondInterface == null)
+                return mainInterface;
+            return separateDescriptionCanvas ? secondInterface : mainInterface;
+        }
+    }
+
+    UIInterface OtherUIInterface
+    {
+        get
+        {
+            if(secondInterface == null)
+                return null;
+            return separateDescriptionCanvas ? mainInterface : secondInterface;
+        }
+    }
+
     static void RegisterChange(Object linkedObject, string linkedMessage)
     {
         Undo.RegisterCompleteObjectUndo(linkedObject, linkedMessage);
@@ -97,8 +116,9 @@ public class ShaderDisplay : MonoBehaviour
 
     public void UpdateSize()
     {
-        bool hasSliders = sliderHolder.childCount > 0;
-        sliderHolder.gameObject.SetActive(hasSliders);
+        /*
+        bool hasSliders = secondSliderHolder.childCount > 0;
+        secondSliderHolder.gameObject.SetActive(hasSliders);
         RegisterChange(gameObject, "Updated size");
 
         float width = hasSliders ? 1f : 1.0f;
@@ -107,39 +127,49 @@ public class ShaderDisplay : MonoBehaviour
             background.localScale = new Vector3(width, background.localScale.y, background.localScale.z);
             RegisterChange(background, "Updated size");
         }
+        */
     }
     
     public void GetData()
     {
         if (title.Equals("Title")||title.Length == 0)
-            title = titleElement.text;
+            title = CurrentUIInterface.Title;
         title = title.Replace("\r", "").Replace("\n", " ");
-        description = linkedInterface.Description;
+        description = secondInterface.Description;
         if(linkedMeshRenderer)
             linkedMaterial = linkedMeshRenderer.sharedMaterial;
         RegisterChange(this, "Got data");
+        EditorUtility.SetDirty(this);
+        EditorSceneManager.MarkSceneDirty(gameObject.scene);
     }
 
     public void SetData()
     {
-        
-        titleElement.text = title;
-        RegisterChange(titleElement, "Set data");
-        
-        if(secondTitle)
+        CurrentUIInterface.Title = title;
+        CurrentUIInterface.Description = description;
+        if(OtherUIInterface)
+            OtherUIInterface.Title = title;
+
+        CurrentUIInterface.gameObject.SetActive(true);
+        CurrentUIInterface.SliderHolder.gameObject.SetActive(CurrentUIInterface.SliderHolder.childCount > 0);
+
+        if(secondInterface)
         {
-            secondTitle.text = title;
-            RegisterChange(secondTitle, "Set data");
+            secondInterface.gameObject.SetActive(separateDescriptionCanvas);
+            OtherUIInterface.SliderHolder.gameObject.SetActive(false);
         }
-        
-        linkedInterface.Description = description;
 
         if (linkedMeshRenderer)
         {
             linkedMeshRenderer.sharedMaterial = linkedMaterial;
             RegisterChange(linkedMeshRenderer, "Set data");
-            
-            foreach(Transform child in sliderHolder)
+
+            if (OtherUIInterface)
+            {
+                MoveChildren(OtherUIInterface.SliderHolder, CurrentUIInterface.SliderHolder);
+            }
+
+            foreach(Transform child in CurrentUIInterface.SliderHolder)
             {
                 if (child.TryGetComponent<MaterialRGBSlider>(out MaterialRGBSlider rgbSlider))
                 {
@@ -153,7 +183,27 @@ public class ShaderDisplay : MonoBehaviour
                 }
             }
         }
+
+        EditorSceneManager.MarkSceneDirty(gameObject.scene);
     }
 
+    public void MoveChildren(Transform source, Transform target)
+    {
+        if (source == null || target == null) return;
+
+        Undo.RegisterCompleteObjectUndo(target, "Move Children");
+
+        while (source.childCount > 0)
+        {
+            Transform child = source.GetChild(0);
+            
+            child.SetParent(target);
+            child.localPosition = Vector3.zero;
+            child.localScale = Vector3.one;
+        }
+
+        EditorUtility.SetDirty(source);
+        EditorUtility.SetDirty(target);
+    }
 }
 #endif

@@ -88,6 +88,7 @@ public class UIInterface : MonoBehaviour
 {
     [SerializeField] TMP_Text tile;
     [SerializeField] TMP_Text description;
+    [SerializeField] Transform sliderHolder;
 
     public string Title
     {
@@ -98,6 +99,8 @@ public class UIInterface : MonoBehaviour
         set
         {
             tile.text = value;
+            Undo.RegisterCompleteObjectUndo(this, "Got data");
+            EditorUtility.SetDirty(description);
         }
     }
 
@@ -112,6 +115,14 @@ public class UIInterface : MonoBehaviour
             description.text = value;
             Undo.RegisterCompleteObjectUndo(this, "Got data");
             EditorUtility.SetDirty(description);
+        }
+    }
+
+    public Transform SliderHolder
+    {
+        get
+        {
+            return sliderHolder;
         }
     }
 
