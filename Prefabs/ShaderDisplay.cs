@@ -157,6 +157,11 @@ public class ShaderDisplay : MonoBehaviour
         {
             secondInterface.gameObject.SetActive(separateDescriptionCanvas);
             OtherUIInterface.SliderHolder.gameObject.SetActive(false);
+
+            if (separateDescriptionCanvas)
+            {
+                OtherUIInterface.Description = "";
+            }
         }
 
         if (linkedMeshRenderer)
