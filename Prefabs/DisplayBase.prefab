@@ -572,7 +572,7 @@ MonoBehaviour:
   title: 
   description: 
   linkedMaterial: {fileID: 0}
-  separateDescriptionBlock: 1
+  separateDescriptionCanvas: 0
 --- !u!1 &6959839056127525055
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
   m_MinWidth: -1
-  m_MinHeight: -1
+  m_MinHeight: 0
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -1317,6 +1317,11 @@ PrefabInstance:
       propertyPath: sliderHolder
       value: 
       objectReference: {fileID: 2782029932038796722}
+    - target: {fileID: 1743692815435719568, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: descriptionScaler
+      value: 
+      objectReference: {fileID: 6716424343980421562}
     - target: {fileID: 3170693600961686667, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}
       propertyPath: m_IsActive
@@ -1350,7 +1355,7 @@ PrefabInstance:
     - target: {fileID: 5204610860866111670, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}
       propertyPath: m_ChildControlHeight
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5204610860866111670, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}
@@ -1949,6 +1954,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Show code
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753522062835626663, guid: d1bfe9f72a265bb458a8524287613c60,
+        type: 3}
+      propertyPath: m_MinHeight
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753522062835626663, guid: d1bfe9f72a265bb458a8524287613c60,
+        type: 3}
+      propertyPath: m_PreferredHeight
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4847705402304315681, guid: d1bfe9f72a265bb458a8524287613c60,
         type: 3}

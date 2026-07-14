@@ -147,6 +147,7 @@ public class ShaderDisplay : MonoBehaviour
     {
         CurrentUIInterface.Title = title;
         CurrentUIInterface.Description = description;
+        
         if(OtherUIInterface)
             OtherUIInterface.Title = title;
 

@@ -6,6 +6,7 @@ using UnityEditor;
 using TMPro;
 using System.Linq;
 using UnityEditor.SceneManagement;
+using UnityEngine.UI;
 
 [CustomEditor(typeof(UIInterface))]
 public class UIInterfaceEditor : Editor
@@ -86,21 +87,22 @@ public class UIInterfaceEditor : Editor
 
 public class UIInterface : MonoBehaviour
 {
-    [SerializeField] TMP_Text tile;
+    [SerializeField] TMP_Text title;
     [SerializeField] TMP_Text description;
+    [SerializeField] LayoutElement descriptionScaler;
     [SerializeField] Transform sliderHolder;
 
     public string Title
     {
         get
         {
-            return tile.text;
+            return title.text;
         }
         set
         {
-            tile.text = value;
+            title.text = value;
             Undo.RegisterCompleteObjectUndo(this, "Got data");
-            EditorUtility.SetDirty(description);
+            EditorUtility.SetDirty(title);
         }
     }
 
@@ -115,6 +117,8 @@ public class UIInterface : MonoBehaviour
             description.text = value;
             Undo.RegisterCompleteObjectUndo(this, "Got data");
             EditorUtility.SetDirty(description);
+            descriptionScaler.minHeight = description.rectTransform.sizeDelta.y;
+            EditorUtility.SetDirty(descriptionScaler);
         }
     }
 
@@ -129,9 +133,9 @@ public class UIInterface : MonoBehaviour
     public void CleanUp()
     {
         // No spaces in title
-        string originalString = tile.text;
+        string originalString = title.text;
         string cleanString = originalString.Replace("\r", "").Replace("\n", "");
-        tile.text = cleanString;
+        title.text = cleanString;
 
         // Clean up rect transform
         RectTransform[] rectTransforms = transform.GetComponentsInChildren<RectTransform>(true);
