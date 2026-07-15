@@ -12,8 +12,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Flat wall
+    second: {fileID: 2100000, guid: b242aaa1c9c88a040823ca4219b35f12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 5470c862f0ea06448b6c9882b500d7d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lit wall
+    second: {fileID: 2100000, guid: 83702aa38046fde45bfd6ec673d1c6a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Red
     second: {fileID: 2100000, guid: 6bfe7605786873d4981aec1caee68537, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Triplanar wall
+    second: {fileID: 2100000, guid: ea1bc733f34e3f446923a6c5c6f272df, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
