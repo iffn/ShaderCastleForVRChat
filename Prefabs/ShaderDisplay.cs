@@ -135,7 +135,7 @@ public class ShaderDisplay : MonoBehaviour
         if (title.Equals("Title")||title.Length == 0)
             title = CurrentUIInterface.Title;
         title = title.Replace("\r", "").Replace("\n", " ");
-        description = secondInterface.Description;
+        description = CurrentUIInterface.Description;
         if(linkedMeshRenderer)
             linkedMaterial = linkedMeshRenderer.sharedMaterial;
         RegisterChange(this, "Got data");
