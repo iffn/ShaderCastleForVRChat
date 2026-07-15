@@ -15,7 +15,6 @@ public class LightDirectionPickup : UdonSharpBehaviour
 
     [SerializeField] float dropFactor = 3f;
 
-    Rigidbody linkedRigidbody;
     Material linkedMaterial;
     VRCPickup linkedPickup;
     float arrowDistance;
@@ -23,7 +22,6 @@ public class LightDirectionPickup : UdonSharpBehaviour
     void Start()
     {
         linkedPickup = transform.GetComponent<VRCPickup>();
-        linkedRigidbody = transform.GetComponent<Rigidbody>();
         arrowDistance = arrow.localPosition.magnitude;
         linkedMaterial = transform.parent.parent.GetChild(0).GetComponent<MeshRenderer>().sharedMaterial;
 
