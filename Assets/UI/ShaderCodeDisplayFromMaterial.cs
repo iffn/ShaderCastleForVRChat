@@ -15,7 +15,7 @@ public class ShaderCodeDisplayFromMaterialEditor : UpdateCodeDisplayEditor
 
 public class ShaderCodeDisplayFromMaterial : ShaderCodeDisplay
 {
-    [SerializeField] Material linkedMaterial;
+    public Material linkedMaterial;
 
     public override void UpdateCodeDisplay()
     {

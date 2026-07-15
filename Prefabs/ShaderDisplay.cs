@@ -82,6 +82,8 @@ public class ShaderDisplay : MonoBehaviour
     [SerializeField] MeshRenderer linkedMeshRenderer;
     [SerializeField] Transform background;
 
+    [SerializeField] ShaderCodeDisplayFromMaterial linkedCodeDisplay;
+
     [Header("Values")]
     [SerializeField] string title;
     [SerializeField] [TextArea(3, 10)] string description;
@@ -189,6 +191,13 @@ public class ShaderDisplay : MonoBehaviour
                 }
             }
         }
+
+        if (linkedCodeDisplay)
+        {
+            linkedCodeDisplay.linkedMaterial = linkedMaterial;
+            linkedCodeDisplay.UpdateCodeDisplay();
+        }
+
 
         EditorSceneManager.MarkSceneDirty(gameObject.scene);
     }

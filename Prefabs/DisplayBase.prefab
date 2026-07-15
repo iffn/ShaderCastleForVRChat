@@ -569,6 +569,7 @@ MonoBehaviour:
   secondInterface: {fileID: 1460384042450395085}
   linkedMeshRenderer: {fileID: 662025258118020327}
   background: {fileID: 0}
+  linkedCodeDisplay: {fileID: 932645748081075077}
   title: 
   description: 
   linkedMaterial: {fileID: 0}
@@ -1920,6 +1921,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2548756228604174762}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &932645748081075077 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3435802402821931567, guid: b6c5073b6c151ed41a7e05bed0353018,
+    type: 3}
+  m_PrefabInstance: {fileID: 2548756228604174762}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723347619717464200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5b7643dc16a046ac7382750c6c211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7723347619717464200 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5220190887398236450, guid: b6c5073b6c151ed41a7e05bed0353018,

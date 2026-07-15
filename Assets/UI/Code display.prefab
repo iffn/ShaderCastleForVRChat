@@ -599,7 +599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3064807506094709333}
-  - component: {fileID: 772590304957890962}
+  - component: {fileID: 3435802402821931567}
   m_Layer: 0
   m_Name: Code display
   m_TagString: Untagged
@@ -624,7 +624,7 @@ Transform:
   - {fileID: 3490696205230827145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &772590304957890962
+--- !u!114 &3435802402821931567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -633,12 +633,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5220190887398236450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79bb29ba701f184d83c7d8fdfe270a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58a5b7643dc16a046ac7382750c6c211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedMeshRenderer: {fileID: 0}
   linkedCopyCodeInput: {fileID: 7408715019513278837}
   linkedColoredCodeDisplay: {fileID: 1880199773182446178}
+  linkedMaterial: {fileID: 0}
 --- !u!1 &6310885258016458983
 GameObject:
   m_ObjectHideFlags: 0

@@ -155,10 +155,11 @@ MonoBehaviour:
   secondInterface: {fileID: 0}
   linkedMeshRenderer: {fileID: 9193774147605968089}
   background: {fileID: 0}
+  linkedCodeDisplay: {fileID: 6546705088909289457}
   title: 
   description: 
   linkedMaterial: {fileID: 0}
-  separateDescriptionBlock: 1
+  separateDescriptionCanvas: 0
 --- !u!1 &5553522423356828060
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +306,31 @@ PrefabInstance:
     - target: {fileID: 302726105813571253, guid: 542f8acec1b008e43959352f469f6444,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870141419224090503, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870141419224090503, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870141419224090503, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870141419224090503, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 870141419224090503, guid: 542f8acec1b008e43959352f469f6444,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 976785529966201303, guid: 542f8acec1b008e43959352f469f6444,
@@ -802,6 +828,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8463668339943450078}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6546705088909289457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3435802402821931567, guid: b6c5073b6c151ed41a7e05bed0353018,
+    type: 3}
+  m_PrefabInstance: {fileID: 8463668339943450078}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396967301989451004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5b7643dc16a046ac7382750c6c211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6916578719196086155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
