@@ -11007,7 +11007,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -31089,7 +31089,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -64948,7 +64948,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.21
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -71059,7 +71059,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -78597,7 +78597,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -93340,6 +93340,177 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625617372}
   m_Mesh: {fileID: 766207002214816160, guid: 9cd007d4fa11ebd46ba8e753dda5773b, type: 3}
+--- !u!1 &1625804568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625804571}
+  - component: {fileID: 1625804570}
+  - component: {fileID: 1625804569}
+  m_Layer: 0
+  m_Name: Carriage return shenanigans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1625804569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625804568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "123\r456"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 1
+  m_fontSizeBase: 1
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 0
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1625804570}
+  m_maskType: 0
+--- !u!23 &1625804570
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625804568}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!224 &1625804571
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625804568}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 41.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0, y: 15.7}
+  m_SizeDelta: {x: 20, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1626193022
 GameObject:
   m_ObjectHideFlags: 0
@@ -121371,7 +121542,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.28
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -124730,7 +124901,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.21
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -128222,7 +128393,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -129636,7 +129807,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -131073,12 +131244,13 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: HSV Cylinder (Gamma space)
+      value: HSV Cylinder<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Since the Hue loops around, the HSV color space can be displayed as
+        a cylinder.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -131123,7 +131295,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: Since the Hue loops around, the HSV color space can be displayed as
+        a cylinder.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -131428,12 +131601,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2
+      value: 3.094
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -131554,12 +131727,12 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: HSV Cylinder (Gamma space)
+      value: HSV Cylinder<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: HSV Cylinder (Gamma space)
+      value: HSV Cylinder<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -134656,7 +134829,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -136133,7 +136306,7 @@ Transform:
   m_GameObject: {fileID: 5231991042393830839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.91, y: 0, z: -27.02}
+  m_LocalPosition: {x: 10, y: 0, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -136761,7 +136934,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -139162,7 +139335,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -139777,7 +139950,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -141026,12 +141199,22 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: HSV Box (Gamma space)
+      value: HSV Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Instead of using using the red, geen blue color channels, it is often
+        useful to use HSV instead.
+
+        Hue is the type of color, like red, blue,
+        green...
+
+        Saturation blends the color towards white/black.
+
+        Value
+        determines the brightness of the color and changes the saturation blending
+        point between white and black.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -141096,7 +141279,17 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Instead of using using the red, geen blue color channels, it is often
+        useful to use HSV instead.
+
+        Hue is the type of color, like red, blue,
+        green...
+
+        Saturation blends the color towards white/black.
+
+        Value
+        determines the brightness of the color and changes the saturation blending
+        point between white and black.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -141367,12 +141560,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.55
+      value: 1.545
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -141493,12 +141686,12 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: HSV Box (Gamma space)
+      value: HSV Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: HSV Box (Gamma space)
+      value: HSV Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -141560,7 +141753,7 @@ Transform:
   m_GameObject: {fileID: 6021374998424682052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.982, y: 0, z: -2.38}
+  m_LocalPosition: {x: 3.982, y: 0, z: -1.312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -143381,7 +143574,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -143974,7 +144167,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.18
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -145837,7 +146030,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.35
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -146533,7 +146726,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.45
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -148013,7 +148206,15 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Humans are able to perceive small differences of dark colors much better
+        than that of bright colors. In order to minimize the data use, displays usually
+        output colors in Gamma space, which tries the reflect a perceived regular
+        brightness change.
+
+
+        However, adding 2 lights in Gamma color space
+        requires a strong correction factor. Therefore, it is usually not used for
+        color outputs.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -148053,7 +148254,15 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Humans are able to perceive small differences of dark colors much better
+        than that of bright colors. In order to minimize the data use, displays usually
+        output colors in Gamma space, which tries the reflect a perceived regular
+        brightness change.
+
+
+        However, adding 2 lights in Gamma color space
+        requires a strong correction factor. Therefore, it is usually not used for
+        color outputs.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -148307,7 +148516,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -148991,7 +149200,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -149224,7 +149433,7 @@ Transform:
   m_GameObject: {fileID: 6961176184941214225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -6.876, y: 0, z: -1.553}
+  m_LocalPosition: {x: -6.7, y: 0, z: -1.553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -149906,7 +150115,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -150616,7 +150825,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -152132,7 +152341,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -154503,7 +154712,22 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Meshes are made of triangles. Drawing a wireframe that highlights the
+        edges of each triangle helps visualize these.
+
+
+        Doing so requires
+        to know how far away from the edge a fragment is. The standard mesh data
+        usually doesn''t give this information. However, this data can be added in
+        the geometry shader. The new order is:
+
+        vertex -> geometry -> fragment
+
+
+        We
+        give each point an independent barycentric coordinate. The interpolation
+        between the geometry and fragment shader means we can use this coordinate
+        to determine the distance from the edge.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -154543,7 +154767,22 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Meshes are made of triangles. Drawing a wireframe that highlights the
+        edges of each triangle helps visualize these.
+
+
+        Doing so requires
+        to know how far away from the edge a fragment is. The standard mesh data
+        usually doesn''t give this information. However, this data can be added in
+        the geometry shader. The new order is:
+
+        vertex -> geometry -> fragment
+
+
+        We
+        give each point an independent barycentric coordinate. The interpolation
+        between the geometry and fragment shader means we can use this coordinate
+        to determine the distance from the edge.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -154856,7 +155095,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.52
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -157529,7 +157768,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -159545,7 +159784,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -163516,7 +163755,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.42
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -165634,7 +165873,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.28
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 6932279305534334282, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -166827,7 +167066,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -169154,7 +169393,14 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Modelling a separate grass mesh often doesn''t make much sense. It''s
+        a lot of work, there is a huge amount of data to be stored and the performance
+        also suffers. Doing so on the CPU also isn''t great.
+
+
+        Therefore,
+        drawing the grass around the player at runtime on the GPU makes most sense.
+        This can be done in the geometry shader by adding new vertices to the mesh.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -169194,7 +169440,14 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Modelling a separate grass mesh often doesn''t make much sense. It''s
+        a lot of work, there is a huge amount of data to be stored and the performance
+        also suffers. Doing so on the CPU also isn''t great.
+
+
+        Therefore,
+        drawing the grass around the player at runtime on the GPU makes most sense.
+        This can be done in the geometry shader by adding new vertices to the mesh.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -169577,7 +169830,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -170649,7 +170902,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -170932,7 +171185,8 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Normals are vectors that point away from the surface. Meshes usually
+        store the normal vector in the vertex data.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -170972,7 +171226,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: Normals are vectors that point away from the surface. Meshes usually
+        store the normal vector in the vertex data.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -171216,12 +171471,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.222
+      value: -1.156
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -171231,7 +171486,7 @@ PrefabInstance:
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -172253,7 +172508,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -176082,7 +176337,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -177818,7 +178073,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -179922,7 +180177,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -181499,7 +181754,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -182437,7 +182692,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.49
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -182658,7 +182913,7 @@ PrefabInstance:
     - target: {fileID: 1753978645082706139, guid: 281e01f31ca817744844f35ee6826071,
         type: 3}
       propertyPath: m_text
-      value: Update step
+      value: Update step (only high values work)
       objectReference: {fileID: 0}
     - target: {fileID: 2653252077360003988, guid: 281e01f31ca817744844f35ee6826071,
         type: 3}
@@ -184363,7 +184618,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -186568,7 +186823,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -187927,12 +188182,19 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: Title
+      value: Linear color space
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Brigness is about how much light a color emmits. This can be measured.
+        When scaling the output linearly, the output above is the result.
+
+
+        Unity
+        allows outputting colors in different color spaces. To calculate lights correctly,
+        the linear color space is best since light values can easily be summed together
+        to get a physically accurate result.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -187972,7 +188234,14 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Brigness is about how much light a color emmits. This can be measured.
+        When scaling the output linearly, the output above is the result.
+
+
+        Unity
+        allows outputting colors in different color spaces. To calculate lights correctly,
+        the linear color space is best since light values can easily be summed together
+        to get a physically accurate result.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -188226,7 +188495,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -188348,6 +188617,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: Linear color space
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: m_text
+      value: Linear color space
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -189039,7 +189318,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -189731,7 +190010,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.11
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -191399,7 +191678,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -193369,7 +193648,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.21
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -197571,12 +197850,13 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: RGB Box (Gamma space)
+      value: RGB Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: The human eye generally sees 3 color channels, Red, Green and Blue.
+        Mixing these give the possible different colors that are possible to display.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -197616,7 +197896,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: The human eye generally sees 3 color channels, Red, Green and Blue.
+        Mixing these give the possible different colors that are possible to display.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -197870,12 +198151,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.21
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -197996,12 +198277,12 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: RGB Box (Gamma space)
+      value: RGB Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: RGB Box (Gamma space)
+      value: RGB Box<br>(Gamma space)
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -200487,7 +200768,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -203092,12 +203373,19 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: Oklab Box Display to be improved
+      value: Oklab Box Display<br>(to be improved)
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'To the human eye, Yellow and green look brighter than red or full blue.
+        This causes certain problems. When for example generating a random HSV hue
+        on a dark background, yellow will be clearly visible while blue will be hard
+        to read.
+
+
+        Oklab tries to fix this by using colors with the same
+        perceived brightness.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -203162,7 +203450,14 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'To the human eye, Yellow and green look brighter than red or full blue.
+        This causes certain problems. When for example generating a random HSV hue
+        on a dark background, yellow will be clearly visible while blue will be hard
+        to read.
+
+
+        Oklab tries to fix this by using colors with the same
+        perceived brightness.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -203459,12 +203754,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.61
+      value: 4.605
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -203585,12 +203880,12 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Oklab Box Display to be improved
+      value: Oklab Box Display<br>(to be improved)
       objectReference: {fileID: 0}
     - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Oklab Box Display to be improved
+      value: Oklab Box Display<br>(to be improved)
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -205110,7 +205405,16 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'First, the vertex positions of the mesh are transformed into clip space.
+        Since the the view frustum of perspective cameras has an angle, this warps
+        the vertices.
+
+        Now, the X and Y coordinates represent the screen
+        position while the Z coordiante represents the depth.
+
+
+        This function
+        can be adjusted in the vertex shader in order to create different effects.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -205190,7 +205494,16 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'First, the vertex positions of the mesh are transformed into clip space.
+        Since the the view frustum of perspective cameras has an angle, this warps
+        the vertices.
+
+        Now, the X and Y coordinates represent the screen
+        position while the Z coordiante represents the depth.
+
+
+        This function
+        can be adjusted in the vertex shader in order to create different effects.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -205406,7 +205719,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -209137,7 +209450,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -211568,7 +211881,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &6929090895873097290
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -214072,7 +214385,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -215164,7 +215477,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.45
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -215831,7 +216144,9 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: The data stored in the vertices is then interpolated between the pixels.
+        This data can then be used in the fragment shader to determine the color
+        of the pixel.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -215911,7 +216226,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: The data stored in the vertices is then interpolated between the pixels.
+        This data can then be used in the fragment shader to determine the color
+        of the pixel.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -216177,7 +216494,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -217028,7 +217345,7 @@ MeshCollider:
   m_Mesh: {fileID: -7540144024640374693, guid: 32be2ea7b5764774791f095780104b64, type: 3}
 --- !u!114 &7179525557430770503
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -217229,7 +217546,15 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'When creating a shader, it is often good to think of the overall workflow
+        where the final shader is used. Many people don''t know shader programming
+        and creating a separate shader for small adjustments doesn''t make much sense.
+
+
+        A
+        very common use case is the tiling of textures wth scale and offset. Unity
+        has a built in sampler that integrates well with the UI. This can also be
+        shared for multiple texture types like normal maps.'
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -217300,6 +217625,19 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 'When creating a shader, it is often good to think of the overall workflow
+        where the final shader is used. Many people don''t know shader programming
+        and creating a separate shader for small adjustments doesn''t make much sense.
+
+
+        A
+        very common use case is the tiling of textures wth scale and offset. Unity
+        has a built in sampler that integrates well with the UI. This can also be
+        shared for multiple texture types like normal maps.'
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -218573,7 +218911,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -223294,7 +223632,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.28
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -224511,7 +224849,9 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: In the vertex shader, the normals relative to the world can also be
+        calculated. This is useful in various applications like texture projections
+        or light calculations.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -224551,7 +224891,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: In the vertex shader, the normals relative to the world can also be
+        calculated. This is useful in various applications like texture projections
+        or light calculations.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -224808,12 +225150,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.255
+      value: 0.412
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -225999,7 +226341,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -228678,7 +229020,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -229188,7 +229530,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -229952,7 +230294,14 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Usually, shaders don''t have access to the previous state. Howevere,
+        having so would be very useful, since it would allow for cool programs. That''s
+        why render textures exist.
+
+
+        In this simple example, the texture
+        can be made to melt by merging the current pixel value with the value above.
+        The resulting render texture is then displayed like a normal texture.'
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -230023,6 +230372,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 'Usually, shaders don''t have access to the previous state. Howevere,
+        having so would be very useful, since it would allow for cool programs. That''s
+        why render textures exist.
+
+
+        In this simple example, the texture
+        can be made to melt by merging the current pixel value with the value above.
+        The resulting render texture is then displayed like a normal texture.'
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -231046,7 +231407,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.11
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -233084,7 +233445,24 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'In 1970, John Horton Conway came up with Conway''s Game of Life. To
+        calculate the next state, each cell looks at its own an 8 neighbors to deterimine
+        the next state:
+
+        - If alive and <2 live neighbors = dies
+
+        -
+        If alive and 2 or 3 live neighbors = stay alive
+
+        - If alive and >
+        3 live neighbors = dies
+
+        - If dead and 3 live neighbors = born
+
+        From
+        this simple rules, different shapes display different properties, algorythms
+        can be created (it''s turing complete) and given enough space, it is thought
+        that even life could emerge from a large enough random field.'
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -233159,6 +233537,33 @@ PrefabInstance:
     - target: {fileID: 4231062188907738545, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 'In 1970, John Horton Conway came up with Conway''s Game of Life. To
+        calculate the next state, each cell looks at its own an 8 neighbors to deterimine
+        the next state:
+
+        - If alive and <2 live neighbors = dies
+
+        -
+        If alive and 2 or 3 live neighbors = stay alive
+
+        - If alive and >
+        3 live neighbors = dies
+
+        - If dead and 3 live neighbors = born
+
+        From
+        this simple rules, different shapes display different properties, algorythms
+        can be created (it''s turing complete) and given enough space, it is thought
+        that even life could emerge from a large enough random field.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_isRightToLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -233629,7 +234034,9 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Next, the image is rasterized. This means the camera space is divided
+        into pixels (called fragments) and the render pipeline determines which pixel
+        gets to show the mesh.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -233709,7 +234116,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: Next, the image is rasterized. This means the camera space is divided
+        into pixels (called fragments) and the render pipeline determines which pixel
+        gets to show the mesh.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -233925,7 +234334,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -234422,7 +234831,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -235659,7 +236068,8 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Initially, 3D opbjects and the camera are placed around the world. However,
+        to render the image relative to the camera, multiple steps are needed.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -235739,7 +236149,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: Initially, 3D opbjects and the camera are placed around the world. However,
+        to render the image relative to the camera, multiple steps are needed.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -235955,7 +236366,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -238147,7 +238558,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.25
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -238738,7 +239149,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.31
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -239254,7 +239665,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -240019,7 +240430,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -240586,7 +240997,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -242473,7 +242884,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.04
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -242701,7 +243112,7 @@ Transform:
   m_GameObject: {fileID: 7662961912564277642}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -1.13}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -243190,7 +243601,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -246188,4 +246599,5 @@ SceneRoots:
   - {fileID: 1169495391}
   - {fileID: 1740455959}
   - {fileID: 1897424483}
+  - {fileID: 1625804571}
   - {fileID: 1797306247}

@@ -32,6 +32,24 @@ Shader "ShaderCastle/Tutorials/Color/ColorRGBBoxGamma"
                 return rgb;
             }
 
+            half3 hsv2rgbSlow(float3 hsv)
+            {
+                float hue = hsv.r;
+                float saturation = hsv.g;
+                float value = hsv.b;
+
+                float3 phaseOffsets = hue + K_HSV.xyz;
+                float3 rawHueTriangles = abs(frac(phaseOffsets) * 6.0 - K_HSV.www);
+                half3 baseColor = saturate(rawHueTriangles - K_HSV.xxx);
+
+                half3 white = half3(1.0, 1.0, 1.0);
+                half3 colorLerpedWithWhite = lerp(white, baseColor, saturation);
+
+                half3 finalColorLerpedWithBlack = colorLerpedWithWhite * value;
+
+                return finalColorLerpedWithBlack;
+            }
+
             half4 frag (v2f i) : SV_Target {
                 half3 hsv = half3(i.localPos.xyz + 0.5);
                 float3 color = hsv2rgb(hsv);
