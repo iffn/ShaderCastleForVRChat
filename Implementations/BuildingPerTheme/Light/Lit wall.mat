@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TriplanarMapping
+  m_Name: Lit wall
   m_Shader: {fileID: 4800000, guid: 6b46b7ec9db9680439b9b30a28effef8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -60,15 +60,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _albedo:
-        m_Texture: {fileID: 2800000, guid: 0976d6bef53365a45a911470a3583413, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3ab47818a4c277f43aed5d6d423c1a24, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _arm:
-        m_Texture: {fileID: 2800000, guid: 5576250b5204f36448fb97f62cca0817, type: 3}
+        m_Texture: {fileID: 2800000, guid: f86b901de2d61a34384fedd4a72db0a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normalMap:
-        m_Texture: {fileID: 2800000, guid: ebb2f793208f13d48842bc807b84e80b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 105f0756f41f8574a9de112fb2711dcd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -91,13 +91,19 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - _intensity: 54
+    - _lightPatternAngle: 15
+    - _lightPatternHeight: 2.19
+    - _lightPatternOffset: 0
+    - _lightPatternRadius: 7.78
+    - _pattern: 1
     - _pointLightIntensity: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ambientLightColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _directionalLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _pointLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _pointLightColor: {r: 1, g: 0.6154234, b: 0, a: 1}
     - _pointLightWorldPosition: {r: 1, g: 1, b: 1, a: 1}
     - _worldLightDirection: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

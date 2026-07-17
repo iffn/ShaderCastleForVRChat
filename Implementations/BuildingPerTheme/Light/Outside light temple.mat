@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Metallic
-  m_Shader: {fileID: 4800000, guid: 282e982090ca2e5478539c9f5b2ae098, type: 3}
+  m_Name: Outside light temple
+  m_Shader: {fileID: 4800000, guid: 16744daf084f94047a885cd0a1a16abd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b711522b77497434da70b10d641d3087, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -60,15 +60,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _albedo:
-        m_Texture: {fileID: 2800000, guid: c6d1b67f507b88d49b8ac689e7e19222, type: 3}
+        m_Texture: {fileID: 2800000, guid: b711522b77497434da70b10d641d3087, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _normal:
-        m_Texture: {fileID: 2800000, guid: b55a65907ff6e454aa4dcfe50d92cc41, type: 3}
+    - _arm:
+        m_Texture: {fileID: 2800000, guid: bfe6c4d779974c04bad4c440efc86439, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normalMap:
-        m_Texture: {fileID: 2800000, guid: b55a65907ff6e454aa4dcfe50d92cc41, type: 3}
+        m_Texture: {fileID: 2800000, guid: 631ab12c5d828434686ca1157ac1b732, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -80,26 +80,29 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MainTexScale: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Sharpness: 9.3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _glossiness: 32
-    - _roughness: 0.113
+    - _intensity: 1
+    - _lightPatternAngle: 15
+    - _lightPatternOffset: 0
+    - _lightPatternRadius: 8
+    - _pattern: 1
+    - _pointLightIntensity: 1
     m_Colors:
-    - _BRDFLightFactor: {r: 0.9, g: 0.2, b: 0.2, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _albedo: {r: 0.9150943, g: 0.13381095, b: 0.13381095, a: 1}
-    - _ambientLightColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+    - _ambientLightColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _directionalLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _radiantIntensity: {r: 1, g: 1, b: 1, a: 1}
-    - _specularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _worldLightDirection: {r: -0.040424347, g: -0.23278046, b: 0.22924042, a: 0}
-    - _world_light_direction: {r: -1, g: -1, b: -1, a: 0}
+    - _pointLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _pointLightWorldPosition: {r: 1, g: 1, b: 1, a: 1}
+    - _worldLightDirection: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

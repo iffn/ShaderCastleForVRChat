@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Ceiling Wood Lit
+    second: {fileID: 2100000, guid: 76a5b8ad3b09da34fad1c7b8f3368861, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Flat wall
     second: {fileID: 2100000, guid: b242aaa1c9c88a040823ca4219b35f12, type: 2}
   - first:
@@ -22,8 +27,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Floor lit
+    second: {fileID: 2100000, guid: 3994b44d16965a74198d2a2b077c2279, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Lit wall
     second: {fileID: 2100000, guid: 83702aa38046fde45bfd6ec673d1c6a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillars
+    second: {fileID: 2100000, guid: 419f37bc7bd8ce74d85470986c87b9bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Projected wall outside
+    second: {fileID: 2100000, guid: b242aaa1c9c88a040823ca4219b35f12, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -32,8 +52,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: f30fc2f0ab3ba1549a499c29d2550d40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Triplanar wall
     second: {fileID: 2100000, guid: ea1bc733f34e3f446923a6c5c6f272df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV wall inside
+    second: {fileID: 2100000, guid: 83702aa38046fde45bfd6ec673d1c6a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV wall not lit
+    second: {fileID: 2100000, guid: 419f37bc7bd8ce74d85470986c87b9bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV wall outside
+    second: {fileID: 2100000, guid: 632760b609e45a84796c34690a8b80a8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
