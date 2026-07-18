@@ -34460,6 +34460,59 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5796775240369642200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &501995963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501995964}
+  - component: {fileID: 501995965}
+  m_Layer: 0
+  m_Name: Checkerboard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &501995964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501995963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7486984719254335769}
+  - {fileID: 1389716077}
+  - {fileID: 1291157203954823975}
+  m_Father: {fileID: 4247418503467899662}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &501995965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501995963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa812f42800b2941a8ec2e1b5230195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 3.8
+  angleOffsetDeg: 15
+  arrnageClockwise: 1
+  inverseOrder: 0
+  halfOffset: 1
+  arrangeAroundTheCenter: 1
 --- !u!1 &502582144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 372904247498775878, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -35782,6 +35835,187 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8377951989944605110, guid: 3bef7ea622f73b547b800f21e3b3c323,
     type: 3}
   m_PrefabInstance: {fileID: 518091160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &518267950
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1389716079}
+    m_Modifications:
+    - target: {fileID: 523371932246658466, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d23d232cf5e5364c98e72bacc14e64e,
+        type: 2}
+    - target: {fileID: 1753978645082706139, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_text
+      value: Skew
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653252077360003988, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653252077360003988, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653252077360003988, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129406360651857326, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3129406360651857326, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439355730077199292, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_Name
+      value: _skew
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.8691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.1027
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: min
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: propertyName
+      value: _skew
+      objectReference: {fileID: 0}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 34a19c178c2261a4f8a4644d071f280f, type: 2}
+    - target: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 7897859958208059011, guid: 281e01f31ca817744844f35ee6826071,
+        type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 281e01f31ca817744844f35ee6826071, type: 3}
+--- !u!224 &518267951 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7028766139517761257, guid: 281e01f31ca817744844f35ee6826071,
+    type: 3}
+  m_PrefabInstance: {fileID: 518267950}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &518307353
 GameObject:
@@ -77080,99 +77314,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302421381}
   m_Mesh: {fileID: 1077876537}
---- !u!1001 &1302474260
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -21.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 13.7
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 82.4
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4045922306550073130, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e135f75846b6c744c99ee78d42b9f3d1, type: 2}
-    - target: {fileID: -4045922306550073130, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
-    - target: {fileID: -4045922306550073130, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_Materials.Array.data[3]
-      value: 
-      objectReference: {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
-    - target: {fileID: -3391628250739661575, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -30.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -3391628250739661575, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: a8f403ed6f14c77489ece91d8ec92aa4,
-        type: 3}
-      propertyPath: m_Name
-      value: Math (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a8f403ed6f14c77489ece91d8ec92aa4, type: 3}
 --- !u!1 &1302728259
 GameObject:
   m_ObjectHideFlags: 0
@@ -82676,7 +82817,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1304634188218178301}
+    m_TransformParent: {fileID: 501995964}
     m_Modifications:
     - target: {fileID: 707830014532808122, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -82702,10 +82843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/GridSkew\"\r\n{\r\n   
-        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
-        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
-        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
-        float _zoom;\r\n\r\n            struct appdata {\r\n                float4
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1.0\r\n        _skew
+        (\"Skew\", range(-1, 1)) = 1.0\r\n    }\r\n    SubShader\r\n    {\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            float _zoom;\r\n           
+        float _skew;\r\n\r\n            struct appdata {\r\n                float4
         vertex : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
         float4 pos : SV_POSITION;\r\n                float4 vertex : TEXCOORD0;\r\n           
         };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
@@ -82713,20 +82855,16 @@ PrefabInstance:
         return o;\r\n            }\r\n            \r\n            float stepPattern(float
         x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
         y = sign(y);\r\n                y = saturate(y);\r\n                return
-        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        y;\r\n            }\r\n\r\n            float4 frag (v2f i) : SV_Target {\r\n               
         float2 pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
-        // Simplex Skew Factor for 2D: (sqrt(3.0) - 1.0) / 2.0\r\n               
-        const float F2 = 0.366025403;\r\n                \r\n                // 1.
-        Calculate the skew amount based on the sum of components\r\n               
-        float skew = (pos2D.x + pos2D.y) * F2;\r\n                \r\n               
-        // 2. Add the skew to the original coordinates to warp the space\r\n               
-        float2 skewedPos = pos2D + skew;\r\n\r\n                half3 black = half3(0.0,
-        0.0, 0.0);\r\n                half3 white = half3(1.0, 1.0, 1.0);\r\n               
-        \r\n                // 3. Generate the grid pattern using the skewed coordinates\r\n               
+        float skew = (pos2D.x + pos2D.y) * _skew;\r\n                float2 skewedPos
+        = pos2D + skew;\r\n\r\n                float3 black = float3(0.0, 0.0, 0.0);\r\n               
+        float3 white = float3(1.0, 1.0, 1.0);\r\n                \r\n               
+        // 3. Generate the grid pattern using the skewed coordinates\r\n               
         float xStep = stepPattern(skewedPos.x);\r\n                float yStep =
         stepPattern(-skewedPos.y);\r\n                float pattern = abs(xStep -
-        yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
-        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        yStep);\r\n\r\n                float3 color = lerp(black, white, pattern);\r\n\r\n               
+        return float4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1496588037925710651, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -82774,12 +82912,13 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: title
-      value: Checkerboard
+      value: Skewing
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Modifying the position before the grid function alows warping the pattern.
+        One way of doing so is skewing.
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -82789,7 +82928,7 @@ PrefabInstance:
     - target: {fileID: 3722247126628398497, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
-      value: Checkerboard
+      value: Skewing
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -82854,27 +82993,33 @@ PrefabInstance:
     - target: {fileID: 4231062188907738545, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: Modifying the position before the grid function alows warping the pattern.
+        One way of doing so is skewing.
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5008773921672645143, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_Name
-      value: Checker board (1)
+      value: Skewed checkerboard
       objectReference: {fileID: 0}
     - target: {fileID: 5061122928763255898, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -82907,6 +83052,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 6546705088909289457, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 34a19c178c2261a4f8a4644d071f280f, type: 2}
     - target: {fileID: 6620407579961775055, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -82971,10 +83121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "Shader \"ShaderCastle/Tutorials/ProceduralTextures/GridSkew\"\r\n{\r\n   
-        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1\r\n    }\r\n   
-        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
-        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
-        float _zoom;\r\n\r\n            struct appdata {\r\n                float4
+        Properties\r\n    {\r\n        _zoom (\"Zoom\", float) = 1.0\r\n        _skew
+        (\"Skew\", range(-1, 1)) = 1.0\r\n    }\r\n    SubShader\r\n    {\r\n       
+        Pass\r\n        {\r\n            CGPROGRAM\r\n            #pragma vertex
+        vert\r\n            #pragma fragment frag\r\n\r\n            float _zoom;\r\n           
+        float _skew;\r\n\r\n            struct appdata {\r\n                float4
         vertex : POSITION;\r\n            };\r\n\r\n            struct v2f {\r\n               
         float4 pos : SV_POSITION;\r\n                float4 vertex : TEXCOORD0;\r\n           
         };\r\n\r\n            v2f vert (appdata v) {\r\n                v2f o;\r\n               
@@ -82982,20 +83133,16 @@ PrefabInstance:
         return o;\r\n            }\r\n            \r\n            float stepPattern(float
         x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
         y = sign(y);\r\n                y = saturate(y);\r\n                return
-        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        y;\r\n            }\r\n\r\n            float4 frag (v2f i) : SV_Target {\r\n               
         float2 pos2D = i.vertex.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
-        // Simplex Skew Factor for 2D: (sqrt(3.0) - 1.0) / 2.0\r\n               
-        const float F2 = 0.366025403;\r\n                \r\n                // 1.
-        Calculate the skew amount based on the sum of components\r\n               
-        float skew = (pos2D.x + pos2D.y) * F2;\r\n                \r\n               
-        // 2. Add the skew to the original coordinates to warp the space\r\n               
-        float2 skewedPos = pos2D + skew;\r\n\r\n                half3 black = half3(0.0,
-        0.0, 0.0);\r\n                half3 white = half3(1.0, 1.0, 1.0);\r\n               
-        \r\n                // 3. Generate the grid pattern using the skewed coordinates\r\n               
+        float skew = (pos2D.x + pos2D.y) * _skew;\r\n                float2 skewedPos
+        = pos2D + skew;\r\n\r\n                float3 black = float3(0.0, 0.0, 0.0);\r\n               
+        float3 white = float3(1.0, 1.0, 1.0);\r\n                \r\n               
+        // 3. Generate the grid pattern using the skewed coordinates\r\n               
         float xStep = stepPattern(skewedPos.x);\r\n                float yStep =
         stepPattern(-skewedPos.y);\r\n                float pattern = abs(xStep -
-        yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
-        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        yStep);\r\n\r\n                float3 color = lerp(black, white, pattern);\r\n\r\n               
+        return float4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7675022230486688073, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -83016,7 +83163,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0008178
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -83026,12 +83173,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.497202
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -83041,7 +83188,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.17364821
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -83108,52 +83255,49 @@ PrefabInstance:
       propertyPath: m_text
       value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/ProceduralTextures/GridSkew\"</color>\r\n{\r\n   
         <color=#569CD6>Properties</color>\r\n    {\r\n        _zoom (<color=#D69D85>\"Zoom\"</color>,
-        <color=#569CD6>float</color>) = 1\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        <color=#569CD6>float</color>) = 1.0\r\n        _skew (<color=#D69D85>\"Skew\"</color>,
+        range(-1, 1)) = 1.0\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
         {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
         #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
-        frag\r\n\r\n            <color=#569CD6>float</color> _zoom;\r\n\r\n           
-        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
-        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n           
-        };\r\n\r\n            <color=#569CD6>struct</color> <color=#569CD6>v2f</color>
-        {\r\n                <color=#569CD6>float4</color> pos : SV_POSITION;\r\n               
-        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : TEXCOORD0;\r\n           
-        };\r\n\r\n            <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color>
-        v) {\r\n                <color=#569CD6>v2f</color> o;\r\n               
-        o.<color=#569CD6>vertex</color> = v.<color=#569CD6>vertex</color>;\r\n               
-        o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        frag\r\n\r\n            <color=#569CD6>float</color> _zoom;\r\n           
+        <color=#569CD6>float</color> _skew;\r\n\r\n            <color=#569CD6>struct</color>
+        <color=#569CD6>appdata</color> {\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : POSITION;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float4</color>
+        <color=#569CD6>vertex</color> : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>v2f</color> vert (<color=#569CD6>appdata</color> v) {\r\n               
+        <color=#569CD6>v2f</color> o;\r\n                o.<color=#569CD6>vertex</color>
+        = v.<color=#569CD6>vertex</color>;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
         return o;\r\n            }\r\n            \r\n            <color=#569CD6>float</color>
         stepPattern(<color=#569CD6>float</color> x){\r\n                <color=#569CD6>float</color>
         y = frac(x * 0.5);\r\n                y -= 0.5;\r\n                y = sign(y);\r\n               
         y = saturate(y);\r\n                return y;\r\n            }\r\n\r\n           
-        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
         {\r\n                <color=#569CD6>float2</color> pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n               
-        pos2D *= _zoom;\r\n\r\n                <color=#57A64A>// Simplex Skew Factor
-        for 2D: (sqrt(3.0) - 1.0) / 2.0\r</color>\n                const <color=#569CD6>float</color>
-        F2 = 0.366025403;\r\n                \r\n                <color=#57A64A>//
-        1. Calculate the skew amount based on the sum of components\r</color>\n               
-        <color=#569CD6>float</color> skew = (pos2D.x + pos2D.y) * F2;\r\n               
-        \r\n                <color=#57A64A>// 2. Add the skew to the original coordinates
-        to warp the space\r</color>\n                <color=#569CD6>float2</color>
-        skewedPos = pos2D + skew;\r\n\r\n                <color=#569CD6>half3</color>
-        black = <color=#569CD6>half3</color>(0.0, 0.0, 0.0);\r\n                <color=#569CD6>half3</color>
-        white = <color=#569CD6>half3</color>(1.0, 1.0, 1.0);\r\n                \r\n               
-        <color=#57A64A>// 3. Generate the grid pattern using the skewed coordinates\r</color>\n               
+        pos2D *= _zoom;\r\n\r\n                <color=#569CD6>float</color> skew
+        = (pos2D.x + pos2D.y) * _skew;\r\n                <color=#569CD6>float2</color>
+        skewedPos = pos2D + skew;\r\n\r\n                <color=#569CD6>float3</color>
+        black = <color=#569CD6>float3</color>(0.0, 0.0, 0.0);\r\n               
+        <color=#569CD6>float3</color> white = <color=#569CD6>float3</color>(1.0,
+        1.0, 1.0);\r\n                \r\n                <color=#57A64A>// 3. Generate
+        the grid pattern using the skewed coordinates\r</color>\n               
         <color=#569CD6>float</color> xStep = stepPattern(skewedPos.x);\r\n               
         <color=#569CD6>float</color> yStep = stepPattern(-skewedPos.y);\r\n               
         <color=#569CD6>float</color> pattern = abs(xStep - yStep);\r\n\r\n               
-        <color=#569CD6>half3</color> color = lerp(black, white, pattern);\r\n\r\n               
-        return <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n           
+        <color=#569CD6>float3</color> color = lerp(black, white, pattern);\r\n\r\n               
+        return <color=#569CD6>float4</color>(color, 1.0);\r\n            }\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.029142857
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 0.029142857
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8151819122566029106, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -83187,7 +83331,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 34a19c178c2261a4f8a4644d071f280f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 518267951}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b78f404deb68354e9b08eaf5d093c61, type: 3}
 --- !u!4 &1389716077 stripped
@@ -83199,6 +83347,12 @@ Transform:
 --- !u!1 &1389716078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5339503459200865000, guid: 3b78f404deb68354e9b08eaf5d093c61,
+    type: 3}
+  m_PrefabInstance: {fileID: 1389716076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1389716079 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
     type: 3}
   m_PrefabInstance: {fileID: 1389716076}
   m_PrefabAsset: {fileID: 0}
@@ -89747,7 +89901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 5.85
-  angleOffsetDeg: 10
+  angleOffsetDeg: 15
   arrnageClockwise: 1
   inverseOrder: 0
   halfOffset: 0
@@ -134277,8 +134431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7446512814710493733}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.17364818, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 2.0008175, y: 0, z: 5.497202}
+  m_LocalRotation: {x: 0, y: 0.06540313, z: 0, w: 0.99785894}
+  m_LocalPosition: {x: 0.76357824, y: 0, z: 5.7999525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -137160,7 +137314,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1304634188218178301}
+    m_TransformParent: {fileID: 501995964}
     m_Modifications:
     - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -137181,13 +137335,13 @@ PrefabInstance:
         h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
         ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
         (h >> 16);\r\n                \r\n                return float(h & 0x00ffffffu)
-        / float(0x01000000u);\r\n            }\r\n            \r\n            half4
+        / float(0x01000000u);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
         pos2D *= _zoom;\r\n\r\n                float2 gridID = floor(pos2D);\r\n\r\n               
         float randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
         float r = randomSeed01;\r\n                float g = hash11(r);\r\n               
-        float b = hash11(g);\r\n\r\n                half3 color = half3(r, g, b);\r\n               
-        return half4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        float b = hash11(g);\r\n\r\n                float3 color = float3(r, g, b);\r\n               
+        return float4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -137234,7 +137388,9 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Using the floor function allows having a consistent value over a cell.
+        This can then be used to generate a random number that stays the same over
+        the entire cell.
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -137311,6 +137467,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: Using the floor function allows having a consistent value over a cell.
+        This can then be used to generate a random number that stays the same over
+        the entire cell.
+      objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -137362,6 +137525,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 6546705088909289457, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d38331776ea94e47a492fc7bc8b5466, type: 2}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -137406,19 +137574,19 @@ PrefabInstance:
         h ^= (h >> 16);\r\n                h *= 0x85ebca6bU;\r\n                h
         ^= (h >> 13);\r\n                h *= 0xc2b2ae35U;\r\n                h ^=
         (h >> 16);\r\n                \r\n                return float(h & 0x00ffffffu)
-        / float(0x01000000u);\r\n            }\r\n            \r\n            half4
+        / float(0x01000000u);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
         pos2D *= _zoom;\r\n\r\n                float2 gridID = floor(pos2D);\r\n\r\n               
         float randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
         float r = randomSeed01;\r\n                float g = hash11(r);\r\n               
-        float b = hash11(g);\r\n\r\n                half3 color = half3(r, g, b);\r\n               
-        return half4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        float b = hash11(g);\r\n\r\n                float3 color = float3(r, g, b);\r\n               
+        return float4(color, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.015842
+      value: 0.98351234
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -137428,12 +137596,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.761125
+      value: 3.6705182
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9961947
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -137443,7 +137611,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.08715575
+      value: 0.1305262
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -137505,16 +137673,16 @@ PrefabInstance:
         h *= 0x85ebca6bU;\r\n                h ^= (h >> 13);\r\n                h
         *= 0xc2b2ae35U;\r\n                h ^= (h >> 16);\r\n                \r\n               
         return <color=#569CD6>float</color>(h & 0x00ffffffu) / <color=#569CD6>float</color>(0x01000000u);\r\n           
-        }\r\n            \r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        }\r\n            \r\n            <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color>
         i) : SV_Target {\r\n                <color=#569CD6>float2</color> pos2D =
         i.<color=#569CD6>vertex</color>.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
         <color=#569CD6>float2</color> gridID = floor(pos2D);\r\n\r\n               
         <color=#569CD6>float</color> randomSeed01 = hash11(hash11(gridID.x) + gridID.y);\r\n\r\n               
         <color=#569CD6>float</color> r = randomSeed01;\r\n                <color=#569CD6>float</color>
         g = hash11(r);\r\n                <color=#569CD6>float</color> b = hash11(g);\r\n\r\n               
-        <color=#569CD6>half3</color> color = <color=#569CD6>half3</color>(r, g, b);\r\n               
-        return <color=#569CD6>half4</color>(color, 1.0);\r\n            }\r\n\r\n           
-        <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
+        <color=#569CD6>float3</color> color = <color=#569CD6>float3</color>(r, g,
+        b);\r\n                return <color=#569CD6>float4</color>(color, 1.0);\r\n           
+        }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -138119,9 +138287,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7486984719254335769}
-  - {fileID: 1389716077}
-  - {fileID: 1291157203954823975}
   - {fileID: 2567003497326492730}
   - {fileID: 2904760827103875307}
   - {fileID: 899542917018064091}
@@ -145150,28 +145315,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1854545862474993742
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739248773318652274}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!120 &1854959072588158395
 LineRenderer:
   serializedVersion: 2
@@ -150917,7 +151060,7 @@ GameObject:
   - component: {fileID: 1304634188218178301}
   - component: {fileID: 1501797365}
   m_Layer: 0
-  m_Name: Procedural textures
+  m_Name: Voronoi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155779,10 +155922,10 @@ PrefabInstance:
         }\r\n                    }\r\n                }\r\n\r\n                float
         edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
         float cellID = hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
-        pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        pos2D *= _zoom;\r\n\r\n                float3 color = voronoi2D(pos2D);\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -155829,7 +155972,16 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'A Voronoi starts with a grid system and then generates a random point
+        inside each cell. By doing this for the surrounding cells allows calculating
+        the 3 Voronoi values:
+
+        - Distance to the closest center
+
+        -
+        Unique cell id
+
+        - Distance to the closest border'
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -155906,6 +156058,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: 'A Voronoi starts with a grid system and then generates a random point
+        inside each cell. By doing this for the surrounding cells allows calculating
+        the 3 Voronoi values:
+
+        - Distance to the closest center
+
+        -
+        Unique cell id
+
+        - Distance to the closest border'
+      objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -155957,6 +156123,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 6546705088909289457, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 134f4cdc462434f4ebd81fe1f78a940d, type: 2}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -156021,16 +156192,16 @@ PrefabInstance:
         }\r\n                    }\r\n                }\r\n\r\n                float
         edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
         float cellID = hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float2 pos2D = i.vertex.xy;\r\n               
-        pos2D *= _zoom;\r\n\r\n                half3 color = voronoi2D(pos2D);\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        pos2D *= _zoom;\r\n\r\n                float3 color = voronoi2D(pos2D);\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000017434358
+      value: -2.2386982
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -156040,12 +156211,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.85
+      value: 5.404695
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9807853
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -156055,7 +156226,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000014901161
+      value: -0.19509034
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -156142,11 +156313,11 @@ PrefabInstance:
         edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
         <color=#569CD6>float</color> cellID = hash11(closestSeed);\r\n\r\n               
         return <color=#569CD6>float3</color>(closestDistance, cellID, edgeDist);\r\n           
-        }\r\n            \r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        }\r\n            \r\n            <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color>
         i) : SV_Target {\r\n                <color=#569CD6>float2</color> pos2D =
         i.<color=#569CD6>vertex</color>.xy;\r\n                pos2D *= _zoom;\r\n\r\n               
-        <color=#569CD6>half3</color> color = voronoi2D(pos2D);\r\n               
-        return <color=#569CD6>half4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
+        <color=#569CD6>float3</color> color = voronoi2D(pos2D);\r\n               
+        return <color=#569CD6>float4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -161065,25 +161236,6 @@ Transform:
   - {fileID: 3883972287491441551}
   m_Father: {fileID: 7350283498921946547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2739248773318652274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8120809045126824937}
-  - component: {fileID: 3716875293625665690}
-  - component: {fileID: 7311055764528927086}
-  - component: {fileID: 1854545862474993742}
-  m_Layer: 0
-  m_Name: Quad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!120 &2744540362963493232
 LineRenderer:
   serializedVersion: 2
@@ -162399,8 +162551,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801218630969148867}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.08715572, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 1.0158416, y: 0, z: 5.761125}
+  m_LocalRotation: {x: 0, y: -0.06540313, z: 0, w: 0.99785894}
+  m_LocalPosition: {x: -0.76357824, y: 0, z: 5.7999525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -170510,32 +170662,36 @@ PrefabInstance:
     - target: {fileID: 3722247126628398497, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_text
-      value: 2D view
+      value: '2D view
+
+        of the slding
+
+        3D Voronoi'
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4144484587909832813, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -170560,17 +170716,17 @@ PrefabInstance:
     - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4231062188907738545, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -170631,12 +170787,12 @@ PrefabInstance:
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -170646,12 +170802,12 @@ PrefabInstance:
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -170755,17 +170911,17 @@ PrefabInstance:
     - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 50.37595
       objectReference: {fileID: 0}
     - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -170852,6 +171008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 9030989541109583639, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9193774147605968089, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -173170,14 +173331,6 @@ Transform:
   - {fileID: 7875206419218039334}
   m_Father: {fileID: 8914227130836604133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3716875293625665690
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739248773318652274}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3742297048991697820
 GameObject:
   m_ObjectHideFlags: 0
@@ -178401,8 +178554,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5728119694018864325}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.25881904, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 2.9249997, y: 0, z: 5.066249}
+  m_LocalRotation: {x: 0, y: 0.19509034, z: 0, w: 0.9807853}
+  m_LocalPosition: {x: 2.2386982, y: 0, z: 5.404695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -180833,8 +180986,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1304634188218178301}
+  - {fileID: 501995964}
   - {fileID: 5358453612515460433}
+  - {fileID: 1304634188218178301}
   m_Father: {fileID: 2281090955903048847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4257370133104387589
@@ -182094,7 +182248,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5270324
+      value: -1.4541972
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -182104,12 +182258,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.698962
+      value: 3.5107422
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.9807853
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -182119,7 +182273,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.1305262
+      value: -0.19509034
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -187981,7 +188135,6 @@ Transform:
   m_Children:
   - {fileID: 5603348717414736330}
   - {fileID: 2340297809916094579}
-  - {fileID: 8120809045126824937}
   m_Father: {fileID: 2281090955903048847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4700279204683478074
@@ -191987,6 +192140,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 932645748081075077, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: dc3982764f69ad940a79d3216a042cc5, type: 2}
     - target: {fileID: 1052473460132510077, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -192015,7 +192173,8 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: As with the animated 2D Voronoi, an animated 3D Voronoi can be created
+        by sliding a 4D Voronoi through the 4th dimension.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -192055,7 +192214,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: As with the animated 2D Voronoi, an animated 3D Voronoi can be created
+        by sliding a 4D Voronoi through the 4th dimension.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -192199,10 +192359,10 @@ PrefabInstance:
         }\r\n\r\n                float edgeDist = secondClosestDistance - closestDistance;\r\n               
         \r\n                float cellID = hash11(closestSeed);\r\n\r\n               
         return float3(closestDistance, cellID, edgeDist);\r\n            }\r\n           
-        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float3
+        \r\n            float4 frag (v2f i) : SV_Target {\r\n                float3
         pos3D = i.vertex.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
-        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
-        color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
+        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                float3
+        color = voronoi4D(lookup);\r\n\r\n                return float4(color.rgb,
         1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -192259,12 +192419,12 @@ PrefabInstance:
         }\r\n\r\n                <color=#569CD6>float</color> edgeDist = secondClosestDistance
         - closestDistance;\r\n                \r\n                <color=#569CD6>float</color>
         cellID = hash11(closestSeed);\r\n\r\n                return <color=#569CD6>float3</color>(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            <color=#569CD6>half4</color>
+        cellID, edgeDist);\r\n            }\r\n            \r\n            <color=#569CD6>float4</color>
         frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
         pos3D = i.<color=#569CD6>vertex</color>.xyz;\r\n                pos3D *=
         _zoom;\r\n\r\n                <color=#569CD6>float4</color> lookup = <color=#569CD6>float4</color>(pos3D,
-        _Time.y * 0.3);\r\n\r\n                <color=#569CD6>half3</color> color
-        = voronoi4D(lookup);\r\n\r\n                return <color=#569CD6>half4</color>(color.rgb,
+        _Time.y * 0.3);\r\n\r\n                <color=#569CD6>float3</color> color
+        = voronoi4D(lookup);\r\n\r\n                return <color=#569CD6>float4</color>(color.rgb,
         1.0);\r\n            }\r\n\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
@@ -192385,10 +192545,10 @@ PrefabInstance:
         }\r\n\r\n                float edgeDist = secondClosestDistance - closestDistance;\r\n               
         \r\n                float cellID = hash11(closestSeed);\r\n\r\n               
         return float3(closestDistance, cellID, edgeDist);\r\n            }\r\n           
-        \r\n            half4 frag (v2f i) : SV_Target {\r\n                float3
+        \r\n            float4 frag (v2f i) : SV_Target {\r\n                float3
         pos3D = i.vertex.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
-        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                half3
-        color = voronoi4D(lookup);\r\n\r\n                return half4(color.rgb,
+        float4 lookup = float4(pos3D, _Time.y * 0.3);\r\n\r\n                float3
+        color = voronoi4D(lookup);\r\n\r\n                return float4(color.rgb,
         1.0);\r\n            }\r\n\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -195634,7 +195794,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681890284120111668}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -195647,7 +195807,7 @@ Transform:
   - {fileID: 5633500568529706430}
   - {fileID: 8019361811131977007}
   m_Father: {fileID: 4247418503467899662}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &5393959296560548636
 GameObject:
   m_ObjectHideFlags: 0
@@ -197606,7 +197766,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.51421875
+      value: 0.49599954
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -197616,12 +197776,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.877549
+      value: 3.7674906
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99904823
+      value: 0.99785894
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -197631,7 +197791,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.04361938
+      value: 0.06540313
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -203414,7 +203574,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: e135f75846b6c744c99ee78d42b9f3d1, type: 2}
   - {fileID: 2100000, guid: 3a6bb2325ed529c4a98413cd6d059704, type: 2}
-  - {fileID: 2100000, guid: c07a5174387c69b45be1b63ed1190667, type: 2}
+  - {fileID: 2100000, guid: d450a4b8fc18d93418b8d885aebf5599, type: 2}
   - {fileID: 2100000, guid: c07a5174387c69b45be1b63ed1190667, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -204850,8 +205010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa812f42800b2941a8ec2e1b5230195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 5.9
-  angleOffsetDeg: 10
+  offset: 3.8
+  angleOffsetDeg: 15
   arrnageClockwise: 1
   inverseOrder: 0
   halfOffset: 1
@@ -207187,7 +207347,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
-  - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
+  - {fileID: 2100000, guid: 3ac600501b0d4234581ed568fa9490e7, type: 2}
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -212242,6 +212402,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 932645748081075077, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3f8aa77bd4d3e3f40a2cdb8ba5cf79f9, type: 2}
     - target: {fileID: 1052473460132510077, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -212270,7 +212435,12 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'Adding the current time to one of the positions allows sliding the
+        pattern through 3D space. By looking at a slize, an animated Voronoi pattern
+        is created.
+
+        -> The animated 2D view is just a 3D voronoi slidng
+        through the 3rd dimension.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -212310,7 +212480,12 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'Adding the current time to one of the positions allows sliding the
+        pattern through 3D space. By looking at a slize, an animated Voronoi pattern
+        is created.
+
+        -> The animated 2D view is just a 3D voronoi slidng
+        through the 3rd dimension.'
       objectReference: {fileID: 0}
     - target: {fileID: 2381909503481551065, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -212456,11 +212631,11 @@ PrefabInstance:
         }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
         - closestDistance;\r\n                \r\n                float cellID =
         hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
         pos3D.z += 0.5;\r\n                pos3D *= _zoom;\r\n                pos3D.z
-        += _Time.y * 0.3;\r\n\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        += _Time.y * 0.3;\r\n\r\n\r\n                float3 color = voronoi3D(pos3D);\r\n\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -212515,12 +212690,12 @@ PrefabInstance:
         edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
         <color=#569CD6>float</color> cellID = hash11(closestSeed);\r\n\r\n               
         return <color=#569CD6>float3</color>(closestDistance, cellID, edgeDist);\r\n           
-        }\r\n            \r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        }\r\n            \r\n            <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color>
         i) : SV_Target {\r\n                <color=#569CD6>float3</color> pos3D =
         i.<color=#569CD6>vertex</color>.xyz;\r\n                pos3D.z += 0.5;\r\n               
         pos3D *= _zoom;\r\n                pos3D.z += _Time.y * 0.3;\r\n\r\n\r\n               
-        <color=#569CD6>half3</color> color = voronoi3D(pos3D);\r\n\r\n               
-        return <color=#569CD6>half4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
+        <color=#569CD6>float3</color> color = voronoi3D(pos3D);\r\n\r\n               
+        return <color=#569CD6>float4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -212637,11 +212812,11 @@ PrefabInstance:
         }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
         - closestDistance;\r\n                \r\n                float cellID =
         hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
         pos3D.z += 0.5;\r\n                pos3D *= _zoom;\r\n                pos3D.z
-        += _Time.y * 0.3;\r\n\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        += _Time.y * 0.3;\r\n\r\n\r\n                float3 color = voronoi3D(pos3D);\r\n\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -212689,12 +212864,12 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -212704,7 +212879,7 @@ PrefabInstance:
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.881
+      value: -0.326
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -213953,8 +214128,9 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: e135f75846b6c744c99ee78d42b9f3d1, type: 2}
+  - {fileID: 2100000, guid: 4a12dfffcedd6e74d8acc10e3b59910a, type: 2}
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
-  - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
+  - {fileID: 2100000, guid: 3a6bb2325ed529c4a98413cd6d059704, type: 2}
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -214334,7 +214510,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5270323
+      value: 1.4541972
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -214344,12 +214520,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.698962
+      value: 3.5107422
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9914449
+      value: 0.9807853
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -214359,7 +214535,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.13052619
+      value: 0.19509034
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -221762,6 +221938,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 932645748081075077, guid: 7ffcca573e1296d47a9191342db0701b,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 6851738b782ba4b418b84bb4847992e5, type: 2}
     - target: {fileID: 1052473460132510077, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -221790,7 +221971,9 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: With the same approach as the 2D Voronoi, a 3D Voronoi can be created
+        by subdividing the 3D space into a cube pattern, generating a point in each
+        and calculating the 3 values.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -221830,7 +222013,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: With the same approach as the 2D Voronoi, a 3D Voronoi can be created
+        by subdividing the 3D space into a cube pattern, generating a point in each
+        and calculating the 3 values.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -221972,10 +222157,10 @@ PrefabInstance:
         }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
         - closestDistance;\r\n                \r\n                float cellID =
         hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
-        pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        pos3D *= _zoom;\r\n\r\n                float3 color = voronoi3D(pos3D);\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -222031,11 +222216,11 @@ PrefabInstance:
         edgeDist = secondClosestDistance - closestDistance;\r\n                \r\n               
         <color=#569CD6>float</color> cellID = hash11(closestSeed);\r\n\r\n               
         return <color=#569CD6>float3</color>(closestDistance, cellID, edgeDist);\r\n           
-        }\r\n            \r\n            <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color>
+        }\r\n            \r\n            <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color>
         i) : SV_Target {\r\n                <color=#569CD6>float3</color> pos3D =
         i.<color=#569CD6>vertex</color>.xyz;\r\n                pos3D *= _zoom;\r\n\r\n               
-        <color=#569CD6>half3</color> color = voronoi3D(pos3D);\r\n               
-        return <color=#569CD6>half4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
+        <color=#569CD6>float3</color> color = voronoi3D(pos3D);\r\n               
+        return <color=#569CD6>float4</color>(color.rgb, 1.0);\r\n            }\r\n\r\n           
         <color=#569CD6>ENDCG</color>\r\n        }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4127777698288987080, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -222153,10 +222338,10 @@ PrefabInstance:
         }\r\n                }\r\n\r\n                float edgeDist = secondClosestDistance
         - closestDistance;\r\n                \r\n                float cellID =
         hash11(closestSeed);\r\n\r\n                return float3(closestDistance,
-        cellID, edgeDist);\r\n            }\r\n            \r\n            half4
+        cellID, edgeDist);\r\n            }\r\n            \r\n            float4
         frag (v2f i) : SV_Target {\r\n                float3 pos3D = i.vertex.xyz;\r\n               
-        pos3D *= _zoom;\r\n\r\n                half3 color = voronoi3D(pos3D);\r\n               
-        return half4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
+        pos3D *= _zoom;\r\n\r\n                float3 color = voronoi3D(pos3D);\r\n               
+        return float4(color.rgb, 1.0);\r\n            }\r\n\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5022347081322524690, guid: 7ffcca573e1296d47a9191342db0701b,
@@ -223814,48 +223999,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &7311055764528927086
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739248773318652274}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4a12dfffcedd6e74d8acc10e3b59910a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7322071826152592882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225109,7 +225252,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1304634188218178301}
+    m_TransformParent: {fileID: 501995964}
     m_Modifications:
     - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -225126,13 +225269,13 @@ PrefabInstance:
         return o;\r\n            }\r\n            \r\n            float stepPattern(float
         x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
         y = sign(y);\r\n                y = saturate(y);\r\n                return
-        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        y;\r\n            }\r\n\r\n            float4 frag (v2f i) : SV_Target {\r\n               
         float2 pos2D = i.vertex.xy;\r\n\r\n                pos2D *= _zoom;\r\n\r\n               
-        half3 black = (0.0, 0.0, 0.0);\r\n                half3 white = (1.0, 1.0,
+        float3 black = (0.0, 0.0, 0.0);\r\n                float3 white = (1.0, 1.0,
         1.0);\r\n                \r\n                float xStep = stepPattern(pos2D.x);\r\n               
         float yStep = stepPattern(-pos2D.y);\r\n                float pattern = abs(xStep
-        - yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
-        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        - yStep);\r\n\r\n                float3 color = lerp(black, white, pattern);\r\n\r\n               
+        return float4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
@@ -225179,7 +225322,9 @@ PrefabInstance:
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Math functions in shaders can be used to create repeating patterns.
+        One of the most basic ones is the checker board. This can be implemented
+        by using the step function on the position values.
       objectReference: {fileID: 0}
     - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -225256,6 +225401,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: Math functions in shaders can be used to create repeating patterns.
+        One of the most basic ones is the checker board. This can be implemented
+        by using the step function on the position values.
+      objectReference: {fileID: 0}
     - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -225307,6 +225459,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 6546705088909289457, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9447ba792fbefd04fae5d97008b527e5, type: 2}
     - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -225347,19 +225504,19 @@ PrefabInstance:
         return o;\r\n            }\r\n            \r\n            float stepPattern(float
         x){\r\n                float y = frac(x * 0.5);\r\n                y -= 0.5;\r\n               
         y = sign(y);\r\n                y = saturate(y);\r\n                return
-        y;\r\n            }\r\n\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        y;\r\n            }\r\n\r\n            float4 frag (v2f i) : SV_Target {\r\n               
         float2 pos2D = i.vertex.xy;\r\n\r\n                pos2D *= _zoom;\r\n\r\n               
-        half3 black = (0.0, 0.0, 0.0);\r\n                half3 white = (1.0, 1.0,
+        float3 black = (0.0, 0.0, 0.0);\r\n                float3 white = (1.0, 1.0,
         1.0);\r\n                \r\n                float xStep = stepPattern(pos2D.x);\r\n               
         float yStep = stepPattern(-pos2D.y);\r\n                float pattern = abs(xStep
-        - yStep);\r\n\r\n                half3 color = lerp(black, white, pattern);\r\n\r\n               
-        return half4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
+        - yStep);\r\n\r\n                float3 color = lerp(black, white, pattern);\r\n\r\n               
+        return float4(color, 1.0);\r\n            }\r\n            ENDCG\r\n       
         }\r\n    }\r\n}\r\n\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.925
+      value: -0.98351234
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -225369,12 +225526,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.0662484
+      value: 3.6705182
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -225384,7 +225541,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.25881907
+      value: -0.1305262
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -225443,15 +225600,15 @@ PrefabInstance:
         stepPattern(<color=#569CD6>float</color> x){\r\n                <color=#569CD6>float</color>
         y = frac(x * 0.5);\r\n                y -= 0.5;\r\n                y = sign(y);\r\n               
         y = saturate(y);\r\n                return y;\r\n            }\r\n\r\n           
-        <color=#569CD6>half4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
         {\r\n                <color=#569CD6>float2</color> pos2D = i.<color=#569CD6>vertex</color>.xy;\r\n\r\n               
-        pos2D *= _zoom;\r\n\r\n                <color=#569CD6>half3</color> black
-        = (0.0, 0.0, 0.0);\r\n                <color=#569CD6>half3</color> white
+        pos2D *= _zoom;\r\n\r\n                <color=#569CD6>float3</color> black
+        = (0.0, 0.0, 0.0);\r\n                <color=#569CD6>float3</color> white
         = (1.0, 1.0, 1.0);\r\n                \r\n                <color=#569CD6>float</color>
         xStep = stepPattern(pos2D.x);\r\n                <color=#569CD6>float</color>
         yStep = stepPattern(-pos2D.y);\r\n                <color=#569CD6>float</color>
-        pattern = abs(xStep - yStep);\r\n\r\n                <color=#569CD6>half3</color>
-        color = lerp(black, white, pattern);\r\n\r\n                return <color=#569CD6>half4</color>(color,
+        pattern = abs(xStep - yStep);\r\n\r\n                <color=#569CD6>float3</color>
+        color = lerp(black, white, pattern);\r\n\r\n                return <color=#569CD6>float4</color>(color,
         1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
         }\r\n    }\r\n}\r\n"
       objectReference: {fileID: 0}
@@ -225515,7 +225672,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: e135f75846b6c744c99ee78d42b9f3d1, type: 2}
   - {fileID: 2100000, guid: 3ac600501b0d4234581ed568fa9490e7, type: 2}
   - {fileID: 2100000, guid: c00b1cd942485d544a7c71733ac47c9a, type: 2}
-  - {fileID: 2100000, guid: 5abee3f1012816f43b4c97bd26d2f5e0, type: 2}
+  - {fileID: 2100000, guid: fb8e3fb6b88a6d946b7b8fa716769212, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234212,21 +234369,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &8120809045126824937
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2739248773318652274}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 4.73, y: 4.73, z: 4.73}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4697686291907602277}
-  m_LocalEulerAnglesHint: {x: 90, y: 270, z: 0}
 --- !u!1 &8133105884017416643
 GameObject:
   m_ObjectHideFlags: 0
@@ -249632,7 +249774,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5142189
+      value: -0.49599954
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -249642,12 +249784,12 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.877549
+      value: 3.7674906
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99904823
+      value: 0.99785894
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -249657,7 +249799,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.043619394
+      value: -0.06540313
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -250244,4 +250386,3 @@ SceneRoots:
   - {fileID: 1740455959}
   - {fileID: 1625804571}
   - {fileID: 1797306247}
-  - {fileID: 1302474260}

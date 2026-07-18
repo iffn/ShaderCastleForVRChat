@@ -2,7 +2,8 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
 {
     Properties
     {
-        _scale ("Scale", float) = 2
+        _scale ("Scale", range(0, 0.2)) = 0.1
+        _offset ("Offset", float) = 0
         _base ("Base", color) = (0.1, 0.1, 0.1, 1.0)
         _shape ("Shape", color) = (1.0, 1.0, 1.0, 1.0)
     }
@@ -15,43 +16,38 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
             #pragma fragment frag
 
             float _scale;
+            float _offset;
             float4 _base;
             float4 _shape;
 
             struct appdata {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
             };
 
             struct v2f {
                 float4 pos : SV_POSITION;
-                float2 uv : TEXCOORD0;
+                float3 localPos : TEXCOORD0;
             };
 
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.localPos = v.vertex;
                 return o;
             }
 
-            float4 frag (v2f i) : SV_Target {
-                // Preparation
-                float2 uv = i.uv;
-                uv.x -= 0.2;
-                float2 coordinate = (uv * 2 - 1) * _scale;
-
+            float Mandelbrot(float2 lookup)
+            {
                 // Mandelbrot Variables
                 float2 z = float2(0, 0);
                 float iterations = 0;
-                float maxIterations = 128; // Higher = more detail
-                
-                // The Mandelbrot Loop
+                float maxIterations = 600; // Higher = more detail
+
                 for (int j = 0; j < maxIterations; j++) 
                 {
                     // Complex math: z = z^2 + c
-                    float x = (z.x * z.x - z.y * z.y) + coordinate.x;
-                    float y = (2.0 * z.x * z.y) + coordinate.y;
+                    float x = (z.x * z.x - z.y * z.y) + lookup.x;
+                    float y = (2.0 * z.x * z.y) + lookup.y;
                     z = float2(x, y);
 
                     // Check if the point escaped
@@ -61,11 +57,19 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
                     iterations++;
                 }
 
-                // Normalizing iterations for the lerp
-                float function = iterations / maxIterations;
+                float returnValue = iterations / maxIterations;
+                returnValue = pow(returnValue, 2.2);
 
-                // Plotting the function
-                function = pow(function, 2.2);
+                return returnValue;
+            }
+
+            float4 frag (v2f i) : SV_Target {
+                float3 localPos = i.localPos * _scale;
+
+                float2 lookupCoordinate = float2(-localPos.y + _offset, localPos.x);
+                lookupCoordinate += normalize(lookupCoordinate) * localPos.z;
+
+                float function = Mandelbrot(lookupCoordinate);
 
                 float3 color = lerp(_base, _shape, function);
                 

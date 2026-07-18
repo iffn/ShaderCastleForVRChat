@@ -63,17 +63,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/CheckerboardFloor"
                 float3 albedo = lerp(_colorA, _colorB, checkerboardPattern);
                 albedo = lerp(albedo, _lineColor, linePattern);
 
-                // Light
-                float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
-                float3 lightColor = _LightColor0.rgb;
-                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-                float3 NdotL = dot(worldNormal, _world_light_direction);
-                NdotL = saturate(NdotL);
-                float3 directLight = NdotL * lightColor.rgb;
-
-                float3 color = float3((directLight + ambientLight) * albedo);
-
-                return float4 (color, 1.0);
+                return float4 (albedo, 1.0);
             }
             ENDCG
         }
