@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CheckerboardFloor Blue
-  m_Shader: {fileID: 4800000, guid: 59d400359ae8e74498259d07869e103a, type: 3}
+  m_Name: CircularWoodPlanksInside
+  m_Shader: {fileID: 4800000, guid: aa53f92dffd2e804bac7829b51045b7b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -77,13 +77,16 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _lineThickness: 0.03
-    - _zoom: 1
+    - _a: -1.18
+    - _b: 1
+    - _c: 1
+    - _d: 1
+    - _offset: -0.13
+    - _patternAngle: 2
+    - _scale: 0.104
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _colorA: {r: 0.38768244, g: 0.56250256, b: 0.8301887, a: 1}
-    - _colorB: {r: 0.18752226, g: 0.45474568, b: 0.8113208, a: 1}
-    - _lineColor: {r: 0.4392157, g: 0.4392157, b: 0.4392157, a: 1}
-    - _wallColor: {r: 0, g: 0, b: 0, a: 1}
+    - _base: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _shape: {r: 0.49056602, g: 0.31715137, b: 0.020825908, a: 1}
   m_BuildTextureStacks: []
