@@ -26,9 +26,9 @@ Shader "ShaderCastle/Tutorials/Basics/JustRed"
             }
 
             // Fragment function
-            half4 frag () : SV_Target {
-                half3 color = half3(1.0, 0.0, 0.0); // Red
-                return half4(color, 1.0); // 1.0 on alpha channel, default for opaque
+            float4 frag () : SV_Target {
+                float3 color = float3(1.0, 0.0, 0.0); // Red
+                return float4(color, 1.0); // 1.0 on alpha channel, default for opaque
             }
             ENDCG
         }

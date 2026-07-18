@@ -35,10 +35,10 @@ Shader "ShaderCastle/Tutorials/Basics/Time"
             }
 
             // Fragment function
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float time = _Time.y * 0.2; // Time in seconds stored in _Time.y
-                half3 color = tex2D(_MainTex, i.uv + time.xx);
-                return half4(color, 1.0);
+                float3 color = tex2D(_MainTex, i.uv + time.xx);
+                return float4(color, 1.0);
             }
             ENDCG
         }

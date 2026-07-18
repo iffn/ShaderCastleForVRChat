@@ -21,7 +21,7 @@ Shader "ShaderCastle/Tutorials/Light/BakedLightmap"
             #include "UnityCG.cginc"
             #include "Lighting.cginc" // Required for _LightColor0
 
-            half4 _albedo;
+            float4 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -50,25 +50,25 @@ Shader "ShaderCastle/Tutorials/Light/BakedLightmap"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half3 surfaceIrradiance = half3(0.0, 0.0, 0.0);
+                float3 surfaceIrradiance = float3(0.0, 0.0, 0.0);
 
                 #ifdef LIGHTMAP_ON
-                    half4 bakedColorTex = UNITY_SAMPLE_TEX2D(unity_Lightmap, i.lightmapUV); // Sample the global lightmap texture
+                    float4 bakedColorTex = UNITY_SAMPLE_TEX2D(unity_Lightmap, i.lightmapUV); // Sample the global lightmap texture
                     surfaceIrradiance = DecodeLightmap(bakedColorTex); // Decode handles differences between color spaces (Gamma/Linear) and HDR
                 #else
                     surfaceIrradiance = UNITY_LIGHTMODEL_AMBIENT.rgb; // Fallback to flat ambient light if the object isn't lightmapped
                 #endif
                 
-                half3 BRDFLightFactor = _albedo.rgb;
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo.rgb;
+                float3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 surfaceLight = emissiveLight + reflectedLight;
+                float3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

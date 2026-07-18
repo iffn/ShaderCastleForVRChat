@@ -36,10 +36,10 @@ Shader "ShaderCastle/Tutorials/GrabPass/BasicGrabPass"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = tex2D(_GrabTexture, i.uv);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = tex2D(_GrabTexture, i.uv);
                 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

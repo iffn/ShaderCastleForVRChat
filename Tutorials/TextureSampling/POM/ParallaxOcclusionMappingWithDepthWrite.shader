@@ -42,7 +42,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMappingWithDepth
             };
             
             struct frag_out {
-                fixed4 color : SV_Target;
+                float4 color : SV_Target;
                 float depth : SV_DepthLessEqual;
             };
 

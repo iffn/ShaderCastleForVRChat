@@ -33,14 +33,14 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MaxFunction"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 // Preparation
                 float2 uv = i.uv;
                 float2 coordinate = (uv * 2 - 1) * _scale;
-                half3 black = half3(0,0,0);
-                half3 red = half3(1,0,0);
-                half3 grey = half3(0.5, 0.5, 0.5);
-                half3 color = half3(1,1,1);
+                float3 black = float3(0,0,0);
+                float3 red = float3(1,0,0);
+                float3 grey = float3(0.5, 0.5, 0.5);
+                float3 color = float3(1,1,1);
                 float halfAxisThickness = 0.01 * _scale;
                 float minorAxis = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 + 0.5;
                 color = lerp(color, grey, minorAxis);
@@ -59,7 +59,7 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MaxFunction"
                 float plotFunction = function - coordinate.y;
                 float plot = step(-halfAxisThickness, plotFunction) * step(plotFunction, halfAxisThickness * 2);
                 color = lerp(color, red, plot);
-                return half4(color, 1);
+                return float4(color, 1);
             }
             ENDCG
         }

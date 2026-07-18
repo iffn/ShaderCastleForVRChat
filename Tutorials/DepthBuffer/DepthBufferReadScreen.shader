@@ -32,9 +32,9 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadScreen"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
-                return half4(color, 1.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
+                return float4(color, 1.0);
             }
             ENDCG
         }

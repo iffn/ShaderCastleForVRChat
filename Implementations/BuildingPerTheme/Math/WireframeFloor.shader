@@ -21,8 +21,8 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/WireframeFloor"
             // Based on https://www.youtube.com/watch?v=ehk8ljz2nHI
             
             float _lineThickness;
-            half4 _baseColor;
-            half4 _lineColor;
+            float4 _baseColor;
+            float4 _lineColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -68,25 +68,25 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/WireframeFloor"
                 triStream.Append(o);
             }
 
-            half4 frag (g2f i) : SV_Target {
+            float4 frag (g2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
 
                 float closest = min(i.barycentric.x, min(i.barycentric.y, i.barycentric.z));
                 float frame = step(closest, _lineThickness);
 
-                half3 albedo = lerp(_baseColor, _lineColor, frame);
+                float3 albedo = lerp(_baseColor, _lineColor, frame);
 
                 // Light
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
-                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-                half3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
-                half3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
 
-                half3 color = half3((directLight + ambientLight) * albedo);
+                float3 color = float3((directLight + ambientLight) * albedo);
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

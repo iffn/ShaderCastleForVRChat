@@ -41,7 +41,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TriplanarMapping"
                 return o;
             }
 
-            half3 triplanarColor(float3 pos, float3 normal) {
+            float3 triplanarColor(float3 pos, float3 normal) {
                 float3 weights = abs(normal);
                 weights = pow(weights, _Sharpness);
                 weights /= (weights.x + weights.y + weights.z);
@@ -52,18 +52,18 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TriplanarMapping"
                 float2 uvY = float2(pos.x * direction.y, pos.z) * _MainTexScale;
                 float2 uvZ = float2(pos.x * -direction.z, pos.y) * _MainTexScale;
 
-                half4 colX = tex2D(_MainTex, uvX);
-                half4 colY = tex2D(_MainTex, uvY);
-                half4 colZ = tex2D(_MainTex, uvZ);
+                float4 colX = tex2D(_MainTex, uvX);
+                float4 colY = tex2D(_MainTex, uvY);
+                float4 colZ = tex2D(_MainTex, uvZ);
 
-                half4 finalCol = colX * weights.x + colY * weights.y + colZ * weights.z;
+                float4 finalCol = colX * weights.x + colY * weights.y + colZ * weights.z;
                 return finalCol;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = triplanarColor(i.localPos, i.normal);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = triplanarColor(i.localPos, i.normal);
 
-                return half4 (color, 1.0);
+                return float4 (color, 1.0);
             }
             ENDCG
         }

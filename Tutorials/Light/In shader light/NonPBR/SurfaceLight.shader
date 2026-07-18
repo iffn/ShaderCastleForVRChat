@@ -12,7 +12,7 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceLight"
             #pragma vertex vert
             #pragma fragment frag
             
-            half3 _emission;
+            float3 _emission;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -28,13 +28,13 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceLight"
                 return o;
             }
 
-            half4 frag () : SV_Target {
-                half3 emissiveLight = _emission;
-                half3 reflectedLight = half3(0.0, 0.0, 0.0); // No reflective light
+            float4 frag () : SV_Target {
+                float3 emissiveLight = _emission;
+                float3 reflectedLight = float3(0.0, 0.0, 0.0); // No reflective light
 
-                half3 surfaceLight = emissiveLight + reflectedLight;
+                float3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

@@ -91,12 +91,12 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/Voronoi3D"
                 return float3(closestDistance, cellID, edgeDist);
             }
             
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 pos3D = i.vertex.xyz;
                 pos3D *= _zoom;
 
-                half3 color = voronoi3D(pos3D);
-                return half4(color.rgb, 1.0);
+                float3 color = voronoi3D(pos3D);
+                return float4(color.rgb, 1.0);
             }
 
             ENDCG

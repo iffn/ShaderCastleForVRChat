@@ -21,7 +21,7 @@ Shader "ShaderCastle/Tutorials/Light/ShadowsAndAmbient"
             #include "Lighting.cginc"
             #include "AutoLight.cginc"
 
-            half4 _albedo;
+            float4 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -44,8 +44,8 @@ Shader "ShaderCastle/Tutorials/Light/ShadowsAndAmbient"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
                 
                 float3 worldNormal = normalize(i.worldNormal);
                 
@@ -57,19 +57,19 @@ Shader "ShaderCastle/Tutorials/Light/ShadowsAndAmbient"
                 }
                 
                 UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos); 
-                half3 radiantIntensity = _LightColor0.rgb * attenuation; 
+                float3 radiantIntensity = _LightColor0.rgb * attenuation; 
                 
                 float NdotL01 = saturate(dot(worldNormal, lightVector));
-                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+                float3 surfaceIrradiance = radiantIntensity * NdotL01;
 
                 surfaceIrradiance += UNITY_LIGHTMODEL_AMBIENT.rgb;
                 
-                half3 BRDFLightFactor = _albedo.rgb;
-                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo.rgb;
+                float3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
                 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

@@ -15,7 +15,7 @@ Shader "ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute"
     sampler2D _paintMask;
     float _updateStep;
 
-    fixed4 frag(v2f_customrendertexture i) : SV_Target
+    float4 frag(v2f_customrendertexture i) : SV_Target
     {
         float2 uv = i.globalTexcoord;
 
@@ -29,7 +29,7 @@ Shader "ShaderCastle/Tutorials/CustomRenderTexture/MeltTextureCompute"
         float4 cellRight = currentTexture(uv + duv.xw);
         float4 cellLeft = currentTexture(uv - duv.xw);
         
-        fixed4 color = lerp(cell, cellUp, _updateStep);
+        float4 color = lerp(cell, cellUp, _updateStep);
 
         return saturate(color);
     }

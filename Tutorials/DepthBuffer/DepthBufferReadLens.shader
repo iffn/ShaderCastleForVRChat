@@ -37,15 +37,15 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
                 float2 screenUV = i.screenPos.xy / i.screenPos.w;
 
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r;
 
-                half3 color = depth.xxx;
-                return half4(color, 1.0);
+                float3 color = depth.xxx;
+                return float4(color, 1.0);
             }
             ENDCG
         }

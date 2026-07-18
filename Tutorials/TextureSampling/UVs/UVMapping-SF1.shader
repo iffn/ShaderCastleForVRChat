@@ -44,8 +44,8 @@ Shader "ShaderCastle/Tutorials/TextureSampling/UVMapping-SF1"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
-                fixed4 col = tex2D(_albedo, i.uv);
+            float4 frag (v2f i) : SV_Target {
+                float4 col = tex2D(_albedo, i.uv);
                 return col;
             }
             ENDCG

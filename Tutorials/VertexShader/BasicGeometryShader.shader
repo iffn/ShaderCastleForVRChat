@@ -91,10 +91,10 @@ Shader "ShaderCastle/Tutorials/VertexShader/BasicGeometryShader"
             }
 
             // Fragment function
-            half4 frag(g2f i) : SV_Target
+            float4 frag(g2f i) : SV_Target
             {
-                half3 color = half3(0.0, 0.0, 1.0); // Blue
-                return half4(color, 1.0);
+                float3 color = float3(0.0, 0.0, 1.0); // Blue
+                return float4(color, 1.0);
             }
 
             ENDCG

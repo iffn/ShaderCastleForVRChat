@@ -57,7 +57,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightVector;
                 // _WorldSpaceLightPos0.w is 0 for Directional, 1 for Point/Spot
                 if (_WorldSpaceLightPos0.w == 0.0) {
@@ -67,42 +67,42 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
                 }
 
                 UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos); // Unity macro that writes to the attenuation variable defined in AutoLight.cginc
-                half3 radiantIntensity = _LightColor0.rgb * attenuation; // Correct Unity formula, _LightColor0.rgb also holds intensity.
+                float3 radiantIntensity = _LightColor0.rgb * attenuation; // Correct Unity formula, _LightColor0.rgb also holds intensity.
 
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 
-                half4 packedNormal = tex2D(_normalMap, i.uv);
+                float4 packedNormal = tex2D(_normalMap, i.uv);
                 float3 tangentNormal = UnpackNormal(packedNormal);
                 float3x3 tbn = float3x3(normalize(i.worldTangent), normalize(i.worldBitangent), normalize(i.worldNormal));
                 float3 worldNormal = normalize(mul(tangentNormal, tbn));
 
                 float NdotL01 = saturate(dot(worldNormal, lightVector));
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
-                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+                float3 surfaceIrradiance = radiantIntensity * NdotL01;
 
-                half3 albedo = tex2D(_albedo, i.uv).rgb;
-                half3 arm = tex2D(_arm, i.uv).rgb;
+                float3 albedo = tex2D(_albedo, i.uv).rgb;
+                float3 arm = tex2D(_arm, i.uv).rgb;
                 float ambientOcclusion = arm.r;
                 float roughness = arm.g;
                 float metallic = arm.b;
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
                 
-                half3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotV01, NdotL01, albedo.rgb, roughness, metallic);
-                half3 directLight = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotV01, NdotL01, albedo.rgb, roughness, metallic);
+                float3 directLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 ambientLightColor = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 ambientLightColor = UNITY_LIGHTMODEL_AMBIENT.rgb;
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, roughness);
                 float3 indirectFresnel = fresnelReflectionWithSchlickApproximationAmbient(albedo, metallic, roughness, NdotV01);
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
-                half3 diffuseAmbient = albedo * ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - metallic);
-                half3 specularAmbient = indirectSpecularLight * indirectFresnel;
-                half3 ambientLight = (diffuseAmbient + specularAmbient) * ambientOcclusion;
+                float3 diffuseAmbient = albedo * ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - metallic);
+                float3 specularAmbient = indirectSpecularLight * indirectFresnel;
+                float3 ambientLight = (diffuseAmbient + specularAmbient) * ambientOcclusion;
 
 
-                half3 surfaceLight = emissiveLight + directLight + ambientLight;
+                float3 surfaceLight = emissiveLight + directLight + ambientLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

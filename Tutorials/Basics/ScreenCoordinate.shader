@@ -23,12 +23,12 @@ Shader "ShaderCastle/Tutorials/Basics/ScreenCoordinate"
             }
 
             // Fragment function
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 // i.pos.xy returns the current pixel coordinate of the fragment
                 // _ScreenParams.xy is the screen resolution in pixels
                 float2 screenUV = i.pos.xy / _ScreenParams.xy;
-                half3 color = half3(screenUV, 0.0);
-                return half4(color, 1.0);
+                float3 color = float3(screenUV, 0.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

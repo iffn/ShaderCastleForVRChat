@@ -90,14 +90,14 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/Voronoi3DSlide2D"
                 return float3(closestDistance, cellID, edgeDist);
             }
             
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
                 float3 lookupPosition = float3(pos2D, _Time.y * 0.3);
 
-                half3 color = voronoi3D(lookupPosition);
-                return half4(color.rgb, 1.0);
+                float3 color = voronoi3D(lookupPosition);
+                return float4(color.rgb, 1.0);
             }
 
             ENDCG

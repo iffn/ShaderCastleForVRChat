@@ -26,7 +26,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/Triplanar
             float4 _albedo_ST;
             sampler2D _normalMap;
             sampler2D _arm;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
             float _Sharpness;
             float _MainTexScale;
 
@@ -51,7 +51,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/Triplanar
                 return o;
             }
 
-            half3 triplanarColor(float3 pos, float3 normal) {
+            float3 triplanarColor(float3 pos, float3 normal) {
                 float3 weights = abs(normal);
                 weights = pow(weights, _Sharpness);
                 weights /= (weights.x + weights.y + weights.z);
@@ -62,23 +62,23 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/Triplanar
                 float2 uvY = float2(pos.x * direction.y, pos.z) * _MainTexScale;
                 float2 uvZ = float2(pos.x * -direction.z, pos.y) * _MainTexScale;
 
-                half4 colX = tex2D(_albedo, uvX);
-                half4 colY = tex2D(_albedo, uvY);
-                half4 colZ = tex2D(_albedo, uvZ);
+                float4 colX = tex2D(_albedo, uvX);
+                float4 colY = tex2D(_albedo, uvY);
+                float4 colZ = tex2D(_albedo, uvZ);
 
-                half4 finalCol = colX * weights.x + colY * weights.y + colZ * weights.z;
+                float4 finalCol = colX * weights.x + colY * weights.y + colZ * weights.z;
                 return finalCol;
             }
 
-            half3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
+            float3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
             {
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = roughness * 6.0; 
-                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
                 return DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
             }
 
-            half3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
+            float3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
             {
                 float specularReflectanceNonMetallic = 0.04;
                 float3 specularReflectanceNormal = lerp(specularReflectanceNonMetallic, albedo, metallic);
@@ -86,13 +86,13 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/Triplanar
                 return specularReflectanceNormal + (specularReflectanceGrazing - specularReflectanceNormal) * pow(1.0 - NdotV01, 5.0);
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
 
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
                 
-                half3 albedo = triplanarColor(i.worldPos, worldNormal);
+                float3 albedo = triplanarColor(i.worldPos, worldNormal);
                 float roughness = 0.8;
                 float metallic = 0.0;
                 float ambientOcclusion = 1.0;
@@ -100,11 +100,11 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/Triplanar
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, roughness);
                 float3 indirectFresnel = fresnelReflectionWithSchlickApproximationAmbient(albedo, metallic, roughness, NdotV01);
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
-                half3 diffuseAmbient = albedo * _ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - metallic);
-                half3 specularAmbient = indirectSpecularLight * indirectFresnel;
-                half3 ambientLight = (diffuseAmbient + specularAmbient) * ambientOcclusion;
+                float3 diffuseAmbient = albedo * _ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - metallic);
+                float3 specularAmbient = indirectSpecularLight * indirectFresnel;
+                float3 ambientLight = (diffuseAmbient + specularAmbient) * ambientOcclusion;
 
-                return half4 (ambientLight, 1.0);
+                return float4 (ambientLight, 1.0);
             }
             ENDCG
         }

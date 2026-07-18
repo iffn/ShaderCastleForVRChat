@@ -38,21 +38,21 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/Checkerboard"
                 return y;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
 
                 pos2D *= _zoom;
 
-                half3 black = (0.0, 0.0, 0.0);
-                half3 white = (1.0, 1.0, 1.0);
+                float3 black = (0.0, 0.0, 0.0);
+                float3 white = (1.0, 1.0, 1.0);
                 
                 float xStep = stepPattern(pos2D.x);
                 float yStep = stepPattern(-pos2D.y);
                 float pattern = abs(xStep - yStep);
 
-                half3 color = lerp(black, white, pattern);
+                float3 color = lerp(black, white, pattern);
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

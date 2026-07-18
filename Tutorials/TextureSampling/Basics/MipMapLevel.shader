@@ -33,14 +33,14 @@ Shader "ShaderCastle/Tutorials/TextureSampling/MipMapLevel"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 
                 float4 textureLookup = float4(uv, 0.0, _mipMap); // 2D uvs, unused 3rd dimension, mip map level
                 
-                fixed3 color = tex2Dlod(_MainTex, textureLookup);
+                float3 color = tex2Dlod(_MainTex, textureLookup);
 
-                return fixed4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

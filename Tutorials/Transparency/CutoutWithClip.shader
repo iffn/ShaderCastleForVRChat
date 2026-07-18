@@ -26,15 +26,15 @@ Shader "ShaderCastle/Tutorials/Transparency/CutoutWithClip"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
 
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
 
                 clip(0.5 - distanceToCenter);
                 
-                half3 color = half3(1.0, 1.0, 1.0);
-                return half4(color, 1.0);
+                float3 color = float3(1.0, 1.0, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

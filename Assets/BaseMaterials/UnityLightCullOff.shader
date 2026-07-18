@@ -17,7 +17,7 @@ Shader "ShaderCastle/Environment/UnityLightCullOff"
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
 
-            half4 _albedo;
+            float4 _albedo;
 
             // Mesh to vertex transfer data
             struct appdata {
@@ -41,19 +41,19 @@ Shader "ShaderCastle/Environment/UnityLightCullOff"
             }
 
             // Fragment function
-            fixed4 frag (v2f i, fixed facing : VFACE) : SV_Target {
+            float4 frag (v2f i, float facing : VFACE) : SV_Target {
                 float3 worldNormal = i.worldNormal * (facing > 0 ? 1.0 : -1.0);
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
 
-                fixed3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
 
-                fixed3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
 
-                fixed3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
                 
-                fixed4 color = fixed4((directLight + ambientLight) * _albedo, 1);
+                float4 color = float4((directLight + ambientLight) * _albedo, 1);
                 return color;
             }
             ENDCG

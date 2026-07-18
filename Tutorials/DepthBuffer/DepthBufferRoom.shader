@@ -31,9 +31,9 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferRoom"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = tex2D(_DepthTex, i.uv);
-                return half4(color, 1.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = tex2D(_DepthTex, i.uv);
+                return float4(color, 1.0);
             }
             ENDCG
         }

@@ -5,7 +5,7 @@
 #define ONE_OVER_PI 0.31830988618
 #define PIx4 12.56637061435917295
 
-half3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo, float metallic)
+float3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo, float metallic)
 {
 	float specularReflectanceNonMetallic = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
 	float3 f0 = lerp(specularReflectanceNonMetallic, albedo, metallic);
@@ -13,7 +13,7 @@ half3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo
 	return f0 + (1.0 - f0) * pow(1.0 - VdotH01, 5.0);
 }
 
-half3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
+float3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
 {
 	float specularReflectanceNonMetallic = 0.04;
 	float3 specularReflectanceNormal = lerp(specularReflectanceNonMetallic, albedo, metallic);
@@ -30,21 +30,21 @@ float GGXNormalDistributionFunction(float NdotH01, float roughnessSquared)
 
 float MicrofacetMaskingGeometryWithSchlickGGXApproximation(float NdotV01, float NdotL01, float roughnessSquared)
 {
-	float halfRoughnessSquared = roughnessSquared * 0.5;
-	float halfRoughnessSquaredInverse = 1 - halfRoughnessSquared;
+	float floatRoughnessSquared = roughnessSquared * 0.5;
+	float floatRoughnessSquaredInverse = 1 - floatRoughnessSquared;
 
-	float geometryTermView = NdotV01 / (NdotV01 * halfRoughnessSquaredInverse + halfRoughnessSquared);
-	float geometryTermLight = NdotL01 / (NdotL01 * halfRoughnessSquaredInverse + halfRoughnessSquared);
+	float geometryTermView = NdotV01 / (NdotV01 * floatRoughnessSquaredInverse + floatRoughnessSquared);
+	float geometryTermLight = NdotL01 / (NdotL01 * floatRoughnessSquaredInverse + floatRoughnessSquared);
 	
 	return geometryTermView * geometryTermLight;
 }
 
 float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float NdotV01, float NdotL01, float3 albedo, float roughness, float metallic)
 {
-	float3 halfVectorLightView = normalize(viewDir + lightVector);
+	float3 floatVectorLightView = normalize(viewDir + lightVector);
 	
-	float NdotH01 = saturate(dot(normal, halfVectorLightView));
-	float VdotH01 = saturate(dot(viewDir, halfVectorLightView));
+	float NdotH01 = saturate(dot(normal, floatVectorLightView));
+	float VdotH01 = saturate(dot(viewDir, floatVectorLightView));
 	
 	float3 fresnelReflection = FresnelReflectionWithSchlickApproximationBRDF(VdotH01, albedo, metallic);
 	float roughnessSquared = roughness * roughness;
@@ -61,11 +61,11 @@ float3 microfacetBRDF(float3 normal, float3 viewDir, float3 lightVector, float N
 	return diffuseBRDF + specularBRDF;
 }
 
-half3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
+float3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
 {
 	float3 reflectionVector = reflect(-viewVector, worldNormal);
 	float mipLevel = roughness * 6.0; 
-	half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+	float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
 	return DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
 }
 

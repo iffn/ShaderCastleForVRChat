@@ -38,7 +38,7 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/GridSkew"
                 return y;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
@@ -51,17 +51,17 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/GridSkew"
                 // 2. Add the skew to the original coordinates to warp the space
                 float2 skewedPos = pos2D + skew;
 
-                half3 black = half3(0.0, 0.0, 0.0);
-                half3 white = half3(1.0, 1.0, 1.0);
+                float3 black = float3(0.0, 0.0, 0.0);
+                float3 white = float3(1.0, 1.0, 1.0);
                 
                 // 3. Generate the grid pattern using the skewed coordinates
                 float xStep = stepPattern(skewedPos.x);
                 float yStep = stepPattern(-skewedPos.y);
                 float pattern = abs(xStep - yStep);
 
-                half3 color = lerp(black, white, pattern);
+                float3 color = lerp(black, white, pattern);
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

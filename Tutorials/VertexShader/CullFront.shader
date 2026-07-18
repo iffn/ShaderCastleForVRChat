@@ -29,9 +29,9 @@ Shader "ShaderCastle/Tutorials/VertexShader/CullFront"
                 return o;
             }
 
-            half4 frag () : SV_Target {
-                half3 color = half3(1.0, 0.0, 0.0);
-                return half4(color, 1.0);
+            float4 frag () : SV_Target {
+                float3 color = float3(1.0, 0.0, 0.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

@@ -68,7 +68,7 @@ Shader "ShaderCastle/Tutorials/Raymarching/RaymarchedSphere"
 				return o;
 			}
 
-			half4 frag (v2f i) : SV_Target
+			float4 frag (v2f i) : SV_Target
 			{
 				float3 ray = i.localPos - i.cameraPos;
 				float3 rayDir = normalize(ray);

@@ -17,7 +17,7 @@ Shader "ShaderCastle/Tutorials/Water/TransparencyWater"
             #pragma vertex vert
             #pragma fragment frag
 
-            fixed4 _albedo;
+            float4 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -36,7 +36,7 @@ Shader "ShaderCastle/Tutorials/Water/TransparencyWater"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 return _albedo;
             }
             ENDCG

@@ -31,15 +31,15 @@ Shader "ShaderCastle/Tutorials/Transparency/Transparency"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
 
                 float distanceToCenter = length(uv - float2(0.5, 0.5));
 
                 float alpha = saturate(1.0 - distanceToCenter * 2.0);
 
-                half3 color = half3(1.0, 1.0, 1.0);
-                return half4(color, alpha);
+                float3 color = float3(1.0, 1.0, 1.0);
+                return float4(color, alpha);
             }
             ENDCG
         }

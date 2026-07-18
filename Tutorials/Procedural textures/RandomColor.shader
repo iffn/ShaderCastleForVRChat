@@ -46,7 +46,7 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/RandomColor"
                 return float(h & 0x00ffffffu) / float(0x01000000u);
             }
             
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
@@ -58,8 +58,8 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/RandomColor"
                 float g = hash11(r);
                 float b = hash11(g);
 
-                half3 color = half3(r, g, b);
-                return half4(color, 1.0);
+                float3 color = float3(r, g, b);
+                return float4(color, 1.0);
             }
 
             ENDCG

@@ -175,10 +175,10 @@ Shader "ShaderCastle/Implementations/Environment/Grass"
             }
 
             // Fragment function
-            half4 frag(g2f i) : SV_Target
+            float4 frag(g2f i) : SV_Target
             {
                 float3 color = lerp(_GrassColorBottom, _GrassColorTop, i.uv.y);
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
 
             ENDCG

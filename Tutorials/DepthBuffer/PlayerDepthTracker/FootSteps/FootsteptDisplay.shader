@@ -38,19 +38,19 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/FootstepDisplay"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
-                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-                half3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
-                half3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
                 
-                half3 albedo = tex2D(footstepCRT, i.uv).rgb;
-                half3 color = (directLight + ambientLight) * albedo;
+                float3 albedo = tex2D(footstepCRT, i.uv).rgb;
+                float3 color = (directLight + ambientLight) * albedo;
                 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

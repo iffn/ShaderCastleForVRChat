@@ -19,10 +19,10 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongModel"
             #include "UnityCG.cginc"
 
             float3 _worldLightDirection;
-            half3 _directionalLightColor;
-            half3 _albedo;
+            float3 _directionalLightColor;
+            float3 _albedo;
             float _glossiness;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -44,7 +44,7 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongModel"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
@@ -53,25 +53,25 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongModel"
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(lightVector + viewVector);
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half3 radiantIntensity = _directionalLightColor;
-                half NdotL01 = saturate(dot(worldNormal, lightVector));
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL01;
+                float3 radiantIntensity = _directionalLightColor;
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
+                float3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL01;
                 
                 // Blinn-Phong model:
                 float NdotH = saturate(dot(worldNormal, halfVector));
                 float specularFactor = pow(NdotH, _glossiness);
-                half3 specularLight = _directionalLightColor * specularFactor;
+                float3 specularLight = _directionalLightColor * specularFactor;
 
-                half3 ambientLight = _albedo * _ambientLightColor;
-                half3 diffuseLight = _albedo * surfaceIrradianceDirectionalLight;
-                half3 surfaceRadiance = ambientLight + diffuseLight + specularLight;
+                float3 ambientLight = _albedo * _ambientLightColor;
+                float3 diffuseLight = _albedo * surfaceIrradianceDirectionalLight;
+                float3 surfaceRadiance = ambientLight + diffuseLight + specularLight;
 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

@@ -72,7 +72,7 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D"
 				return lerp(bottom, top, u.y);
 			}
             
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
                 
@@ -91,9 +91,9 @@ Shader "ShaderCastle/Tutorials/ProceduralTextures/ValueNoise2D"
                 
                 noise += 0.125 * valueNoise2D(pos2D);
 
-                half3 color = noise.xxx;
+                float3 color = noise.xxx;
 
-                return half4(color.rgb, 1.0);
+                return float4(color.rgb, 1.0);
             }
 
             ENDCG

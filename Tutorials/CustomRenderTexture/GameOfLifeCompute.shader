@@ -15,7 +15,7 @@ Shader "ShaderCastle/Tutorials/CustomRenderTexture/GameOfLifeCompute"
     sampler2D _paintMask;
     float _updateStep;
 
-    fixed4 frag(v2f_customrendertexture i) : SV_Target
+    float4 frag(v2f_customrendertexture i) : SV_Target
     {
         float2 uv = i.globalTexcoord;
 
@@ -44,7 +44,7 @@ Shader "ShaderCastle/Tutorials/CustomRenderTexture/GameOfLifeCompute"
         float4 deadColor = float4(0,0,0,0);
         float4 aliveColor = float4(1,1,1,1);
         
-        fixed4 color = lerp(deadColor, aliveColor, willBeAlive);
+        float4 color = lerp(deadColor, aliveColor, willBeAlive);
 
         return color;
     }

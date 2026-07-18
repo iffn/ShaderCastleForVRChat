@@ -16,19 +16,19 @@ Shader "iffnsShaders/Tutorials/DepthBuffer/PaintCompute"
 
     float pixelWidthU;
     float pixelWidthV;
-    half4 _paint_color;
+    float4 _paint_color;
     
 
     float4 frag(v2f_customrendertexture i) : SV_Target
     {
         float2 uv = i.globalTexcoord;
 
-        half3 currentColor = currentTexture(uv);
+        float3 currentColor = currentTexture(uv);
         float2 uvDepth = uv;
         uvDepth.x = uvDepth.x;
         float depthValueRaw = tex2D(_depthTexture, uvDepth).r;
 
-        half3 color = lerp(currentColor, _paint_color.rgb, depthValueRaw);
+        float3 color = lerp(currentColor, _paint_color.rgb, depthValueRaw);
 
         return float4(color, 1.0);
     }

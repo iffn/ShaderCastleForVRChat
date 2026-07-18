@@ -33,9 +33,9 @@ Shader "ShaderCastle/Tutorials/Basics/ColorPicker"
                 return o;
             }
 
-            half4 frag () : SV_Target {
-                half3 color = half3(_red, _green, _blue);
-                return half4(color, 1.0);
+            float4 frag () : SV_Target {
+                float3 color = float3(_red, _green, _blue);
+                return float4(color, 1.0);
             }
             ENDCG
         }

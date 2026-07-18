@@ -32,11 +32,11 @@ Shader "ShaderCastle/Tutorials/TextureSampling/NormalMap"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
-                half4 packedNormal = tex2D(_normalMap, i.uv);
+            float4 frag (v2f i) : SV_Target {
+                float4 packedNormal = tex2D(_normalMap, i.uv);
                 float3 tangentNormal = UnpackNormal(packedNormal); // Unity macro to correctly handle the decompression this version of Unity uses
                 
-                return fixed4(tangentNormal, 1.0);
+                return float4(tangentNormal, 1.0);
             }
             ENDCG
         }

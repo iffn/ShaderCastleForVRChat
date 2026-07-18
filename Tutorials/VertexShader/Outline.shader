@@ -15,7 +15,7 @@ Shader "ShaderCastle/Tutorials/VertexShader/Outline"
             #pragma fragment frag
 
             float _outlineThickness;
-            half3 _outlineColor;
+            float3 _outlineColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -34,8 +34,8 @@ Shader "ShaderCastle/Tutorials/VertexShader/Outline"
             }
 
             // Fragment function
-            half4 frag () : SV_Target {
-                return half4(_outlineColor, 1.0);
+            float4 frag () : SV_Target {
+                return float4(_outlineColor, 1.0);
             }
             ENDCG
         }

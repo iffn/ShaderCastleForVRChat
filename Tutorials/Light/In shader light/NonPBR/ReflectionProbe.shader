@@ -36,15 +36,15 @@ Shader "ShaderCastle/Tutorials/Light/ReflectionProbe"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 
                 float3 reflectVector = reflect(-viewVector, worldNormal);
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectVector, _blurMipMap);
-                half3 reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                float4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectVector, _blurMipMap);
+                float3 reflection = DecodeHDR(rgbm, unity_SpecCube0_HDR);
 
-                return half4(reflection, 1.0);
+                return float4(reflection, 1.0);
             }
             ENDCG
         }

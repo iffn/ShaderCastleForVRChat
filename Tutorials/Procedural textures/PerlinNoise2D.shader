@@ -91,15 +91,15 @@ Shader "ShaderCastlev/Tutorials/ProceduralTextures/PerlinNoise2D"
 				return lerp(bottom, top, u.y);
 			}
             
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 pos2D = i.vertex.xy;
                 pos2D *= _zoom;
 
                 float noise = perlinNoise(pos2D) * 0.5 + 0.5;
 
-                half3 color = noise.xxx;
+                float3 color = noise.xxx;
 
-                return half4(color.rgb, 1.0);
+                return float4(color.rgb, 1.0);
             }
 
             ENDCG

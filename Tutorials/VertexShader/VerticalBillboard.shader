@@ -44,9 +44,9 @@ Shader "ShaderCastle/Tutorials/VertexShader/VerticalBillboard"
                 return o;
             }
 
-            half4 frag () : SV_Target {
-                half3 color = half3(1.0, 0.0, 0.0); // Red
-                return half4(color, 1.0);
+            float4 frag () : SV_Target {
+                float3 color = float3(1.0, 0.0, 0.0); // Red
+                return float4(color, 1.0);
             }
             ENDCG
         }

@@ -25,14 +25,14 @@ Shader "ShaderCastle/Tutorials/Color/ColorRGBBoxGamma"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = half3(i.localPos.xxx + 0.5);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = float3(i.localPos.xxx + 0.5);
 
                 #ifndef UNITY_COLORSPACE_GAMMA
                     color = pow(color, 2.2); 
                 #endif
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

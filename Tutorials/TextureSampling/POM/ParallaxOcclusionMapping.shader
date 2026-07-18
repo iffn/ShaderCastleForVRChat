@@ -90,11 +90,11 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ParallaxOcclusionMapping"
                 return prevUV * weight + currentUV * (1.0 - weight);
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 offsetUV = ParallaxOcclusionMapping(i.uv, normalize(i.viewDirTS));
                 
-                fixed3 color = tex2D(_MainTex, offsetUV);
-                return fixed4(color, 1.0);
+                float3 color = tex2D(_MainTex, offsetUV);
+                return float4(color, 1.0);
             }
             ENDCG
         }

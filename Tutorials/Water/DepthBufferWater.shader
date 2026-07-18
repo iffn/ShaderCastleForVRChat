@@ -19,7 +19,7 @@ Shader "ShaderCastle/Tutorials/Water/DepthBufferWater"
             #include "UnityCG.cginc"
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
-            fixed4 _Albedo;
+            float4 _Albedo;
             float _Density;
 
             struct appdata {
@@ -46,11 +46,11 @@ Shader "ShaderCastle/Tutorials/Water/DepthBufferWater"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
                 float2 screenUV = i.screenPos.xy / i.screenPos.w;
-                fixed4 col = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenUV);
+                float4 col = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenUV);
                 
                 float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r;
                 float sceneEyeDepth = LinearEyeDepth(depth);
@@ -61,7 +61,7 @@ Shader "ShaderCastle/Tutorials/Water/DepthBufferWater"
                 float transmission = exp(-_Density * waterDepth);
                 float extinction = 1.0 - transmission;
 
-                fixed4 finalCol = _Albedo;
+                float4 finalCol = _Albedo;
                 finalCol.a = saturate(extinction + _Albedo.a);
 
                 return finalCol;

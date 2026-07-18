@@ -71,10 +71,10 @@ Shader "Unlit/Tree"
             #if defined(UNITY_COMPILER_HLSL) || defined(SHADER_API_D3D11)
             [earlydepthstencil]
             #endif
-            half4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
-                half4 textureColor = tex2D(_MainTex, i.uv);
-                half3 albedo = textureColor.rgb;
+                float4 textureColor = tex2D(_MainTex, i.uv);
+                float3 albedo = textureColor.rgb;
                 clip(textureColor.a - 0.9);
                 
                 // Light:
@@ -82,16 +82,16 @@ Shader "Unlit/Tree"
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
 
-                fixed3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
 
-                fixed3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
 
-                fixed3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
 
-                fixed3 color = (directLight + ambientLight) * albedo;
+                float3 color = (directLight + ambientLight) * albedo;
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

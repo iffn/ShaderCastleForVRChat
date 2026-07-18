@@ -22,7 +22,7 @@ Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-PaintMask"
             float _modelScale;
             float3 _brushPositionLocal;
             float _brushSize;
-            fixed3 _brushColor;
+            float3 _brushColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -47,17 +47,17 @@ Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-PaintMask"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float distance = length(i.localPos - _brushPositionLocal);
 
                 float brushMask = saturate(sign(_brushSize - distance));
 
-                half3 baseColor = half3(0,0,0);
-                half3 brushMaskColor = half3(1,1,1);
+                float3 baseColor = float3(0,0,0);
+                float3 brushMaskColor = float3(1,1,1);
 
-                half3 color = lerp(baseColor, brushMaskColor, brushMask);
+                float3 color = lerp(baseColor, brushMaskColor, brushMask);
                 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

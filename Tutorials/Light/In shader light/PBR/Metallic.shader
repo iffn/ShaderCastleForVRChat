@@ -21,8 +21,8 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
             #define ONE_OVER_PI 0.31830988618
 
             float3 _worldLightDirection;
-            half3 _directionalLightColor;
-            half3 _albedo;
+            float3 _directionalLightColor;
+            float3 _albedo;
             float _roughness;
 
             struct appdata {
@@ -44,13 +44,13 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 return o;
             }
 
-            float3 fresnelReflectionWithSchlickApproximationMetallicBRDF(half3 albedo, float cosSpecularAngle01)
+            float3 fresnelReflectionWithSchlickApproximationMetallicBRDF(float3 albedo, float cosSpecularAngle01)
             {
                 float3 specularReflectance = albedo;
                 return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - cosSpecularAngle01, 5.0);
             }
 
-            float3 fresnelReflectionWithSchlickApproximationMetallicAmbient(half3 albedo, float roughness, float cosSpecularAngle01)
+            float3 fresnelReflectionWithSchlickApproximationMetallicAmbient(float3 albedo, float roughness, float cosSpecularAngle01)
             {
                 float3 specularReflectanceNormal = albedo;
                 float3 specularReflectanceGrazing = max(1.0 - roughness, specularReflectanceNormal); // Prevents fresnel ambient reflections at grazing angles. Already handeled in BRDF
@@ -75,7 +75,7 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 return geometryTermView * geometryTermLight;
             }
 
-            float3 microfacetBRDF(half3 albedo, float roughness, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
+            float3 microfacetBRDF(float3 albedo, float roughness, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
             {
                 // All dot prodcuts need to be positive
                 float NdotH01 = saturate(dot(worldNormal, halfVector));
@@ -93,15 +93,15 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 return specularBRDF;
             }
 
-            half3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
+            float3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
             {
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = roughness * 6.0; 
-                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
                 return DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
@@ -110,14 +110,14 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(lightVector + viewVector);
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 float NdotL01 = saturate(dot(worldNormal, lightVector));
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
                 float3 radiantIntensity = _directionalLightColor;
                 float3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL01;
                 
-                half3 BRDFLightFactor = microfacetBRDF(_albedo, _roughness, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
+                float3 BRDFLightFactor = microfacetBRDF(_albedo, _roughness, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
                 float3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
@@ -126,7 +126,7 @@ Shader "ShaderCastle/Tutorials/Light/Metallic"
                 
                 float3 surfaceLight = emissiveLight + directLight + indirectSpecular;
                 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

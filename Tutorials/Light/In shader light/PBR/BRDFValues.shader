@@ -24,11 +24,11 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
             #define ONE_OVER_PI 0.31830988618
 
             float3 _worldLightDirection;
-            half4 _directionalLightColor;
-            half4 _albedo;
+            float4 _directionalLightColor;
+            float4 _albedo;
             float _roughness;
             float _metallic;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -51,7 +51,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return o;
             }
 
-            half3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo, float metallic)
+            float3 FresnelReflectionWithSchlickApproximationBRDF(float VdotH01, float3 albedo, float metallic)
             {
                 float specularReflectanceNonMetallic = 0.04; // Standard value for non-metals. Actually ((IoR-1)/(IoR+1))^2, IOR = Index of Refraction
                 float3 f0 = lerp(specularReflectanceNonMetallic, albedo, metallic);
@@ -59,7 +59,7 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return f0 + (1.0 - f0) * pow(1.0 - VdotH01, 5.0);
             }
 
-            half3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
+            float3 fresnelReflectionWithSchlickApproximationAmbient(float3 albedo, float metallic, float roughness, float NdotV01)
             {
                 float specularReflectanceNonMetallic = 0.04;
                 float3 specularReflectanceNormal = lerp(specularReflectanceNonMetallic, albedo, metallic);
@@ -107,15 +107,15 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 return diffuseBRDF + specularBRDF;
             }
 
-            half3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
+            float3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
             {
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = roughness * 6.0; 
-                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
                 return DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
                 
                 // All vectors are normalized and point away from the surface
@@ -123,27 +123,27 @@ Shader "ShaderCastle/Tutorials/Light/BRDFValues"
                 float3 lightVector = -lightDirection;
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
-                half NdotL01 = saturate(dot(worldNormal, lightVector));
+                float NdotL01 = saturate(dot(worldNormal, lightVector));
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
                 
-                half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+                float3 radiantIntensity = _directionalLightColor;
+                float3 surfaceIrradiance = radiantIntensity * NdotL01;
                 
                 float3 BRDFLightFactor = microfacetBRDF(worldNormal, viewVector, lightVector, NdotV01, NdotL01, _albedo, _roughness, _metallic);
-                half3 directLight = BRDFLightFactor * surfaceIrradiance;
+                float3 directLight = BRDFLightFactor * surfaceIrradiance;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
                 float3 indirectFresnel = fresnelReflectionWithSchlickApproximationAmbient(_albedo, _metallic, _roughness, NdotV01);
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
-                half3 diffuseAmbient = _albedo * _ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - _metallic);
-                half3 specularAmbient = indirectSpecularLight * indirectFresnel;
-                half3 ambientLight = diffuseAmbient + specularAmbient;
+                float3 diffuseAmbient = _albedo * _ambientLightColor * remainingAmbientDiffuseEnergy * (1.0 - _metallic);
+                float3 specularAmbient = indirectSpecularLight * indirectFresnel;
+                float3 ambientLight = diffuseAmbient + specularAmbient;
 
-                half3 surfaceLight = emissiveLight + directLight + ambientLight;
+                float3 surfaceLight = emissiveLight + directLight + ambientLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

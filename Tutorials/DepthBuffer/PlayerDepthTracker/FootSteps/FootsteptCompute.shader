@@ -21,8 +21,8 @@ Shader "iffnsShaders/Tutorials/DepthBuffer/FootstepCompute"
 
     float pixelWidthU;
     float pixelWidthV;
-    half4 _footstepColor;
-    half4 _baseColor;
+    float4 _footstepColor;
+    float4 _baseColor;
     float4 _depthCenterToCenterOffsetAndScale;
     float _nearClipDistance;
     float _farClipDistance;
@@ -36,7 +36,7 @@ Shader "iffnsShaders/Tutorials/DepthBuffer/FootstepCompute"
     {
         float2 uv = i.globalTexcoord;
         float2 uvCenterRender = uv + 0.5;
-        half3 currentColor = currentTexture(uv);
+        float3 currentColor = currentTexture(uv);
         currentColor = lerp(currentColor, _baseColor, _fade);
 
         float2 uvDepth = uv - _depthCenterToCenterOffsetAndScale.xy;
@@ -45,7 +45,7 @@ Shader "iffnsShaders/Tutorials/DepthBuffer/FootstepCompute"
         float depthDistance = lerp(_farClipDistance, _nearClipDistance, depthValueRaw);
         float footstepPaint = step(depthDistance, 0.02);
 
-        half3 color = lerp(currentColor, _footstepColor.rgb, footstepPaint);
+        float3 color = lerp(currentColor, _footstepColor.rgb, footstepPaint);
 
         return float4(color, 1.0);
     }

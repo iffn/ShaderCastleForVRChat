@@ -30,10 +30,10 @@ Shader "ShaderCastle/Tutorials/Light/WorldNormals"
             }
 
             // Fragment function
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 normal = normalize(i.worldNormal);
                 //normal = normal * 0.5 + float3(0.5, 0.5, 0.5);
-                return half4(normal, 1.0);
+                return float4(normal, 1.0);
             }
             ENDCG
         }

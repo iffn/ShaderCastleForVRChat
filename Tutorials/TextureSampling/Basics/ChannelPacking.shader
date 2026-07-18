@@ -40,8 +40,8 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ChannelPacking"
             }
 
             // Fragment function
-            half4 frag (v2f i) : SV_Target {
-                half4 color = tex2D(_MainTex, i.uv);
+            float4 frag (v2f i) : SV_Target {
+                float4 color = tex2D(_MainTex, i.uv);
 
                 float r = color.r * _red;
                 float g = color.g * _green;
@@ -50,7 +50,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/ChannelPacking"
                 float sum = r + g + b + a;
                 sum = saturate(sum);
 
-                return half4(sum.rrr, 1.0);
+                return float4(sum.rrr, 1.0);
             }
             ENDCG
         }

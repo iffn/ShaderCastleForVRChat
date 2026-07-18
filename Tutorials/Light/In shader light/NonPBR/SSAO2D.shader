@@ -22,8 +22,8 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
 
             UNITY_DECLARE_SCREENSPACE_TEXTURE(_CameraDepthTexture);
             
-            half3 _albedo;
-            half3 _ambientLightColor;
+            float3 _albedo;
+            float3 _ambientLightColor;
             float _AoRadius;
             float _AoIntensity;
             int _samples;
@@ -123,7 +123,7 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 return saturate(finalVisibility); 
             }
 
-            half4 frag (v2f i) : SV_Target 
+            float4 frag (v2f i) : SV_Target 
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
                 
@@ -131,11 +131,11 @@ Shader "ShaderCastle/Tutorials/Light/SSAO"
                 
                 float ambientOcclusionFactor = GetSSAO(screenUV, i.viewNormal); // 0 = fully occluded, 1 = unoccluded
                 
-                half3 surfaceIrradiance = _ambientLightColor * ambientOcclusionFactor; // Ambient occlusion is applied to the ambient light
-                half3 BRDFLightFactor = _albedo; 
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                float3 surfaceIrradiance = _ambientLightColor * ambientOcclusionFactor; // Ambient occlusion is applied to the ambient light
+                float3 BRDFLightFactor = _albedo; 
+                float3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                return half4(reflectedLight, 1.0);
+                return float4(reflectedLight, 1.0);
             }
             ENDCG
         }

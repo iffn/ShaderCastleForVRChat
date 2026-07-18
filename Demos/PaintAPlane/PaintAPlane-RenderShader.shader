@@ -16,17 +16,17 @@ Shader "ShaderCastle/Demos/PaintAPlane/PaintAPlane-RenderTexture"
 
     float pixelWidthU;
     float pixelWidthV;
-    fixed4 _paintColor;
+    float4 _paintColor;
     
 
-    fixed4 frag(v2f_customrendertexture i) : SV_Target
+    float4 frag(v2f_customrendertexture i) : SV_Target
     {
         float2 uv = i.globalTexcoord;
 
-        fixed4 currentColor = currentTexture(uv);
+        float4 currentColor = currentTexture(uv);
         float paintMask = step(0.1, tex2D(_paintMask, uv).r);
 
-        fixed4 color = lerp(currentColor, _paintColor.rgba, paintMask);
+        float4 color = lerp(currentColor, _paintColor.rgba, paintMask);
 
         return saturate(color);
     }

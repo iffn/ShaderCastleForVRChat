@@ -21,7 +21,7 @@ Shader "ShaderCastle/Tutorials/Light/LightProbes"
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
 
-            half4 _albedo;
+            float4 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -41,19 +41,19 @@ Shader "ShaderCastle/Tutorials/Light/LightProbes"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
-                half3 worldNormal = normalize(i.worldNormal);
+                float3 worldNormal = normalize(i.worldNormal);
 
-                half3 surfaceIrradiance = ShadeSH9(half4(worldNormal, 1.0)); // ShadeSH9 expects a float4 where the xyz is the normal and w is 1.0
+                float3 surfaceIrradiance = ShadeSH9(float4(worldNormal, 1.0)); // ShadeSH9 expects a float4 where the xyz is the normal and w is 1.0
                 
-                half3 BRDFLightFactor = _albedo.rgb;
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo.rgb;
+                float3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 surfaceLight = emissiveLight + reflectedLight;
+                float3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

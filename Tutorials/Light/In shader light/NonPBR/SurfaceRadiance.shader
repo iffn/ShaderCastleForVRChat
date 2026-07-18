@@ -13,8 +13,8 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
             #pragma vertex vert
             #pragma fragment frag
 
-            half3 _albedo;
-            half3 _ambientLightColor;
+            float3 _albedo;
+            float3 _ambientLightColor;
             
             struct appdata {
                 float4 vertex : POSITION;
@@ -30,19 +30,19 @@ Shader "ShaderCastle/Tutorials/Light/SurfaceRadiance"
                 return o;
             }
 
-            half4 frag () : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag () : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half3 surfaceIrradiance = _ambientLightColor;
+                float3 surfaceIrradiance = _ambientLightColor;
                 
                 // How much is reflected:
-                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
+                float3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 surfaceLight = emissiveLight + reflectedLight;
+                float3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

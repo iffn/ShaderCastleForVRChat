@@ -17,7 +17,7 @@ Shader "ShaderCastle/Tutorials/Light/UnitySingleLight"
             #include "Lighting.cginc"
             #include "AutoLight.cginc" // Macro with Unity light functions. Defines attenuation variable
 
-            half3 _albedo;
+            float3 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -40,8 +40,8 @@ Shader "ShaderCastle/Tutorials/Light/UnitySingleLight"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
                 
                 float3 worldNormal = normalize(i.worldNormal);
                 
@@ -54,19 +54,19 @@ Shader "ShaderCastle/Tutorials/Light/UnitySingleLight"
                 }
                 
                 UNITY_LIGHT_ATTENUATION(attenuation, i, i.worldPos); // Unity macro that writes to the attenuation variable defined in AutoLight.cginc
-                half3 radiantIntensity = _LightColor0.rgb * attenuation; // Correct Unity formula, _LightColor0.rgb also holds intensity.
+                float3 radiantIntensity = _LightColor0.rgb * attenuation; // Correct Unity formula, _LightColor0.rgb also holds intensity.
                 
                 float NdotL01 = saturate(dot(worldNormal, lightVector));
-                half3 surfaceIrradiance = radiantIntensity * NdotL01;
+                float3 surfaceIrradiance = radiantIntensity * NdotL01;
 
                 surfaceIrradiance += UNITY_LIGHTMODEL_AMBIENT.rgb;
                 
-                half3 BRDFLightFactor = _albedo;
-                half3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo;
+                float3 surfaceRadiance = BRDFLightFactor * surfaceIrradiance;
                 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

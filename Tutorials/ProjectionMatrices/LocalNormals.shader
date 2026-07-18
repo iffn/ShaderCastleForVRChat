@@ -25,9 +25,9 @@ Shader "ShaderCastle/Tutorials/Light/LocalNormals"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 color = half3(i.normal);
-                return half4(color, 1.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 color = float3(i.normal);
+                return float4(color, 1.0);
             }
             ENDCG
         }

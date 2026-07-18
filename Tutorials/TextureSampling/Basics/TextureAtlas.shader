@@ -40,7 +40,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TextureAtlasPixels"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 lookupCoordinate = float2(_LookupX, _LookupY);
 
                 // _TexelSize: x = 1/xCount, y = 1/yCount, z = xCount, w = yCount
@@ -54,8 +54,8 @@ Shader "ShaderCastle/Tutorials/TextureSampling/TextureAtlasPixels"
 
                 float2 finalUV = finalPixel * texelSize;
 
-                half3 color = tex2D(_MainTex, finalUV).rgb;
-                return half4(color, 1.0);
+                float3 color = tex2D(_MainTex, finalUV).rgb;
+                return float4(color, 1.0);
             }
             ENDCG
         }

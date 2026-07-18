@@ -15,8 +15,8 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
             #pragma fragment frag
 
             float _scale;
-            half4 _base;
-            half4 _shape;
+            float4 _base;
+            float4 _shape;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -35,7 +35,7 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 // Preparation
                 float2 uv = i.uv;
                 uv.x -= 0.2;
@@ -67,9 +67,9 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
                 // Plotting the function
                 function = pow(function, 2.2);
 
-                half3 color = lerp(_base, _shape, function);
+                float3 color = lerp(_base, _shape, function);
                 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

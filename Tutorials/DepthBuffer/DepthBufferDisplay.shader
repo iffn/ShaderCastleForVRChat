@@ -31,11 +31,11 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferDisplay"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 uv.x = 1-uv.x;
-                half3 color = tex2D(_DepthTex, uv);
-                return half4(color, 1.0);
+                float3 color = tex2D(_DepthTex, uv);
+                return float4(color, 1.0);
             }
             ENDCG
         }

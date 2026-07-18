@@ -31,7 +31,7 @@ Shader "ShaderCastle/Tutorials/TextureSampling/MipMapSize"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float2 uv = i.uv;
                 uv.x *= 1.5;
 
@@ -51,11 +51,11 @@ Shader "ShaderCastle/Tutorials/TextureSampling/MipMapSize"
                 
                 float4 textureLookup = float4(lookupUV, 0.0, mipLevel);
                 
-                fixed3 color = tex2Dlod(_MainTex, textureLookup);
-                // color = fixed3(mipLevel * 0.1, 0.0, 0.0); // MipMap debug
-                // color = fixed3(lookupUV, 0.0); // Lookup debug
+                float3 color = tex2Dlod(_MainTex, textureLookup);
+                // color = float3(mipLevel * 0.1, 0.0, 0.0); // MipMap debug
+                // color = float3(lookupUV, 0.0); // Lookup debug
 
-                return fixed4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

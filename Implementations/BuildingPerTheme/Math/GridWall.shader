@@ -21,8 +21,8 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/GridWall"
 
             float _zoom;
             float _lineThickness;
-            half4 _wallColor;
-            half4 _lineColor;
+            float4 _wallColor;
+            float4 _lineColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -52,7 +52,7 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/GridWall"
                 return y;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 worldNormal = normalize(i.worldNormal);
 
                 float3 pos3D = i.vertex.xyz;
@@ -64,19 +64,19 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/Math/GridWall"
                 
                 float linePattern = saturate(linePattern3.x + linePattern3.y + linePattern3.z);
 
-                half3 albedo = lerp(_wallColor, _lineColor, linePattern);
+                float3 albedo = lerp(_wallColor, _lineColor, linePattern);
 
                 // Light
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
-                half3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
-                half3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
-                half3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
 
-                half3 color = half3((directLight + ambientLight) * albedo);
+                float3 color = float3((directLight + ambientLight) * albedo);
 
-                return half4 (color, 1.0);
+                return float4 (color, 1.0);
             }
             ENDCG
         }

@@ -22,10 +22,10 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
             #define ONE_OVER_PI 0.31830988618
 
             float3 _worldLightDirection;
-            half3 _directionalLightColor;
-            half3 _albedo;
+            float3 _directionalLightColor;
+            float3 _albedo;
             float _roughness;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -52,7 +52,7 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 return specularReflectance + (1.0 - specularReflectance) * pow(1.0 - cosSpecularAngle01, 5.0);
             }
 
-            half3 fresnelReflectionWithSchlickApproximationNonMetallicAmbient(float roughness, float NdotV01)
+            float3 fresnelReflectionWithSchlickApproximationNonMetallicAmbient(float roughness, float NdotV01)
             {
                 float specularReflectanceNormal = 0.04;
                 float3 specularReflectanceGrazing = max(1.0 - roughness, specularReflectanceNormal);
@@ -77,7 +77,7 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 return geometryTermView * geometryTermLight;
             }
 
-            float3 microfacetBRDF(float roughness, half3 albedo, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
+            float3 microfacetBRDF(float roughness, float3 albedo, float3 worldNormal, float3 viewVector, float3 halfVector, float NdotL01, float NdotV01)
             {
                 float NdotH01 = saturate(dot(worldNormal, halfVector));
                 float VdotH01 = saturate(dot(viewVector, halfVector));
@@ -97,15 +97,15 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 return diffuseBRDF + specularBRDF;
             }
 
-            half3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
+            float3 SampleReflectionProbe(float3 viewVector, float3 worldNormal, float roughness)
             {
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = roughness * 6.0; 
-                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
                 return DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
@@ -117,25 +117,25 @@ Shader "ShaderCastle/Tutorials/Light/NonMetallic"
                 float NdotL01 = saturate(dot(worldNormal, lightVector));
                 float NdotV01 = saturate(dot(worldNormal, viewVector));
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 float3 radiantIntensity = _directionalLightColor;
                 float3 surfaceIrradianceDirectionalLight = radiantIntensity * NdotL01;
                 
-                half3 BRDFLightFactor = microfacetBRDF(_roughness, _albedo, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
+                float3 BRDFLightFactor = microfacetBRDF(_roughness, _albedo, worldNormal, viewVector, halfVector, NdotL01, NdotV01);
                 float3 directLight = BRDFLightFactor * surfaceIrradianceDirectionalLight;
                 
                 float3 indirectSpecularLight = SampleReflectionProbe(viewVector, worldNormal, _roughness);
                 float3 indirectFresnel = fresnelReflectionWithSchlickApproximationNonMetallicAmbient(_roughness, NdotV01);
-                half3 specularAmbient = indirectSpecularLight * indirectFresnel;
+                float3 specularAmbient = indirectSpecularLight * indirectFresnel;
                 float3 remainingAmbientDiffuseEnergy = 1.0 - indirectFresnel;
 
-                half3 diffuseAmbient = _albedo * _ambientLightColor * remainingAmbientDiffuseEnergy;
-                half3 ambientLight = diffuseAmbient + specularAmbient;
+                float3 diffuseAmbient = _albedo * _ambientLightColor * remainingAmbientDiffuseEnergy;
+                float3 ambientLight = diffuseAmbient + specularAmbient;
 
                 float3 surfaceLight = directLight + ambientLight;
                 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

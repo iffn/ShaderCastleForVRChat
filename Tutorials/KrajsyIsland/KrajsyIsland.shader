@@ -68,16 +68,16 @@ Shader "ShaderCastle/Demos/krajsyIsland"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv;
                 float2 noiseUv = uv;
                 float4 col = 1;
                 
                 float noise = getFalloff(noiseUv) * noiseMethod((uv * 2.0 +100.));
-                fixed3 color = step(.5, noise);
+                float3 color = step(.5, noise);
 
-                return fixed4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

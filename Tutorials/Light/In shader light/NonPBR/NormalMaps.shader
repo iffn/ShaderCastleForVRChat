@@ -19,9 +19,9 @@ Shader "ShaderCastle/Tutorials/Light/NormalMaps"
             #include "UnityCG.cginc"
 
             float3 _worldLightDirection;
-            half3 _directionalLightColor;
+            float3 _directionalLightColor;
             float _glossiness;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
             
             sampler2D _albedo;
             float4 _albedo_ST;
@@ -58,7 +58,7 @@ Shader "ShaderCastle/Tutorials/Light/NormalMaps"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
@@ -67,31 +67,31 @@ Shader "ShaderCastle/Tutorials/Light/NormalMaps"
                 float3 halfVector = normalize(lightVector + viewVector);
                 
                 // World normal with normal map
-                half4 packedNormal = tex2D(_normalMap, i.uv);
+                float4 packedNormal = tex2D(_normalMap, i.uv);
                 float3 tangentNormal = UnpackNormal(packedNormal); // Unity macro to correctly handle the decompression this version of Unity uses
                 float3x3 tbn = float3x3(normalize(i.worldTangent), normalize(i.worldBitangent), normalize(i.worldNormal)); // TBN matrix to transform normal from Tangent Space to World Space
                 float3 worldNormal = normalize(mul(tangentNormal, tbn));
                 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
                 
                 // Light hitting the surface:
-                half NdotL = dot(worldNormal, lightVector);
-                half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
+                float NdotL = dot(worldNormal, lightVector);
+                float3 radiantIntensity = _directionalLightColor;
+                float3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 
                 // Blinn-Phong model:
                 float NdotH = saturate(dot(worldNormal, halfVector));
                 float specularFactor = pow(NdotH, _glossiness);
-                half3 specularLight = _directionalLightColor * specularFactor;
+                float3 specularLight = _directionalLightColor * specularFactor;
                 
-                half3 albedo = tex2D(_albedo, i.uv).rgb;
-                half3 ambientLight = albedo * _ambientLightColor;
-                half3 diffuseLight = albedo * surfaceIrradianceDirectionalLight;
-                half3 surfaceRadiance = ambientLight + diffuseLight + specularLight;
+                float3 albedo = tex2D(_albedo, i.uv).rgb;
+                float3 ambientLight = albedo * _ambientLightColor;
+                float3 diffuseLight = albedo * surfaceIrradianceDirectionalLight;
+                float3 surfaceRadiance = ambientLight + diffuseLight + specularLight;
 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

@@ -25,8 +25,8 @@ Shader "Unlit/Tree"
             float _zoom;
             float _zoom2;
             float _glossiness;
-            fixed3 _color1;
-            fixed3 _color2;
+            float3 _color1;
+            float3 _color2;
 
             struct appdata
             {
@@ -121,7 +121,7 @@ Shader "Unlit/Tree"
                 return y;
             }
 
-            half4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
                 // Based on https://www.shadertoy.com/view/lsf3WH
                 float3x3 octaveTransform = float3x3(
@@ -148,7 +148,7 @@ Shader "Unlit/Tree"
                 
                 float zebra = stepPattern(i.uv.y * 40);
                 
-                half3 albedo = lerp(_color1, _color2, noise);
+                float3 albedo = lerp(_color1, _color2, noise);
 
                 
                 // Light:
@@ -156,16 +156,16 @@ Shader "Unlit/Tree"
                 float3 _world_light_direction = normalize(_WorldSpaceLightPos0.xyz);
                 float3 lightColor = _LightColor0.rgb;
 
-                fixed3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 ambientLight = UNITY_LIGHTMODEL_AMBIENT.rgb;
 
-                fixed3 NdotL = dot(worldNormal, _world_light_direction);
+                float3 NdotL = dot(worldNormal, _world_light_direction);
                 NdotL = saturate(NdotL);
 
-                fixed3 directLight = NdotL * lightColor.rgb;
+                float3 directLight = NdotL * lightColor.rgb;
 
-                fixed3 color = (directLight + ambientLight) * albedo;
+                float3 color = (directLight + ambientLight) * albedo;
 
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

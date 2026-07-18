@@ -15,7 +15,7 @@ Shader "ShaderCastle/Tutorials/Light/AmbientLight"
             #include "UnityCG.cginc"
             #include "Lighting.cginc" // Required for _LightColor0
 
-            half4 _albedo;
+            float4 _albedo;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -36,19 +36,19 @@ Shader "ShaderCastle/Tutorials/Light/AmbientLight"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+            float4 frag (v2f i) : SV_Target {
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half3 surfaceIrradiance = UNITY_LIGHTMODEL_AMBIENT.rgb;
+                float3 surfaceIrradiance = UNITY_LIGHTMODEL_AMBIENT.rgb;
                 
                 // How much is reflected:
-                half3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
-                half3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
+                float3 BRDFLightFactor = _albedo; // Simplified model: The light gets reflected in all directions equally.
+                float3 reflectedLight = BRDFLightFactor * surfaceIrradiance;
 
-                half3 surfaceLight = emissiveLight + reflectedLight;
+                float3 surfaceLight = emissiveLight + reflectedLight;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }

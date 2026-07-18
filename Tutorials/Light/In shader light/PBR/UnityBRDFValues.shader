@@ -22,12 +22,12 @@ Shader "ShaderCastle/Tutorials/Light/UnityBRDFValues"
             #include "UnityPBSLighting.cginc"
 
             float3 _worldLightDirection;
-            half4 _directionalLightColor;
-            half4 _albedo;
-            half4 _light_color;
+            float4 _directionalLightColor;
+            float4 _albedo;
+            float4 _light_color;
             float _smoothness;
             float _metallic;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -49,7 +49,7 @@ Shader "ShaderCastle/Tutorials/Light/UnityBRDFValues"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
                 
                 float3 worldNormal = normalize(i.worldNormal);
@@ -68,15 +68,15 @@ Shader "ShaderCastle/Tutorials/Light/UnityBRDFValues"
                 float3 reflectDir = reflect(-viewVector, worldNormal);
                 float perceptualRoughness = 1.0 - _smoothness;
                 float mip = perceptualRoughness * UNITY_SPECCUBE_LOD_STEPS;
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
-                half3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                float4 rgbm = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectDir, mip);
+                float3 indirectSpecular = DecodeHDR(rgbm, unity_SpecCube0_HDR);
                 
                 UnityIndirect indirectLight;
                 indirectLight.diffuse = _ambientLightColor;
                 indirectLight.specular = indirectSpecular;
 
 
-                half4 surfaceLight = UNITY_BRDF_PBS(
+                float4 surfaceLight = UNITY_BRDF_PBS(
 					albedo,
                     specularTint,
 					oneMinusReflectivity,

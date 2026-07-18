@@ -57,16 +57,16 @@ Shader "ShaderCastle/Tutorials/VertexShader/Wireframe"
             }
 
             // Fragment function
-            half4 frag (g2f i) : SV_Target {
+            float4 frag (g2f i) : SV_Target {
                 float closest = min(i.barycentric.x, min(i.barycentric.y, i.barycentric.z));
                 float WireframeWith = 0.02;
                 float frame = step(closest, WireframeWith);
 
-                half3 frameColor = half3(0.0, 0.0, 0.0); // Black
-                half3 color = half3(1.0, 0.0, 0.0); // Red
+                float3 frameColor = float3(0.0, 0.0, 0.0); // Black
+                float3 color = float3(1.0, 0.0, 0.0); // Red
 
                 color = lerp(color, frameColor, frame);
-                return half4(color, 1.0);
+                return float4(color, 1.0);
             }
             ENDCG
         }

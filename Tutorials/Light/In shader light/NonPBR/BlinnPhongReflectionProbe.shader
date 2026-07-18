@@ -19,10 +19,10 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongReflectionProbe"
             #include "UnityCG.cginc"
 
             float3 _worldLightDirection;
-            half3 _directionalLightColor;
-            half3 _albedo;
+            float3 _directionalLightColor;
+            float3 _albedo;
             float _glossiness;
-            half3 _ambientLightColor;
+            float3 _ambientLightColor;
 
             struct appdata {
                 float4 vertex : POSITION;
@@ -44,7 +44,7 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongReflectionProbe"
                 return o;
             }
 
-            half4 frag (v2f i) : SV_Target {
+            float4 frag (v2f i) : SV_Target {
                 float3 lightDirection = normalize(_worldLightDirection);
 
                 // All vectors are normalized and point away from the surface
@@ -53,32 +53,32 @@ Shader "ShaderCastle/Tutorials/Light/BlinnPhongReflectionProbe"
                 float3 viewVector = normalize(_WorldSpaceCameraPos - i.worldPos);
                 float3 halfVector = normalize(lightVector + viewVector);
 
-                half3 emissiveLight = half3(0.0, 0.0, 0.0);
+                float3 emissiveLight = float3(0.0, 0.0, 0.0);
 
                 // Light hitting the surface:
-                half NdotL = dot(worldNormal, lightVector);
-                half3 radiantIntensity = _directionalLightColor;
-                half3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
+                float NdotL = dot(worldNormal, lightVector);
+                float3 radiantIntensity = _directionalLightColor;
+                float3 surfaceIrradianceDirectionalLight = radiantIntensity * saturate(NdotL);
                 
                 // Blinn-Phong model:
                 float NdotH = saturate(dot(worldNormal, halfVector));
                 float specularFactor = pow(NdotH, _glossiness);
-                half3 specularLight = _directionalLightColor * specularFactor;
+                float3 specularLight = _directionalLightColor * specularFactor;
 
                 //Reflection probe
                 float3 reflectionVector = reflect(-viewVector, worldNormal);
                 float mipLevel = (1.0 - saturate(_glossiness / 256.0)) * 6.0; // Use glossiness between between 0...256
-                half4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
-                half3 environmentReflection = DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
+                float4 encodedReflection = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflectionVector, mipLevel);
+                float3 environmentReflection = DecodeHDR(encodedReflection, unity_SpecCube0_HDR);
 
-                half3 ambientLight = _albedo * _ambientLightColor;
-                half3 diffuseLight = _albedo * surfaceIrradianceDirectionalLight;
-                half3 tintedReflection = environmentReflection * _albedo;
-                half3 surfaceRadiance = ambientLight + diffuseLight + specularLight + tintedReflection;
+                float3 ambientLight = _albedo * _ambientLightColor;
+                float3 diffuseLight = _albedo * surfaceIrradianceDirectionalLight;
+                float3 tintedReflection = environmentReflection * _albedo;
+                float3 surfaceRadiance = ambientLight + diffuseLight + specularLight + tintedReflection;
 
-                half3 surfaceLight = emissiveLight + surfaceRadiance;
+                float3 surfaceLight = emissiveLight + surfaceRadiance;
 
-                return half4(surfaceLight, 1.0);
+                return float4(surfaceLight, 1.0);
             }
             ENDCG
         }
