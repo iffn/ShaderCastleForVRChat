@@ -107,4 +107,5 @@ Shader "ShaderCastle/Tutorials/Light/BRDFTextures"
             ENDCG
         }
     }
+    Fallback "VertexLit"
 }

@@ -130,4 +130,5 @@ Shader "ShaderCastle/Implementations/BuildingPerTheme/TexturesAndColor/PlanarPro
             ENDCG
         }
     }
+    Fallback "VertexLit"
 }
