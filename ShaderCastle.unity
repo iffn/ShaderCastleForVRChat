@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00082342816, g: 0.004233451, b: 0.02040858, a: 1}
+  m_IndirectSpecularColor: {r: 0.0008234265, g: 0.0042334497, b: 0.020408574, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -87164,7 +87164,8 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: Unity has a built in macro to sample the shadow. Note that shaders normally
+        require a fallback to cast a shadow.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -87224,7 +87225,8 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: Unity has a built in macro to sample the shadow. Note that shaders normally
+        require a fallback to cast a shadow.
       objectReference: {fileID: 0}
     - target: {fileID: 2453436135830993782, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -87643,7 +87645,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -112163,7 +112165,7 @@ Transform:
   m_GameObject: {fileID: 1848925804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.9961947, z: -0, w: 0.08715583}
-  m_LocalPosition: {x: 0, y: 0.00001192093, z: 0}
+  m_LocalPosition: {x: 0.00027906362, y: -0.000010430813, z: -0.00030522366}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -112182,7 +112184,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -139221,10 +139223,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9961947, z: -0, w: 0.0871558}
   m_LocalPosition: {x: 0.503, y: 0.378, z: -0.914}
-  m_LocalScale: {x: 0.05000001, y: 0.049999997, z: 0.05000001}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7889313778978884774}
   - {fileID: 1848925805}
   m_Father: {fileID: 383019452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143845,12 +143846,14 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: title
-      value: Unity directional light
+      value: Unity signle light
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: For the BIRP (Built in render pipeline), only one Unity light is processed
+        per pass. Doing it this way is out of date and modern rendering pipelines
+        sample the light sources differently.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -143890,7 +143893,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: For the BIRP (Built in render pipeline), only one Unity light is processed
+        per pass. Doing it this way is out of date and modern rendering pipelines
+        sample the light sources differently.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -144240,7 +144245,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -144366,12 +144371,12 @@ PrefabInstance:
     - target: {fileID: 7965324859926686304, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Unity directional light
+      value: Unity signle light
       objectReference: {fileID: 0}
     - target: {fileID: 8620837969143551546, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Unity directional light
+      value: Unity signle light
       objectReference: {fileID: 0}
     - target: {fileID: 9047556525481346038, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -157857,7 +157862,7 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: The Unity ambient light can be accessed with UNITY_LIGHTMODEL_AMBIENT
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -157897,7 +157902,7 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: The Unity ambient light can be accessed with UNITY_LIGHTMODEL_AMBIENT
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -158190,7 +158195,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -178320,7 +178325,9 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: The different systems can be assembled to create a PBR materials that
+        interacts with the Unity light system. Using the CGINCLUDE ENDCG tags allows
+        defining the part of the code that is reused inside the shader.
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -178375,7 +178382,9 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: The different systems can be assembled to create a PBR materials that
+        interacts with the Unity light system. Using the CGINCLUDE ENDCG tags allows
+        defining the part of the code that is reused inside the shader.
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -179101,7 +179110,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -186177,7 +186186,19 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: Description
+      value: 'As mentioned with the single light, the BIRP (Built in render pipeline)
+        only processes one Unity light  per pass.
+
+
+        However, only 2 need
+        to be defined. First, the ForwardBase pass is calculated, which also includes
+        the ambient light and reflection probe. The second pass that needs to be
+        defined is tagged ForwardAdd. This is evaluated for every additional light.
+
+
+        Again,
+        note that doing it this way is out of date outside of Unity BIRP and modern
+        rendering pipelines sample the light sources differently.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -186217,7 +186238,19 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: Description
+      value: 'As mentioned with the single light, the BIRP (Built in render pipeline)
+        only processes one Unity light  per pass.
+
+
+        However, only 2 need
+        to be defined. First, the ForwardBase pass is calculated, which also includes
+        the ambient light and reflection probe. The second pass that needs to be
+        defined is tagged ForwardAdd. This is evaluated for every additional light.
+
+
+        Again,
+        note that doing it this way is out of date outside of Unity BIRP and modern
+        rendering pipelines sample the light sources differently.'
       objectReference: {fileID: 0}
     - target: {fileID: 2495251342268687685, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -186655,7 +186688,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.46
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -214827,6 +214860,7 @@ GameObject:
   - component: {fileID: 6648408488626672745}
   - component: {fileID: 6648408488626672744}
   - component: {fileID: 6648408488626672743}
+  - component: {fileID: 6648408488626672746}
   m_Layer: 0
   m_Name: PointLightPickup
   m_TagString: Untagged
@@ -214940,7 +214974,7 @@ Rigidbody:
   m_GameObject: {fileID: 6648408488626672740}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 100
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -214953,11 +214987,32 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &6648408488626672746
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6648408488626672740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5000003
+  m_Center: {x: 0.00024414062, y: 0, z: -0.00030517578}
 --- !u!1 &6666283620104355757
 GameObject:
   m_ObjectHideFlags: 0
@@ -233814,105 +233869,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1001 &7889313778978884773
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 910346127450144949}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3e6c25c204cb4bc478613dfee9d7d62f, type: 2}
-    - target: {fileID: -5754084199372789682, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 919132149155446097, guid: b0441151633078b478eccd43a19be8bf,
-        type: 3}
-      propertyPath: m_Name
-      value: DirectionArrow
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b0441151633078b478eccd43a19be8bf, type: 3}
---- !u!4 &7889313778978884774 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b0441151633078b478eccd43a19be8bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 7889313778978884773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7895467389342152308
 Transform:
   m_ObjectHideFlags: 0
