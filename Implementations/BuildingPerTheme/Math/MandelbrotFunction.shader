@@ -71,7 +71,8 @@ Shader "ShaderCastle/Tutorials/MathFunctions/MandelbrotFunction"
 
                 float function = Mandelbrot(lookupCoordinate);
 
-                float3 color = lerp(_base, _shape, function);
+                float3 color = lerp(_base, (1.0, 1.0, 1.0), function);
+                color = min(color, _shape);
                 
                 return float4(color, 1.0);
             }

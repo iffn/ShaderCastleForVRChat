@@ -42,7 +42,7 @@ Shader "ShaderCastle/Tutorials/DepthBuffer/DepthBufferReadLens"
 
                 float2 screenUV = i.screenPos.xy / i.screenPos.w;
 
-                float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r;
+                float depth = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_CameraDepthTexture, screenUV).r; // Required for correct VR use
 
                 float3 color = depth.xxx;
                 return float4(color, 1.0);

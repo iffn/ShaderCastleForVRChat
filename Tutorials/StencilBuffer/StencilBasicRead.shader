@@ -12,7 +12,7 @@ Shader "ShaderCastle/Tutorials/Stencil/StencilBasicRead"
         {
             Stencil {
                 Ref [_mask] // What the values need to be to render,  with 1: xxxx xxx1 (x doesn't matter because of the mask)
-                ReadMask 255 // Only the last bit should be read, with 1: 0000 0001
+                ReadMask 255 // Binary mask which pixels should be read. With 255: 1111 1111
                 Comp Equal
                 Pass Keep
             }

@@ -14,7 +14,7 @@ Shader "ShaderCastle/Tutorials/Stencil/StencilBasicWrite"
         Pass {
             Stencil {
                 Ref [_mask] // What values are being written,             with 1: xxxx xxx1 (x doesn't matter because of the mask)
-                WriteMask 255 // Only the last bit should be changed, with 1: 0000 0001
+                WriteMask 255 // Binary mask which pixels should be written. With 255: 1111 1111
                 Comp Always
                 Pass Replace
             }
