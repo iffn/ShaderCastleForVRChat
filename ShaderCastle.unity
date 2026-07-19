@@ -39459,6 +39459,243 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &546674535
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1839646938}
+    m_Modifications:
+    - target: {fileID: 772590304957890962, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: linkedMeshRenderer
+      value: 
+      objectReference: {fileID: 9193774147605968089, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+    - target: {fileID: 1540914277758293932, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1540914277758293932, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638368932627969770, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/MathFunctions/StepAXFunction\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _scale (\"Scale\", float) = 2\r\n        _a
+        (\"a\", float) = 1\r\n    }\r\n    SubShader\r\n    {\r\n        Pass\r\n       
+        {\r\n            CGPROGRAM\r\n            #pragma vertex vert\r\n           
+        #pragma fragment frag\r\n\r\n            float _scale;\r\n            float
+        _a;\r\n\r\n            struct appdata {\r\n                float4 vertex
+        : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        float4 frag (v2f i) : SV_Target {\r\n                // Preparation\r\n               
+        float2 uv = i.uv;\r\n                float2 coordinate = (uv * 2 - 1) * _scale;\r\n               
+        float3 black = float3(0,0,0);\r\n                float3 red = float3(1,0,0);\r\n               
+        float3 grey = float3(0.5, 0.5, 0.5);\r\n                float3 color = float3(1,1,1);\r\n               
+        float halfAxisThickness = 0.01 * _scale;\r\n                float minorAxis
+        = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 +
+        0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        minorAxis = sign(abs(frac(coordinate.y) - 0.5) - (0.5 - halfAxisThickness))
+        * 0.5 + 0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        float axis = step(-halfAxisThickness, coordinate.x) * step(coordinate.x,
+        halfAxisThickness);\r\n                color = lerp(color, black, axis);\r\n               
+        axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);\r\n               
+        color = lerp(color, black, axis);\r\n                float x = coordinate.x;\r\n\r\n               
+        // Function to plot\r\n                float function = step(_a, x);\r\n\r\n               
+        // Plotting the function\r\n                float plotFunction = function
+        - coordinate.y;\r\n                float plot = step(-halfAxisThickness,
+        plotFunction) * step(plotFunction, halfAxisThickness * 2);\r\n               
+        color = lerp(color, red, plot);\r\n                return float4(color, 1);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880199773182446178, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/MathFunctions/LinearFunction\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _scale (<color=#D69D85>\"Scale\"</color>,
+        <color=#569CD6>float</color>) = 2\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>float</color> _scale;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#569CD6>float4</color> frag (<color=#569CD6>v2f</color> i) : SV_Target
+        {\r\n                <color=#57A64A>// Preparation\r</color>\n               
+        <color=#569CD6>float2</color> uv = i.uv;\r\n                <color=#569CD6>float2</color>
+        coordinate = (uv * 2 - 1) * _scale;\r\n                <color=#569CD6>float3</color>
+        black = <color=#569CD6>float3</color>(0,0,0);\r\n                <color=#569CD6>float3</color>
+        red = <color=#569CD6>float3</color>(1,0,0);\r\n                <color=#569CD6>float3</color>
+        grey = <color=#569CD6>float3</color>(0.5, 0.5, 0.5);\r\n                <color=#569CD6>float3</color>
+        color = <color=#569CD6>float3</color>(1,1,1);\r\n                <color=#569CD6>float</color>
+        halfAxisThickness = 0.01 * _scale;\r\n                <color=#569CD6>float</color>
+        minorAxis = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness))
+        * 0.5 + 0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        minorAxis = sign(abs(frac(coordinate.y) - 0.5) - (0.5 - halfAxisThickness))
+        * 0.5 + 0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        <color=#569CD6>float</color> axis = step(-halfAxisThickness, coordinate.x)
+        * step(coordinate.x, halfAxisThickness);\r\n                color = lerp(color,
+        black, axis);\r\n                axis = step(-halfAxisThickness, coordinate.y)
+        * step(coordinate.y, halfAxisThickness);\r\n                color = lerp(color,
+        black, axis);\r\n                <color=#569CD6>float</color> x = coordinate.x;\r\n\r\n               
+        <color=#57A64A>// Function to plot\r</color>\n                <color=#569CD6>float</color>
+        function = x;\r\n\r\n                <color=#57A64A>// Plotting the function\r</color>\n               
+        <color=#569CD6>float</color> plotFunction = function - coordinate.y;\r\n               
+        <color=#569CD6>float</color> plot = step(-halfAxisThickness, plotFunction)
+        * step(plotFunction, halfAxisThickness * 2);\r\n                color = lerp(color,
+        red, plot);\r\n                return <color=#569CD6>float4</color>(color,
+        1);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061259247041336634, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3061259247041336634, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5845701
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.58457
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5845701
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435802402821931567, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 70e8796f8f0d2d14ba1e2111320f5567, type: 2}
+    - target: {fileID: 5220190887398236450, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_Name
+      value: Code display
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220190887398236450, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408715019513278837, guid: b6c5073b6c151ed41a7e05bed0353018,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/MathFunctions/LinearFunction\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _scale (\"Scale\", float) = 2\r\n    }\r\n   
+        SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        float _scale;\r\n\r\n            struct appdata {\r\n                float4
+        vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        float4 frag (v2f i) : SV_Target {\r\n                // Preparation\r\n               
+        float2 uv = i.uv;\r\n                float2 coordinate = (uv * 2 - 1) * _scale;\r\n               
+        float3 black = float3(0,0,0);\r\n                float3 red = float3(1,0,0);\r\n               
+        float3 grey = float3(0.5, 0.5, 0.5);\r\n                float3 color = float3(1,1,1);\r\n               
+        float halfAxisThickness = 0.01 * _scale;\r\n                float minorAxis
+        = sign(abs(frac(coordinate.x) - 0.5) - (0.5 - halfAxisThickness)) * 0.5 +
+        0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        minorAxis = sign(abs(frac(coordinate.y) - 0.5) - (0.5 - halfAxisThickness))
+        * 0.5 + 0.5;\r\n                color = lerp(color, grey, minorAxis);\r\n               
+        float axis = step(-halfAxisThickness, coordinate.x) * step(coordinate.x,
+        halfAxisThickness);\r\n                color = lerp(color, black, axis);\r\n               
+        axis = step(-halfAxisThickness, coordinate.y) * step(coordinate.y, halfAxisThickness);\r\n               
+        color = lerp(color, black, axis);\r\n                float x = coordinate.x;\r\n\r\n               
+        // Function to plot\r\n                float function = x;\r\n\r\n               
+        // Plotting the function\r\n                float plotFunction = function
+        - coordinate.y;\r\n                float plot = step(-halfAxisThickness,
+        plotFunction) * step(plotFunction, halfAxisThickness * 2);\r\n               
+        color = lerp(color, red, plot);\r\n                return float4(color, 1);\r\n           
+        }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b6c5073b6c151ed41a7e05bed0353018, type: 3}
+--- !u!4 &546674536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3064807506094709333, guid: b6c5073b6c151ed41a7e05bed0353018,
+    type: 3}
+  m_PrefabInstance: {fileID: 546674535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &548388632
 Mesh:
   m_ObjectHideFlags: 0
@@ -107379,6 +107616,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 299380150}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1839646937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839646938}
+  m_Layer: 0
+  m_Name: Code display
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1839646938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839646937}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.3007058, z: 0, w: 0.95371693}
+  m_LocalPosition: {x: -3.3841012, y: 0, z: 4.8329973}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 546674536}
+  m_Father: {fileID: 8147501104544359601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1839973143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -148184,7 +148453,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000001758337
+      value: 0.51421875
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -148194,12 +148463,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.9
+      value: 5.877549
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99904823
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -148209,7 +148478,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000014901161
+      value: 0.04361938
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -166120,7 +166389,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.95
+      value: -2.4934478
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -166130,12 +166399,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.10955
+      value: 5.3472157
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 0.976296
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -166145,7 +166414,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.25881907
+      value: -0.21643962
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -168702,7 +168971,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0179186
+      value: 2.4934475
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -168712,12 +168981,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.5441866
+      value: 5.347216
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 0.976296
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -168727,7 +168996,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17364818
+      value: 0.2164396
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -176149,7 +176418,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0245241
+      value: 1.5270323
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -176159,12 +176428,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.8103657
+      value: 5.698962
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9961947
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -176174,7 +176443,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.08715572
+      value: 0.13052619
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -184986,7 +185255,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4541972
+      value: -1.4503703
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -184996,7 +185265,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5107422
+      value: 3.5015032
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -186751,7 +187020,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.9499998
+      value: 3.3841012
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -186761,12 +187030,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.10955
+      value: 4.8329973
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 0.95371693
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -186776,7 +187045,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.25881904
+      value: 0.3007058
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -200756,7 +201025,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.49599954
+      value: 0.4946943
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -200766,7 +201035,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7674906
+      value: 3.757576
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -205511,7 +205780,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0245245
+      value: -0.5142189
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -205521,12 +205790,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.8103657
+      value: 5.877549
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9961947
+      value: 0.99904823
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -205536,7 +205805,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.08715575
+      value: -0.043619394
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -207972,7 +208241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa812f42800b2941a8ec2e1b5230195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 3.8
+  offset: 3.79
   angleOffsetDeg: 15
   arrnageClockwise: 1
   inverseOrder: 0
@@ -217289,7 +217558,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4541972
+      value: 1.4503703
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -217299,7 +217568,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.5107422
+      value: 3.5015032
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -228875,7 +229144,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0179188
+      value: -1.5270324
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -228885,12 +229154,12 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.5441866
+      value: 5.698962
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9848078
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -228900,7 +229169,7 @@ PrefabInstance:
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.17364821
+      value: -0.1305262
       objectReference: {fileID: 0}
     - target: {fileID: 3487209484292401322, guid: 8fc3995061ae96c439e3b73cb3aa0965,
         type: 3}
@@ -237660,6 +237929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1839646938}
   - {fileID: 2944326152224050270}
   - {fileID: 7518219266309323312}
   - {fileID: 5845072765712431222}
@@ -246142,7 +246412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983890422486111101}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6315216, z: -0, w: -0.77535826}
+  m_LocalRotation: {x: 0, y: 0.701718, z: -0, w: -0.7124548}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -246152,7 +246422,7 @@ Transform:
   - {fileID: 7237180628365230836}
   - {fileID: 5619515912984997114}
   m_Father: {fileID: 2325021965387973543}
-  m_LocalEulerAnglesHint: {x: 0, y: 281.675, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270.87, z: 0}
 --- !u!4 &8552210172702618823
 Transform:
   m_ObjectHideFlags: 0
@@ -253225,7 +253495,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.49599954
+      value: -0.4946943
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -253235,7 +253505,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7674906
+      value: 3.757576
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
