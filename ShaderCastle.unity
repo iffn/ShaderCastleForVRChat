@@ -11317,14 +11317,14 @@ PrefabInstance:
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: description
-      value: 'In the real world usualy bounces around the scene. However, calculating
-        this is extremely heavy. Therefore, precalculating some values helps. Howewver,
-        doing so often clashes with the dynamic nature of interactive environments.
+      value: 'In the real world, light usually bounces around the scene. However,
+        calculating this is extremely heavy. Therefore, precalculating some values
+        helps. Howewver, doing so often clashes with the dynamic nature of interactive
+        environments.
 
 
-        One
-        way of storing the information is in a 2D light map that can be sampled by
-        the shader.'
+        One way of storing the information is in a 2D light
+        map that can be sampled by the shader.'
       objectReference: {fileID: 0}
     - target: {fileID: 1055789876787810633, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -11384,14 +11384,14 @@ PrefabInstance:
     - target: {fileID: 2136312619905546357, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_text
-      value: 'In the real world usualy bounces around the scene. However, calculating
-        this is extremely heavy. Therefore, precalculating some values helps. Howewver,
-        doing so often clashes with the dynamic nature of interactive environments.
+      value: 'In the real world, light usually bounces around the scene. However,
+        calculating this is extremely heavy. Therefore, precalculating some values
+        helps. Howewver, doing so often clashes with the dynamic nature of interactive
+        environments.
 
 
-        One
-        way of storing the information is in a 2D light map that can be sampled by
-        the shader.'
+        One way of storing the information is in a 2D light
+        map that can be sampled by the shader.'
       objectReference: {fileID: 0}
     - target: {fileID: 2136673931229334494, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -11925,7 +11925,7 @@ PrefabInstance:
     - target: {fileID: 6716424343980421562, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
       propertyPath: m_MinHeight
-      value: 0.03
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6945779178226896469, guid: 7ffcca573e1296d47a9191342db0701b,
         type: 3}
@@ -46636,6 +46636,340 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 372904247498775878, guid: 7ffcca573e1296d47a9191342db0701b,
     type: 3}
   m_PrefabInstance: {fileID: 8557281732204512431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &657080499
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8462610367050830158}
+    m_Modifications:
+    - target: {fileID: 1415808747208185003, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            float4 frag (v2f i) : SV_Target {\r\n               
+        float3 color = tex2D(_MainTex, i.uv);\r\n                return float4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+    - target: {fileID: 1620021591047607248, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializationData.SerializedFormat
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611856009585313489, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_MinHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: title
+      value: Linux 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: description
+      value: Intel Corporation CometLake-U GT2 [UHD Graphics] (rev 02)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686973092905522621, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: linkedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9183e8277669c974c89a1cc8f0227bda, type: 2}
+    - target: {fileID: 3722247126628398497, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: Linux 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992333524175125994, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144484587909832813, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144484587909832813, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144484587909832813, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.37595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144484587909832813, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.775
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208986365493122461, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231062188907738545, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742801142062538468, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: Intel Corporation CometLake-U GT2 [UHD Graphics] (rev 02)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962422226410747937, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008773921672645143, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Name
+      value: V5 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5008773921672645143, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061122928763255898, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 5336861511342109737, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336861511342109737, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336861511342109737, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5451227629932269074, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: serializedProgramAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: bd0b187544328de4da8b1b12545c3a4c,
+        type: 2}
+    - target: {fileID: 6081160823278472341, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 35630e38b4e5ffb40b44ec5348b4333f, type: 2}
+    - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721421400554529819, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7190096166537646900, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "Shader \"ShaderCastle/Tutorials/Basics/TextureDisplay\"\r\n{\r\n   
+        Properties\r\n    {\r\n        _MainTex (\"Texture\", 2D) = \"white\" {}\r\n   
+        }\r\n    SubShader\r\n    {\r\n        Pass\r\n        {\r\n            CGPROGRAM\r\n           
+        #pragma vertex vert\r\n            #pragma fragment frag\r\n\r\n           
+        sampler2D _MainTex;\r\n\r\n            struct appdata {\r\n               
+        float4 vertex : POSITION;\r\n                float2 uv : TEXCOORD0;\r\n           
+        };\r\n\r\n            struct v2f {\r\n                float4 pos : SV_POSITION;\r\n               
+        float2 uv : TEXCOORD0;\r\n            };\r\n\r\n            v2f vert (appdata
+        v) {\r\n                v2f o;\r\n                o.pos = UnityObjectToClipPos(v.vertex);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        // Fragment function\r\n            half4 frag (v2f i) : SV_Target {\r\n               
+        half3 color = tex2D(_MainTex, i.uv);\r\n                return half4(color,
+        1.0);\r\n            }\r\n            ENDCG\r\n        }\r\n    }\r\n}\r\n\u200B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.137
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7859708792013763326, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50.37595
+      objectReference: {fileID: 0}
+    - target: {fileID: 8026314177545236412, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_text
+      value: "<color=#569CD6>Shader</color> <color=#D69D85>\"ShaderCastle/Tutorials/Basics/TextureDisplay\"</color>\r\n{\r\n   
+        <color=#569CD6>Properties</color>\r\n    {\r\n        _MainTex (<color=#D69D85>\"Texture\"</color>,
+        2D) = <color=#D69D85>\"white\"</color> {}\r\n    }\r\n    <color=#569CD6>SubShader</color>\r\n   
+        {\r\n        <color=#569CD6>Pass</color>\r\n        {\r\n            <color=#569CD6>CGPROGRAM</color>\r\n           
+        #pragma <color=#569CD6>vertex</color> vert\r\n            #pragma <color=#569CD6>fragment</color>
+        frag\r\n\r\n            <color=#569CD6>sampler2D</color> _MainTex;\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>appdata</color> {\r\n               
+        <color=#569CD6>float4</color> <color=#569CD6>vertex</color> : POSITION;\r\n               
+        <color=#569CD6>float2</color> uv : TEXCOORD0;\r\n            };\r\n\r\n           
+        <color=#569CD6>struct</color> <color=#569CD6>v2f</color> {\r\n               
+        <color=#569CD6>float4</color> pos : SV_POSITION;\r\n                <color=#569CD6>float2</color>
+        uv : TEXCOORD0;\r\n            };\r\n\r\n            <color=#569CD6>v2f</color>
+        vert (<color=#569CD6>appdata</color> v) {\r\n                <color=#569CD6>v2f</color>
+        o;\r\n                o.pos = UnityObjectToClipPos(v.<color=#569CD6>vertex</color>);\r\n               
+        o.uv = v.uv;\r\n                return o;\r\n            }\r\n\r\n           
+        <color=#57A64A>// Fragment function\r</color>\n            <color=#569CD6>float4</color>
+        frag (<color=#569CD6>v2f</color> i) : SV_Target {\r\n                <color=#569CD6>float3</color>
+        color = tex2D(_MainTex, i.uv);\r\n                return <color=#569CD6>float4</color>(color,
+        1.0);\r\n            }\r\n            <color=#569CD6>ENDCG</color>\r\n       
+        }\r\n    }\r\n}\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9193774147605968089, guid: 3b78f404deb68354e9b08eaf5d093c61,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9183e8277669c974c89a1cc8f0227bda, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b78f404deb68354e9b08eaf5d093c61, type: 3}
+--- !u!4 &657080500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
+    type: 3}
+  m_PrefabInstance: {fileID: 657080499}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &660297265
 GameObject:
@@ -144861,7 +145195,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.137
+      value: 3.029
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -165812,7 +166146,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.48
+      value: 4.372
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -243618,6 +243952,7 @@ Transform:
   - {fileID: 7080245720874293596}
   - {fileID: 7407681413337963882}
   - {fileID: 7109491517118744162}
+  - {fileID: 657080500}
   - {fileID: 1495637877533931439}
   - {fileID: 9013442240362530633}
   - {fileID: 2877894528058470648}
@@ -249182,7 +249517,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.133
+      value: 5.025
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
@@ -250970,7 +251305,7 @@ PrefabInstance:
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.771
+      value: 3.663
       objectReference: {fileID: 0}
     - target: {fileID: 7778231817007107517, guid: 3b78f404deb68354e9b08eaf5d093c61,
         type: 3}
